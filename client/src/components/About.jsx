@@ -11,20 +11,20 @@ export default function About() {
           {/* Content */}
           <div className="max-w-2xl">
             <p className="text-lg text-gray-800 leading-relaxed mb-4 font-medium">
-              We're building Upsquad — a subscription that helps businesses manage their activities
-              into one powerful, easy-to-manage plan.
+              The Future of Work Starts Here
             </p>
             <p className="text-base text-gray-500 leading-relaxed mb-4">
-              Designed for brands, startups, and creators who want a flexible, system and
-              process-driven team. Stay consistent, save time, and focus on what matters most —
-              growing your business.
+              UpSquad is a new way for businesses to build teams — without the complexity of
+              traditional hiring.
             </p>
-            <p className="text-base text-gray-500 leading-relaxed mb-6">
-              Join our waitlist to get early access, exclusive launch benefits, and be among the
-              first to experience the future of subscriptions.
+            <p className="text-base text-gray-500 leading-relaxed mb-4">
+              Instead of recruiting full-time or part-time employees, businesses can subscribe to
+              UpSquad and access skilled professionals on demand. From design and development to
+              marketing and operations, you get the talent you need — when you need it.
             </p>
-            <p className="text-sm font-medium text-gray-900">
-              ✦&nbsp; No contracts. No stress. Just creativity that works.
+            <p className="text-base text-gray-500 leading-relaxed">
+              Built for startups, growing brands, and modern businesses that want flexibility,
+              UpSquad helps you move faster without the cost and commitment of traditional hiring.
             </p>
           </div>
         </div>

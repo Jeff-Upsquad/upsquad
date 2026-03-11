@@ -1,5 +1,5 @@
 const stats = [
-  { value: 'One plan', label: 'Everything included' },
+  { value: 'One plan', label: 'Select the ones you want' },
   { value: '6 squads', label: 'Ready to deploy' },
   { value: 'No contracts', label: 'Pause or cancel anytime' },
 ]
@@ -20,7 +20,7 @@ export default function Hero() {
 
             {/* Two-tone headline */}
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold leading-[1.15] tracking-tight mb-6">
-              <span className="text-slate-900">The All-in-One Subscription</span>
+              <span className="text-slate-900">The All-in-One Talent Subscription</span>
               <br />
               <span className="text-slate-400 font-bold">for Modern Brands.</span>
             </h1>
