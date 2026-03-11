@@ -6,7 +6,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-24 px-5 sm:px-8 bg-white border-b border-gray-100">
+    <section className="relative pt-32 pb-24 px-5 sm:px-8 bg-dot-pattern border-b border-gray-100 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
 
