@@ -43,8 +43,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center mb-3">
-              <span className="font-bold text-lg text-white">Up</span>
-              <span className="font-bold text-lg text-lime-500">Squad</span>
+              <span className="font-heading font-bold text-lg text-white">Up</span>
+              <span className="font-heading font-bold text-lg text-lime-500">Squad</span>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed mb-5 max-w-xs">
               Subscribing is better than hiring. The all-in-one subscription for modern brands.

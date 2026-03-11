@@ -19,14 +19,14 @@ export default function Hero() {
             </div>
 
             {/* Two-tone headline */}
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-[1.15] tracking-tight mb-6">
-              <span className="text-gray-900">The All-in-One Subscription</span>
+            <h1 className="font-heading text-4xl sm:text-5xl font-extrabold leading-[1.15] tracking-tight mb-6">
+              <span className="text-slate-900">The All-in-One Subscription</span>
               <br />
-              <span className="text-gray-400 font-bold">for Modern Brands.</span>
+              <span className="text-slate-400 font-bold">for Modern Brands.</span>
             </h1>
 
             {/* Subtext */}
-            <p className="text-lg text-gray-500 leading-[1.7] mb-8 max-w-lg">
+            <p className="text-lg text-slate-500 leading-[1.7] mb-8 max-w-lg">
               Subscribing is better than hiring. One plan gives your brand access to content,
               marketing, tech, accounts, legal, and hiring — all under one roof.
               Stay consistent. Scale fast.

@@ -44,8 +44,8 @@ export default function HowItWorks() {
         {/* Header */}
         <div className="mb-12">
           <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">Process</p>
-          <h2 className="text-3xl font-bold text-gray-900 tracking-tight">How UpSquad works</h2>
-          <p className="text-base text-gray-500 mt-2">
+          <h2 className="font-heading text-3xl font-bold text-slate-900 tracking-tight">How UpSquad works</h2>
+          <p className="text-base text-slate-500 mt-2">
             Everything you need — nothing you don&apos;t.
           </p>
         </div>
@@ -63,8 +63,8 @@ export default function HowItWorks() {
                 </div>
                 <span className="text-xs font-medium text-gray-400">Step {step.number}</span>
               </div>
-              <h3 className="text-base font-semibold text-gray-900 mb-1.5">{step.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
+              <h3 className="font-heading text-base font-semibold text-slate-900 mb-1.5">{step.title}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>

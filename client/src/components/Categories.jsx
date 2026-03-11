@@ -50,8 +50,8 @@ export default function Categories() {
         {/* Header */}
         <div className="mb-10">
           <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">Subscriptions</p>
-          <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Game-changing features for creative productivity.</h2>
-          <p className="text-base text-gray-500 mt-2 max-w-xl">
+          <h2 className="font-heading text-3xl font-bold text-slate-900 tracking-tight">Game-changing features for creative productivity.</h2>
+          <p className="text-base text-slate-500 mt-2 max-w-xl">
             Discover the squads that help you stay organized, consistent, and scale your brand effortlessly.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function Categories() {
               className="group bg-white rounded-xl p-5 border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-200"
             >
               <span className="text-2xl mb-3 block">{squad.emoji}</span>
-              <h3 className="text-sm font-semibold text-gray-900 mb-1">{squad.name}</h3>
+              <h3 className="font-heading text-sm font-semibold text-slate-900 mb-1">{squad.name}</h3>
               <p className="text-xs text-gray-500 leading-relaxed mb-3.5">{squad.description}</p>
               <div className="flex flex-wrap gap-1">
                 {squad.tags.map((tag) => (

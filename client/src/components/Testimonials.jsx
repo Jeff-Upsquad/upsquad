@@ -51,7 +51,7 @@ export default function Testimonials() {
         {/* Reviews */}
         <div className="mb-12">
           <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">Early Feedback</p>
-          <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-10">What brands are saying</h2>
+          <h2 className="font-heading text-3xl font-bold text-slate-900 tracking-tight mb-10">What brands are saying</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map((t) => (
@@ -83,7 +83,7 @@ export default function Testimonials() {
         {/* Waitlist CTA */}
         <div className="bg-[#F7F6F3] rounded-2xl border border-gray-200/60 px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
           <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-1">Be among the first.</h3>
+            <h3 className="font-heading text-xl font-bold text-slate-900 mb-1">Be among the first.</h3>
             <p className="text-sm text-gray-500">
               Join the waitlist to get early access and exclusive launch offers.
             </p>
