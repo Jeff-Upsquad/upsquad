@@ -44,9 +44,6 @@ export default function Navbar() {
                 <a href="#categories" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
                   The Squads
                 </a>
-                <a href="#testimonials" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
-                  Reviews
-                </a>
               </>
             ) : (
               <>
@@ -55,9 +52,6 @@ export default function Navbar() {
                 </Link>
                 <Link to="/#categories" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
                   The Squads
-                </Link>
-                <Link to="/#testimonials" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
-                  Reviews
                 </Link>
               </>
             )}
@@ -107,7 +101,7 @@ export default function Navbar() {
           <div className="md:hidden bg-white border-t border-gray-100 py-3 space-y-0.5">
             {isHome ? (
               <>
-                {['How it Works|#how-it-works', 'The Squads|#categories', 'Reviews|#testimonials'].map((item) => {
+                {['How it Works|#how-it-works', 'The Squads|#categories'].map((item) => {
                   const [label, href] = item.split('|')
                   return (
                     <a
