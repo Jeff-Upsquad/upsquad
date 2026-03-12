@@ -29,6 +29,7 @@ const squads = [
       'Growth-focused marketing support across digital, offline, and PR channels. Work with ad specialists, digital marketers, offline marketers, and PR experts through a single subscription.',
     emoji: '📣',
     tags: ['Digital', 'Offline', 'PR', 'Ads'],
+    badge: 'Beta',
   },
   {
     name: 'Tech',
@@ -36,6 +37,7 @@ const squads = [
       'Web development, app building, automation, and software solutions — built to scale with your brand. From MVPs to full platforms.',
     emoji: '💻',
     tags: ['Web Dev', 'Apps', 'Automation'],
+    badge: 'Pilot Run',
   },
   {
     name: 'Accounts & Finance',
@@ -43,6 +45,7 @@ const squads = [
       'Bookkeeping, payroll, tax planning, financial reporting, and fractional CFO services. Your financial back office, fully managed.',
     emoji: '📊',
     tags: ['Bookkeeping', 'Tax', 'CFO'],
+    badge: 'Beta',
   },
   {
     name: 'Legal',
@@ -50,6 +53,7 @@ const squads = [
       'Contract drafting, IP protection, compliance, and business formation — covered. Get legal support without the hourly rates.',
     emoji: '⚖️',
     tags: ['Contracts', 'Compliance', 'IP'],
+    badge: 'Launching Soon',
   },
   {
     name: 'Hiring & HR',
@@ -57,6 +61,7 @@ const squads = [
       'End-to-end hiring support, team building, and HR process management for growing brands. Build your team with confidence.',
     emoji: '🤝',
     tags: ['Recruiting', 'HR', 'Onboarding'],
+    badge: 'Launching Soon',
   },
 ]
 
@@ -171,6 +176,11 @@ export default function Categories() {
                 {squad.drawer && (
                   <span className="text-xs font-medium text-gray-400 border border-gray-200 rounded-full px-2.5 py-1">
                     New
+                  </span>
+                )}
+                {squad.badge && (
+                  <span className="text-xs font-medium text-amber-600 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1">
+                    {squad.badge}
                   </span>
                 )}
               </div>
