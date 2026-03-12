@@ -154,26 +154,48 @@ export default function Categories() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {squads.map((squad) => (
             <div
               key={squad.name}
               onClick={() => squad.drawer && setActiveSquad(squad)}
-              className={`group bg-white rounded-xl p-5 border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-200 ${squad.drawer ? 'cursor-pointer' : ''}`}
+              className={`group p-2 bg-[#E8E7E2] rounded-[26px] hover:bg-[#DDDCD7] transition-all duration-200 ${squad.drawer ? 'cursor-pointer' : ''}`}
             >
-              <span className="text-2xl mb-3 block">{squad.emoji}</span>
-              <h3 className="font-heading text-sm font-semibold text-slate-900 mb-1">{squad.name}</h3>
-              <p className="text-xs text-gray-500 leading-relaxed mb-3.5">{squad.description}</p>
-              <div className="flex flex-wrap gap-1">
+              <div className="bg-white rounded-[18px] p-6 flex flex-col h-full">
+              {/* Top: icon + title row */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-xl shrink-0">
+                  {squad.emoji}
+                </div>
+                {squad.drawer && (
+                  <span className="text-xs font-medium text-gray-400 border border-gray-200 rounded-full px-2.5 py-1">
+                    New
+                  </span>
+                )}
+              </div>
+
+              {/* Title + description */}
+              <h3 className="font-heading text-base font-semibold text-slate-900 mb-1.5">{squad.name}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-5 flex-1">{squad.description}</p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5 mb-5">
                 {squad.tags.map((tag) => (
-                  <span key={tag} className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md">
+                  <span key={tag} className="text-xs bg-gray-50 border border-gray-200 text-gray-500 px-2.5 py-1 rounded-lg">
                     {tag}
                   </span>
                 ))}
               </div>
-              {squad.drawer && (
-                <p className="text-xs text-gray-400 mt-3 group-hover:text-gray-600 transition-colors">View talents →</p>
-              )}
+
+              {/* Action button */}
+              <button className={`w-full py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 border ${
+                squad.drawer
+                  ? 'bg-gray-900 text-white border-gray-900 group-hover:bg-gray-700'
+                  : 'bg-white text-gray-700 border-gray-200 group-hover:border-gray-400'
+              }`}>
+                {squad.drawer ? 'Explore Squad →' : 'Coming Soon'}
+              </button>
+              </div>
             </div>
           ))}
         </div>
