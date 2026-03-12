@@ -832,6 +832,296 @@ function ImportantNote() {
   )
 }
 
+// --- Video/Photographer Pricing ---
+
+const videographerPlans = [
+  {
+    name: 'Starter', priceLabel: '₹6k', highlighted: false, badge: null,
+    shootDuration: 'Half Day (4 hours)',
+    equipments: 'Professional camera + Standard mic and lighting kit',
+    expertLevel: 'Skilled', crew: 'Single person', preShooting: null,
+  },
+  {
+    name: 'Basic', priceLabel: '₹13k', highlighted: false, badge: null,
+    shootDuration: 'Full Day (8 Hours)',
+    equipments: 'Professional camera + Standard mic and lighting kit',
+    expertLevel: 'Skilled', crew: 'Single person', preShooting: null,
+  },
+  {
+    name: 'Plus', priceLabel: '₹18k', highlighted: true, badge: 'BEST VALUE',
+    shootDuration: 'Full Day (8 Hours)',
+    equipments: 'Professional camera + Standard mic and lighting kit',
+    expertLevel: 'Experienced', crew: 'Single/Multiple', preShooting: 'Basic shot planning',
+  },
+  {
+    name: 'Pro', priceLabel: '₹25k', highlighted: false, badge: null,
+    shootDuration: 'Full Day (8 Hours)',
+    equipments: 'Professional camera + mic + Cinematic lighting',
+    expertLevel: 'Pros', crew: 'Single/Multiple', preShooting: 'Detailed shot list & creative direction',
+  },
+  {
+    name: 'Personal', priceLabel: 'Custom Pricing', highlighted: false, badge: null,
+    shootDuration: '—', equipments: '—', expertLevel: '—', crew: '—', preShooting: '—',
+  },
+]
+
+const presentationPlans = [
+  { name: 'Starter', monthlyPrice: 6000, videos: '2 videos', highlighted: false, badge: null },
+  { name: 'Basic', monthlyPrice: 13000, videos: '4 videos', highlighted: false, badge: null },
+  { name: 'Plus', monthlyPrice: 15000, videos: '8 videos', highlighted: true, badge: 'BEST VALUE' },
+  { name: 'Pro', monthlyPrice: 20000, videos: '10 videos', highlighted: false, badge: null },
+]
+
+function VideographerTable() {
+  const rows = [
+    { label: 'Price per day', key: 'priceLabel', bold: true },
+    { label: 'Shoot Duration', key: 'shootDuration' },
+    { label: 'Equipments', key: 'equipments' },
+    { label: 'Expert level', key: 'expertLevel' },
+    { label: 'Crew', key: 'crew' },
+    { label: 'Pre-Shoot Planning', key: 'preShooting' },
+  ]
+  return (
+    <div className="overflow-x-auto pb-4">
+      <div className="min-w-[800px]">
+        {/* Headers */}
+        <div className="grid grid-cols-[160px_repeat(5,1fr)]">
+          <div />
+          {videographerPlans.map((p) => (
+            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl' : ''}`}>
+              {p.badge && <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
+              <h3 className="font-heading font-semibold text-slate-900 text-sm">{p.name}</h3>
+            </div>
+          ))}
+        </div>
+        {/* Rows */}
+        {rows.map((row, rowIdx) => (
+          <div key={row.label} className="grid grid-cols-[160px_repeat(5,1fr)] border-t border-gray-100">
+            <div className="flex items-center px-4 py-4">
+              <span className="text-sm text-slate-700">{row.label}</span>
+            </div>
+            {videographerPlans.map((p, colIdx) => (
+              <div key={p.name + row.key} className={`flex items-center justify-center py-4 px-2 text-center text-xs ${
+                p.highlighted
+                  ? rowIdx === rows.length - 1
+                    ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
+                    : 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500'
+                  : ''
+              }`}>
+                {row.key === 'preShooting' && p[row.key] === null
+                  ? <CrossIcon />
+                  : <span className={row.bold ? 'font-bold text-slate-900 text-base' : 'text-slate-600'}>{p[row.key]}</span>
+                }
+              </div>
+            ))}
+          </div>
+        ))}
+        {/* CTA Row */}
+        <div className="grid grid-cols-[160px_repeat(5,1fr)] pt-4">
+          <div />
+          {videographerPlans.map((p) => (
+            <div key={p.name + '-cta'} className="flex justify-center px-3">
+              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
+                {p.name === 'Personal' ? 'Contact Sales' : 'Get Started'}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PresentationTable() {
+  return (
+    <div className="overflow-x-auto pb-4">
+      <div className="min-w-[600px]">
+        {/* Headers */}
+        <div className="grid grid-cols-[160px_repeat(4,1fr)]">
+          <div />
+          {presentationPlans.map((p) => (
+            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl' : ''}`}>
+              {p.badge && <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
+              <h3 className="font-heading font-semibold text-slate-900 text-sm">{p.name}</h3>
+            </div>
+          ))}
+        </div>
+        {/* Price Row */}
+        <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-gray-200">
+          <div className="flex items-center px-4 py-4"><span className="text-sm font-medium text-slate-700">Monthly Price</span></div>
+          {presentationPlans.map((p) => (
+            <div key={p.name + '-price'} className={`flex flex-col items-center justify-center py-4 ${p.highlighted ? 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500' : ''}`}>
+              <span className="text-2xl font-bold text-slate-900">₹{formatPrice(p.monthlyPrice)}</span>
+              <span className="text-xs text-slate-400">/month</span>
+            </div>
+          ))}
+        </div>
+        {/* Videos Row */}
+        <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-gray-100">
+          <div className="flex items-center px-4 py-4"><span className="text-sm text-slate-700">Videos</span></div>
+          {presentationPlans.map((p, i) => (
+            <div key={p.name + '-videos'} className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
+              p.highlighted
+                ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
+                : ''
+            }`}>
+              <span className="text-sm font-semibold text-slate-900">{p.videos}</span>
+              <span className="text-xs text-slate-400 mt-0.5">Short Videos (per month)</span>
+            </div>
+          ))}
+        </div>
+        {/* CTA Row */}
+        <div className="grid grid-cols-[160px_repeat(4,1fr)] pt-4">
+          <div />
+          {presentationPlans.map((p) => (
+            <div key={p.name + '-cta'} className="flex justify-center px-3">
+              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
+                Get Started
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function VideoPhotographerPricing() {
+  const [activeSubTab, setActiveSubTab] = useState('Videographer/Photographer')
+  const subTabs = ['Videographer/Photographer', 'Presentation Videos']
+  return (
+    <>
+      {/* Sub-tabs */}
+      <div className="flex justify-center mb-8">
+        <div className="inline-flex border border-gray-200 rounded-xl p-1 bg-white gap-1">
+          {subTabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveSubTab(tab)}
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+                activeSubTab === tab ? 'bg-gray-900 text-white' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {activeSubTab === 'Videographer/Photographer' ? (
+        <>
+          <div className="text-center mb-8">
+            <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">Videographer/Photographer Subscriptions</h1>
+            <p className="text-slate-500">Get professional video and photography coverage with flexible, transparent pricing.</p>
+          </div>
+          <VideographerTable />
+          {/* Important Notes */}
+          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <p className="text-sm font-semibold text-slate-900 mb-3">Important Notes:</p>
+            <ul className="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+              <li>Concepts, Scripts and other content related things are not included.</li>
+              <li>Travel expenses will be extra.</li>
+              <li>If additional equipments are required, rental cost for the same will be extra.</li>
+              <li>If models, studios, props, paid locations are required, cost for the same will be extra.</li>
+              <li>Crew can be single or multiple as per the requirement.</li>
+              <li>Editing is not included in this subscription, you can subscribe to video editor separately if needed.</li>
+            </ul>
+          </div>
+          {/* Features */}
+          <section className="mt-12">
+            <h2 className="font-heading text-xl font-bold text-slate-900 mb-1">Features</h2>
+            <p className="text-slate-500 mb-5">Maximum flexibility and creativity for your content production needs.</p>
+            <div className="space-y-3">
+              {[
+                'Change videographer at any time based on availability',
+                <>Shoot unlimited content within the allotted <strong>8 hours per day</strong></>,
+                'No limit on the number of video concepts per shoot day',
+                'Multiple takes allowed for each shot within the shoot time',
+                'Pause and resume shoots based on your content calendar',
+                <>Use shoot days for <strong>any content type</strong> (reels, ads, interviews, product shots, etc.)</>,
+                'Full usage rights on all footage',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckIcon />
+                  <span className="text-sm text-slate-600">{item}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+          {/* Fair-Use */}
+          <section className="mt-12 mb-16">
+            <h2 className="font-heading text-xl font-bold text-slate-900 mb-1">Fair-Use &amp; Transparency</h2>
+            <p className="text-slate-500 mb-5">Clear guidelines to ensure smooth collaboration and mutual respect.</p>
+            <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
+              <li>8-hour workday includes setup and wrap-up time.</li>
+              <li>Breaks included as per standard production norms.</li>
+              <li>Overtime available at additional cost.</li>
+              <li>Travel time considered separately if applicable (if need to travel between locations).</li>
+            </ul>
+          </section>
+        </>
+      ) : (
+        <>
+          <div className="text-center mb-8">
+            <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">Presentation Videos</h1>
+            <p className="text-slate-500">Complete video production from concept to delivery.</p>
+          </div>
+          <PresentationTable />
+          {/* Who this plan is for */}
+          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <p className="text-sm font-semibold text-slate-900 mb-3">Who this plan is for?</p>
+            <div className="space-y-2">
+              {[
+                'Your requirement is fixed',
+                'You need a fixed number of videos per month',
+                <>You want us to take care of the entire process: create concepts for shorts and long form videos, scripting and story boarding, shooting and editing, and final delivery.</>,
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckIcon />
+                  <span className="text-sm text-slate-600">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* What is included */}
+          <div className="mt-4 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <p className="text-sm font-semibold text-slate-900 mb-3">What is included?</p>
+            <div className="space-y-2">
+              {[
+                'Content Calendar for a Month including Concept, Scripts and Story boards in advance.',
+                'Anchor/Model/Actor presenting the script in a talking head or walk and talk format.',
+                'Final Edited Video + Full Footage after Trimming.',
+                '2 Rounds of revisions for videos created (Unlimited Revisions if you take editor subscription).',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckIcon />
+                  <span className="text-sm text-slate-600">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* What's not included */}
+          <div className="mt-4 mb-16 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <p className="text-sm font-semibold text-slate-900 mb-3">What's not included?</p>
+            <div className="space-y-2">
+              {[
+                'Travel expenses extra for if location shoot is needed.',
+                'Separate Models/Anchors/Actors if required is charged based on their per day rate.',
+                'If additional cameras, drones or other equipments or props are needed, their rental cost will also be extra.',
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CrossIcon />
+                  <span className="text-sm text-slate-600">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  )
+}
+
 // --- Main Pricing Page ---
 
 export default function Pricing() {
@@ -843,17 +1133,14 @@ export default function Pricing() {
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <PlanTypeTabs activeType={activeType} setActiveType={setActiveType} />
 
-        <div className="text-center mb-8">
-          <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">
-            {activeType} Plan
-          </h1>
-          <p className="text-slate-500">
-            Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.
-          </p>
-        </div>
-
-        {liveTypes.includes(activeType) ? (
+        {activeType === 'Video/Photographer' ? (
+          <VideoPhotographerPricing />
+        ) : liveTypes.includes(activeType) ? (
           <>
+            <div className="text-center mb-8">
+              <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">{activeType} Plan</h1>
+              <p className="text-slate-500">Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.</p>
+            </div>
             <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
             <PricingTable isYearly={isYearly} />
             <NoteSection />
@@ -864,23 +1151,25 @@ export default function Pricing() {
             <ImportantNote />
           </>
         ) : (
-          <div className="flex flex-col items-center justify-center py-32 text-center">
-            <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+          <>
+            <div className="text-center mb-8">
+              <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">{activeType} Plan</h1>
             </div>
-            <h2 className="font-heading text-2xl font-bold text-slate-900 mb-3">Coming Soon</h2>
-            <p className="text-slate-500 max-w-md">
-              Pricing for <span className="font-semibold text-slate-700">{activeType}</span> is on its way. Join the waitlist to get notified when it launches.
-            </p>
-            <a
-              href="#"
-              className="mt-8 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
-            >
-              Join the Waitlist
-            </a>
-          </div>
+            <div className="flex flex-col items-center justify-center py-24 text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h2 className="font-heading text-2xl font-bold text-slate-900 mb-3">Coming Soon</h2>
+              <p className="text-slate-500 max-w-md">
+                Pricing for <span className="font-semibold text-slate-700">{activeType}</span> is on its way. Join the waitlist to get notified when it launches.
+              </p>
+              <a href="#" className="mt-8 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors">
+                Join the Waitlist
+              </a>
+            </div>
+          </>
         )}
       </div>
     </div>
