@@ -19,6 +19,7 @@ const squads = [
         { name: 'Editors', emoji: '🖥️', desc: 'Polishes and refines video and written content to perfection.' },
         { name: 'Social Media Managers', emoji: '📣', desc: 'Manages and grows your brand\'s presence across social platforms.' },
         { name: 'Videographers & Photographers', emoji: '📷', desc: 'Captures high-quality visual content that tells your brand story.' },
+        { name: 'AI Video & Image Creator', emoji: '🤖', desc: 'Produces AI-generated visuals and video content to accelerate your creative output.' },
       ],
     },
   },
