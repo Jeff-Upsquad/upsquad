@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 
 const plans = [
   {
@@ -271,36 +271,15 @@ function CrossIcon() {
 }
 
 function InfoTooltip({ text }) {
-  const [open, setOpen] = useState(false)
-  const wrapperRef = useRef(null)
-
-  useEffect(() => {
-    if (!open) return
-    function handleClick(e) {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener('click', handleClick, true)
-    return () => document.removeEventListener('click', handleClick, true)
-  }, [open])
-
   return (
-    <span ref={wrapperRef} className="relative inline-block ml-1">
-      <button
-        onClick={() => setOpen(!open)}
-        className="inline-flex items-center justify-center"
-      >
-        <svg className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 16v-4M12 8h.01" />
-        </svg>
-      </button>
-      {open && (
-        <div className="absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 text-xs text-slate-600 leading-relaxed text-center">
-          {text}
-        </div>
-      )}
+    <span className="relative inline-block ml-1 group/tip">
+      <svg className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 16v-4M12 8h.01" />
+      </svg>
+      <div className="hidden group-hover/tip:block absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 text-xs text-slate-600 leading-relaxed text-center">
+        {text}
+      </div>
     </span>
   )
 }
