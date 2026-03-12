@@ -128,7 +128,7 @@ function Drawer({ squad, onClose }) {
         {/* Footer — WhatsApp CTA */}
         <div className="px-5 py-4 border-t border-gray-100">
           <a
-            href="https://wa.me/"
+            href="https://wa.me/919995566362?text=I%20want%20to%20know%20more%20about%20UpSquad"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full bg-gray-900 hover:bg-gray-700 text-white text-sm font-semibold py-3 rounded-xl transition-colors"
