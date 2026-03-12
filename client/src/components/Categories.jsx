@@ -159,9 +159,9 @@ export default function Categories() {
             <div
               key={squad.name}
               onClick={() => squad.drawer && setActiveSquad(squad)}
-              className={`group p-2 bg-[#E8E7E2] rounded-[26px] hover:bg-[#DDDCD7] transition-all duration-200 ${squad.drawer ? 'cursor-pointer' : ''}`}
+              className={`group p-2 bg-white border border-gray-200 rounded-[26px] hover:border-gray-300 hover:shadow-sm transition-all duration-200 ${squad.drawer ? 'cursor-pointer' : ''}`}
             >
-              <div className="bg-white rounded-[18px] p-6 flex flex-col h-full">
+              <div className="bg-[#F7F6F3] rounded-[18px] p-6 flex flex-col h-full">
               {/* Top: icon + title row */}
               <div className="flex items-start justify-between mb-4">
                 <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-xl shrink-0">
