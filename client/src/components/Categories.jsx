@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const squads = [
   {
@@ -93,9 +94,17 @@ function Drawer({ squad, onClose }) {
 
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto px-5 py-6">
-          {/* Tab */}
-          <div className="inline-flex items-center border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 mb-5">
-            Features
+          {/* Tabs */}
+          <div className="inline-flex items-center gap-2 mb-5">
+            <div className="inline-flex items-center border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600">
+              Features
+            </div>
+            <Link
+              to="/pricing"
+              className="inline-flex items-center border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors"
+            >
+              Pricing
+            </Link>
           </div>
 
           {/* Description */}
