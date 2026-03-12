@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const plans = [
   {
@@ -51,18 +51,18 @@ const plans = [
 const featureRows = [
   {
     label: 'Unlimited work requests',
-    tooltip: true,
+    tooltip: 'Unlimited work request means you can place as many design or video edit requests with us. We will deliver them one by one based on your applicable plan.',
     values: ['check', 'check', 'check', 'check', 'check'],
   },
   {
     label: 'Squad Manager',
-    tooltip: true,
+    tooltip: 'You will also be given a resource called Squad Manager, who will help you manage all the works. Coordinate works with designers and editors, and ensure delivery on time.',
     values: ['check', 'check', 'check', 'check', 'check'],
   },
   {
     label: 'Capacity',
     sublabel: '(compared to a full time employee)',
-    tooltip: true,
+    tooltip: "This shows the execution capacity of each plan compared to having a full-time employee. Capacity doesn't mean number of hours per day. This term is used to get an idea about the availability and the expected output.",
     values: [
       { bold: '10% Capacity', sub: 'Approx 1 hour of work per day' },
       { bold: '25% Capacity', sub: '¼ of a full-time employee' },
@@ -73,7 +73,7 @@ const featureRows = [
   },
   {
     label: 'Urgent Works',
-    tooltip: true,
+    tooltip: 'For starter, basic, and plus plan. We do not entertain urgent work meaning placing request today and expecting delivery today itself. If our designers or editors are available, we will try to accommodate it, but it is not guaranteed.',
     values: ['cross', 'cross', 'check', 'check', 'check'],
   },
   {
@@ -270,12 +270,38 @@ function CrossIcon() {
   )
 }
 
-function InfoIcon() {
+function InfoTooltip({ text }) {
+  const [open, setOpen] = useState(false)
+  const wrapperRef = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    function handleClick(e) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('click', handleClick, true)
+    return () => document.removeEventListener('click', handleClick, true)
+  }, [open])
+
   return (
-    <svg className="w-3.5 h-3.5 text-slate-400 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 16v-4M12 8h.01" />
-    </svg>
+    <span ref={wrapperRef} className="relative inline-block ml-1">
+      <button
+        onClick={() => setOpen(!open)}
+        className="inline-flex items-center justify-center"
+      >
+        <svg className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4M12 8h.01" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 text-xs text-slate-600 leading-relaxed text-center">
+          {text}
+        </div>
+      )}
+    </span>
   )
 }
 
@@ -525,7 +551,7 @@ function PricingTable({ isYearly }) {
               <span className="text-sm text-slate-700">
                 {row.label}
                 {row.sublabel && <span className="block text-xs text-slate-400">{row.sublabel}</span>}
-                {row.tooltip && <InfoIcon />}
+                {row.tooltip && <InfoTooltip text={row.tooltip} />}
               </span>
             </div>
             {row.values.map((val, colIdx) => {
