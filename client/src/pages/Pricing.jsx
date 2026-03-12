@@ -409,23 +409,35 @@ function formatPrice(price) {
 
 // --- Section Components ---
 
+const planTypes = [
+  'Creative Director',
+  'Copy / Content Writers',
+  'Designers',
+  'Editors',
+  'Social Media Managers',
+  'Videographers & Photographers',
+  'AI Video & Image Creator',
+]
+
 function PlanTypeTabs({ activeType, setActiveType }) {
   return (
-    <div className="flex justify-center mb-8">
-      <div className="inline-flex bg-gray-100 rounded-full p-1">
-        {['Designer', 'Video Editor'].map((type) => (
-          <button
-            key={type}
-            onClick={() => setActiveType(type)}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              activeType === type
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            {type}
-          </button>
-        ))}
+    <div className="mb-8 overflow-x-auto pb-1">
+      <div className="flex justify-start sm:justify-center min-w-max sm:min-w-0 mx-auto">
+        <div className="inline-flex bg-gray-100 rounded-full p-1 gap-0.5">
+          {planTypes.map((type) => (
+            <button
+              key={type}
+              onClick={() => setActiveType(type)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                activeType === type
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -821,7 +833,7 @@ function ImportantNote() {
 // --- Main Pricing Page ---
 
 export default function Pricing() {
-  const [activeType, setActiveType] = useState('Designer')
+  const [activeType, setActiveType] = useState('Creative Director')
   const [isYearly, setIsYearly] = useState(false)
 
   return (
@@ -831,7 +843,7 @@ export default function Pricing() {
 
         <div className="text-center mb-8">
           <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">
-            {activeType === 'Designer' ? 'Designer Plan' : 'Video Editor Plan'}
+            {activeType} Plan
           </h1>
           <p className="text-slate-500">
             Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.
