@@ -410,14 +410,16 @@ function formatPrice(price) {
 // --- Section Components ---
 
 const planTypes = [
-  'Creative Director',
+  'Creative Head',
   'Copy / Content Writers',
   'Designers',
   'Editors',
-  'Social Media Managers',
-  'Videographers & Photographers',
-  'AI Video & Image Creator',
+  'SM Manager',
+  'Video/Photographer',
+  'AI Video',
 ]
+
+const liveTypes = ['Designers', 'Editors']
 
 function PlanTypeTabs({ activeType, setActiveType }) {
   return (
@@ -833,7 +835,7 @@ function ImportantNote() {
 // --- Main Pricing Page ---
 
 export default function Pricing() {
-  const [activeType, setActiveType] = useState('Creative Director')
+  const [activeType, setActiveType] = useState('Designers')
   const [isYearly, setIsYearly] = useState(false)
 
   return (
@@ -850,14 +852,36 @@ export default function Pricing() {
           </p>
         </div>
 
-        <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
-        <PricingTable isYearly={isYearly} />
-        <NoteSection />
-        <BenefitsSection />
-        <WhatYouCanRequest />
-        <WorkingHours />
-        <UnlimitedRequestsExplainer />
-        <ImportantNote />
+        {liveTypes.includes(activeType) ? (
+          <>
+            <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
+            <PricingTable isYearly={isYearly} />
+            <NoteSection />
+            <BenefitsSection />
+            <WhatYouCanRequest />
+            <WorkingHours />
+            <UnlimitedRequestsExplainer />
+            <ImportantNote />
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-32 text-center">
+            <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+              <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 className="font-heading text-2xl font-bold text-slate-900 mb-3">Coming Soon</h2>
+            <p className="text-slate-500 max-w-md">
+              Pricing for <span className="font-semibold text-slate-700">{activeType}</span> is on its way. Join the waitlist to get notified when it launches.
+            </p>
+            <a
+              href="#"
+              className="mt-8 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
+            >
+              Join the Waitlist
+            </a>
+          </div>
+        )}
       </div>
     </div>
   )
