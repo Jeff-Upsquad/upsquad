@@ -31,6 +31,19 @@ const squads = [
     emoji: '📣',
     tags: ['Digital', 'Offline', 'PR', 'Ads'],
     badge: 'Beta',
+    drawer: {
+      subtitle: 'Subscribe to',
+      highlight: 'Marketing talent that drives real growth — on demand.',
+      body: 'From ads to SEO to on-ground activations, we\'ve got you covered.',
+      note: 'Your full-stack marketing engine — ready to go.',
+      talents: [
+        { name: 'Ad Specialists', emoji: '🎯', desc: 'Plans, executes, and optimizes high-performance ad campaigns across platforms like Google, Meta, LinkedIn & more — focused on ROI and scalable growth.' },
+        { name: 'SEO Specialists', emoji: '🔍', desc: 'Improves your search visibility, drives organic traffic, and builds long-term inbound growth.' },
+        { name: 'Digital Marketing Team', emoji: '📊', desc: 'A complete team handling strategy, execution, analytics, and optimization across all channels.' },
+        { name: 'Influencer Marketing Experts', emoji: '🤝', desc: 'Connects your brand with the right creators to drive trust, reach, and conversions.' },
+        { name: 'Offline Marketing Specialists', emoji: '📢', desc: 'Executes on-ground campaigns, activations, and traditional marketing to build strong local presence.' },
+      ],
+    },
   },
   {
     name: 'Tech',
@@ -47,6 +60,20 @@ const squads = [
     emoji: '📊',
     tags: ['Bookkeeping', 'Tax', 'CFO'],
     badge: 'Beta',
+    drawer: {
+      subtitle: 'Subscribe to',
+      highlight: 'Expert financial talent your business needs — on demand.',
+      body: 'Stay compliant, save costs, and scale with confidence.',
+      note: 'Your complete finance back-office — sorted.',
+      talents: [
+        { name: 'Accountants', emoji: '🧾', desc: 'Manages day-to-day bookkeeping, transactions, and financial records with accuracy.' },
+        { name: 'CFOs / CAs', emoji: '📈', desc: 'Provides strategic financial guidance, planning, and high-level business insights.' },
+        { name: 'GST Experts', emoji: '🧮', desc: 'Handles GST filings, compliance, and advisory to ensure smooth tax operations.' },
+        { name: 'TDS Experts', emoji: '📑', desc: 'Manages TDS calculations, deductions, and timely filings without errors.' },
+        { name: 'Labour Law Experts', emoji: '⚖️', desc: 'Ensures compliance with employment laws, payroll regulations, and statutory requirements.' },
+        { name: 'Incorporation & Licenses', emoji: '🏢', desc: 'Supports company registration, legal structuring, and all required business licenses.' },
+      ],
+    },
   },
   {
     name: 'Legal',
@@ -182,7 +209,7 @@ export default function Categories() {
                 <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-xl shrink-0">
                   {squad.emoji}
                 </div>
-                {squad.drawer && (
+                {squad.drawer && !squad.badge && (
                   <span className="text-xs font-medium text-gray-400 border border-gray-200 rounded-full px-2.5 py-1">
                     New
                   </span>
