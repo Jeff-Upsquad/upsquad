@@ -48,6 +48,15 @@ const plans = [
   },
 ]
 
+const subtiers = ['Pros', 'Juniors', 'Elites']
+
+// Subtier pricing: [Starter, Basic, Plus, Pro, Personal]
+const subtierPricing = {
+  Pros:    [7000, 12000, 17000, 23000, 30000],
+  Juniors: [3000, 6000, 10000, 13000, 15000],
+  Elites:  [null, 25000, 50000, 75000, 100000],
+}
+
 const featureRows = [
   {
     label: 'Unlimited work requests',
@@ -503,8 +512,36 @@ function BillingToggle({ isYearly, setIsYearly }) {
   )
 }
 
-function PricingTable({ isYearly }) {
-  const tablePlans = plans.slice(1) // Exclude Starter plan
+function getPlansForSubtier(subtier) {
+  const prices = subtierPricing[subtier]
+  return plans.map((plan, i) => ({ ...plan, monthlyPrice: prices[i] }))
+}
+
+function SubtierTabs({ activeSubtier, setActiveSubtier }) {
+  return (
+    <div className="flex justify-center mb-6">
+      <div className="inline-flex bg-gray-100 rounded-lg p-1">
+        {subtiers.map((tier) => (
+          <button
+            key={tier}
+            onClick={() => setActiveSubtier(tier)}
+            className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
+              activeSubtier === tier
+                ? 'bg-white text-slate-900 shadow-sm'
+                : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            {tier}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function PricingTable({ isYearly, activeSubtier }) {
+  const currentPlans = activeSubtier ? getPlansForSubtier(activeSubtier) : plans
+  const tablePlans = currentPlans.slice(1) // Exclude Starter plan
   const getPrice = (plan) => isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice
   const periodLabel = isYearly ? '/year' : '/month'
   return (
@@ -621,8 +658,9 @@ function PricingTable({ isYearly }) {
   )
 }
 
-function StarterPlanCard({ isYearly }) {
-  const starterPlan = plans[0]
+function StarterPlanCard({ isYearly, activeSubtier }) {
+  const currentPlans = activeSubtier ? getPlansForSubtier(activeSubtier) : plans
+  const starterPlan = currentPlans[0]
   const price = isYearly ? starterPlan.monthlyPrice * 10 : starterPlan.monthlyPrice
   const periodLabel = isYearly ? '/year' : '/month'
   const starterFeatures = featureRows.map((row) => ({
@@ -1218,6 +1256,7 @@ function VideoPhotographerPricing() {
 export default function Pricing() {
   const [activeType, setActiveType] = useState('Designers')
   const [isYearly, setIsYearly] = useState(false)
+  const [activeSubtier, setActiveSubtier] = useState('Pros')
 
   return (
     <div className="pt-20 pb-0">
@@ -1232,9 +1271,10 @@ export default function Pricing() {
               <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">{activeType} Plan</h1>
               <p className="text-slate-500">Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.</p>
             </div>
+            <SubtierTabs activeSubtier={activeSubtier} setActiveSubtier={setActiveSubtier} />
             <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
-            <PricingTable isYearly={isYearly} />
-            <StarterPlanCard isYearly={isYearly} />
+            <PricingTable isYearly={isYearly} activeSubtier={activeSubtier} />
+            {activeSubtier !== 'Elites' && <StarterPlanCard isYearly={isYearly} activeSubtier={activeSubtier} />}
             <NoteSection />
             <BenefitsSection />
             <WhatYouCanRequest />
