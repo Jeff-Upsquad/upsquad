@@ -77,7 +77,7 @@ const featureRows = [
       { bold: '10% Capacity', sub: 'Approx 1 hour of work per day', approach: 'Approx: ~1 hour of work per day' },
       { bold: '25% Capacity', sub: '¼ of a full-time employee', approach: 'Approx: 2–3 hours of work per day' },
       { bold: '50% Capacity', sub: 'Half employee capacity', approach: 'Approx: 4–5 hours of work per day' },
-      { bold: '80% Capacity', sub: 'Nearly full-time employee', approach: 'Approx: 5–6 hours of work per day' },
+      { bold: '80% Capacity', sub: 'Nearly full-time employee', approach: 'Approx: 6–7 hours of work per day' },
       { bold: '100% Capacity', sub: 'Dedicated full-time equivalent', approach: 'Approx: Full-time equivalent' },
     ],
   },
