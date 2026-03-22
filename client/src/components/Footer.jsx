@@ -1,3 +1,4 @@
+"use client"
 const links = {
   Platform: ['How it Works', 'Subscriptions', 'Join Waitlist', 'Pricing'],
   Squads: ['Content Squad', 'Marketing Squad', 'Tech Squad', 'Legal Squad'],

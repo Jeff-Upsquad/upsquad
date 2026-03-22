@@ -1,5 +1,6 @@
+"use client"
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 const squads = [
   {
@@ -127,7 +128,7 @@ function Drawer({ squad, onClose }) {
               Features
             </div>
             <Link
-              to="/pricing"
+              href="/pricing"
               className="inline-flex items-center border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-colors"
             >
               Pricing

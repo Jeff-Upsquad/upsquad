@@ -1,3 +1,4 @@
+"use client"
 const steps = [
   {
     number: '1',

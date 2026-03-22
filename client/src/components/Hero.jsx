@@ -1,3 +1,4 @@
+"use client"
 const stats = [
   { value: 'One plan', label: 'Select the ones you want' },
   { value: '6 squads', label: 'Ready to deploy' },

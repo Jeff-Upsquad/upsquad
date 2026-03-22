@@ -1,10 +1,12 @@
+"use client"
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8)
@@ -14,9 +16,9 @@ export default function Navbar() {
 
   useEffect(() => {
     setMenuOpen(false)
-  }, [location])
+  }, [pathname])
 
-  const isHome = location.pathname === '/'
+  const isHome = pathname === '/'
 
   return (
     <nav
@@ -29,7 +31,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-0.5">
+          <Link href="/" className="flex items-center gap-0.5">
             <span className="font-heading font-bold text-lg text-slate-900 tracking-tight">Up</span>
             <span className="font-heading font-bold text-lg text-lime-500 tracking-tight">Squad</span>
           </Link>
@@ -47,18 +49,18 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link to="/#how-it-works" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                <Link href="/#how-it-works" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
                   How it Works
                 </Link>
-                <Link to="/#categories" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                <Link href="/#categories" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
                   The Squads
                 </Link>
               </>
             )}
             <Link
-              to="/pricing"
+              href="/pricing"
               className={`text-sm transition-colors ${
-                location.pathname === '/pricing' ? 'text-slate-900 font-medium' : 'text-slate-500 hover:text-slate-900'
+                pathname === '/pricing' ? 'text-slate-900 font-medium' : 'text-slate-500 hover:text-slate-900'
               }`}
             >
               Pricing
@@ -117,15 +119,15 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link to="/" className="block text-sm text-gray-600 px-2 py-2 rounded-md hover:bg-gray-50">
+                <Link href="/" className="block text-sm text-gray-600 px-2 py-2 rounded-md hover:bg-gray-50">
                   Home
                 </Link>
               </>
             )}
             <Link
-              to="/pricing"
+              href="/pricing"
               className={`block text-sm px-2 py-2 rounded-md hover:bg-gray-50 ${
-                location.pathname === '/pricing' ? 'text-slate-900 font-medium' : 'text-gray-600'
+                pathname === '/pricing' ? 'text-slate-900 font-medium' : 'text-gray-600'
               }`}
             >
               Pricing

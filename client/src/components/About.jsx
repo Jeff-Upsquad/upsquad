@@ -1,3 +1,4 @@
+"use client"
 export default function About() {
   return (
     <section className="py-16 px-5 sm:px-8 bg-white border-y border-gray-100">

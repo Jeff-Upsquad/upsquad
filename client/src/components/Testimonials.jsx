@@ -1,3 +1,4 @@
+"use client"
 const testimonials = [
   {
     quote: 'Finally, a subscription that actually replaces hiring. Our content output tripled in the first month — without adding a single full-time employee.',
