@@ -1,4 +1,10 @@
 "use client"
+const stats = [
+  { value: 'One plan', label: 'Select the ones you want' },
+  { value: '6 squads', label: 'Ready to deploy' },
+  { value: 'No contracts', label: 'Pause or cancel anytime' },
+]
+
 export default function Hero() {
   return (
     <section className="relative pt-32 pb-24 px-5 sm:px-8 bg-dot-pattern border-b border-gray-100 overflow-hidden">
