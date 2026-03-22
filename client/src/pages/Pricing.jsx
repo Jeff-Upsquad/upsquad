@@ -542,14 +542,18 @@ function SubtierTabs({ activeSubtier, setActiveSubtier }) {
 
 function PricingTable({ isYearly, activeSubtier }) {
   const currentPlans = activeSubtier ? getPlansForSubtier(activeSubtier) : plans
-  const tablePlans = currentPlans.slice(1) // Exclude Starter plan
+  const tablePlans = currentPlans.filter(p => p.monthlyPrice !== null)
   const getPrice = (plan) => isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice
   const periodLabel = isYearly ? '/year' : '/month'
+  const gridClass = tablePlans.length === 5 
+    ? 'grid-cols-[180px_repeat(5,1fr)]' 
+    : 'grid-cols-[180px_repeat(4,1fr)]'
+
   return (
     <div className="overflow-x-auto pb-4">
-      <div className="min-w-[800px]">
+      <div className="min-w-[1000px]">
         {/* Plan Headers */}
-        <div className="grid grid-cols-[180px_repeat(4,1fr)] gap-0">
+        <div className={`grid ${gridClass} gap-0`}>
           <div /> {/* empty label column */}
           {tablePlans.map((plan, i) => (
             <div
@@ -572,7 +576,7 @@ function PricingTable({ isYearly, activeSubtier }) {
         </div>
 
         {/* Price Row */}
-        <div className="grid grid-cols-[180px_repeat(4,1fr)] gap-0 border-t border-gray-200">
+        <div className={`grid ${gridClass} gap-0 border-t border-gray-200`}>
           <div className="flex items-center px-4 py-4">
             <span className="text-sm font-medium text-slate-700">Monthly Price</span>
           </div>
@@ -595,7 +599,7 @@ function PricingTable({ isYearly, activeSubtier }) {
         {featureRows.map((row, rowIdx) => (
           <div
             key={row.label}
-            className="grid grid-cols-[180px_repeat(4,1fr)] gap-0 border-t border-gray-100"
+            className={`grid ${gridClass} gap-0 border-t border-gray-100`}
           >
             <div className="flex items-center px-4 py-4">
               <span className="text-sm text-slate-700">
@@ -604,8 +608,9 @@ function PricingTable({ isYearly, activeSubtier }) {
                 {row.tooltip && <InfoTooltip text={row.tooltip} />}
               </span>
             </div>
-            {row.values.slice(1).map((val, colIdx) => {
-              const plan = tablePlans[colIdx]
+            {tablePlans.map((plan, colIdx) => {
+              const originalIndex = plans.findIndex(p => p.name === plan.name)
+              const val = row.values[originalIndex]
               return (
                 <div
                   key={`${row.label}-${colIdx}`}
@@ -636,7 +641,7 @@ function PricingTable({ isYearly, activeSubtier }) {
         ))}
 
         {/* CTA Row */}
-        <div className="grid grid-cols-[180px_repeat(4,1fr)] gap-0 pt-4">
+        <div className={`grid ${gridClass} gap-0 pt-4`}>
           <div />
           {tablePlans.map((plan) => (
             <div key={plan.name + '-cta'} className="flex justify-center px-3">
@@ -659,59 +664,6 @@ function PricingTable({ isYearly, activeSubtier }) {
   )
 }
 
-function StarterPlanCard({ isYearly, activeSubtier }) {
-  const currentPlans = activeSubtier ? getPlansForSubtier(activeSubtier) : plans
-  const starterPlan = currentPlans[0]
-  const price = isYearly ? starterPlan.monthlyPrice * 10 : starterPlan.monthlyPrice
-  const periodLabel = isYearly ? '/year' : '/month'
-  const starterFeatures = featureRows.map((row) => ({
-    label: row.label,
-    value: row.values[0],
-  }))
-
-  return (
-    <div className="mt-10 border border-gray-200 rounded-xl p-8 bg-white">
-      <div className="flex flex-col md:flex-row md:items-center md:gap-10">
-        {/* Left: Plan info + CTA */}
-        <div className="flex-shrink-0 md:w-56 text-center md:text-left mb-6 md:mb-0">
-          <h3 className="font-heading text-lg font-bold text-slate-900">{starterPlan.name}</h3>
-          <p className="text-sm text-slate-500 mt-1">{starterPlan.description}</p>
-          <div className="mt-3">
-            <span className="text-3xl font-bold text-slate-900">₹{formatPrice(price)}</span>
-            <span className="text-sm text-slate-400 ml-1">{periodLabel}</span>
-          </div>
-          <button className="mt-5 px-6 py-2.5 rounded-lg text-sm font-medium bg-gray-900 hover:bg-gray-700 text-white transition-all">
-            {starterPlan.cta}
-          </button>
-        </div>
-        {/* Right: Features grid */}
-        <div className="flex-1 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-            {starterFeatures.map((f) => {
-              const val = f.value
-              return (
-                <div key={f.label} className="flex items-center justify-between text-sm">
-                  <span className="text-slate-600">{f.label}</span>
-                  <span className="text-right ml-3">
-                    {val === 'check' ? (
-                      <CheckIcon />
-                    ) : val === 'cross' ? (
-                      <CrossIcon />
-                    ) : typeof val === 'object' ? (
-                      <span className="text-xs font-semibold text-slate-900">{val.bold}</span>
-                    ) : (
-                      <span className="text-xs text-slate-700">{val}</span>
-                    )}
-                  </span>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function NoteSection() {
   return (
@@ -1275,7 +1227,6 @@ export default function Pricing() {
             <SubtierTabs activeSubtier={activeSubtier} setActiveSubtier={setActiveSubtier} />
             <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
             <PricingTable isYearly={isYearly} activeSubtier={activeSubtier} />
-            {activeSubtier !== 'Elites' && <StarterPlanCard isYearly={isYearly} activeSubtier={activeSubtier} />}
             <NoteSection />
             <BenefitsSection />
             <WhatYouCanRequest />
