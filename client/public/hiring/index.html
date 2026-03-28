@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We're Hiring | UpSquad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', system-ui, -apple-system, sans-serif;
+      background: #faf9f6;
+      color: #0F172A;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 40px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      text-decoration: none;
+      color: #0F172A;
+    }
+
+    .logo span {
+      color: #4CAF50;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: #475569;
+      text-decoration: none;
+      transition: color 150ms;
+    }
+
+    .nav-links a:hover {
+      color: #0F172A;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0F172A;
+      color: #fff !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 150ms;
+    }
+
+    .nav-cta:hover {
+      background: #1e293b;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 40px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eef2e6;
+      color: #4a7c10;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 8px 18px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    .hero-label .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4CAF50;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #0F172A;
+      margin-bottom: 16px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: #94a3b8;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #64748b;
+      max-width: 540px;
+      margin: 0 auto 20px;
+    }
+
+    /* ── Positions Grid ── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 40px 100px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: #64748b;
+      margin-bottom: 40px;
+    }
+
+    .positions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .position-card {
+      background: #f3f1ec;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all 200ms ease;
+      cursor: pointer;
+    }
+
+    .position-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .icon-designer { background: #e8edf8; }
+    .icon-video { background: #fce8d8; }
+    .icon-combo { background: #e2f5ee; }
+
+    .card-badge {
+      display: inline-block;
+      background: #d4edda;
+      color: #2d6a3f;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      align-self: flex-end;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .position-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+
+    .position-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #64748b;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .position-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    .apply-btn {
+      display: block;
+      width: 100%;
+      background: #0F172A;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 150ms;
+      margin-top: auto;
+    }
+
+    .apply-btn:hover {
+      background: #1e293b;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+      text-align: center;
+    }
+
+    .cta-box {
+      background: #0F172A;
+      border-radius: 20px;
+      padding: 60px 40px;
+      color: #fff;
+    }
+
+    .cta-box h2 {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      font-size: 15px;
+      color: #94a3b8;
+      margin-bottom: 28px;
+    }
+
+    .cta-box a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: #0F172A;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 150ms;
+    }
+
+    .cta-box a:hover {
+      background: #f1f5f9;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0F172A;
+      color: #94a3b8;
+      padding: 48px 40px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .footer-logo span {
+      color: #4CAF50;
+    }
+
+    footer p {
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 48px 20px 32px; }
+      h1 { font-size: 32px; }
+      .section { padding: 24px 20px 60px; }
+      .positions-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 0 20px 60px; }
+      .cta-box { padding: 40px 24px; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="https://upsquadconnect.com" class="logo">Up<span>Squad</span></a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-label"><span class="dot"></span> Open Positions</div>
+    <h1>We're Building<br><em>the Squad.</em></h1>
+    <p class="hero-sub">Join our growing team of creatives. Fill out the form and we'll review your profile.</p>
+  </section>
+
+  <!-- Positions -->
+  <section class="section">
+    <div class="section-label">Open Roles</div>
+    <h2 class="section-title">Apply to join the squad</h2>
+    <p class="section-desc">Pick a role that fits you best. All positions are remote-friendly.</p>
+
+    <div class="positions-grid">
+
+      <!-- Designers -->
+      <a class="position-card" href="https://forms.clickup.com/3498755/f/3arr3-61916/3UYKEIC6PQM2C8ZLGL" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="card-icon icon-designer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b5ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+              <path d="M2 2l7.586 7.586"/>
+              <circle cx="11" cy="11" r="2"/>
+            </svg>
+          </div>
+          <span class="card-badge">Hiring</span>
+        </div>
+        <div class="position-title">Designers</div>
+        <p class="position-desc">Visual and graphic designers to craft brand identities, social assets, and creative deliverables.</p>
+        <div class="position-tags">
+          <span class="tag">Graphics</span>
+          <span class="tag">Branding</span>
+          <span class="tag">Social</span>
+        </div>
+        <div class="apply-btn">Apply Now →</div>
+      </a>
+
+      <!-- Video Editor -->
+      <a class="position-card" href="https://forms.clickup.com/3498755/f/3arr3-61916/3UYKEIC6PQM2C8ZLGL" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="card-icon icon-video">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+            </svg>
+          </div>
+          <span class="card-badge">Hiring</span>
+        </div>
+        <div class="position-title">Video Editor</div>
+        <p class="position-desc">Post-production specialists for short-form, long-form, reels, and motion graphics content.</p>
+        <div class="position-tags">
+          <span class="tag">Editing</span>
+          <span class="tag">Reels</span>
+          <span class="tag">Motion</span>
+        </div>
+        <div class="apply-btn">Apply Now →</div>
+      </a>
+
+      <!-- Editor + Design Opus -->
+      <a class="position-card" href="https://forms.clickup.com/3498755/f/3arr3-61916/3UYKEIC6PQM2C8ZLGL" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="card-icon icon-combo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <span class="card-badge">Hiring</span>
+        </div>
+        <div class="position-title">Editor + Design Opus</div>
+        <p class="position-desc">Hybrid creatives who can handle both video editing and design work — the full creative package.</p>
+        <div class="position-tags">
+          <span class="tag">Video</span>
+          <span class="tag">Design</span>
+          <span class="tag">All-in-One</span>
+        </div>
+        <div class="apply-btn">Apply Now →</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-box">
+      <h2>Ready to join the squad?</h2>
+      <p>Fill out the form and our team will review your profile. We'll be in touch.</p>
+      <a href="https://forms.clickup.com/3498755/f/3arr3-61916/3UYKEIC6PQM2C8ZLGL" target="_blank" rel="noopener">
+        Apply Now →
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Up<span>Squad</span></div>
+      <p>&copy; 2025, D-var Dynamics Technologies Pvt Ltd. All rights reserved.</p>
+      <a href="mailto:hello@upsquad.com">hello@upsquad.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>
