@@ -1,9 +1,30 @@
 "use client"
+import Link from 'next/link'
+
 const links = {
-  Platform: ['How it Works', 'Subscriptions', 'Join Waitlist', 'Pricing'],
-  Squads: ['Content Squad', 'Marketing Squad', 'Tech Squad', 'Legal Squad'],
-  Company: ['About', 'Blog', 'Careers', 'Contact'],
-  Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+  Platform: [
+    { name: 'How it Works', href: '/#how-it-works' },
+    { name: 'Subscriptions', href: '/#categories' },
+    { name: 'Join Waitlist', href: '#' },
+    { name: 'Pricing', href: '/pricing' }
+  ],
+  Squads: [
+    { name: 'Content Squad', href: '#' },
+    { name: 'Marketing Squad', href: '#' },
+    { name: 'Tech Squad', href: '#' },
+    { name: 'Legal Squad', href: '#' }
+  ],
+  Company: [
+    { name: 'About', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Careers', href: '#' },
+    { name: 'Contact', href: '/contact' }
+  ],
+  Legal: [
+    { name: 'Privacy Policy', href: '#' },
+    { name: 'Terms of Service', href: '#' },
+    { name: 'Cookie Policy', href: '#' }
+  ],
 }
 
 const socials = [
@@ -51,10 +72,10 @@ export default function Footer() {
               Subscribing is better than hiring. The all-in-one subscription for modern brands.
             </p>
             <a
-              href="mailto:hello@upsquad.com"
+              href="mailto:hello@upsquadconnect.com"
               className="text-sm text-gray-600 hover:text-gray-400 transition-colors block mb-4"
             >
-              hello@upsquad.com
+              hello@upsquadconnect.com
             </a>
             <div className="flex gap-2">
               {socials.map((s) => (
@@ -76,10 +97,16 @@ export default function Footer() {
               <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">{heading}</h4>
               <ul className="space-y-2">
                 {items.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-gray-600 hover:text-gray-400 transition-colors">
-                      {item}
-                    </a>
+                  <li key={item.name}>
+                    {item.href.startsWith('/') ? (
+                      <Link href={item.href} className="text-sm text-gray-600 hover:text-gray-400 transition-colors">
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <a href={item.href} className="text-sm text-gray-600 hover:text-gray-400 transition-colors">
+                        {item.name}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

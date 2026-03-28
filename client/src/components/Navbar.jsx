@@ -65,6 +65,14 @@ export default function Navbar() {
             >
               Pricing
             </Link>
+            <Link
+              href="/contact"
+              className={`text-sm transition-colors ${
+                pathname === '/contact' ? 'text-slate-900 font-medium' : 'text-slate-500 hover:text-slate-900'
+              }`}
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Desktop CTA */}
@@ -131,6 +139,14 @@ export default function Navbar() {
               }`}
             >
               Pricing
+            </Link>
+            <Link
+              href="/contact"
+              className={`block text-sm px-2 py-2 rounded-md hover:bg-gray-50 ${
+                pathname === '/contact' ? 'text-slate-900 font-medium' : 'text-gray-600'
+              }`}
+            >
+              Contact
             </Link>
             <div className="pt-2 border-t border-gray-100 mt-1">
               <a

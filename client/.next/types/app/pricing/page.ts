@@ -1,4 +1,4 @@
-// File: /Users/jeffzeena/Claude/upsquad/client/src/app/pricing/page.jsx
+// File: /Users/jeffzeena/upsquad website/upsquad/client/src/app/pricing/page.jsx
 import * as entry from '../../../../src/app/pricing/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
