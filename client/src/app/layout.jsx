@@ -1,6 +1,4 @@
 import '../index.css'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 
 export const metadata = {
   title: 'upsquad',
@@ -11,11 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen bg-[#F7F6F3] text-gray-900">
-        <Navbar />
-        <main>
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   )
