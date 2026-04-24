@@ -1,0 +1,24 @@
+services:
+  upsquad:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: upsquad
+    restart: unless-stopped
+    # Bind on the host so squadhub's Caddy (running in a separate compose stack)
+    # can reach us via host.docker.internal:3100. The VPS firewall blocks port
+    # 3100 externally — only local Caddy uses it.
+    ports:
+      - "3100:3100"
+    env_file:
+      - ./server/.env.production
+    environment:
+      - NODE_ENV=production
+      - PORT=3100
+    volumes:
+      - upsquad_data:/app/server/data
+      - upsquad_uploads:/app/server/uploads
+
+volumes:
+  upsquad_data:
+  upsquad_uploads:

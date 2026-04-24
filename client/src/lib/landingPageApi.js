@@ -7,8 +7,9 @@ export async function fetchLandingPage(slug) {
     return getFixture(slug)
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SQUADHUB_API_URL
-  if (!baseUrl) return null
+  // Empty string = relative (same-origin), which is what we want in production
+  // where Express serves both the admin API and the static Next build.
+  const baseUrl = process.env.NEXT_PUBLIC_SQUADHUB_API_URL ?? ''
 
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
