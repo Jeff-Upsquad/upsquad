@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 function isEmbedUrl(url) {
   if (!url) return false
-  return /(?:youtube\.com|youtu\.be|vimeo\.com)/i.test(url)
+  return /(?:youtube\.com|youtu\.be|vimeo\.com|loom\.com)/i.test(url)
 }
 
 function toEmbed(url) {
@@ -20,6 +20,10 @@ function toEmbed(url) {
     if (u.hostname.includes('vimeo.com')) {
       const id = u.pathname.split('/').filter(Boolean).pop()
       if (id) return `https://player.vimeo.com/video/${id}?autoplay=1`
+    }
+    if (u.hostname.includes('loom.com')) {
+      const id = u.pathname.split('/').filter(Boolean).pop()
+      if (id) return `https://www.loom.com/embed/${id}?autoplay=1`
     }
   } catch {
     return url
