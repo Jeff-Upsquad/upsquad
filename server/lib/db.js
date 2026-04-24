@@ -50,25 +50,38 @@ function seed() {
     insertLang.run('en', 'English')
     insertLang.run('hi', 'Hindi')
   }
-  const pageCount = db.prepare('SELECT COUNT(*) as c FROM landing_pages').get().c
-  if (pageCount === 0) {
-    const insertPage = db.prepare(`
-      INSERT INTO landing_pages (slug, hero_title, hero_description, default_language_code)
-      VALUES (?, ?, ?, ?)
-    `)
-    const info = insertPage.run(
-      'get-started',
-      'Designers and video editors on subscription.',
-      'Get unlimited design and video-editing work from a dedicated squad. Flat monthly pricing. Cancel anytime.',
-      'en'
-    )
-    const pageId = info.lastInsertRowid
-    const insertLpl = db.prepare(`
-      INSERT INTO landing_page_languages (landing_page_id, language_code, video_url, audio_url, sort_order)
-      VALUES (?, ?, ?, ?, ?)
-    `)
-    insertLpl.run(pageId, 'en', '', '', 0)
-    insertLpl.run(pageId, 'hi', '', '', 1)
+
+  const pages = [
+    {
+      slug: 'get-started',
+      heroTitle: 'Designers and video editors on subscription.',
+      heroDescription: 'Get unlimited design and video-editing work from a dedicated squad. Flat monthly pricing. Cancel anytime.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }, { code: 'hi' }],
+    },
+    {
+      slug: 'partner-program',
+      heroTitle: 'UpSquad Partner Program',
+      heroDescription: 'Are you a freelance designer or video editor? Partner with UpSquad and focus only on what you do best — we handle the sales, marketing, client support, and payments.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
+  ]
+
+  const findPage = db.prepare('SELECT id FROM landing_pages WHERE slug = ?')
+  const insertPage = db.prepare(`
+    INSERT INTO landing_pages (slug, hero_title, hero_description, default_language_code)
+    VALUES (?, ?, ?, ?)
+  `)
+  const insertLpl = db.prepare(`
+    INSERT INTO landing_page_languages (landing_page_id, language_code, video_url, audio_url, sort_order)
+    VALUES (?, ?, '', '', ?)
+  `)
+
+  for (const p of pages) {
+    if (findPage.get(p.slug)) continue
+    const info = insertPage.run(p.slug, p.heroTitle, p.heroDescription, p.defaultLanguageCode)
+    p.langs.forEach((l, i) => insertLpl.run(info.lastInsertRowid, l.code, i))
   }
 }
 seed()
