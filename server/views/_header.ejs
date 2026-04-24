@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= typeof title !== 'undefined' ? title : 'UpSquad Admin' %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}</style>
+</head>
+<body class="min-h-screen bg-gray-50 text-slate-900">
+<% if (typeof admin !== 'undefined' && admin) { %>
+<header class="bg-white border-b border-gray-200">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href="/admin" class="font-bold text-lg">UpSquad <span class="text-emerald-500">Admin</span></a>
+      <nav class="flex items-center gap-4 text-sm">
+        <a href="/admin" class="text-slate-600 hover:text-slate-900">Landing pages</a>
+        <a href="/admin/languages" class="text-slate-600 hover:text-slate-900">Languages</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-3 text-sm text-slate-500">
+      <span><%= admin.email %></span>
+      <form method="POST" action="/admin/logout" class="m-0">
+        <button class="text-slate-600 hover:text-slate-900 underline">Logout</button>
+      </form>
+    </div>
+  </div>
+</header>
+<% } %>
+<main class="max-w-5xl mx-auto px-6 py-8">

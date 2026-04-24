@@ -1,0 +1,157 @@
+<%- include('_header', { admin, title: (isNew ? 'New' : 'Edit') + ' landing page — UpSquad Admin' }) %>
+<div class="mb-6">
+  <a href="/admin" class="text-xs text-slate-500 hover:text-slate-900">&larr; Back to landing pages</a>
+  <h1 class="text-2xl font-bold mt-2"><%= isNew ? 'New landing page' : 'Edit landing page' %></h1>
+</div>
+
+<% if (error) { %>
+  <div class="mb-4 px-3 py-2 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/admin/landing-pages<%= isNew ? '' : '/' + page.slug %>" class="space-y-6">
+  <div class="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+    <h2 class="text-sm font-semibold">Basic info</h2>
+    <label class="block">
+      <span class="text-xs font-medium text-slate-600">Slug <span class="text-slate-400">(URL path — e.g. get-started)</span></span>
+      <input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" value="<%= page.slug %>"
+        class="mt-1 w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono" />
+    </label>
+    <label class="block">
+      <span class="text-xs font-medium text-slate-600">Hero title</span>
+      <input name="heroTitle" value="<%= page.hero_title %>" class="mt-1 w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+    </label>
+    <label class="block">
+      <span class="text-xs font-medium text-slate-600">Hero description</span>
+      <textarea name="heroDescription" rows="3" class="mt-1 w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"><%= page.hero_description %></textarea>
+    </label>
+    <label class="block">
+      <span class="text-xs font-medium text-slate-600">Default language</span>
+      <select name="defaultLanguageCode" class="mt-1 w-full border border-gray-200 rounded-lg px-3 py-2 text-sm">
+        <option value="">— none —</option>
+        <% allLanguages.forEach(function(l) { %>
+          <option value="<%= l.code %>" <%= page.default_language_code === l.code ? 'selected' : '' %>><%= l.name %> (<%= l.code %>)</option>
+        <% }) %>
+      </select>
+    </label>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-sm font-semibold">Languages</h2>
+      <button type="button" id="addLangBtn" class="text-xs bg-gray-900 hover:bg-gray-700 text-white px-3 py-1.5 rounded-lg">+ Add language row</button>
+    </div>
+    <p class="text-xs text-slate-500 mb-4">Per language: pick the language, set a video URL and an audio URL. Each field accepts a pasted URL (YouTube / Vimeo / CDN link) or an uploaded file.</p>
+    <div id="langRows" class="space-y-4">
+      <% (page.languages || []).forEach(function(l, i) { %>
+        <div class="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50/50" data-row>
+          <div class="flex items-center justify-between">
+            <select name="lang_code" required class="border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white">
+              <% allLanguages.forEach(function(lang) { %>
+                <option value="<%= lang.code %>" <%= l.code === lang.code ? 'selected' : '' %>><%= lang.name %> (<%= lang.code %>)</option>
+              <% }) %>
+            </select>
+            <button type="button" data-remove class="text-xs text-red-500 hover:text-red-700">Remove</button>
+          </div>
+          <div class="grid md:grid-cols-2 gap-3">
+            <div>
+              <div class="text-xs font-medium text-slate-600 mb-1">Video URL</div>
+              <input name="lang_video" value="<%= l.video_url || '' %>" placeholder="https://… or upload below"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono bg-white" />
+              <div class="mt-2 flex items-center gap-2">
+                <input type="file" accept="video/*" data-upload-target="lang_video" class="text-xs" />
+                <span class="text-xs text-slate-400" data-upload-status></span>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs font-medium text-slate-600 mb-1">Audio URL</div>
+              <input name="lang_audio" value="<%= l.audio_url || '' %>" placeholder="https://… or upload below"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono bg-white" />
+              <div class="mt-2 flex items-center gap-2">
+                <input type="file" accept="audio/*" data-upload-target="lang_audio" class="text-xs" />
+                <span class="text-xs text-slate-400" data-upload-status></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <template id="langRowTemplate">
+      <div class="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50/50" data-row>
+        <div class="flex items-center justify-between">
+          <select name="lang_code" required class="border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white">
+            <% allLanguages.forEach(function(lang) { %>
+              <option value="<%= lang.code %>"><%= lang.name %> (<%= lang.code %>)</option>
+            <% }) %>
+          </select>
+          <button type="button" data-remove class="text-xs text-red-500 hover:text-red-700">Remove</button>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <div class="text-xs font-medium text-slate-600 mb-1">Video URL</div>
+            <input name="lang_video" placeholder="https://… or upload below" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono bg-white" />
+            <div class="mt-2 flex items-center gap-2">
+              <input type="file" accept="video/*" data-upload-target="lang_video" class="text-xs" />
+              <span class="text-xs text-slate-400" data-upload-status></span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-medium text-slate-600 mb-1">Audio URL</div>
+            <input name="lang_audio" placeholder="https://… or upload below" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono bg-white" />
+            <div class="mt-2 flex items-center gap-2">
+              <input type="file" accept="audio/*" data-upload-target="lang_audio" class="text-xs" />
+              <span class="text-xs text-slate-400" data-upload-status></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <% if (!isNew) { %>
+      <a href="/lp/<%= page.slug %>/" target="_blank" class="text-sm text-slate-500 hover:text-slate-900 underline">Preview public page &rarr;</a>
+    <% } else { %><span></span><% } %>
+    <button class="bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium px-5 py-2 rounded-lg">Save</button>
+  </div>
+</form>
+
+<script>
+(function() {
+  const rows = document.getElementById('langRows')
+  const tpl = document.getElementById('langRowTemplate')
+  document.getElementById('addLangBtn').addEventListener('click', () => {
+    const node = tpl.content.firstElementChild.cloneNode(true)
+    rows.appendChild(node)
+  })
+  rows.addEventListener('click', (e) => {
+    if (e.target.matches('[data-remove]')) {
+      const row = e.target.closest('[data-row]')
+      row?.remove()
+    }
+  })
+  rows.addEventListener('change', async (e) => {
+    if (e.target.type !== 'file' || !e.target.files[0]) return
+    const file = e.target.files[0]
+    const targetName = e.target.getAttribute('data-upload-target')
+    const row = e.target.closest('[data-row]')
+    const urlInput = row.querySelector(`input[name="${targetName}"]`)
+    const status = e.target.parentElement.querySelector('[data-upload-status]')
+    status.textContent = 'Uploading…'
+    status.className = 'text-xs text-slate-500'
+    try {
+      const fd = new FormData()
+      fd.append('file', file)
+      const res = await fetch('/admin/uploads', { method: 'POST', body: fd })
+      if (!res.ok) throw new Error('Upload failed (' + res.status + ')')
+      const { url } = await res.json()
+      urlInput.value = url
+      status.textContent = 'Uploaded ✓'
+      status.className = 'text-xs text-emerald-600'
+    } catch (err) {
+      status.textContent = err.message
+      status.className = 'text-xs text-red-600'
+    }
+  })
+})()
+</script>
+<%- include('_footer') %>

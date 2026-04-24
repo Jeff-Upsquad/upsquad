@@ -1,0 +1,50 @@
+<%- include('_header', { admin, title: 'Landing pages — UpSquad Admin' }) %>
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-bold">Landing pages</h1>
+    <p class="text-sm text-slate-500 mt-1">Manage the hero content (title, description, per-language video and audio) for each landing page.</p>
+  </div>
+  <a href="/admin/landing-pages/new" class="bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg">+ New landing page</a>
+</div>
+
+<% if (pages.length === 0) { %>
+  <div class="bg-white border border-gray-200 rounded-xl p-8 text-center text-slate-500">
+    No landing pages yet. Create your first one.
+  </div>
+<% } else { %>
+  <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-slate-500 text-xs uppercase">
+        <tr>
+          <th class="text-left px-4 py-3">Slug</th>
+          <th class="text-left px-4 py-3">Title</th>
+          <th class="text-left px-4 py-3">Default lang</th>
+          <th class="text-left px-4 py-3">Languages</th>
+          <th class="text-left px-4 py-3">Updated</th>
+          <th class="px-4 py-3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pages.forEach(function(p) { %>
+          <tr class="border-t border-gray-100">
+            <td class="px-4 py-3 font-mono text-xs"><%= p.slug %></td>
+            <td class="px-4 py-3"><%= p.hero_title || '—' %></td>
+            <td class="px-4 py-3 uppercase text-xs"><%= p.default_language_code || '—' %></td>
+            <td class="px-4 py-3"><%= p.language_count %></td>
+            <td class="px-4 py-3 text-xs text-slate-500"><%= p.updated_at %></td>
+            <td class="px-4 py-3 text-right">
+              <div class="inline-flex items-center gap-2">
+                <a href="/lp/<%= p.slug %>/" target="_blank" class="text-xs text-slate-500 hover:text-slate-900">Preview</a>
+                <a href="/admin/landing-pages/<%= p.slug %>/edit" class="text-xs text-slate-700 hover:text-slate-900 font-medium">Edit</a>
+                <form method="POST" action="/admin/landing-pages/<%= p.slug %>/delete" onsubmit="return confirm('Delete <%= p.slug %>?');" class="m-0">
+                  <button class="text-xs text-red-500 hover:text-red-700">Delete</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+<%- include('_footer') %>
