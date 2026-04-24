@@ -31,10 +31,10 @@ export default function OtherPricingDropdown({ options, activeType, onSelect }) 
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-medium text-slate-700 hover:border-gray-300 transition-all whitespace-nowrap"
+        className="inline-flex items-center gap-1 px-2 py-1 text-xs text-slate-500 hover:text-slate-700 transition-colors whitespace-nowrap"
       >
         See other categories
-        <svg className={`w-4 h-4 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className={`w-3 h-3 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
