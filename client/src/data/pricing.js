@@ -36,11 +36,11 @@ export const featureRows = [
     sublabel: '(compared to a full time employee)',
     tooltip: "This shows the execution capacity of each plan compared to having a full-time employee. Capacity doesn't mean number of hours per day. This term is used to get an idea about the availability and the expected output.",
     values: [
-      { bold: '10% Capacity', sub: 'Approx 1 hour of work per day', approach: 'Approx: ~1 hour of work per day' },
-      { bold: '25% Capacity', sub: '¼ of a full-time employee', approach: 'Approx: 2–3 hours of work per day' },
-      { bold: '50% Capacity', sub: 'Half employee capacity', approach: 'Approx: 4–5 hours of work per day' },
-      { bold: '80% Capacity', sub: 'Nearly full-time employee', approach: 'Approx: 6–7 hours of work per day' },
-      { bold: '100% Capacity', sub: 'Dedicated full-time equivalent', approach: 'Approx: Full-time equivalent' },
+      { bold: '10% Capacity', sub: 'Approx 1 hour of work per day', approach: 'Approx: ~1 hour of work per day', weekly: '~6 hours per week' },
+      { bold: '25% Capacity', sub: '¼ of a full-time employee', approach: 'Approx: 2–3 hours of work per day', weekly: '~13 hours per week' },
+      { bold: '50% Capacity', sub: 'Half employee capacity', approach: 'Approx: 4–5 hours of work per day', weekly: '~25 hours per week' },
+      { bold: '80% Capacity', sub: 'Nearly full-time employee', approach: 'Approx: 6–7 hours of work per day', weekly: '~35 hours per week' },
+      { bold: '100% Capacity', sub: 'Dedicated full-time equivalent', approach: 'Approx: Full-time equivalent', weekly: '~45 hours per week' },
     ],
   },
   {
