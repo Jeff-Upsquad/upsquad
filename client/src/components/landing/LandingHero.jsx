@@ -1,7 +1,10 @@
 "use client"
 import { useEffect, useState } from 'react'
 import HeroMedia from './HeroMedia'
-import AudioPlayer from './AudioPlayer'
+// AudioPlayer is intentionally unused right now — audio feature is hidden
+// on the landing page. Admin editor and API still manage per-language audio
+// URLs so this can be re-enabled later by restoring the import and <AudioPlayer />.
+// import AudioPlayer from './AudioPlayer'
 import LanguageGate from './LanguageGate'
 import { getLang, setLang } from '../../lib/localStoragePref'
 
@@ -66,7 +69,9 @@ export default function LandingHero({ slug, heroTitle, heroDescription, language
         </div>
         <div className="w-full">
           <HeroMedia videoUrl={selected?.videoUrl} onRequestGate={ensureLanguage} />
-          <AudioPlayer audioUrl={selected?.audioUrl} onRequestGate={ensureLanguage} />
+          {/* Audio player hidden for now. Re-enable by restoring the import
+              above and uncommenting the <AudioPlayer /> below. */}
+          {/* <AudioPlayer audioUrl={selected?.audioUrl} onRequestGate={ensureLanguage} /> */}
         </div>
       </div>
       <LanguageGate
