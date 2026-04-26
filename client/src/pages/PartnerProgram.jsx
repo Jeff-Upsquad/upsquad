@@ -199,12 +199,12 @@ export default function PartnerProgram() {
             </p>
 
             <a
-              href="https://squadhire.upsquadconnect.com/apply/creative"
+              href="https://squadhire.upsquadconnect.com/signup/talent"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
             >
-              Apply Now
+              Sign Up Now
             </a>
           </div>
           <div className="w-full">
@@ -500,12 +500,12 @@ export default function PartnerProgram() {
             No contracts, no upfront costs. Just your skills and our support.
           </p>
           <a
-            href="https://squadhire.upsquadconnect.com/apply/creative"
+            href="https://squadhire.upsquadconnect.com/signup/talent"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-900 font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
           >
-            Apply Now
+            Sign Up Now
           </a>
         </div>
       </section>
