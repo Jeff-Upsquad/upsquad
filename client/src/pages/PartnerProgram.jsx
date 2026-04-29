@@ -82,6 +82,21 @@ const partnerFocus = [
   },
 ]
 
+const currentSituation = [
+  'Hunt for clients constantly — mostly project-based work',
+  'Once a project ends, back to searching for the next one',
+  'Handle negotiations, invoicing, payments, and client communication yourself',
+  'Inconsistent income, unpredictable workload',
+]
+
+const withUpsquad = [
+  'UpSquad handles sales, marketing, support, and payments',
+  'Clients are assigned to you — no hunting',
+  'Work regularly for clients, get paid monthly',
+  "Quit or switch clients anytime — you're never locked in",
+  'Set your own working days and hours (virtual office timings)',
+]
+
 const gettingStartedSteps = [
   {
     number: '1',
@@ -209,6 +224,117 @@ export default function PartnerProgram() {
           </div>
           <div className="w-full">
             <HeroMedia videoUrl={videoUrl} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why UpSquad ─────────────────────────────────── */}
+      <section className="relative py-16 px-5 sm:px-8 bg-[#F7F6F3] overflow-hidden">
+        <div className="relative max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="mb-8 flex items-end justify-between flex-wrap gap-4">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-5 h-px bg-emerald-500" />
+                <p className="text-[11px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Why UpSquad</p>
+              </div>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
+                Stop hustling.{' '}
+                <span className="italic font-medium text-slate-400">Start creating.</span>
+              </h2>
+            </div>
+            <p className="text-sm text-slate-500 leading-relaxed max-w-sm">
+              The freelance grind drains your energy on everything except your craft. Here&apos;s how partnering with UpSquad changes that.
+            </p>
+          </div>
+
+          {/* Comparison */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-4 lg:gap-2 items-stretch">
+            {/* Left — Without UpSquad */}
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-2 mb-3">
+                <span className="text-[10px] font-bold tracking-[0.22em] text-slate-400 uppercase">Without UpSquad</span>
+                <span className="text-[10px] text-slate-300 font-medium">— old way</span>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200/70 overflow-hidden flex-1">
+                {currentSituation.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-start gap-3 px-4 py-3.5 ${i !== 0 ? 'border-t border-gray-100' : ''}`}
+                  >
+                    <div className="w-6 h-6 rounded-full bg-rose-50 border border-rose-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg className="w-3 h-3 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </div>
+                    <p className="text-sm text-slate-500 leading-snug line-through decoration-slate-300/80 decoration-[1.5px]">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Center — Transformation arrow (desktop) */}
+            <div className="hidden lg:flex flex-col items-center justify-center px-1 pt-7">
+              <div className="relative">
+                <div className="absolute inset-0 bg-emerald-500/30 rounded-full blur-md" />
+                <div className="relative w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg ring-[3px] ring-[#F7F6F3]">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.25} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile arrow */}
+            <div className="flex lg:hidden justify-center -my-1">
+              <div className="relative">
+                <div className="absolute inset-0 bg-emerald-500/30 rounded-full blur-md" />
+                <div className="relative w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg">
+                  <svg className="w-3.5 h-3.5 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.25} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — With UpSquad */}
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-2 mb-3">
+                <span className="text-[10px] font-bold tracking-[0.22em] text-emerald-600 uppercase">With UpSquad</span>
+                <span className="text-[10px] text-emerald-500/60 font-medium">— new way</span>
+              </div>
+              <div className="relative bg-slate-900 rounded-2xl overflow-hidden flex-1 shadow-[0_12px_30px_-12px_rgb(15_23_42_/_0.3)]">
+                {/* Glow */}
+                <div className="absolute -top-24 -right-16 w-56 h-56 bg-emerald-500/25 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-16 -left-8 w-40 h-40 bg-lime-500/10 rounded-full blur-3xl pointer-events-none" />
+                {/* Subtle grid */}
+                <div
+                  className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)',
+                    backgroundSize: '28px 28px',
+                  }}
+                />
+                <div className="relative">
+                  {withUpsquad.map((item, i) => (
+                    <div
+                      key={i}
+                      className={`flex items-start gap-3 px-4 py-3.5 ${i !== 0 ? 'border-t border-white/[0.06]' : ''}`}
+                    >
+                      <div className="w-6 h-6 rounded-full bg-emerald-500/[0.12] border border-emerald-400/30 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-sm text-white/90 leading-snug">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
