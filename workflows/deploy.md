@@ -51,68 +51,80 @@ Only one deploy of this project can run at a time. If another one is mid-flight,
 
 This is the bootstrap you run **once**, not every deploy. The VPS already runs Docker and squadhub's Caddy.
 
-### 1. Clone the repo to `/opt/upsquad`
+### Quick path (recommended)
+
+From your local repo root:
 
 ```bash
-ssh root@72.61.245.97
-mkdir -p /opt/upsquad && cd /opt/upsquad
-git clone https://github.com/Jeff-Upsquad/upsquad.git .
-git checkout main
+bash tools/bootstrap.sh
 ```
 
-### 2. Create `server/.env.production`
+That script clones the repo, generates `SESSION_SECRET` + a bcrypt-hashed admin password, writes `server/.env.production`, builds and starts the Docker container, patches `/opt/squadhub/Caddyfile` to reverse-proxy `upsquadconnect.com` to `host.docker.internal:3100`, reloads Caddy, and runs a public smoke test. It is idempotent — re-running on an already-bootstrapped VPS is a no-op.
 
-On the VPS:
+If you want to control the temp admin password (instead of letting the script generate one), set it as an env var:
 
 ```bash
-cd /opt/upsquad
-cp server/.env.production.example server/.env.production
+BOOTSTRAP_ADMIN_PASSWORD='your-temp-password' bash tools/bootstrap.sh
 ```
 
-Fill in the three secrets. You can generate them right on the VPS:
+Either way, **rotate the password via the admin UI immediately after first login**.
 
-```bash
-# Generate a bcrypt hash of the desired admin password
-docker run --rm node:20-alpine sh -c "npm i -s bcryptjs >/dev/null && node -e 'console.log(require(\"bcryptjs\").hashSync(\"PASTE_REAL_PASSWORD_HERE\", 10))'"
+### Manual path (only if `bootstrap.sh` doesn't fit)
 
-# Generate the session secret
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-```
+If you'd rather drive the bootstrap by hand — or `tools/bootstrap.sh` fails partway and you need to pick up mid-flight — the steps are:
 
-Paste the outputs into `server/.env.production` as `ADMIN_PASSWORD_HASH=` and `SESSION_SECRET=`. Set `ADMIN_EMAIL=jeff@upsquadconnect.com`, `PUBLIC_BASE_URL=https://www.upsquadconnect.com`, and leave `CORS_ORIGINS=` empty.
+1. Clone the repo to `/opt/upsquad`:
 
-### 3. Start the container
+   ```bash
+   ssh root@72.61.245.97
+   mkdir -p /opt/upsquad && cd /opt/upsquad
+   git clone https://github.com/Jeff-Upsquad/upsquad.git .
+   git checkout main
+   ```
 
-```bash
-cd /opt/upsquad
-docker compose up -d --build
-docker compose ps
-curl -s http://localhost:3100/api/health
-```
+2. Create `server/.env.production` (don't commit). Use the template:
 
-You should see `{"status":"ok","service":"UpSquad"}`.
+   ```bash
+   cp server/.env.production.example server/.env.production
+   ```
 
-### 4. Point squadhub's Caddy at this container
+   Generate the secrets on the VPS:
 
-squadhub's Caddyfile (`/opt/squadhub/Caddyfile`) currently has an `upsquadconnect.com, www.upsquadconnect.com` block serving the old static Profiles site from `/srv/profiles/*`. Replace that whole block with:
+   ```bash
+   # bcrypt hash of the desired admin password
+   docker run --rm node:20-alpine sh -c "npm i -s bcryptjs >/dev/null && node -e 'console.log(require(\"bcryptjs\").hashSync(\"PASTE_REAL_PASSWORD_HERE\", 10))'"
 
-```caddy
-upsquadconnect.com, www.upsquadconnect.com {
-	reverse_proxy host.docker.internal:3100
-}
-```
+   # session secret
+   docker run --rm node:20-alpine node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
 
-Commit that change to the squadhub repo on `main`, then on the VPS:
+   Paste them in as `ADMIN_PASSWORD_HASH=` and `SESSION_SECRET=`. Set `ADMIN_EMAIL=jeff@upsquadconnect.com`, `PUBLIC_BASE_URL=https://www.upsquadconnect.com`, leave `CORS_ORIGINS=` empty.
 
-```bash
-cd /opt/squadhub
-git pull origin main
-docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile
-```
+3. Start the container:
 
-Note: the old `/srv/profiles/*` directories are left untouched — if you later decide you don't need the Profiles static site at all, you can delete those separately.
+   ```bash
+   docker compose up -d --build
+   curl -s http://localhost:3100/api/health   # → {"status":"ok","service":"UpSquad"}
+   ```
 
-### 5. Verify
+4. Point squadhub's Caddy at the container. squadhub's Caddyfile (`/opt/squadhub/Caddyfile`) has an `upsquadconnect.com, www.upsquadconnect.com` block — replace it with:
+
+   ```caddy
+   upsquadconnect.com, www.upsquadconnect.com {
+   	reverse_proxy host.docker.internal:3100
+   }
+   ```
+
+   Then reload Caddy:
+
+   ```bash
+   cd /opt/squadhub
+   docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile
+   ```
+
+   (The old `/srv/profiles/*` directories are left untouched — clean up later if you don't need the old static Profiles site.)
+
+### Verify
 
 ```bash
 curl -I https://www.upsquadconnect.com
@@ -121,7 +133,7 @@ curl https://www.upsquadconnect.com/api/v1/landing-pages/get-started
 ```
 
 Then in a browser:
-1. https://www.upsquadconnect.com/admin/login — sign in, rotate the password if it's the same as dev.
+1. https://www.upsquadconnect.com/admin/login — sign in, **rotate the password** (especially if it was the auto-generated one printed by `bootstrap.sh`).
 2. Edit the `get-started` landing page, paste real video/audio URLs or upload files, save.
 3. https://www.upsquadconnect.com/lp/get-started/ — reload to see the content.
 4. Open https://www.upsquadconnect.com/ (home) and https://www.upsquadconnect.com/pricing/ — should render as before.

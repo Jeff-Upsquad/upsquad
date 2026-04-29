@@ -17,6 +17,13 @@ LOCK_TIMEOUT=600
 echo "=== UpSquad Deploy ==="
 echo ""
 
+if ! ssh "$VPS" "[ -d $DEPLOY_DIR/.git ] && [ -f $DEPLOY_DIR/server/.env.production ]"; then
+    echo "VPS is not bootstrapped: $VPS:$DEPLOY_DIR is missing .git or server/.env.production." >&2
+    echo "Run 'bash tools/bootstrap.sh' first (one-time setup), then retry this deploy." >&2
+    echo "See workflows/deploy.md → 'One-Time VPS Setup' for details." >&2
+    exit 1
+fi
+
 BEFORE_SHA=$(ssh "$VPS" "cd $DEPLOY_DIR && git rev-parse HEAD")
 echo "Current VPS commit: ${BEFORE_SHA:0:7}"
 
