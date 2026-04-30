@@ -72,9 +72,14 @@ if [ ! -f server/.env.production ]; then
     SESSION_SECRET=\$(docker run --rm node:20-alpine \\
         node -e 'console.log(require("crypto").randomBytes(32).toString("hex"))')
 
+    # Compose v2 interpolates \$ in env_file values (so a bcrypt hash like
+    # \$2b\$10\$abc... gets \$abc treated as a variable and erased). Escape \$ → \$\$
+    # so the literal hash reaches the container intact.
+    HASH_ESCAPED=\$(printf '%s' "\$HASH" | sed 's/\\\$/\\\$\\\$/g')
+
     # printf avoids any shell expansion of \$ inside the bcrypt hash
     printf 'ADMIN_EMAIL=%s\nADMIN_PASSWORD_HASH=%s\nSESSION_SECRET=%s\nPUBLIC_BASE_URL=https://www.upsquadconnect.com\nCORS_ORIGINS=\n' \\
-        "\$ADMIN_EMAIL" "\$HASH" "\$SESSION_SECRET" > server/.env.production
+        "\$ADMIN_EMAIL" "\$HASH_ESCAPED" "\$SESSION_SECRET" > server/.env.production
     chmod 600 server/.env.production
     echo "Wrote server/.env.production"
 else
