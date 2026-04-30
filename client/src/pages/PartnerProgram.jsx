@@ -1,6 +1,10 @@
 "use client"
 import { useEffect, useState } from 'react'
 import HeroMedia from '../components/landing/HeroMedia'
+import LanguageGate from '../components/landing/LanguageGate'
+import { getLang, setLang } from '../lib/localStoragePref'
+
+const LP_SLUG = 'partner-program'
 
 /* ── data ─────────────────────────────────────────────── */
 
@@ -178,19 +182,55 @@ const planCards = [
 /* ── component ────────────────────────────────────────── */
 
 export default function PartnerProgram() {
-  const [videoUrl, setVideoUrl] = useState('')
+  const [languages, setLanguages] = useState([])
+  const [defaultLanguageCode, setDefaultLanguageCode] = useState('en')
+  const [selectedCode, setSelectedCode] = useState(null)
+  const [gateOpen, setGateOpen] = useState(false)
 
   useEffect(() => {
-    fetch('/api/v1/landing-pages/partner-program')
+    fetch(`/api/v1/landing-pages/${LP_SLUG}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!d) return
-        const langs = d.languages || []
-        const lang = langs.find((l) => l.code === d.defaultLanguageCode) || langs[0]
-        setVideoUrl(lang?.videoUrl || '')
+        setLanguages(d.languages || [])
+        if (d.defaultLanguageCode) setDefaultLanguageCode(d.defaultLanguageCode)
       })
       .catch(() => {})
   }, [])
+
+  // Mirror LandingHero's selection logic: stored preference wins, else
+  // auto-pick when there's only one language, else leave unset so the gate
+  // opens on the first play click.
+  useEffect(() => {
+    const stored = getLang(LP_SLUG)
+    const validCodes = new Set((languages || []).map((l) => l.code))
+    if (stored && validCodes.has(stored)) {
+      setSelectedCode(stored)
+    } else if (defaultLanguageCode && validCodes.has(defaultLanguageCode) && (languages || []).length === 1) {
+      setSelectedCode(defaultLanguageCode)
+    } else {
+      setSelectedCode(null)
+    }
+  }, [languages, defaultLanguageCode])
+
+  const selected = (languages || []).find((l) => l.code === selectedCode) || null
+
+  const ensureLanguage = () => {
+    const langs = languages || []
+    if (langs.length <= 1) {
+      if (langs.length === 1 && !selectedCode) setSelectedCode(langs[0].code)
+      return true
+    }
+    if (selectedCode) return true
+    setGateOpen(true)
+    return false
+  }
+
+  const onSelectLanguage = (code) => {
+    setSelectedCode(code)
+    setLang(LP_SLUG, code)
+    setGateOpen(false)
+  }
 
   return (
     <div className="pt-20 pb-0">
@@ -213,19 +253,42 @@ export default function PartnerProgram() {
               what you do best — we handle the sales, marketing, client support, and payments.
             </p>
 
-            <a
-              href="https://squadhire.upsquadconnect.com/signup/talent"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
-            >
-              Sign Up Now
-            </a>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://squadhire.upsquadconnect.com/signup/talent"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
+              >
+                Sign Up Now
+              </a>
+
+              {selected && (languages || []).length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setGateOpen(true)}
+                  aria-label="Change language"
+                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-gray-200 rounded-full px-3 py-1.5 hover:border-gray-300 bg-white"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3 7.5 7.03 7.5 12s2.015 9 4.5 9zM3.6 9h16.8M3.6 15h16.8" />
+                  </svg>
+                  Language: {selected.name}
+                </button>
+              )}
+            </div>
           </div>
           <div className="w-full">
-            <HeroMedia videoUrl={videoUrl} />
+            <HeroMedia videoUrl={selected?.videoUrl} onRequestGate={ensureLanguage} />
           </div>
         </div>
+
+        <LanguageGate
+          open={gateOpen}
+          languages={languages || []}
+          onSelect={onSelectLanguage}
+          onDismiss={() => setGateOpen(false)}
+        />
       </section>
 
       {/* ── Why UpSquad ─────────────────────────────────── */}
