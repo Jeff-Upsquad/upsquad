@@ -83,12 +83,14 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan }) {
           {availabilityPlans.map((plan) => (
             <div
               key={plan.id + '-avail'}
-              className={`flex flex-col items-center justify-center py-4 ${
+              className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
                 plan.highlighted ? 'bg-brand-purple/5 border-l-2 border-r-2 border-brand-purple' : ''
               }`}
             >
               <span className="text-2xl font-bold text-text-primary">{plan.availability}</span>
-              <span className="text-xs text-text-muted">{plan.approach}</span>
+              <span className="text-[11px] text-text-muted mt-0.5">{plan.approach}</span>
+              <span className="text-[11px] text-text-secondary italic mt-1">{plan.hoursPerDay} per day</span>
+              <span className="text-[11px] text-text-secondary italic">{plan.hoursPerWeek} per week</span>
             </div>
           ))}
         </div>

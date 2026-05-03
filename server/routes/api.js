@@ -27,7 +27,9 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
 
   const errors = []
   if (!serviceType || !['Designers', 'Editors'].includes(serviceType)) errors.push('Invalid service type')
-  if (!tier || !['Juniors', 'Pros', 'Elites'].includes(tier)) errors.push('Invalid tier')
+  const validTiers = ['Juniors', 'Pros', 'Elites']
+  const tierList = (tier || '').split(',').map(t => t.trim()).filter(Boolean)
+  if (tierList.length === 0 || !tierList.every(t => validTiers.includes(t))) errors.push('Invalid tier')
   if (!plan || !['starter', 'basic', 'plus', 'pro', 'personal'].includes(plan)) errors.push('Invalid plan')
   if (!proposedPrice || typeof proposedPrice !== 'number' || proposedPrice <= 0) errors.push('Proposed price must be a positive number')
   if (!name || typeof name !== 'string' || name.trim().length === 0) errors.push('Name is required')

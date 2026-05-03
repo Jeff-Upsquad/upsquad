@@ -5,8 +5,9 @@ import SubmissionConfirmation from './SubmissionConfirmation'
 
 const API_URL = process.env.NEXT_PUBLIC_SQUADHUB_API_URL || ''
 
-const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, selectedTier, selectedPlan }, ref) {
+const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, selectedTiers, selectedPlan }, ref) {
   const plan = availabilityPlans.find(p => p.id === selectedPlan)
+  const tiersLabel = selectedTiers.join(' + ')
   const [form, setForm] = useState({ name: '', email: '', company: '', phone: '', proposedPrice: '' })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -44,7 +45,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           serviceType,
-          tier: selectedTier,
+          tier: selectedTiers.join(','),
           plan: selectedPlan,
           proposedPrice: Number(form.proposedPrice),
           name: form.name.trim(),
@@ -82,10 +83,10 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
   return (
     <div ref={ref} className="bg-white border-2 border-text-primary rounded-xl p-6 sm:p-8 mb-12 shadow-brutal">
       <div className="mb-6">
-        <span className="text-label font-mono-tech text-text-muted">Step 3</span>
+        <span className="text-label font-mono-tech text-text-muted">Final step</span>
         <h2 className="font-heading text-xl sm:text-2xl font-bold text-text-primary mt-1 mb-1">Name Your Budget</h2>
         <p className="text-sm text-text-secondary">
-          You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-semibold text-text-primary">{selectedTier}</span> talent for <span className="font-semibold text-text-primary">{serviceType}</span>.
+          You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-semibold text-text-primary">{tiersLabel}</span> talent for <span className="font-semibold text-text-primary">{serviceType}</span>.
         </p>
       </div>
 
