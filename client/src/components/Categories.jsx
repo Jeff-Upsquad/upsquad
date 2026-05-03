@@ -193,10 +193,10 @@ export default function Categories() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {squads.map((squad, i) => (
-            <ScrollReveal key={squad.name} delay={i * 0.08}>
+            <ScrollReveal key={squad.name} delay={i * 0.08} className="h-full">
               <div
                 onClick={() => squad.drawer && setActiveSquad(squad)}
-                className={`group p-2 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short ${squad.drawer ? 'cursor-pointer' : ''}`}
+                className={`group h-full p-2 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short ${squad.drawer ? 'cursor-pointer' : ''}`}
               >
                 <div className="bg-surface-secondary rounded-lg p-6 flex flex-col h-full">
                   <div className="flex items-start justify-between mb-4">
