@@ -13,13 +13,13 @@ import UnlimitedRequestsExplainer from '../components/pricing/UnlimitedRequestsE
 import ImportantNote from '../components/pricing/ImportantNote'
 
 export default function Pricing() {
-  const [selectedServices, setSelectedServices] = useState([])
+  const [selectedService, setSelectedService] = useState(null)
   const [selectedTiers, setSelectedTiers] = useState([])
   const [selectedPlan, setSelectedPlan] = useState(null)
   const formRef = useRef(null)
 
-  const handleToggleService = useCallback((service) => {
-    setSelectedServices(prev => prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service])
+  const handleSelectService = useCallback((service) => {
+    setSelectedService(service)
     setSelectedPlan(null)
   }, [])
 
@@ -35,15 +35,15 @@ export default function Pricing() {
     }, 100)
   }, [])
 
-  const canSelectPlan = selectedServices.length > 0 && selectedTiers.length > 0
+  const canSelectPlan = !!selectedService && selectedTiers.length > 0
 
   return (
     <div className="pt-20 pb-0">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
         <PricingHero />
 
-        <StepHeader number="01" title="Pick your talent type(s)" subtitle="Select one or more — Designers create static visuals, Editors craft motion and video." />
-        <ServiceTypeTabs selectedServices={selectedServices} onToggleService={handleToggleService} />
+        <StepHeader number="01" title="Pick your talent type" subtitle="Designers create static visuals, Editors craft motion and video, or pick a hybrid who can do both." />
+        <ServiceTypeTabs selectedService={selectedService} onSelectService={handleSelectService} />
 
         <StepHeader number="02" title="Pick experience level(s)" subtitle="Select one or more — we'll match you with talent across all chosen levels." />
         <SubtierTabs selectedTiers={selectedTiers} onToggleTier={handleToggleTier} />
@@ -54,10 +54,10 @@ export default function Pricing() {
         ) : (
           <div className="bg-surface-secondary border-2 border-dashed border-text-primary/30 rounded-xl p-10 text-center">
             <p className="text-sm text-text-secondary">
-              {selectedServices.length === 0 && selectedTiers.length === 0
+              {!selectedService && selectedTiers.length === 0
                 ? 'Pick a talent type and an experience level above to see plan options.'
-                : selectedServices.length === 0
-                ? 'Pick at least one talent type above to see plan options.'
+                : !selectedService
+                ? 'Pick a talent type above to see plan options.'
                 : 'Pick at least one experience level above to see plan options.'}
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function Pricing() {
         {selectedPlan && (
           <NameYourPriceForm
             ref={formRef}
-            selectedServices={selectedServices}
+            selectedService={selectedService}
             selectedTiers={selectedTiers}
             selectedPlan={selectedPlan}
           />
