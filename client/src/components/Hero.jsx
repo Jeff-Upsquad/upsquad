@@ -9,29 +9,29 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative pt-40 pb-32 px-5 sm:px-8 bg-gradient-mesh overflow-hidden">
+    <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-20 px-5 sm:px-8 bg-[#f0fb29] overflow-hidden">
       <div className="max-w-[1160px] mx-auto">
-        <div className="grid lg:grid-cols-[1fr_auto] gap-16 items-start">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
 
           {/* Left: text */}
           <div className="max-w-2xl">
             <ScrollReveal>
-              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-text-primary bg-brand-purple/10 px-3 py-1.5 rounded-full mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-purple animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-text-primary bg-white border border-black/80 px-3 py-1.5 rounded-full mb-6 shadow-brutal-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
                 Waitlist open &middot; Early access &amp; launch offers
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <h1 className="font-heading text-4xl sm:text-display font-extrabold leading-[1.15] tracking-tight mb-6">
-                <span className="text-text-primary">The All-in-One Talent Subscription</span>
+              <h1 className="font-heading text-4xl sm:text-display font-extrabold leading-[1.05] tracking-[-0.03em] mb-5 text-text-primary">
+                The All-in-One Talent Subscription
                 <br />
-                <span className="text-gradient font-bold">for Modern Brands.</span>
+                <span className="italic font-bold">for Modern Brands.</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
-              <p className="text-lg text-text-secondary leading-[1.7] mb-8 max-w-lg">
+              <p className="text-base sm:text-lg text-text-primary/80 leading-[1.6] mb-7 max-w-lg">
                 Subscribing is better than hiring. One plan gives your brand access to content,
                 marketing, tech, accounts, legal, and hiring — all under one roof.
                 Stay consistent. Scale fast.
@@ -65,10 +65,10 @@ export default function Hero() {
           </div>
 
           {/* Right: decorative stat card */}
-          <div className="hidden lg:flex flex-col gap-3 pt-4">
+          <div className="hidden lg:flex flex-col gap-3 pt-2">
             {stats.map((stat, i) => (
               <ScrollReveal key={stat.label} direction="right" delay={i * 0.1}>
-                <div className="bg-white border border-[rgba(96,96,163,0.2)] rounded-xl px-6 py-4 min-w-[200px] shadow-sm hover:shadow-card-hover transition-all duration-short">
+                <div className="bg-white border-[1.5px] border-black rounded-xl px-5 py-3 min-w-[200px] shadow-brutal-sm hover:shadow-brutal hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-short">
                   <div className="text-base font-semibold text-text-primary">{stat.value}</div>
                   <div className="text-xs text-text-secondary mt-0.5">{stat.label}</div>
                 </div>
@@ -78,7 +78,7 @@ export default function Hero() {
         </div>
 
         {/* Mobile stats */}
-        <div className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-[rgba(96,96,163,0.15)] lg:hidden">
+        <div className="flex flex-wrap items-center gap-6 mt-8 pt-6 border-t border-black/15 lg:hidden">
           {stats.map((stat) => (
             <div key={stat.label}>
               <div className="text-sm font-semibold text-text-primary">{stat.value}</div>
