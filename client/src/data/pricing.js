@@ -164,7 +164,7 @@ export const featureRows = [
 
 export const benefits = [
   { icon: 'squad-manager', title: 'Squad Manager', desc: 'You will also get a Squad Manager (project manager) to manage all the works and ensure delivery on time.' },
-  { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.' },
+  { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.', note: 'Available at Rs 1,000 per month additional cost.' },
   { icon: 'unlimited-requests', title: 'Unlimited Work Requests', desc: 'Submit as many tasks as you want. One request at a time, delivered with quality and consistency.' },
   { icon: 'unlimited-changes', title: 'Unlimited Changes', desc: 'If you are not happy with the output, you can request an unlimited number of changes.' },
   { icon: 'replacement', title: 'Replacement', desc: 'If you are not happy with the resource assigned to you, you can replace them any number of times.' },
