@@ -186,3 +186,44 @@ export function createSubscriptionRequest({ serviceType, tier, plan, proposedPri
   `).run(serviceType, tier, plan, proposedPrice, workingDays || '', name, email, company || '', phone)
   return info.lastInsertRowid
 }
+
+export function listSubscriptionRequests({ status, search, limit = 50, offset = 0 } = {}) {
+  const conditions = []
+  const params = []
+
+  if (status) {
+    conditions.push('status = ?')
+    params.push(status)
+  }
+  if (search) {
+    conditions.push('(name LIKE ? OR email LIKE ? OR company LIKE ?)')
+    const term = `%${search}%`
+    params.push(term, term, term)
+  }
+
+  const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
+
+  const total = db.prepare(`SELECT COUNT(*) as c FROM subscription_requests ${where}`).get(...params).c
+  const items = db.prepare(`
+    SELECT * FROM subscription_requests ${where}
+    ORDER BY created_at DESC
+    LIMIT ? OFFSET ?
+  `).all(...params, limit, offset)
+
+  return { items, total }
+}
+
+export function getSubscriptionRequestById(id) {
+  return db.prepare('SELECT * FROM subscription_requests WHERE id = ?').get(id) || null
+}
+
+export function updateSubscriptionRequestStatus(id, status) {
+  const allowed = ['pending', 'in_review', 'published', 'cancelled', 'declined']
+  if (!allowed.includes(status)) return null
+
+  const existing = db.prepare('SELECT * FROM subscription_requests WHERE id = ?').get(id)
+  if (!existing) return null
+
+  db.prepare('UPDATE subscription_requests SET status = ? WHERE id = ?').run(status, id)
+  return { ...existing, status }
+}

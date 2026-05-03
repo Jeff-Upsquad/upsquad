@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 import cookieParser from 'cookie-parser'
 import adminRouter from './routes/admin.js'
 import apiRouter from './routes/api.js'
+import adminApiRouter from './routes/adminApi.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -33,8 +34,8 @@ app.use('/api', (req, res, next) => {
   if (isAllowedOrigin(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin)
     res.setHeader('Vary', 'Origin')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization')
   }
   if (req.method === 'OPTIONS') return res.sendStatus(204)
   next()
@@ -49,6 +50,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
 
 app.use('/admin', adminRouter)
 app.use('/api', apiRouter)
+app.use('/api', adminApiRouter)
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', service: 'UpSquad' })
