@@ -67,30 +67,35 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
     }
   }
 
+  const inputBase = 'w-full px-4 py-3 border-2 rounded-lg text-sm outline-none transition-all bg-white focus:shadow-brutal-sm focus:-translate-y-px'
+  const inputOK = 'border-text-primary focus:border-text-primary'
+  const inputErr = 'border-brand-orange focus:border-brand-orange'
+
   if (submitted) {
     return (
-      <div ref={ref} className="bg-white border border-gray-200 rounded-xl p-8 mb-12">
+      <div ref={ref} className="bg-white border-2 border-text-primary rounded-xl p-8 mb-12 shadow-brutal">
         <SubmissionConfirmation />
       </div>
     )
   }
 
   return (
-    <div ref={ref} className="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-12">
+    <div ref={ref} className="bg-white border-2 border-text-primary rounded-xl p-6 sm:p-8 mb-12 shadow-brutal">
       <div className="mb-6">
-        <h2 className="font-heading text-xl font-bold text-slate-900 mb-1">Name Your Budget</h2>
-        <p className="text-sm text-slate-500">
-          You've selected <span className="font-medium text-slate-700">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-medium text-slate-700">{selectedTier}</span> talent for <span className="font-medium text-slate-700">{serviceType}</span>.
+        <span className="text-label font-mono-tech text-text-muted">Step 3</span>
+        <h2 className="font-heading text-xl sm:text-2xl font-bold text-text-primary mt-1 mb-1">Name Your Budget</h2>
+        <p className="text-sm text-text-secondary">
+          You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-semibold text-text-primary">{selectedTier}</span> talent for <span className="font-semibold text-text-primary">{serviceType}</span>.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="proposedPrice" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="proposedPrice" className="block text-sm font-semibold text-text-primary mb-1.5">
             Monthly Budget (₹)
           </label>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">₹</span>
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-sm font-bold">₹</span>
             <input
               id="proposedPrice"
               name="proposedPrice"
@@ -100,17 +105,15 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
               value={form.proposedPrice}
               onChange={handleChange}
               placeholder="Enter your monthly budget"
-              className={`w-full pl-8 pr-4 py-3 border rounded-lg text-sm outline-none transition-colors ${
-                errors.proposedPrice ? 'border-red-300 focus:ring-2 focus:ring-red-200' : 'border-gray-200 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400'
-              }`}
+              className={`${inputBase} ${errors.proposedPrice ? inputErr : inputOK} pl-8`}
             />
           </div>
-          {errors.proposedPrice && <p className="text-xs text-red-500 mt-1">{errors.proposedPrice}</p>}
+          {errors.proposedPrice && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.proposedPrice}</p>}
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1.5">Name</label>
+            <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-1.5">Name</label>
             <input
               id="name"
               name="name"
@@ -118,14 +121,12 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
               value={form.name}
               onChange={handleChange}
               placeholder="Your name"
-              className={`w-full px-4 py-3 border rounded-lg text-sm outline-none transition-colors ${
-                errors.name ? 'border-red-300 focus:ring-2 focus:ring-red-200' : 'border-gray-200 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400'
-              }`}
+              className={`${inputBase} ${errors.name ? inputErr : inputOK}`}
             />
-            {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.name}</p>}
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+            <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-1.5">Email</label>
             <input
               id="email"
               name="email"
@@ -133,18 +134,16 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
               value={form.email}
               onChange={handleChange}
               placeholder="you@company.com"
-              className={`w-full px-4 py-3 border rounded-lg text-sm outline-none transition-colors ${
-                errors.email ? 'border-red-300 focus:ring-2 focus:ring-red-200' : 'border-gray-200 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400'
-              }`}
+              className={`${inputBase} ${errors.email ? inputErr : inputOK}`}
             />
-            {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.email}</p>}
           </div>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1.5">
-              Company <span className="text-slate-400 font-normal">(optional)</span>
+            <label htmlFor="company" className="block text-sm font-semibold text-text-primary mb-1.5">
+              Company <span className="text-text-muted font-normal">(optional)</span>
             </label>
             <input
               id="company"
@@ -153,11 +152,11 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
               value={form.company}
               onChange={handleChange}
               placeholder="Company name"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400"
+              className={`${inputBase} ${inputOK}`}
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1.5">Phone / WhatsApp</label>
+            <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-1.5">Phone / WhatsApp</label>
             <input
               id="phone"
               name="phone"
@@ -165,16 +164,14 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
               value={form.phone}
               onChange={handleChange}
               placeholder="+91 99955 66385"
-              className={`w-full px-4 py-3 border rounded-lg text-sm outline-none transition-colors ${
-                errors.phone ? 'border-red-300 focus:ring-2 focus:ring-red-200' : 'border-gray-200 focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400'
-              }`}
+              className={`${inputBase} ${errors.phone ? inputErr : inputOK}`}
             />
-            {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
+            {errors.phone && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.phone}</p>}
           </div>
         </div>
 
         {serverError && (
-          <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-600">
+          <div className="bg-brand-orange/10 border-2 border-brand-orange rounded-lg px-4 py-3 text-sm text-text-primary font-medium">
             {serverError}
           </div>
         )}
@@ -182,12 +179,12 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ serviceType, s
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-gray-900 hover:bg-gray-700 disabled:bg-gray-400 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
+          className="btn-gradient w-full px-6 py-3.5 text-base font-bold disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? 'Submitting...' : 'Submit for Review'}
         </button>
 
-        <p className="text-xs text-slate-400 text-center">
+        <p className="text-xs text-text-muted text-center">
           Our team reviews every request personally. No auto-charges, no commitments.
         </p>
       </form>
