@@ -19,10 +19,6 @@ const featureRows = [
     render: (plan) => plan.urgentWorks ? <CheckIcon /> : <CrossIcon />,
   },
   {
-    label: 'Queue',
-    render: (plan) => <span className="text-xs text-text-secondary">{plan.queue}</span>,
-  },
-  {
     label: 'Access to Our Platform',
     render: () => <span className="text-xs text-text-secondary">Per user Rs 500</span>,
   },
@@ -78,7 +74,10 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan }) {
         {/* Availability Row (replaces Monthly Price) */}
         <div className={`grid ${gridClass} gap-0 border-t border-[rgba(96,96,163,0.2)]`}>
           <div className="flex items-center px-4 py-4">
-            <span className="text-sm font-medium text-text-primary">Availability</span>
+            <span className="text-sm font-medium text-text-primary">
+              Availability
+              <InfoTooltip text="Availability shows the number of hours your selected talent will be available on a per-day and per-week basis." />
+            </span>
           </div>
           {availabilityPlans.map((plan) => (
             <div
