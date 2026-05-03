@@ -1,6 +1,6 @@
 "use client"
 import { useState, useRef, useCallback } from 'react'
-import PlanTypeTabs from '../components/pricing/PlanTypeTabs'
+import ServiceTypeTabs from '../components/pricing/ServiceTypeTabs'
 import SubtierTabs from '../components/pricing/SubtierTabs'
 import PricingHero from '../components/pricing/PricingHero'
 import StepHeader from '../components/pricing/StepHeader'
@@ -13,13 +13,13 @@ import UnlimitedRequestsExplainer from '../components/pricing/UnlimitedRequestsE
 import ImportantNote from '../components/pricing/ImportantNote'
 
 export default function Pricing() {
-  const [activeType, setActiveType] = useState('Designers')
-  const [selectedTiers, setSelectedTiers] = useState(['Pros'])
+  const [selectedServices, setSelectedServices] = useState([])
+  const [selectedTiers, setSelectedTiers] = useState([])
   const [selectedPlan, setSelectedPlan] = useState(null)
   const formRef = useRef(null)
 
-  const handleTypeChange = useCallback((type) => {
-    setActiveType(type)
+  const handleToggleService = useCallback((service) => {
+    setSelectedServices(prev => prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service])
     setSelectedPlan(null)
   }, [])
 
@@ -35,15 +35,15 @@ export default function Pricing() {
     }, 100)
   }, [])
 
-  const canSelectPlan = selectedTiers.length > 0
+  const canSelectPlan = selectedServices.length > 0 && selectedTiers.length > 0
 
   return (
     <div className="pt-20 pb-0">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
         <PricingHero />
 
-        <StepHeader number="01" title="Pick your talent type" subtitle="Designers create static visuals; Editors craft motion and video." />
-        <PlanTypeTabs activeType={activeType} setActiveType={handleTypeChange} types={['Designers', 'Editors']} />
+        <StepHeader number="01" title="Pick your talent type(s)" subtitle="Select one or more — Designers create static visuals, Editors craft motion and video." />
+        <ServiceTypeTabs selectedServices={selectedServices} onToggleService={handleToggleService} />
 
         <StepHeader number="02" title="Pick experience level(s)" subtitle="Select one or more — we'll match you with talent across all chosen levels." />
         <SubtierTabs selectedTiers={selectedTiers} onToggleTier={handleToggleTier} />
@@ -53,14 +53,20 @@ export default function Pricing() {
           <AvailabilityTable selectedPlan={selectedPlan} onSelectPlan={handlePlanSelect} />
         ) : (
           <div className="bg-surface-secondary border-2 border-dashed border-text-primary/30 rounded-xl p-10 text-center">
-            <p className="text-sm text-text-secondary">Pick at least one experience level above to see plan options.</p>
+            <p className="text-sm text-text-secondary">
+              {selectedServices.length === 0 && selectedTiers.length === 0
+                ? 'Pick a talent type and an experience level above to see plan options.'
+                : selectedServices.length === 0
+                ? 'Pick at least one talent type above to see plan options.'
+                : 'Pick at least one experience level above to see plan options.'}
+            </p>
           </div>
         )}
 
         {selectedPlan && (
           <NameYourPriceForm
             ref={formRef}
-            serviceType={activeType}
+            selectedServices={selectedServices}
             selectedTiers={selectedTiers}
             selectedPlan={selectedPlan}
           />

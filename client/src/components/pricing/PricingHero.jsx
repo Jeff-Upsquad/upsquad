@@ -4,7 +4,7 @@ export default function PricingHero() {
   return (
     <div className="text-center mb-10">
       <h1 className="font-heading text-3xl sm:text-4xl font-bold text-text-primary mb-3">
-        Choose your subscription plan.
+        Build Your Own Subscription Plan
       </h1>
       <p className="text-text-secondary max-w-2xl mx-auto leading-relaxed">
         Three simple steps. Pick your talent type, your experience level, and your plan.

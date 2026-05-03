@@ -100,6 +100,14 @@ export const subtierDescriptions = {
   Elites: 'Top talents with 5+ years of experience. Best for high-stakes, complex, or premium creative work.',
 }
 
+export const serviceTypes = ['Designers', 'Editors', 'Designer plus Editor']
+
+export const serviceTypeDescriptions = {
+  Designers: 'Static visuals — graphics, logos, branding, presentations, UI/UX, print collateral.',
+  Editors: 'Motion & video — short-form reels, long-form edits, ads, corporate videos, animations.',
+  'Designer plus Editor': 'Hybrid talent who can do both — design and video editing in one creative resource.',
+}
+
 export const featureRows = [
   {
     label: 'Unlimited work requests',
