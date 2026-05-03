@@ -5,11 +5,17 @@ import SubmissionConfirmation from './SubmissionConfirmation'
 
 const API_URL = process.env.NEXT_PUBLIC_SQUADHUB_API_URL || ''
 
-const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedService, selectedTiers, selectedPlan, selectedDays }, ref) {
+const NameYourPriceForm = forwardRef(function NameYourPriceForm({
+  selectedService, selectedTiers, selectedPlan, selectedDays,
+  selectedCountry, selectedStates, selectedLanguages,
+}, ref) {
   const plan = availabilityPlans.find(p => p.id === selectedPlan)
   const tiersLabel = selectedTiers.join(' + ')
   const daysLabel = (selectedDays || []).join(', ')
-  const [form, setForm] = useState({ contactName: '', email: '', company: '', phone: '', proposedPrice: '' })
+  const [form, setForm] = useState({
+    contactName: '', email: '', company: '', phone: '', proposedPrice: '',
+    brandName: '', natureOfBusiness: '', shortNote: '', locationOfBusiness: '',
+  })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -30,6 +36,10 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
     else if (form.phone.trim().length < 6) errs.phone = 'Enter a valid phone number'
     if (!form.company.trim()) errs.company = 'Brand or company name is required'
     if (!form.contactName.trim()) errs.contactName = 'Contact person name is required'
+    if (!form.brandName.trim()) errs.brandName = 'Brand name is required'
+    if (!form.natureOfBusiness.trim()) errs.natureOfBusiness = 'Nature of business is required'
+    if (!form.shortNote.trim()) errs.shortNote = 'A short note about the business is required'
+    if (!form.locationOfBusiness.trim()) errs.locationOfBusiness = 'Location of business is required'
     return errs
   }
 
@@ -55,6 +65,13 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
           email: form.email.trim(),
           company: form.company.trim(),
           phone: form.phone.trim(),
+          country: selectedCountry || '',
+          states: selectedStates || [],
+          languages: selectedLanguages || [],
+          brandName: form.brandName.trim(),
+          natureOfBusiness: form.natureOfBusiness.trim(),
+          shortNote: form.shortNote.trim(),
+          locationOfBusiness: form.locationOfBusiness.trim(),
         }),
       })
 
@@ -151,7 +168,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
               placeholder="+91 99955 66385"
               className={`${inputBase} ${errors.phone ? inputErr : inputOK}`}
             />
-            <p className="text-xs text-text-muted mt-1">Enter the same phone number they have contacted us with in WhatsApp.</p>
+            <p className="text-xs text-text-muted mt-1">Enter the same number you have contacted us with on WhatsApp.</p>
             {errors.phone && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.phone}</p>}
           </div>
         </div>
@@ -183,6 +200,70 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
               className={`${inputBase} ${errors.contactName ? inputErr : inputOK}`}
             />
             {errors.contactName && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.contactName}</p>}
+          </div>
+        </div>
+
+        {/* Tell us about your brand */}
+        <div className="space-y-4 pt-2">
+          <div>
+            <label htmlFor="brandName" className="block text-sm font-semibold text-text-primary mb-1.5">
+              Brand Name
+            </label>
+            <input
+              id="brandName"
+              name="brandName"
+              type="text"
+              value={form.brandName}
+              onChange={handleChange}
+              placeholder="The brand the talent will work on"
+              className={`${inputBase} ${errors.brandName ? inputErr : inputOK}`}
+            />
+            {errors.brandName && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.brandName}</p>}
+          </div>
+          <div>
+            <label htmlFor="locationOfBusiness" className="block text-sm font-semibold text-text-primary mb-1.5">
+              Location of Business
+            </label>
+            <input
+              id="locationOfBusiness"
+              name="locationOfBusiness"
+              type="text"
+              value={form.locationOfBusiness}
+              onChange={handleChange}
+              placeholder="e.g. Bangalore, India"
+              className={`${inputBase} ${errors.locationOfBusiness ? inputErr : inputOK}`}
+            />
+            {errors.locationOfBusiness && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.locationOfBusiness}</p>}
+          </div>
+          <div>
+            <label htmlFor="natureOfBusiness" className="block text-sm font-semibold text-text-primary mb-1.5">
+              Nature of Business
+            </label>
+            <input
+              id="natureOfBusiness"
+              name="natureOfBusiness"
+              type="text"
+              value={form.natureOfBusiness}
+              onChange={handleChange}
+              placeholder="e.g. D2C apparel, B2B SaaS, education…"
+              className={`${inputBase} ${errors.natureOfBusiness ? inputErr : inputOK}`}
+            />
+            {errors.natureOfBusiness && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.natureOfBusiness}</p>}
+          </div>
+          <div>
+            <label htmlFor="shortNote" className="block text-sm font-semibold text-text-primary mb-1.5">
+              Short Note About the Business
+            </label>
+            <textarea
+              id="shortNote"
+              name="shortNote"
+              rows={3}
+              value={form.shortNote}
+              onChange={handleChange}
+              placeholder="A few lines so the talent has context before they start."
+              className={`${inputBase} ${errors.shortNote ? inputErr : inputOK} resize-none`}
+            />
+            {errors.shortNote && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.shortNote}</p>}
           </div>
         </div>
 

@@ -60,9 +60,21 @@ db.exec(`
 
 function migrate() {
   const cols = db.prepare("PRAGMA table_info(subscription_requests)").all()
-  const hasWorkingDays = cols.some(c => c.name === 'working_days')
-  if (!hasWorkingDays) {
-    db.exec("ALTER TABLE subscription_requests ADD COLUMN working_days TEXT DEFAULT ''")
+  const colNames = new Set(cols.map(c => c.name))
+  const adds = [
+    ['working_days',       "TEXT DEFAULT ''"],
+    ['country',            "TEXT DEFAULT ''"],
+    ['states_csv',         "TEXT DEFAULT ''"],
+    ['languages_csv',      "TEXT DEFAULT ''"],
+    ['brand_name',         "TEXT DEFAULT ''"],
+    ['nature_of_business', "TEXT DEFAULT ''"],
+    ['short_note',         "TEXT DEFAULT ''"],
+    ['location_of_business', "TEXT DEFAULT ''"],
+  ]
+  for (const [name, type] of adds) {
+    if (!colNames.has(name)) {
+      db.exec(`ALTER TABLE subscription_requests ADD COLUMN ${name} ${type}`)
+    }
   }
 }
 migrate()
@@ -179,11 +191,25 @@ export function deleteLanguage(code) {
   db.prepare('DELETE FROM languages WHERE code = ?').run(code)
 }
 
-export function createSubscriptionRequest({ serviceType, tier, plan, proposedPrice, workingDays, name, email, company, phone }) {
+export function createSubscriptionRequest({
+  serviceType, tier, plan, proposedPrice, workingDays,
+  name, email, company, phone,
+  country, statesCsv, languagesCsv,
+  brandName, natureOfBusiness, shortNote, locationOfBusiness,
+}) {
   const info = db.prepare(`
-    INSERT INTO subscription_requests (service_type, tier, plan, proposed_price, working_days, name, email, company, phone)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(serviceType, tier, plan, proposedPrice, workingDays || '', name, email, company || '', phone)
+    INSERT INTO subscription_requests
+      (service_type, tier, plan, proposed_price, working_days,
+       name, email, company, phone,
+       country, states_csv, languages_csv,
+       brand_name, nature_of_business, short_note, location_of_business)
+    VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?, ?,  ?, ?, ?, ?)
+  `).run(
+    serviceType, tier, plan, proposedPrice, workingDays || '',
+    name, email, company || '', phone,
+    country || '', statesCsv || '', languagesCsv || '',
+    brandName || '', natureOfBusiness || '', shortNote || '', locationOfBusiness || '',
+  )
   return info.lastInsertRowid
 }
 
