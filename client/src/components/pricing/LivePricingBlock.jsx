@@ -15,7 +15,10 @@ export default function LivePricingBlock({ activeType }) {
         <h1 className="font-heading text-3xl font-bold text-text-primary mb-2">{activeType} Plan</h1>
         <p className="text-text-secondary">Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.</p>
       </div>
-      <SubtierTabs activeSubtier={activeSubtier} setActiveSubtier={setActiveSubtier} />
+      <SubtierTabs
+        selectedTiers={[activeSubtier]}
+        onToggleTier={(tier) => setActiveSubtier(tier)}
+      />
       <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
       <PricingTable isYearly={isYearly} activeSubtier={activeSubtier} />
       <NoteSection />
