@@ -20,10 +20,17 @@ const featureRows = [
   },
   {
     label: 'Access to Our Platform',
-    render: () => <span className="text-xs text-text-secondary">Per user Rs 500</span>,
+    tooltip: 'We use our own platform called SquadHub to manage all the work. You will be able to view the work submitted, progress, chat, and interact with the designers and editors through this.',
+    render: () => (
+      <div className="text-xs text-text-secondary leading-relaxed">
+        <div><span className="font-semibold text-text-primary">One user:</span> free access</div>
+        <div><span className="font-semibold text-text-primary">Additional user:</span> ₹500 per month</div>
+      </div>
+    ),
   },
   {
     label: 'Meetings',
+    tooltip: 'If you want to take a meeting with the designers or editors, you need to schedule it. Instant meetings are not available. Instant meeting is only available in personal plan.',
     render: (plan) => <span className="text-xs text-text-secondary">{plan.meetings}</span>,
   },
   {
