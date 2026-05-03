@@ -5,9 +5,10 @@ import SubmissionConfirmation from './SubmissionConfirmation'
 
 const API_URL = process.env.NEXT_PUBLIC_SQUADHUB_API_URL || ''
 
-const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedService, selectedTiers, selectedPlan }, ref) {
+const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedService, selectedTiers, selectedPlan, selectedDays }, ref) {
   const plan = availabilityPlans.find(p => p.id === selectedPlan)
   const tiersLabel = selectedTiers.join(' + ')
+  const daysLabel = (selectedDays || []).join(', ')
   const [form, setForm] = useState({ name: '', email: '', company: '', phone: '', proposedPrice: '' })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -47,6 +48,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
           serviceType: selectedService,
           tier: selectedTiers.join(','),
           plan: selectedPlan,
+          workingDays: (selectedDays || []).join(','),
           proposedPrice: Number(form.proposedPrice),
           name: form.name.trim(),
           email: form.email.trim(),
@@ -86,7 +88,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
         <span className="text-label font-mono-tech text-text-muted">Final step</span>
         <h2 className="font-heading text-xl sm:text-2xl font-bold text-text-primary mt-1 mb-1">Name Your Budget</h2>
         <p className="text-sm text-text-secondary">
-          You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-semibold text-text-primary">{tiersLabel}</span> talent for <span className="font-semibold text-text-primary">{selectedService}</span>.
+          You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-semibold text-text-primary">{tiersLabel}</span> talent for <span className="font-semibold text-text-primary">{selectedService}</span>{daysLabel && <>, working <span className="font-semibold text-text-primary">{daysLabel}</span></>}.
         </p>
       </div>
 

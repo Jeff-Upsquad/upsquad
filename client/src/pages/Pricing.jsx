@@ -5,6 +5,7 @@ import SubtierTabs from '../components/pricing/SubtierTabs'
 import PricingHero from '../components/pricing/PricingHero'
 import StepHeader from '../components/pricing/StepHeader'
 import AvailabilityTable from '../components/pricing/AvailabilityTable'
+import WorkingDaysSelector from '../components/pricing/WorkingDaysSelector'
 import NameYourPriceForm from '../components/pricing/NameYourPriceForm'
 import BenefitsSection from '../components/pricing/BenefitsSection'
 import WhatYouCanRequest from '../components/pricing/WhatYouCanRequest'
@@ -16,7 +17,12 @@ export default function Pricing() {
   const [selectedService, setSelectedService] = useState(null)
   const [selectedTiers, setSelectedTiers] = useState([])
   const [selectedPlan, setSelectedPlan] = useState(null)
+  const [selectedDays, setSelectedDays] = useState(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'])
   const formRef = useRef(null)
+
+  const handleToggleDay = useCallback((day) => {
+    setSelectedDays(prev => prev.includes(day) ? prev.filter(d => d !== day) : [...prev, day])
+  }, [])
 
   const handleSelectService = useCallback((service) => {
     setSelectedService(service)
@@ -64,12 +70,18 @@ export default function Pricing() {
         )}
 
         {selectedPlan && (
-          <NameYourPriceForm
-            ref={formRef}
-            selectedService={selectedService}
-            selectedTiers={selectedTiers}
-            selectedPlan={selectedPlan}
-          />
+          <>
+            <StepHeader number="04" title="Pick working days" subtitle="Monday to Friday is included by default. Saturday and Sunday are optional add-ons." />
+            <WorkingDaysSelector selectedDays={selectedDays} onToggleDay={handleToggleDay} />
+
+            <NameYourPriceForm
+              ref={formRef}
+              selectedService={selectedService}
+              selectedTiers={selectedTiers}
+              selectedPlan={selectedPlan}
+              selectedDays={selectedDays}
+            />
+          </>
         )}
 
         <BenefitsSection />

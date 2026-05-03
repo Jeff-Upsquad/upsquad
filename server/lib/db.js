@@ -48,6 +48,7 @@ db.exec(`
     tier TEXT NOT NULL,
     plan TEXT NOT NULL,
     proposed_price INTEGER NOT NULL,
+    working_days TEXT DEFAULT '',
     name TEXT NOT NULL,
     email TEXT NOT NULL,
     company TEXT DEFAULT '',
@@ -56,6 +57,15 @@ db.exec(`
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
   );
 `)
+
+function migrate() {
+  const cols = db.prepare("PRAGMA table_info(subscription_requests)").all()
+  const hasWorkingDays = cols.some(c => c.name === 'working_days')
+  if (!hasWorkingDays) {
+    db.exec("ALTER TABLE subscription_requests ADD COLUMN working_days TEXT DEFAULT ''")
+  }
+}
+migrate()
 
 function seed() {
   const langCount = db.prepare('SELECT COUNT(*) as c FROM languages').get().c
@@ -169,10 +179,10 @@ export function deleteLanguage(code) {
   db.prepare('DELETE FROM languages WHERE code = ?').run(code)
 }
 
-export function createSubscriptionRequest({ serviceType, tier, plan, proposedPrice, name, email, company, phone }) {
+export function createSubscriptionRequest({ serviceType, tier, plan, proposedPrice, workingDays, name, email, company, phone }) {
   const info = db.prepare(`
-    INSERT INTO subscription_requests (service_type, tier, plan, proposed_price, name, email, company, phone)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(serviceType, tier, plan, proposedPrice, name, email, company || '', phone)
+    INSERT INTO subscription_requests (service_type, tier, plan, proposed_price, working_days, name, email, company, phone)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(serviceType, tier, plan, proposedPrice, workingDays || '', name, email, company || '', phone)
   return info.lastInsertRowid
 }

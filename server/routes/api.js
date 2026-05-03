@@ -23,7 +23,7 @@ router.get('/v1/landing-pages/:slug', (req, res) => {
 })
 
 router.post('/v1/subscriptions', express.json(), (req, res) => {
-  const { serviceType, tier, plan, proposedPrice, name, email, company, phone } = req.body || {}
+  const { serviceType, tier, plan, proposedPrice, workingDays, name, email, company, phone } = req.body || {}
 
   const errors = []
   if (!serviceType || !['Designers', 'Editors', 'Designer plus Editor'].includes(serviceType)) errors.push('Invalid service type')
@@ -41,11 +41,15 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
   }
 
   try {
+    const validDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    const dayList = (workingDays || '').split(',').map(d => d.trim()).filter(d => validDays.includes(d))
+
     const id = createSubscriptionRequest({
       serviceType,
       tier,
       plan,
       proposedPrice: Math.round(proposedPrice),
+      workingDays: dayList.join(','),
       name: name.trim(),
       email: email.trim().toLowerCase(),
       company: (company || '').trim(),
