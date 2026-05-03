@@ -1,6 +1,6 @@
 "use client"
-import { useState, useCallback, forwardRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useCallback, useRef, forwardRef } from 'react'
+import { motion } from 'framer-motion'
 import { availabilityPlans, formatPrice } from '../../data/pricing'
 import SubmissionConfirmation from './SubmissionConfirmation'
 import SuccessAnimation from './SuccessAnimation'
@@ -23,6 +23,14 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
   const [showAnimation, setShowAnimation] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [serverError, setServerError] = useState('')
+  const [lockedHeight, setLockedHeight] = useState(null)
+  const cardRef = useRef(null)
+
+  const setRefs = useCallback((el) => {
+    cardRef.current = el
+    if (typeof ref === 'function') ref(el)
+    else if (ref) ref.current = el
+  }, [ref])
 
   const handleAnimationComplete = useCallback(() => {
     setShowAnimation(false)
@@ -87,6 +95,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
         throw new Error(data.error || 'Something went wrong')
       }
 
+      if (cardRef.current) setLockedHeight(cardRef.current.offsetHeight)
       setShowAnimation(true)
     } catch (err) {
       setServerError(err.message || 'Failed to submit. Please try again.')
@@ -102,34 +111,30 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
   const priceNumber = Number(form.proposedPrice) || 0
 
   return (
-    <div ref={ref} className="bg-white border-2 border-text-primary rounded-xl p-6 sm:p-8 mb-12 shadow-brutal overflow-hidden">
-      <AnimatePresence mode="wait">
-        {submitted ? (
-          <motion.div
-            key="confirmation"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <SubmissionConfirmation />
-          </motion.div>
-        ) : showAnimation ? (
-          <motion.div
-            key="animation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <SuccessAnimation onComplete={handleAnimationComplete} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="form"
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="mb-6">
+    <div
+      ref={setRefs}
+      style={lockedHeight ? { minHeight: lockedHeight } : undefined}
+      className="bg-white border-2 border-text-primary rounded-xl p-6 sm:p-8 mb-12 shadow-brutal overflow-hidden flex flex-col justify-center"
+    >
+      {submitted ? (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <SubmissionConfirmation />
+        </motion.div>
+      ) : showAnimation ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <SuccessAnimation onComplete={handleAnimationComplete} />
+        </motion.div>
+      ) : (
+        <>
+          <div className="mb-6">
               <span className="text-label font-mono-tech text-text-muted">Final step</span>
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-text-primary mt-1 mb-1">Name Your Budget</h2>
               <p className="text-sm text-text-secondary">
@@ -291,13 +296,12 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
                 {submitting ? 'Submitting...' : 'Submit for Review'}
               </button>
 
-              <p className="text-xs text-text-muted text-center">
-                Our team reviews every request personally. No auto-charges, no commitments.
-              </p>
-            </form>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <p className="text-xs text-text-muted text-center">
+              Our team reviews every request personally. No auto-charges, no commitments.
+            </p>
+          </form>
+        </>
+      )}
     </div>
   )
 })
