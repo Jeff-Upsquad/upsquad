@@ -1,6 +1,6 @@
 "use client"
 import { useState, forwardRef } from 'react'
-import { availabilityPlans } from '../../data/pricing'
+import { availabilityPlans, formatPrice } from '../../data/pricing'
 import SubmissionConfirmation from './SubmissionConfirmation'
 
 const API_URL = process.env.NEXT_PUBLIC_SQUADHUB_API_URL || ''
@@ -9,7 +9,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
   const plan = availabilityPlans.find(p => p.id === selectedPlan)
   const tiersLabel = selectedTiers.join(' + ')
   const daysLabel = (selectedDays || []).join(', ')
-  const [form, setForm] = useState({ name: '', email: '', company: '', phone: '', proposedPrice: '' })
+  const [form, setForm] = useState({ contactName: '', email: '', company: '', phone: '', proposedPrice: '' })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -22,13 +22,14 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
 
   function validate() {
     const errs = {}
-    if (!form.name.trim()) errs.name = 'Name is required'
-    if (!form.email.trim()) errs.email = 'Email is required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Enter a valid email'
-    if (!form.phone.trim()) errs.phone = 'Phone / WhatsApp number is required'
-    else if (form.phone.trim().length < 6) errs.phone = 'Enter a valid phone number'
     if (!form.proposedPrice) errs.proposedPrice = 'Enter your proposed monthly budget'
     else if (Number(form.proposedPrice) <= 0) errs.proposedPrice = 'Budget must be a positive number'
+    if (!form.email.trim()) errs.email = 'Email is required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Enter a valid email'
+    if (!form.phone.trim()) errs.phone = 'Phone number is required'
+    else if (form.phone.trim().length < 6) errs.phone = 'Enter a valid phone number'
+    if (!form.company.trim()) errs.company = 'Brand or company name is required'
+    if (!form.contactName.trim()) errs.contactName = 'Contact person name is required'
     return errs
   }
 
@@ -50,7 +51,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
           plan: selectedPlan,
           workingDays: (selectedDays || []).join(','),
           proposedPrice: Number(form.proposedPrice),
-          name: form.name.trim(),
+          name: form.contactName.trim(),
           email: form.email.trim(),
           company: form.company.trim(),
           phone: form.phone.trim(),
@@ -82,6 +83,8 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
     )
   }
 
+  const priceNumber = Number(form.proposedPrice) || 0
+
   return (
     <div ref={ref} className="bg-white border-2 border-text-primary rounded-xl p-6 sm:p-8 mb-12 shadow-brutal">
       <div className="mb-6">
@@ -93,41 +96,37 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label htmlFor="proposedPrice" className="block text-sm font-semibold text-text-primary mb-1.5">
-            Monthly Budget (₹)
-          </label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted text-sm font-bold">₹</span>
+        {/* Hero Budget Input */}
+        <div className={`relative bg-gradient-to-br from-brand-pink/40 via-white to-brand-purple/40 border-2 rounded-xl p-6 ${
+          errors.proposedPrice ? 'border-brand-orange' : 'border-text-primary'
+        } shadow-brutal-sm`}>
+          <div className="absolute top-3 left-4">
+            <span className="text-label font-mono-tech text-text-muted">Your Monthly Budget</span>
+          </div>
+          <label htmlFor="proposedPrice" className="sr-only">Monthly Budget</label>
+          <div className="flex items-baseline gap-2 mt-5">
+            <span className="font-heading text-4xl sm:text-5xl font-bold text-text-primary">₹</span>
             <input
               id="proposedPrice"
               name="proposedPrice"
-              type="number"
-              min="1"
-              step="1"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
               value={form.proposedPrice}
-              onChange={handleChange}
-              placeholder="Enter your monthly budget"
-              className={`${inputBase} ${errors.proposedPrice ? inputErr : inputOK} pl-8`}
+              onChange={(e) => handleChange({ target: { name: 'proposedPrice', value: e.target.value.replace(/[^0-9]/g, '') } })}
+              placeholder="0"
+              className="flex-1 bg-transparent border-0 outline-none font-heading text-4xl sm:text-5xl font-bold text-text-primary placeholder:text-text-muted/40 min-w-0"
             />
+            <span className="text-sm font-semibold text-text-secondary whitespace-nowrap">/ month</span>
           </div>
-          {errors.proposedPrice && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.proposedPrice}</p>}
+          {priceNumber > 0 && (
+            <p className="text-xs text-text-secondary mt-2">≈ ₹{formatPrice(priceNumber)} per month, reviewed by our team before any commitment.</p>
+          )}
+          {errors.proposedPrice && <p className="text-xs text-brand-orange mt-2 font-medium">{errors.proposedPrice}</p>}
         </div>
 
+        {/* Email + Phone */}
         <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-1.5">Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              className={`${inputBase} ${errors.name ? inputErr : inputOK}`}
-            />
-            {errors.name && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.name}</p>}
-          </div>
           <div>
             <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-1.5">Email</label>
             <input
@@ -141,25 +140,8 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
             />
             {errors.email && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.email}</p>}
           </div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="company" className="block text-sm font-semibold text-text-primary mb-1.5">
-              Company <span className="text-text-muted font-normal">(optional)</span>
-            </label>
-            <input
-              id="company"
-              name="company"
-              type="text"
-              value={form.company}
-              onChange={handleChange}
-              placeholder="Company name"
-              className={`${inputBase} ${inputOK}`}
-            />
-          </div>
-          <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-1.5">Phone / WhatsApp</label>
+            <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-1.5">Phone Number</label>
             <input
               id="phone"
               name="phone"
@@ -169,7 +151,38 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({ selectedServic
               placeholder="+91 99955 66385"
               className={`${inputBase} ${errors.phone ? inputErr : inputOK}`}
             />
+            <p className="text-xs text-text-muted mt-1">Enter the same phone number they have contacted us with in WhatsApp.</p>
             {errors.phone && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.phone}</p>}
+          </div>
+        </div>
+
+        {/* Brand + Contact Person */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="company" className="block text-sm font-semibold text-text-primary mb-1.5">Brand or Company Name</label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              value={form.company}
+              onChange={handleChange}
+              placeholder="e.g. Acme Studios"
+              className={`${inputBase} ${errors.company ? inputErr : inputOK}`}
+            />
+            {errors.company && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.company}</p>}
+          </div>
+          <div>
+            <label htmlFor="contactName" className="block text-sm font-semibold text-text-primary mb-1.5">Contact Person Name</label>
+            <input
+              id="contactName"
+              name="contactName"
+              type="text"
+              value={form.contactName}
+              onChange={handleChange}
+              placeholder="Your full name"
+              className={`${inputBase} ${errors.contactName ? inputErr : inputOK}`}
+            />
+            {errors.contactName && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.contactName}</p>}
           </div>
         </div>
 
