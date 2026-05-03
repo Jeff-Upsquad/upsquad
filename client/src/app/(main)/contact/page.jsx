@@ -23,7 +23,7 @@ export default function Contact() {
           </div>
           <div className="bg-white border border-[rgba(96,96,163,0.2)] rounded-xl p-8 shadow-sm hover:shadow-card-hover transition-all duration-short">
             <h2 className="font-heading text-lg font-semibold text-text-primary mb-4">Call Us</h2>
-            <a href="tel:+919995566382" className="inline-block btn-gradient text-sm font-medium px-4 py-2 rounded-lg transition-colors mb-4">+919995566382</a>
+            <a href="tel:+919995266385" className="inline-block btn-gradient text-sm font-medium px-4 py-2 rounded-lg transition-colors mb-4">+91 99952 66385</a>
             <p className="text-sm text-text-secondary leading-relaxed">Our customer support team is available Monday to Friday, 10 AM to 6 PM (IST).</p>
           </div>
           <div className="bg-white border border-[rgba(96,96,163,0.2)] rounded-xl p-8 shadow-sm hover:shadow-card-hover transition-all duration-short">

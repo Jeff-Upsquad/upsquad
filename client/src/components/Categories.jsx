@@ -158,7 +158,7 @@ function Drawer({ squad, onClose }) {
 
         <div className="px-5 py-4 border-t border-[rgba(96,96,163,0.15)]">
           <a
-            href="https://wa.me/919995566362?text=I%20want%20to%20know%20more%20about%20UpSquad"
+            href="https://wa.me/919995266385?text=I%20want%20to%20know%20more%20about%20UpSquad"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full btn-gradient text-sm font-semibold py-3"

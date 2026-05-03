@@ -78,7 +78,7 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-2.5">
             <a
-              href="https://wa.me/919995566362?text=I%20want%20to%20know%20more%20about%20UpSquad"
+              href="https://wa.me/919995266385?text=I%20want%20to%20know%20more%20about%20UpSquad"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 btn-gradient text-sm font-medium px-5 py-2"
@@ -148,7 +148,7 @@ export default function Navbar() {
             </Link>
             <div className="pt-2 border-t border-[rgba(96,96,163,0.15)] mt-1">
               <a
-                href="https://wa.me/919995566362?text=I%20want%20to%20know%20more%20about%20UpSquad"
+                href="https://wa.me/919995266385?text=I%20want%20to%20know%20more%20about%20UpSquad"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1.5 btn-gradient text-sm font-medium px-4 py-2"
