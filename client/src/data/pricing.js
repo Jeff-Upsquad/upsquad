@@ -6,7 +6,7 @@ export const plans = [
   { name: 'Personal Plan', description: 'Your own personal designer and editor, like an in-house partner.', monthlyPrice: 25000, highlighted: false, badge: null, cta: 'Contact Sales', ctaStyle: 'dark' },
 ]
 
-export const subtiers = ['Pros', 'Juniors', 'Elites']
+export const subtiers = ['Juniors', 'Pros', 'Elites']
 
 export const subtierPricing = {
   Pros:    [7000, 12000, 17000, 23000, 30000],
@@ -14,10 +14,98 @@ export const subtierPricing = {
   Elites:  [null, 25000, 50000, 75000, 100000],
 }
 
+export const availabilityPlans = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    description: 'For brands that are starting out.',
+    availability: '10%',
+    hoursPerDay: '~1 hour',
+    hoursPerWeek: '~5 hours',
+    approach: 'Light-touch creative support',
+    urgentWorks: false,
+    queue: 'Standard',
+    meetings: 'By request',
+    liveCollaboration: false,
+    resource: 'Shared',
+    bestFor: 'Small brands & startups',
+  },
+  {
+    id: 'basic',
+    name: 'Basic',
+    description: 'Our standard and most affordable plan.',
+    availability: '25%',
+    hoursPerDay: '2–3 hours',
+    hoursPerWeek: '10 hours',
+    approach: 'Quarter of a full-time employee',
+    urgentWorks: false,
+    queue: 'Standard',
+    meetings: 'By request',
+    liveCollaboration: false,
+    resource: 'Shared',
+    bestFor: 'Active brands',
+  },
+  {
+    id: 'plus',
+    name: 'Plus',
+    description: 'Get your tasks completed faster with elevated priority.',
+    availability: '50%',
+    hoursPerDay: '4–5 hours',
+    hoursPerWeek: '20 hours',
+    approach: 'Half employee capacity',
+    urgentWorks: true,
+    queue: 'High priority',
+    meetings: 'By request',
+    liveCollaboration: false,
+    resource: 'Shared',
+    bestFor: 'High-volume teams & agencies',
+    highlighted: true,
+    badge: 'MOST POPULAR',
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    description: 'Highest speed and fastest response time.',
+    availability: '80%',
+    hoursPerDay: '6–7 hours',
+    hoursPerWeek: '30 hours',
+    approach: 'Nearly full-time employee',
+    urgentWorks: true,
+    queue: 'Ultra Priority',
+    meetings: 'By request',
+    liveCollaboration: false,
+    resource: 'Shared (High Priority)',
+    bestFor: 'Growing businesses',
+  },
+  {
+    id: 'personal',
+    name: 'Personal',
+    description: 'Your own personal designer, like an in-house partner.',
+    availability: '100%',
+    hoursPerDay: '~8 hours',
+    hoursPerWeek: '~40 hours',
+    approach: 'Dedicated full-time equivalent',
+    urgentWorks: true,
+    queue: 'Ultra Priority + Instant Access',
+    meetings: 'Instant call + meeting access',
+    liveCollaboration: true,
+    resource: 'Personal (exclusive)',
+    bestFor: 'Founders & creators wanting close collaboration',
+  },
+]
+
 export const subtierDescriptions = {
   Juniors: 'Less than 2 years of experience. Great for straightforward tasks and cost-effective output.',
   Pros: 'More than 2 years of experience with strong, well-rounded skill sets. Reliable quality across a wide range of work.',
   Elites: 'Top talents with 5+ years of experience. Best for high-stakes, complex, or premium creative work.',
+}
+
+export const serviceTypes = ['Designers', 'Editors', 'Designer plus Editor']
+
+export const serviceTypeDescriptions = {
+  Designers: 'Static visuals — graphics, logos, branding, presentations, UI/UX, print collateral.',
+  Editors: 'Motion & video — short-form reels, long-form edits, ads, corporate videos, animations.',
+  'Designer plus Editor': 'Hybrid talent who can do both — design and video editing in one creative resource.',
 }
 
 export const featureRows = [
@@ -76,7 +164,7 @@ export const featureRows = [
 
 export const benefits = [
   { icon: 'squad-manager', title: 'Squad Manager', desc: 'You will also get a Squad Manager (project manager) to manage all the works and ensure delivery on time.' },
-  { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.' },
+  { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.', note: 'Available at Rs 1,000 per month additional cost.' },
   { icon: 'unlimited-requests', title: 'Unlimited Work Requests', desc: 'Submit as many tasks as you want. One request at a time, delivered with quality and consistency.' },
   { icon: 'unlimited-changes', title: 'Unlimited Changes', desc: 'If you are not happy with the output, you can request an unlimited number of changes.' },
   { icon: 'replacement', title: 'Replacement', desc: 'If you are not happy with the resource assigned to you, you can replace them any number of times.' },
