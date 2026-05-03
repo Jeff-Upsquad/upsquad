@@ -41,6 +41,20 @@ db.exec(`
     FOREIGN KEY (landing_page_id) REFERENCES landing_pages(id) ON DELETE CASCADE,
     FOREIGN KEY (language_code) REFERENCES languages(code) ON DELETE CASCADE
   );
+
+  CREATE TABLE IF NOT EXISTS subscription_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    service_type TEXT NOT NULL,
+    tier TEXT NOT NULL,
+    plan TEXT NOT NULL,
+    proposed_price INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    company TEXT DEFAULT '',
+    phone TEXT NOT NULL,
+    status TEXT DEFAULT 'pending',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  );
 `)
 
 function seed() {
@@ -153,4 +167,12 @@ export function createLanguage({ code, name }) {
 
 export function deleteLanguage(code) {
   db.prepare('DELETE FROM languages WHERE code = ?').run(code)
+}
+
+export function createSubscriptionRequest({ serviceType, tier, plan, proposedPrice, name, email, company, phone }) {
+  const info = db.prepare(`
+    INSERT INTO subscription_requests (service_type, tier, plan, proposed_price, name, email, company, phone)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(serviceType, tier, plan, proposedPrice, name, email, company || '', phone)
+  return info.lastInsertRowid
 }

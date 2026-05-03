@@ -1,55 +1,61 @@
 "use client"
-import { useState } from 'react'
-import { liveTypes } from '../data/pricing'
+import { useState, useRef, useCallback } from 'react'
 import PlanTypeTabs from '../components/pricing/PlanTypeTabs'
-import LivePricingBlock from '../components/pricing/LivePricingBlock'
+import SubtierTabs from '../components/pricing/SubtierTabs'
+import PricingHero from '../components/pricing/PricingHero'
+import AvailabilityTable from '../components/pricing/AvailabilityTable'
+import NameYourPriceForm from '../components/pricing/NameYourPriceForm'
 import BenefitsSection from '../components/pricing/BenefitsSection'
 import WhatYouCanRequest from '../components/pricing/WhatYouCanRequest'
 import WorkingHours from '../components/pricing/WorkingHours'
 import UnlimitedRequestsExplainer from '../components/pricing/UnlimitedRequestsExplainer'
 import ImportantNote from '../components/pricing/ImportantNote'
-import VideoPhotographerPricing from '../components/pricing/VideoPhotographerPricing'
 
 export default function Pricing() {
   const [activeType, setActiveType] = useState('Designers')
+  const [activeTier, setActiveTier] = useState('Pros')
+  const [selectedPlan, setSelectedPlan] = useState(null)
+  const formRef = useRef(null)
+
+  const handleTypeChange = useCallback((type) => {
+    setActiveType(type)
+    setSelectedPlan(null)
+  }, [])
+
+  const handleTierChange = useCallback((tier) => {
+    setActiveTier(tier)
+    setSelectedPlan(null)
+  }, [])
+
+  const handlePlanSelect = useCallback((planId) => {
+    setSelectedPlan(planId)
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 100)
+  }, [])
 
   return (
     <div className="pt-20 pb-0">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <PlanTypeTabs activeType={activeType} setActiveType={setActiveType} />
+        <PricingHero />
+        <PlanTypeTabs activeType={activeType} setActiveType={handleTypeChange} types={['Designers', 'Editors']} />
+        <SubtierTabs activeSubtier={activeTier} setActiveSubtier={handleTierChange} />
+        <AvailabilityTable selectedPlan={selectedPlan} onSelectPlan={handlePlanSelect} />
 
-        {activeType === 'Video/Photographer' ? (
-          <VideoPhotographerPricing />
-        ) : liveTypes.includes(activeType) ? (
-          <>
-            <LivePricingBlock activeType={activeType} />
-            <BenefitsSection />
-            <WhatYouCanRequest />
-            <WorkingHours />
-            <UnlimitedRequestsExplainer />
-            <ImportantNote />
-          </>
-        ) : (
-          <>
-            <div className="text-center mb-8">
-              <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">{activeType} Plan</h1>
-            </div>
-            <div className="flex flex-col items-center justify-center py-24 text-center">
-              <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h2 className="font-heading text-2xl font-bold text-slate-900 mb-3">Coming Soon</h2>
-              <p className="text-slate-500 max-w-md">
-                Pricing for <span className="font-semibold text-slate-700">{activeType}</span> is on its way. Join the waitlist to get notified when it launches.
-              </p>
-              <a href="#" className="mt-8 bg-gray-900 hover:bg-gray-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors">
-                Join the Waitlist
-              </a>
-            </div>
-          </>
+        {selectedPlan && (
+          <NameYourPriceForm
+            ref={formRef}
+            serviceType={activeType}
+            selectedTier={activeTier}
+            selectedPlan={selectedPlan}
+          />
         )}
+
+        <BenefitsSection />
+        <WhatYouCanRequest />
+        <WorkingHours />
+        <UnlimitedRequestsExplainer />
+        <ImportantNote />
       </div>
     </div>
   )
