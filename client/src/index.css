@@ -174,11 +174,10 @@ h6 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.4; }
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, #5DB6BC 1px, transparent 1.2px);
-    background-size: 6px 6px;
-    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 35%, transparent 75%);
-    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 35%, transparent 75%);
-    mix-blend-mode: multiply;
+    background-image: radial-gradient(circle, #F0FB29 1.4px, transparent 1.6px);
+    background-size: 5px 5px;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 35%, transparent 80%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 35%, transparent 80%);
     pointer-events: none;
     z-index: -1;
   }
