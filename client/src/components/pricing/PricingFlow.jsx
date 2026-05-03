@@ -5,6 +5,7 @@ import SubtierTabs from './SubtierTabs'
 import StepHeader from './StepHeader'
 import AvailabilityTable from './AvailabilityTable'
 import WorkingDaysSelector from './WorkingDaysSelector'
+import LocationLanguageSelector from './LocationLanguageSelector'
 import NameYourPriceForm from './NameYourPriceForm'
 
 export default function PricingFlow() {
@@ -12,6 +13,9 @@ export default function PricingFlow() {
   const [selectedTiers, setSelectedTiers] = useState([])
   const [selectedPlan, setSelectedPlan] = useState(null)
   const [selectedDays, setSelectedDays] = useState(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'])
+  const [selectedCountry, setSelectedCountry] = useState('IN')
+  const [selectedStates, setSelectedStates] = useState([])
+  const [selectedLanguages, setSelectedLanguages] = useState([])
   const formRef = useRef(null)
 
   const handleToggleDay = useCallback((day) => {
@@ -33,6 +37,19 @@ export default function PricingFlow() {
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }, 100)
+  }, [])
+
+  const handleChangeCountry = useCallback((code) => {
+    setSelectedCountry(code)
+    setSelectedStates([])
+  }, [])
+
+  const handleToggleState = useCallback((state) => {
+    setSelectedStates(prev => prev.includes(state) ? prev.filter(s => s !== state) : [...prev, state])
+  }, [])
+
+  const handleToggleLanguage = useCallback((lang) => {
+    setSelectedLanguages(prev => prev.includes(lang) ? prev.filter(l => l !== lang) : [...prev, lang])
   }, [])
 
   const canSelectPlan = !!selectedService && selectedTiers.length > 0
@@ -65,12 +82,25 @@ export default function PricingFlow() {
           <StepHeader number="04" title="Pick working days" subtitle="Monday to Friday is included by default. Saturday and Sunday are optional add-ons." />
           <WorkingDaysSelector selectedDays={selectedDays} onToggleDay={handleToggleDay} />
 
+          <StepHeader number="05" title="Location & language" subtitle="Where the talent should be based and which languages they should know." />
+          <LocationLanguageSelector
+            country={selectedCountry}
+            states={selectedStates}
+            languages={selectedLanguages}
+            onChangeCountry={handleChangeCountry}
+            onToggleState={handleToggleState}
+            onToggleLanguage={handleToggleLanguage}
+          />
+
           <NameYourPriceForm
             ref={formRef}
             selectedService={selectedService}
             selectedTiers={selectedTiers}
             selectedPlan={selectedPlan}
             selectedDays={selectedDays}
+            selectedCountry={selectedCountry}
+            selectedStates={selectedStates}
+            selectedLanguages={selectedLanguages}
           />
         </>
       )}
