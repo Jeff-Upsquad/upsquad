@@ -50,7 +50,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
 
 app.use('/admin', adminRouter)
 app.use('/api', apiRouter)
-app.use('/api', adminApiRouter)
+app.use('/api/v1/admin', adminApiRouter)
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', service: 'UpSquad' })

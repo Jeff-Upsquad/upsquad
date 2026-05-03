@@ -11,7 +11,7 @@ const router = express.Router()
 router.use(express.json())
 router.use(requireApiToken)
 
-router.get('/v1/admin/subscription-requests', (req, res) => {
+router.get('/subscription-requests', (req, res) => {
   const { status, search, limit, offset } = req.query
   try {
     const result = listSubscriptionRequests({
@@ -27,7 +27,7 @@ router.get('/v1/admin/subscription-requests', (req, res) => {
   }
 })
 
-router.get('/v1/admin/subscription-requests/:id', (req, res) => {
+router.get('/subscription-requests/:id', (req, res) => {
   const id = parseInt(req.params.id, 10)
   if (!id) return res.status(400).json({ error: 'Invalid ID' })
 
@@ -41,7 +41,7 @@ router.get('/v1/admin/subscription-requests/:id', (req, res) => {
   }
 })
 
-router.patch('/v1/admin/subscription-requests/:id', (req, res) => {
+router.patch('/subscription-requests/:id', (req, res) => {
   const id = parseInt(req.params.id, 10)
   if (!id) return res.status(400).json({ error: 'Invalid ID' })
 
