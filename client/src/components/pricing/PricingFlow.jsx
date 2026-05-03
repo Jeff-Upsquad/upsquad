@@ -34,9 +34,6 @@ export default function PricingFlow() {
 
   const handlePlanSelect = useCallback((planId) => {
     setSelectedPlan(planId)
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }, 100)
   }, [])
 
   const handleChangeCountry = useCallback((code) => {
@@ -92,16 +89,18 @@ export default function PricingFlow() {
             onToggleLanguage={handleToggleLanguage}
           />
 
-          <NameYourPriceForm
-            ref={formRef}
-            selectedService={selectedService}
-            selectedTiers={selectedTiers}
-            selectedPlan={selectedPlan}
-            selectedDays={selectedDays}
-            selectedCountry={selectedCountry}
-            selectedStates={selectedStates}
-            selectedLanguages={selectedLanguages}
-          />
+          <div className="mt-10">
+            <NameYourPriceForm
+              ref={formRef}
+              selectedService={selectedService}
+              selectedTiers={selectedTiers}
+              selectedPlan={selectedPlan}
+              selectedDays={selectedDays}
+              selectedCountry={selectedCountry}
+              selectedStates={selectedStates}
+              selectedLanguages={selectedLanguages}
+            />
+          </div>
         </>
       )}
     </>
