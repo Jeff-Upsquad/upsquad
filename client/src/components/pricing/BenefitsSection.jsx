@@ -19,9 +19,6 @@ export default function BenefitsSection() {
             <div>
               <h4 className="text-sm font-semibold text-text-primary">{b.title}</h4>
               <p className="text-sm text-text-secondary mt-0.5 leading-relaxed">{b.desc}</p>
-              {b.note && (
-                <p className="text-xs text-brand-orange font-semibold mt-1.5">{b.note}</p>
-              )}
             </div>
           </div>
         ))}
