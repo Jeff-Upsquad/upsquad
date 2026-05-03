@@ -45,12 +45,12 @@ export default function LandingHero({ slug, heroTitle, heroDescription, language
 
   return (
     <section className="pt-20 md:min-h-[50vh] flex items-center bg-white">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 md:py-12 grid md:grid-cols-2 gap-10 items-center w-full">
+      <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-10 md:py-12 grid md:grid-cols-2 gap-10 items-center w-full">
         <div>
-          <h1 className="font-heading text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
+          <h1 className="font-heading text-3xl md:text-5xl font-bold text-text-primary leading-tight">
             {heroTitle}
           </h1>
-          <p className="mt-4 text-base md:text-lg text-slate-500 leading-relaxed max-w-xl">
+          <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-xl">
             {heroDescription}
           </p>
           {selected && (languages || []).length > 1 && (
@@ -58,7 +58,7 @@ export default function LandingHero({ slug, heroTitle, heroDescription, language
               type="button"
               onClick={() => setGateOpen(true)}
               aria-label="Change language"
-              className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-gray-200 rounded-full px-3 py-1.5 hover:border-gray-300"
+              className="mt-5 inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-[rgba(96,96,163,0.2)] rounded-full px-3 py-1.5 hover:border-gray-300"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3 7.5 7.03 7.5 12s2.015 9 4.5 9zM3.6 9h16.8M3.6 15h16.8" />

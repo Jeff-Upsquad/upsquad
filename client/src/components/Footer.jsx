@@ -59,21 +59,20 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 text-gray-500 pt-14 pb-8 px-5 sm:px-8">
-      <div className="max-w-6xl mx-auto">
+    <footer className="bg-[#090C1D] text-gray-500 pt-14 pb-8 px-5 sm:px-8">
+      <div className="max-w-[1160px] mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
-          {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center mb-3">
-              <span className="font-heading font-bold text-lg text-white">Up</span>
-              <span className="font-heading font-bold text-lg text-lime-500">Squad</span>
+              <span className="font-heading font-extrabold text-lg text-white">Up</span>
+              <span className="font-heading font-extrabold text-lg text-text-primary">Squad</span>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed mb-5 max-w-xs">
+            <p className="text-sm text-gray-500 leading-relaxed mb-5 max-w-xs">
               Subscribing is better than hiring. The all-in-one subscription for modern brands.
             </p>
             <a
               href="mailto:hello@upsquadconnect.com"
-              className="text-sm text-gray-600 hover:text-gray-400 transition-colors block mb-4"
+              className="text-sm text-gray-500 hover:text-text-primary transition-colors duration-short block mb-4"
             >
               hello@upsquadconnect.com
             </a>
@@ -83,7 +82,7 @@ export default function Footer() {
                   key={s.name}
                   href={s.href}
                   aria-label={s.name}
-                  className="w-7 h-7 rounded-md bg-gray-900 hover:bg-gray-800 text-gray-500 hover:text-gray-300 flex items-center justify-center transition-all"
+                  className="w-7 h-7 rounded-md bg-white/5 hover:bg-white/10 text-gray-500 hover:text-text-primary flex items-center justify-center transition-all duration-short"
                 >
                   {s.icon}
                 </a>
@@ -91,7 +90,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links */}
           {Object.entries(links).map(([heading, items]) => (
             <div key={heading} className="col-span-1">
               <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">{heading}</h4>
@@ -99,11 +97,11 @@ export default function Footer() {
                 {items.map((item) => (
                   <li key={item.name}>
                     {item.href.startsWith('/') ? (
-                      <Link href={item.href} className="text-sm text-gray-600 hover:text-gray-400 transition-colors">
+                      <Link href={item.href} className="text-sm text-gray-500 hover:text-text-primary transition-colors duration-short">
                         {item.name}
                       </Link>
                     ) : (
-                      <a href={item.href} className="text-sm text-gray-600 hover:text-gray-400 transition-colors">
+                      <a href={item.href} className="text-sm text-gray-500 hover:text-text-primary transition-colors duration-short">
                         {item.name}
                       </a>
                     )}
@@ -114,9 +112,9 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="pt-6 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-gray-700">&copy; 2025, D-var Dynamics Technologies Pvt Ltd. All rights reserved.</p>
-          <p className="text-xs text-gray-700">Subscribing is better than hiring.</p>
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <p className="text-xs text-gray-600">&copy; 2025, D-var Dynamics Technologies Pvt Ltd. All rights reserved.</p>
+          <p className="text-xs text-gray-600">Subscribing is better than hiring.</p>
         </div>
       </div>
     </footer>

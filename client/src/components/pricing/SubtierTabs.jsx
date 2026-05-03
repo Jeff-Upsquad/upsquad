@@ -4,15 +4,15 @@ import { subtiers, subtierDescriptions } from '../../data/pricing'
 export default function SubtierTabs({ activeSubtier, setActiveSubtier }) {
   return (
     <div className="flex flex-col items-center mb-6 gap-3">
-      <div className="inline-flex bg-gray-100 rounded-lg p-1">
+      <div className="inline-flex bg-surface-secondary border border-[rgba(96,96,163,0.2)] rounded-lg p-1">
         {subtiers.map((tier) => (
           <button
             key={tier}
             onClick={() => setActiveSubtier(tier)}
             className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
               activeSubtier === tier
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
+                ? 'bg-brand-purple text-text-primary shadow-sm'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             {tier}
@@ -20,7 +20,7 @@ export default function SubtierTabs({ activeSubtier, setActiveSubtier }) {
         ))}
       </div>
       {activeSubtier && (
-        <p className="text-sm text-slate-500 text-center max-w-md">
+        <p className="text-sm text-text-secondary text-center max-w-md">
           {subtierDescriptions[activeSubtier]}
         </p>
       )}

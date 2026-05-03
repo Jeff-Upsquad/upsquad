@@ -31,22 +31,22 @@ export default function OtherPricingDropdown({ options, activeType, onSelect }) 
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="inline-flex items-center gap-1 px-2 py-1 text-xs text-slate-500 hover:text-slate-700 transition-colors whitespace-nowrap"
+        className="inline-flex items-center gap-1 px-2 py-1 text-xs text-text-secondary hover:text-slate-700 transition-colors whitespace-nowrap"
       >
         See other categories
-        <svg className={`w-3 h-3 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className={`w-3 h-3 text-text-muted transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
-        <div role="menu" className="absolute z-40 right-0 mt-2 w-60 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+        <div role="menu" className="absolute z-40 right-0 mt-2 w-60 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl shadow-lg overflow-hidden">
           {options.map((opt) => (
             <button
               key={opt}
               role="menuitem"
               onClick={() => { onSelect(opt); setOpen(false) }}
               className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                activeType === opt ? 'bg-gray-100 text-slate-900 font-medium' : 'text-slate-600 hover:bg-gray-50'
+                activeType === opt ? 'bg-brand-purple/10 text-text-primary font-medium' : 'text-slate-600 hover:bg-surface-secondary'
               }`}
             >
               {opt}

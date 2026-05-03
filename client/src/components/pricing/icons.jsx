@@ -1,6 +1,6 @@
 export function CheckIcon() {
   return (
-    <svg className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg className="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   )
@@ -17,11 +17,11 @@ export function CrossIcon() {
 export function InfoTooltip({ text }) {
   return (
     <span className="relative inline-block ml-1 group/tip">
-      <svg className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg className="w-3.5 h-3.5 text-text-muted hover:text-text-secondary transition-colors cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <circle cx="12" cy="12" r="10" />
         <path d="M12 16v-4M12 8h.01" />
       </svg>
-      <div className="hidden group-hover/tip:block absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 text-xs text-slate-600 leading-relaxed text-center">
+      <div className="hidden group-hover/tip:block absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl shadow-lg p-4 text-xs text-text-secondary leading-relaxed text-center">
         {text}
       </div>
     </span>
@@ -80,7 +80,7 @@ export function BenefitIcon({ type }) {
 }
 
 export function ServiceIcon({ type }) {
-  const base = 'w-5 h-5 text-slate-400'
+  const base = 'w-5 h-5 text-text-muted'
   const icons = {
     marketing: (
       <svg className={base} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

@@ -1,4 +1,6 @@
 "use client"
+import ScrollReveal from './ScrollReveal'
+
 const steps = [
   {
     number: '1',
@@ -40,33 +42,33 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 px-5 sm:px-8 bg-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-12">
-          <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">Process</p>
-          <h2 className="font-heading text-3xl font-bold text-slate-900 tracking-tight">How UpSquad works</h2>
-          <p className="text-base text-slate-500 mt-2">
-            Everything you need — nothing you don&apos;t.
-          </p>
-        </div>
+    <section id="how-it-works" className="py-[60px] lg:py-[120px] px-5 sm:px-8 bg-white">
+      <div className="max-w-[1160px] mx-auto">
+        <ScrollReveal>
+          <div className="mb-12">
+            <span className="inline-block w-8 h-1 rounded-full bg-gradient-to-r from-brand-pink to-brand-purple mb-3" />
+            <p className="font-mono text-[11px] font-medium text-text-secondary uppercase tracking-[0.14em] mb-2">Process</p>
+            <h2 className="font-heading text-3xl lg:text-h2 font-bold text-text-primary tracking-tight">How UpSquad works</h2>
+            <p className="text-base text-text-secondary mt-2">
+              Everything you need — nothing you don&apos;t.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* Steps */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {steps.map((step) => (
-            <div
-              key={step.number}
-              className="bg-[#F7F6F3] rounded-xl p-6 border border-gray-200/50"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-white border border-gray-200 text-gray-500 flex items-center justify-center shadow-sm">
-                  {step.icon}
+          {steps.map((step, i) => (
+            <ScrollReveal key={step.number} delay={i * 0.1}>
+              <div className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-7 h-7 rounded-lg bg-brand-purple/10 text-text-primary flex items-center justify-center">
+                    {step.icon}
+                  </div>
+                  <span className="text-xs font-medium text-text-primary">Step {step.number}</span>
                 </div>
-                <span className="text-xs font-medium text-gray-400">Step {step.number}</span>
+                <h3 className="font-heading text-base font-semibold text-text-primary mb-1.5">{step.title}</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">{step.description}</p>
               </div>
-              <h3 className="font-heading text-base font-semibold text-slate-900 mb-1.5">{step.title}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{step.description}</p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
