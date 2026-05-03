@@ -68,7 +68,7 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
           className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center group"
         >
           <span className="w-16 h-16 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all">
-            <svg className="w-6 h-6 ml-0.5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 ml-0.5 text-text-primary" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
@@ -79,7 +79,7 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
       )
     }
     return (
-      <div className="w-full aspect-video rounded-xl bg-gray-100 border border-gray-200 animate-pulse" aria-label="Video loading" />
+      <div className="w-full aspect-video rounded-xl bg-surface-secondary border border-[rgba(96,96,163,0.2)] animate-pulse" aria-label="Video loading" />
     )
   }
 
@@ -98,14 +98,14 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
       )
     }
     return (
-      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-900 flex items-center justify-center">
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#090C1D] flex items-center justify-center">
         <button
           type="button"
           onClick={handlePlayClick}
           aria-label="Play hero video"
           className="group w-16 h-16 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all"
         >
-          <svg className="w-6 h-6 ml-0.5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 ml-0.5 text-text-primary" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
         </button>
@@ -133,7 +133,7 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
           className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 to-transparent"
         >
           <span className="w-16 h-16 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all">
-            <svg className="w-6 h-6 ml-0.5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 ml-0.5 text-text-primary" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>

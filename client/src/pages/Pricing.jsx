@@ -36,7 +36,7 @@ export default function Pricing() {
 
   return (
     <div className="pt-20 pb-0">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+      <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
         <PricingHero />
         <PlanTypeTabs activeType={activeType} setActiveType={handleTypeChange} types={['Designers', 'Editors']} />
         <SubtierTabs activeSubtier={activeTier} setActiveSubtier={handleTierChange} />

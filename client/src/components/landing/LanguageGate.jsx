@@ -49,11 +49,11 @@ export default function LanguageGate({ open, languages, onSelect, onDismiss }) {
         ref={panelRef}
         className="w-full max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden"
       >
-        <div className="px-6 pt-6 pb-4 border-b border-gray-100">
-          <h2 id="language-gate-title" className="font-heading text-lg font-bold text-slate-900">
+        <div className="px-6 pt-6 pb-4 border-b border-[rgba(96,96,163,0.2)]">
+          <h2 id="language-gate-title" className="font-heading text-lg font-bold text-text-primary">
             Choose your language
           </h2>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-text-secondary mt-1">
             Pick a language to watch the video and listen to the audio.
           </p>
         </div>
@@ -63,19 +63,19 @@ export default function LanguageGate({ open, languages, onSelect, onDismiss }) {
               <button
                 type="button"
                 onClick={() => onSelect?.(lang.code)}
-                className="w-full text-left px-6 py-3 text-sm font-medium text-slate-800 hover:bg-gray-50 transition-colors"
+                className="w-full text-left px-6 py-3 text-sm font-medium text-slate-800 hover:bg-surface-secondary transition-colors"
               >
                 {lang.name}
-                <span className="ml-2 text-xs text-slate-400">{lang.code.toUpperCase()}</span>
+                <span className="ml-2 text-xs text-text-muted">{lang.code.toUpperCase()}</span>
               </button>
             </li>
           ))}
         </ul>
-        <div className="px-6 py-3 border-t border-gray-100 text-right">
+        <div className="px-6 py-3 border-t border-[rgba(96,96,163,0.2)] text-right">
           <button
             type="button"
             onClick={onDismiss}
-            className="text-xs text-slate-500 hover:text-slate-700"
+            className="text-xs text-text-secondary hover:text-slate-700"
           >
             Close
           </button>

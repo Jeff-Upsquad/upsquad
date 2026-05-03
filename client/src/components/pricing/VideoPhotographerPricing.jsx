@@ -18,28 +18,28 @@ function VideographerTable() {
         <div className="grid grid-cols-[160px_repeat(5,1fr)]">
           <div />
           {videographerPlans.map((p) => (
-            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl' : ''}`}>
-              {p.badge && <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
-              <h3 className="font-heading font-semibold text-slate-900 text-sm">{p.name}</h3>
+            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-brand-purple/5 border-t-2 border-l-2 border-r-2 border-brand-purple rounded-t-xl' : ''}`}>
+              {p.badge && <span className="inline-block bg-gradient-to-r from-brand-pink to-brand-purple text-text-primary text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
+              <h3 className="font-heading font-semibold text-text-primary text-sm">{p.name}</h3>
             </div>
           ))}
         </div>
         {rows.map((row, rowIdx) => (
-          <div key={row.label} className="grid grid-cols-[160px_repeat(5,1fr)] border-t border-gray-100">
+          <div key={row.label} className="grid grid-cols-[160px_repeat(5,1fr)] border-t border-[rgba(96,96,163,0.2)]">
             <div className="flex items-center px-4 py-4">
-              <span className="text-sm text-slate-700">{row.label}</span>
+              <span className="text-sm text-text-primary">{row.label}</span>
             </div>
             {videographerPlans.map((p) => (
               <div key={p.name + row.key} className={`flex items-center justify-center py-4 px-2 text-center text-xs ${
                 p.highlighted
                   ? rowIdx === rows.length - 1
-                    ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
-                    : 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500'
+                    ? 'bg-brand-purple/5 border-l-2 border-r-2 border-b-2 border-brand-purple rounded-b-xl'
+                    : 'bg-brand-purple/5 border-l-2 border-r-2 border-brand-purple'
                   : ''
               }`}>
                 {row.key === 'preShooting' && p[row.key] === null
                   ? <CrossIcon />
-                  : <span className={row.bold ? 'font-bold text-slate-900 text-base' : 'text-slate-600'}>{p[row.key]}</span>
+                  : <span className={row.bold ? 'font-bold text-text-primary text-base' : 'text-text-secondary'}>{p[row.key]}</span>
                 }
               </div>
             ))}
@@ -49,7 +49,7 @@ function VideographerTable() {
           <div />
           {videographerPlans.map((p) => (
             <div key={p.name + '-cta'} className="flex justify-center px-3">
-              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
+              <button className="btn-gradient px-5 py-2.5 text-sm font-medium transition-all">
                 {p.name === 'Personal' ? 'Contact Sales' : 'Get Started'}
               </button>
             </div>
@@ -67,31 +67,31 @@ function PresentationTable() {
         <div className="grid grid-cols-[160px_repeat(4,1fr)]">
           <div />
           {presentationPlans.map((p) => (
-            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl' : ''}`}>
-              {p.badge && <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
-              <h3 className="font-heading font-semibold text-slate-900 text-sm">{p.name}</h3>
+            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-brand-purple/5 border-t-2 border-l-2 border-r-2 border-brand-purple rounded-t-xl' : ''}`}>
+              {p.badge && <span className="inline-block bg-gradient-to-r from-brand-pink to-brand-purple text-text-primary text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
+              <h3 className="font-heading font-semibold text-text-primary text-sm">{p.name}</h3>
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-gray-200">
-          <div className="flex items-center px-4 py-4"><span className="text-sm font-medium text-slate-700">Monthly Price</span></div>
+        <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-[rgba(96,96,163,0.2)]">
+          <div className="flex items-center px-4 py-4"><span className="text-sm font-medium text-text-primary">Monthly Price</span></div>
           {presentationPlans.map((p) => (
-            <div key={p.name + '-price'} className={`flex flex-col items-center justify-center py-4 ${p.highlighted ? 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500' : ''}`}>
-              <span className="text-2xl font-bold text-slate-900">₹{formatPrice(p.monthlyPrice)}</span>
-              <span className="text-xs text-slate-400">/month</span>
+            <div key={p.name + '-price'} className={`flex flex-col items-center justify-center py-4 ${p.highlighted ? 'bg-brand-purple/5 border-l-2 border-r-2 border-brand-purple' : ''}`}>
+              <span className="text-2xl font-bold text-text-primary">₹{formatPrice(p.monthlyPrice)}</span>
+              <span className="text-xs text-text-muted">/month</span>
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-gray-100">
-          <div className="flex items-center px-4 py-4"><span className="text-sm text-slate-700">Videos</span></div>
+        <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-[rgba(96,96,163,0.2)]">
+          <div className="flex items-center px-4 py-4"><span className="text-sm text-text-primary">Videos</span></div>
           {presentationPlans.map((p) => (
             <div key={p.name + '-videos'} className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
               p.highlighted
-                ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
+                ? 'bg-brand-purple/5 border-l-2 border-r-2 border-b-2 border-brand-purple rounded-b-xl'
                 : ''
             }`}>
-              <span className="text-sm font-semibold text-slate-900">{p.videos}</span>
-              <span className="text-xs text-slate-400 mt-0.5">Short Videos (per month)</span>
+              <span className="text-sm font-semibold text-text-primary">{p.videos}</span>
+              <span className="text-xs text-text-muted mt-0.5">Short Videos (per month)</span>
             </div>
           ))}
         </div>
@@ -99,7 +99,7 @@ function PresentationTable() {
           <div />
           {presentationPlans.map((p) => (
             <div key={p.name + '-cta'} className="flex justify-center px-3">
-              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
+              <button className="btn-gradient px-5 py-2.5 text-sm font-medium transition-all">
                 Get Started
               </button>
             </div>
@@ -116,13 +116,13 @@ export default function VideoPhotographerPricing() {
   return (
     <>
       <div className="flex justify-center mb-8">
-        <div className="inline-flex border border-gray-200 rounded-xl p-1 bg-white gap-1">
+        <div className="inline-flex border border-[rgba(96,96,163,0.2)] rounded-xl p-1 bg-white gap-1">
           {subTabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveSubTab(tab)}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-                activeSubTab === tab ? 'bg-gray-900 text-white' : 'text-slate-500 hover:text-slate-700'
+                activeSubTab === tab ? 'bg-brand-purple text-text-primary' : 'text-text-secondary hover:text-text-primary'
               }`}
             >
               {tab}
@@ -134,13 +134,13 @@ export default function VideoPhotographerPricing() {
       {activeSubTab === 'Videographer/Photographer' ? (
         <>
           <div className="text-center mb-8">
-            <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">Videographer/Photographer Subscriptions</h1>
-            <p className="text-slate-500">Get professional video and photography coverage with flexible, transparent pricing.</p>
+            <h1 className="font-heading text-3xl font-bold text-text-primary mb-2">Videographer/Photographer Subscriptions</h1>
+            <p className="text-text-secondary">Get professional video and photography coverage with flexible, transparent pricing.</p>
           </div>
           <VideographerTable />
-          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <p className="text-sm font-semibold text-slate-900 mb-3">Important Notes:</p>
-            <ul className="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+          <div className="mt-8 bg-surface-secondary border border-[rgba(96,96,163,0.2)] rounded-xl p-6">
+            <p className="text-sm font-semibold text-text-primary mb-3">Important Notes:</p>
+            <ul className="text-sm text-text-secondary space-y-1.5 list-disc list-inside">
               <li>Concepts, Scripts and other content related things are not included.</li>
               <li>Travel expenses will be extra.</li>
               <li>If additional equipments are required, rental cost for the same will be extra.</li>
@@ -150,8 +150,8 @@ export default function VideoPhotographerPricing() {
             </ul>
           </div>
           <section className="mt-12">
-            <h2 className="font-heading text-xl font-bold text-slate-900 mb-1">Features</h2>
-            <p className="text-slate-500 mb-5">Maximum flexibility and creativity for your content production needs.</p>
+            <h2 className="font-heading text-xl font-bold text-text-primary mb-1">Features</h2>
+            <p className="text-text-secondary mb-5">Maximum flexibility and creativity for your content production needs.</p>
             <div className="space-y-3">
               {[
                 'Change videographer at any time based on availability',
@@ -164,15 +164,15 @@ export default function VideoPhotographerPricing() {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckIcon />
-                  <span className="text-sm text-slate-600">{item}</span>
+                  <span className="text-sm text-text-secondary">{item}</span>
                 </div>
               ))}
             </div>
           </section>
           <section className="mt-12 mb-16">
-            <h2 className="font-heading text-xl font-bold text-slate-900 mb-1">Fair-Use &amp; Transparency</h2>
-            <p className="text-slate-500 mb-5">Clear guidelines to ensure smooth collaboration and mutual respect.</p>
-            <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
+            <h2 className="font-heading text-xl font-bold text-text-primary mb-1">Fair-Use &amp; Transparency</h2>
+            <p className="text-text-secondary mb-5">Clear guidelines to ensure smooth collaboration and mutual respect.</p>
+            <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
               <li>8-hour workday includes setup and wrap-up time.</li>
               <li>Breaks included as per standard production norms.</li>
               <li>Overtime available at additional cost.</li>
@@ -183,12 +183,12 @@ export default function VideoPhotographerPricing() {
       ) : (
         <>
           <div className="text-center mb-8">
-            <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">Presentation Videos</h1>
-            <p className="text-slate-500">Complete video production from concept to delivery.</p>
+            <h1 className="font-heading text-3xl font-bold text-text-primary mb-2">Presentation Videos</h1>
+            <p className="text-text-secondary">Complete video production from concept to delivery.</p>
           </div>
           <PresentationTable />
-          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <p className="text-sm font-semibold text-slate-900 mb-3">Who this plan is for?</p>
+          <div className="mt-8 bg-surface-secondary border border-[rgba(96,96,163,0.2)] rounded-xl p-6">
+            <p className="text-sm font-semibold text-text-primary mb-3">Who this plan is for?</p>
             <div className="space-y-2">
               {[
                 'Your requirement is fixed',
@@ -197,13 +197,13 @@ export default function VideoPhotographerPricing() {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckIcon />
-                  <span className="text-sm text-slate-600">{item}</span>
+                  <span className="text-sm text-text-secondary">{item}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="mt-4 bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <p className="text-sm font-semibold text-slate-900 mb-3">What is included?</p>
+          <div className="mt-4 bg-surface-secondary border border-[rgba(96,96,163,0.2)] rounded-xl p-6">
+            <p className="text-sm font-semibold text-text-primary mb-3">What is included?</p>
             <div className="space-y-2">
               {[
                 'Content Calendar for a Month including Concept, Scripts and Story boards in advance.',
@@ -213,13 +213,13 @@ export default function VideoPhotographerPricing() {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckIcon />
-                  <span className="text-sm text-slate-600">{item}</span>
+                  <span className="text-sm text-text-secondary">{item}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="mt-4 mb-16 bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <p className="text-sm font-semibold text-slate-900 mb-3">What's not included?</p>
+          <div className="mt-4 mb-16 bg-surface-secondary border border-[rgba(96,96,163,0.2)] rounded-xl p-6">
+            <p className="text-sm font-semibold text-text-primary mb-3">What's not included?</p>
             <div className="space-y-2">
               {[
                 'Travel expenses extra for if location shoot is needed.',
@@ -228,7 +228,7 @@ export default function VideoPhotographerPricing() {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CrossIcon />
-                  <span className="text-sm text-slate-600">{item}</span>
+                  <span className="text-sm text-text-secondary">{item}</span>
                 </div>
               ))}
             </div>

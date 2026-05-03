@@ -12,8 +12,8 @@ export default function LivePricingBlock({ activeType }) {
   return (
     <>
       <div className="text-center mb-8">
-        <h1 className="font-heading text-3xl font-bold text-slate-900 mb-2">{activeType} Plan</h1>
-        <p className="text-slate-500">Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.</p>
+        <h1 className="font-heading text-3xl font-bold text-text-primary mb-2">{activeType} Plan</h1>
+        <p className="text-text-secondary">Unlimited requests. Unlimited revisions. Pick a plan that fits your workflow.</p>
       </div>
       <SubtierTabs activeSubtier={activeSubtier} setActiveSubtier={setActiveSubtier} />
       <BillingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
