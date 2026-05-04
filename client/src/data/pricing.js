@@ -1,18 +1,4 @@
-export const plans = [
-  { name: 'Starter Plan', description: 'For brands that are starting out.', monthlyPrice: 5000, highlighted: false, badge: null, cta: 'Get Started', ctaStyle: 'default' },
-  { name: 'Basic Plan', description: 'Our standard and most affordable plan.', monthlyPrice: 10000, highlighted: false, badge: null, cta: 'Get Started', ctaStyle: 'default' },
-  { name: 'Plus Plan', description: 'Get your tasks completed faster with elevated priority.', monthlyPrice: 15000, highlighted: true, badge: 'BEST VALUE', cta: 'Get Started', ctaStyle: 'highlighted' },
-  { name: 'Pro Plan', description: 'Highest speed and fastest response time within standard plans.', monthlyPrice: 20000, highlighted: false, badge: null, cta: 'Get Started', ctaStyle: 'default' },
-  { name: 'Personal Plan', description: 'Your own personal designer and editor, like an in-house partner.', monthlyPrice: 25000, highlighted: false, badge: null, cta: 'Contact Sales', ctaStyle: 'dark' },
-]
-
 export const subtiers = ['Juniors', 'Pros', 'Elites']
-
-export const subtierPricing = {
-  Pros:    [7000, 12000, 17000, 23000, 30000],
-  Juniors: [3000, 6000, 10000, 13000, 15000],
-  Elites:  [null, 25000, 50000, 75000, 100000],
-}
 
 export const availabilityPlans = [
   {
@@ -108,60 +94,6 @@ export const serviceTypeDescriptions = {
   'Designer plus Editor': 'Hybrid talent who can do both — design and video editing in one creative resource.',
 }
 
-export const featureRows = [
-  {
-    label: 'Unlimited work requests',
-    tooltip: 'Unlimited work request means you can place as many design or video edit requests with us. We will deliver them one by one based on your applicable plan.',
-    values: ['check', 'check', 'check', 'check', 'check'],
-  },
-  {
-    label: 'Squad Manager',
-    tooltip: 'You will also be given a resource called Squad Manager, who will help you manage all the works. Coordinate works with designers and editors, and ensure delivery on time.',
-    values: ['check', 'check', 'check', 'check', 'check'],
-  },
-  {
-    label: 'Capacity',
-    sublabel: '(compared to a full time employee)',
-    tooltip: "This shows the execution capacity of each plan compared to having a full-time employee. Capacity doesn't mean number of hours per day. This term is used to get an idea about the availability and the expected output.",
-    values: [
-      { bold: '10% Capacity', sub: 'Approx 1 hour of work per day', approach: 'Approx: ~1 hour of work per day', weekly: '~6 hours per week' },
-      { bold: '25% Capacity', sub: '¼ of a full-time employee', approach: 'Approx: 2–3 hours of work per day', weekly: '~13 hours per week' },
-      { bold: '50% Capacity', sub: 'Half employee capacity', approach: 'Approx: 4–5 hours of work per day', weekly: '~25 hours per week' },
-      { bold: '80% Capacity', sub: 'Nearly full-time employee', approach: 'Approx: 6–7 hours of work per day', weekly: '~35 hours per week' },
-      { bold: '100% Capacity', sub: 'Dedicated full-time equivalent', approach: 'Approx: Full-time equivalent', weekly: '~45 hours per week' },
-    ],
-  },
-  {
-    label: 'Urgent Works',
-    tooltip: 'For starter, basic, and plus plan. We do not entertain urgent work meaning placing request today and expecting delivery today itself. If our designers or editors are available, we will try to accommodate it, but it is not guaranteed.',
-    values: ['cross', 'cross', 'check', 'check', 'check'],
-  },
-  {
-    label: 'Queue',
-    values: ['Standard queue priority', 'Standard queue priority', 'High priority queue', 'Ultra Priority queue', 'Ultra Priority + Instant Access'],
-  },
-  {
-    label: 'Access to Our Platform',
-    values: ['Per user Rs 500', 'Per user Rs 500', 'Per user Rs 500', 'Per user Rs 500', 'Per user Rs 500'],
-  },
-  {
-    label: 'Meetings',
-    values: ['By request', 'By request', 'By request', 'By request', 'Instant call + meeting access'],
-  },
-  {
-    label: 'Live Collaboration',
-    values: ['No', 'No', 'No', 'No', 'Yes — screen share & live edits'],
-  },
-  {
-    label: 'Shared Resource',
-    values: ['Shared', 'Shared', 'Shared', 'Shared ( High Priority)', 'Personal (exclusive when requests are active)'],
-  },
-  {
-    label: 'Best For',
-    values: ['Small brands & startups', 'Active brands', 'High-volume teams & agencies', 'Growing businesses', 'Founders & creators wanting close collaboration'],
-  },
-]
-
 export const benefits = [
   { icon: 'squad-manager', title: 'Squad Manager', desc: 'You will also get a Squad Manager (project manager) to manage all the works and ensure delivery on time.' },
   { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.', note: 'Available at Rs 1,000 per month additional cost.' },
@@ -193,38 +125,6 @@ export const videoServices = [
   { icon: 'ai-video', title: 'AI Video Creation and Editing', desc: 'AI-Generated Videos, Voiceovers, Text-to-Video', launchingSoon: true },
 ]
 
-export const planTypes = [
-  'Creative Head',
-  'Copy / Content Writers',
-  'Designers',
-  'Editors',
-  'SM Manager',
-  'Video/Photographer',
-  'AI Video',
-]
-
-export const liveTypes = ['Designers', 'Editors']
-
-export const videographerPlans = [
-  { name: 'Starter', priceLabel: '₹6k', highlighted: false, badge: null, shootDuration: 'Half Day (4 hours)', equipments: 'Professional camera + Standard mic and lighting kit', expertLevel: 'Skilled', crew: 'Single person', preShooting: null },
-  { name: 'Basic', priceLabel: '₹13k', highlighted: false, badge: null, shootDuration: 'Full Day (8 Hours)', equipments: 'Professional camera + Standard mic and lighting kit', expertLevel: 'Skilled', crew: 'Single person', preShooting: null },
-  { name: 'Plus', priceLabel: '₹18k', highlighted: true, badge: 'BEST VALUE', shootDuration: 'Full Day (8 Hours)', equipments: 'Professional camera + Standard mic and lighting kit', expertLevel: 'Experienced', crew: 'Single/Multiple', preShooting: 'Basic shot planning' },
-  { name: 'Pro', priceLabel: '₹25k', highlighted: false, badge: null, shootDuration: 'Full Day (8 Hours)', equipments: 'Professional camera + mic + Cinematic lighting', expertLevel: 'Pros', crew: 'Single/Multiple', preShooting: 'Detailed shot list & creative direction' },
-  { name: 'Personal', priceLabel: 'Custom Pricing', highlighted: false, badge: null, shootDuration: '—', equipments: '—', expertLevel: '—', crew: '—', preShooting: '—' },
-]
-
-export const presentationPlans = [
-  { name: 'Starter', monthlyPrice: 6000, videos: '2 videos', highlighted: false, badge: null },
-  { name: 'Basic', monthlyPrice: 13000, videos: '4 videos', highlighted: false, badge: null },
-  { name: 'Plus', monthlyPrice: 15000, videos: '8 videos', highlighted: true, badge: 'BEST VALUE' },
-  { name: 'Pro', monthlyPrice: 20000, videos: '10 videos', highlighted: false, badge: null },
-]
-
 export function formatPrice(price) {
   return new Intl.NumberFormat('en-IN').format(price)
-}
-
-export function getPlansForSubtier(subtier) {
-  const prices = subtierPricing[subtier]
-  return plans.map((plan, i) => ({ ...plan, monthlyPrice: prices[i] }))
 }
