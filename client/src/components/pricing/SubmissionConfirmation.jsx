@@ -1,5 +1,4 @@
 "use client"
-import Link from 'next/link'
 
 export default function SubmissionConfirmation() {
   return (
@@ -16,12 +15,14 @@ export default function SubmissionConfirmation() {
         Our team will review your subscription request and get back to you within 24 hours.
         We'll reach out via WhatsApp or email to confirm.
       </p>
-      <Link
-        href="/contact"
+      <a
+        href="https://wa.me/919995266385?text=I%20just%20submitted%20a%20request%20on%20UpSquad%20and%20have%20a%20question"
+        target="_blank"
+        rel="noopener noreferrer"
         className="text-sm text-text-primary hover:text-text-secondary font-semibold underline underline-offset-4 decoration-brand-purple decoration-2 transition-colors"
       >
-        Have questions? Contact us
-      </Link>
+        Have questions? Contact us on WhatsApp
+      </a>
     </div>
   )
 }
