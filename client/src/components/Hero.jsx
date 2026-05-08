@@ -9,7 +9,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-20 px-5 sm:px-8 bg-[#f0fb29] overflow-hidden">
+    <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-20 px-5 sm:px-8 bg-[#F2E14B] overflow-hidden">
       <div className="max-w-[1160px] mx-auto">
         <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
 
