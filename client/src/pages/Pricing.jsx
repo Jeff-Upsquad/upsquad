@@ -1,5 +1,6 @@
 "use client"
 import PricingHero from '../components/pricing/PricingHero'
+import LandingProcess from '../components/landing/LandingProcess'
 import PricingFlow from '../components/pricing/PricingFlow'
 import BenefitsSection from '../components/pricing/BenefitsSection'
 import WhatYouCanRequest from '../components/pricing/WhatYouCanRequest'
@@ -12,7 +13,11 @@ export default function Pricing() {
     <div className="pt-20 pb-0">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
         <PricingHero />
+      </div>
 
+      <LandingProcess />
+
+      <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
         <PricingFlow />
 
         <BenefitsSection />
