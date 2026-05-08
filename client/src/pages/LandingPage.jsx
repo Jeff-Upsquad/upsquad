@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react'
 import LandingHero from '../components/landing/LandingHero'
+import LandingProcess from '../components/landing/LandingProcess'
 import PricingFlow from '../components/pricing/PricingFlow'
 import BenefitsSection from '../components/pricing/BenefitsSection'
 import WhatYouCanRequest from '../components/pricing/WhatYouCanRequest'
@@ -39,8 +40,10 @@ export default function LandingPage({ slug }) {
         defaultLanguageCode={content.defaultLanguageCode}
       />
 
+      <LandingProcess />
+
       <ScrollReveal>
-        <div className="py-12 bg-surface-secondary">
+        <div className="pt-2 pb-12 bg-surface-secondary">
           <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
             <PricingFlow />
           </div>
