@@ -70,6 +70,7 @@ function migrate() {
     ['nature_of_business', "TEXT DEFAULT ''"],
     ['short_note',         "TEXT DEFAULT ''"],
     ['location_of_business', "TEXT DEFAULT ''"],
+    ['requirement_note',   "TEXT DEFAULT ''"],
   ]
   for (const [name, type] of adds) {
     if (!colNames.has(name)) {
@@ -195,20 +196,20 @@ export function createSubscriptionRequest({
   serviceType, tier, plan, proposedPrice, workingDays,
   name, email, company, phone,
   country, statesCsv, languagesCsv,
-  brandName, natureOfBusiness, shortNote, locationOfBusiness,
+  brandName, natureOfBusiness, shortNote, locationOfBusiness, requirementNote,
 }) {
   const info = db.prepare(`
     INSERT INTO subscription_requests
       (service_type, tier, plan, proposed_price, working_days,
        name, email, company, phone,
        country, states_csv, languages_csv,
-       brand_name, nature_of_business, short_note, location_of_business)
-    VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?, ?,  ?, ?, ?, ?)
+       brand_name, nature_of_business, short_note, location_of_business, requirement_note)
+    VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?,  ?, ?, ?,  ?, ?, ?, ?, ?)
   `).run(
     serviceType, tier, plan, proposedPrice, workingDays || '',
     name, email, company || '', phone,
     country || '', statesCsv || '', languagesCsv || '',
-    brandName || '', natureOfBusiness || '', shortNote || '', locationOfBusiness || '',
+    brandName || '', natureOfBusiness || '', shortNote || '', locationOfBusiness || '', requirementNote || '',
   )
   return info.lastInsertRowid
 }

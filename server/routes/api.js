@@ -27,7 +27,7 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
     serviceType, tier, plan, proposedPrice, workingDays,
     name, email, company, phone,
     country, states, languages,
-    brandName, natureOfBusiness, shortNote, locationOfBusiness,
+    brandName, natureOfBusiness, shortNote, locationOfBusiness, requirementNote,
   } = req.body || {}
 
   const errors = []
@@ -74,6 +74,7 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
       natureOfBusiness: typeof natureOfBusiness === 'string' ? natureOfBusiness.trim() : '',
       shortNote: typeof shortNote === 'string' ? shortNote.trim() : '',
       locationOfBusiness: typeof locationOfBusiness === 'string' ? locationOfBusiness.trim() : '',
+      requirementNote: typeof requirementNote === 'string' ? requirementNote.trim() : '',
     })
     res.status(201).json({ id, message: 'Subscription request submitted successfully' })
   } catch (err) {
