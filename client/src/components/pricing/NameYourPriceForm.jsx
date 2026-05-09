@@ -16,7 +16,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
   const daysLabel = (selectedDays || []).join(', ')
   const [form, setForm] = useState({
     contactName: '', email: '', company: '', phone: '', proposedPrice: '',
-    natureOfBusiness: '', shortNote: '', locationOfBusiness: '',
+    natureOfBusiness: '', shortNote: '', locationOfBusiness: '', requirementNote: '',
   })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -87,6 +87,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
           natureOfBusiness: form.natureOfBusiness.trim(),
           shortNote: form.shortNote.trim(),
           locationOfBusiness: form.locationOfBusiness.trim(),
+          requirementNote: form.requirementNote.trim(),
         }),
       })
 
@@ -279,6 +280,20 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
                     className={`${inputBase} ${errors.shortNote ? inputErr : inputOK} resize-none`}
                   />
                   {errors.shortNote && <p className="text-xs text-brand-orange mt-1 font-medium">{errors.shortNote}</p>}
+                </div>
+                <div>
+                  <label htmlFor="requirementNote" className="block text-sm font-semibold text-text-primary mb-1.5">
+                    Short Note About the Requirement <span className="font-normal text-text-muted">(optional)</span>
+                  </label>
+                  <textarea
+                    id="requirementNote"
+                    name="requirementNote"
+                    rows={3}
+                    value={form.requirementNote}
+                    onChange={handleChange}
+                    placeholder="What you'd like the talent to work on first — deliverables, references, brand guidelines."
+                    className={`${inputBase} ${inputOK} resize-none`}
+                  />
                 </div>
               </div>
 
