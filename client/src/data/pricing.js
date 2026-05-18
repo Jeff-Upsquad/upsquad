@@ -1,4 +1,4 @@
-export const subtiers = ['Juniors', 'Pros', 'Elites']
+export const subtiers = ['Juniors', 'Pros', 'Top Talents']
 
 export const availabilityPlans = [
   {
@@ -83,7 +83,7 @@ export const availabilityPlans = [
 export const subtierDescriptions = {
   Juniors: 'Less than 2 years of experience. Great for straightforward tasks and cost-effective output.',
   Pros: 'More than 2 years of experience with strong, well-rounded skill sets. Reliable quality across a wide range of work.',
-  Elites: 'Top talents with 5+ years of experience. Best for high-stakes, complex, or premium creative work.',
+  'Top Talents': 'Top talents with 5+ years of experience. Best for high-stakes, complex, or premium creative work.',
 }
 
 export const serviceTypes = ['Designers', 'Editors', 'Designer plus Editor']

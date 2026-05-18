@@ -562,7 +562,7 @@ export default function PartnerProgram() {
                 </div>
               </div>
 
-              {/* Elite */}
+              {/* Top Talents */}
               <div className="rounded-xl p-6 border border-[rgba(96,96,163,0.2)] bg-surface-secondary hover:-translate-y-0.5 transition-transform duration-200">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-brand-orange/10 border border-brand-orange/20 text-brand-orange flex items-center justify-center">
@@ -571,7 +571,7 @@ export default function PartnerProgram() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-semibold text-text-primary">Elite</h3>
+                    <h3 className="font-heading text-base font-semibold text-text-primary">Top Talents</h3>
                     <span className="text-[11px] text-text-muted font-medium">5+ Years Experience</span>
                   </div>
                 </div>

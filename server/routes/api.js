@@ -32,7 +32,10 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
 
   const errors = []
   if (!serviceType || !['Designers', 'Editors', 'Designer plus Editor'].includes(serviceType)) errors.push('Invalid service type')
-  const validTiers = ['Juniors', 'Pros', 'Elites']
+  // Accept both legacy 'Elites' and new 'Top Talents' during the rename so
+  // in-flight requests from cached client bundles don't 400 right after deploy.
+  // Drop 'Elites' once the cutover has soaked.
+  const validTiers = ['Juniors', 'Pros', 'Elites', 'Top Talents']
   const tierList = (tier || '').split(',').map(t => t.trim()).filter(Boolean)
   if (tierList.length === 0 || !tierList.every(t => validTiers.includes(t))) errors.push('Invalid tier')
   if (!plan || !['starter', 'basic', 'plus', 'pro', 'personal'].includes(plan)) errors.push('Invalid plan')

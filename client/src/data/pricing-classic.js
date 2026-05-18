@@ -6,18 +6,18 @@ export const plans = [
   { name: 'Personal Plan', description: 'Your own personal designer and editor, like an in-house partner.', monthlyPrice: 25000, highlighted: false, badge: null, cta: 'Contact Sales', ctaStyle: 'dark' },
 ]
 
-export const subtiers = ['Pros', 'Juniors', 'Elites']
+export const subtiers = ['Pros', 'Juniors', 'Top Talents']
 
 export const subtierPricing = {
   Pros:    [7000, 12000, 17000, 23000, 30000],
   Juniors: [3000, 6000, 10000, 13000, 15000],
-  Elites:  [null, 25000, 50000, 75000, 100000],
+  'Top Talents':  [null, 25000, 50000, 75000, 100000],
 }
 
 export const subtierDescriptions = {
   Juniors: 'Less than 2 years of experience. Great for straightforward tasks and cost-effective output.',
   Pros: 'More than 2 years of experience with strong, well-rounded skill sets. Reliable quality across a wide range of work.',
-  Elites: 'Top talents with 5+ years of experience. Best for high-stakes, complex, or premium creative work.',
+  'Top Talents': 'Top talents with 5+ years of experience. Best for high-stakes, complex, or premium creative work.',
 }
 
 export const featureRows = [
