@@ -33,6 +33,7 @@ const squads = [
     emoji: '📣',
     tags: ['Digital', 'Offline', 'PR', 'Ads'],
     badge: 'Beta',
+    ctaLabel: 'Join waiting list',
     drawer: {
       subtitle: 'Subscribe to',
       highlight: 'Marketing talent that drives real growth — on demand.',
@@ -62,6 +63,7 @@ const squads = [
     emoji: '📊',
     tags: ['Bookkeeping', 'Tax', 'CFO'],
     badge: 'Beta',
+    ctaLabel: 'Join waiting list',
     drawer: {
       subtitle: 'Subscribe to',
       highlight: 'Expert financial talent your business needs — on demand.',
@@ -231,7 +233,7 @@ export default function Categories() {
                       ? 'btn-gradient'
                       : 'btn-secondary'
                   }`}>
-                    {squad.drawer ? 'Explore Squad →' : 'Coming Soon'}
+                    {squad.ctaLabel ?? (squad.drawer ? 'Explore Squad →' : 'Coming Soon')}
                   </button>
                 </div>
               </div>
