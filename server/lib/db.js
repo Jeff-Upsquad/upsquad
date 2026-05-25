@@ -56,6 +56,29 @@ db.exec(`
     status TEXT DEFAULT 'pending',
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
   );
+
+  CREATE TABLE IF NOT EXISTS career_positions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    department TEXT NOT NULL DEFAULT '',
+    location TEXT NOT NULL DEFAULT '',
+    employment_type TEXT NOT NULL DEFAULT 'Full-time',
+    description TEXT NOT NULL DEFAULT '',
+    is_open INTEGER NOT NULL DEFAULT 1,
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS career_applications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    position_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    status TEXT DEFAULT 'pending',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (position_id) REFERENCES career_positions(id) ON DELETE CASCADE
+  );
 `)
 
 function migrate() {
@@ -119,6 +142,43 @@ function seed() {
     if (findPage.get(p.slug)) continue
     const info = insertPage.run(p.slug, p.heroTitle, p.heroDescription, p.defaultLanguageCode)
     p.langs.forEach((l, i) => insertLpl.run(info.lastInsertRowid, l.code, i))
+  }
+
+  const positionCount = db.prepare('SELECT COUNT(*) as c FROM career_positions').get().c
+  if (positionCount === 0) {
+    const insertPosition = db.prepare(`
+      INSERT INTO career_positions (title, department, location, employment_type, description, sort_order)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `)
+    const positions = [
+      {
+        title: 'Graphic Designer',
+        department: 'Content Squad',
+        location: 'Remote (India)',
+        employmentType: 'Full-time',
+        description: 'Create social creatives, ad assets, and brand visuals for subscription clients. Strong Figma skills and a sharp portfolio required.',
+        sortOrder: 0,
+      },
+      {
+        title: 'Video Editor',
+        department: 'Content Squad',
+        location: 'Remote (India)',
+        employmentType: 'Full-time',
+        description: 'Edit short-form and long-form video for brands on subscription. Proficiency in Premiere Pro or DaVinci Resolve and fast turnaround mindset.',
+        sortOrder: 1,
+      },
+      {
+        title: 'Client Success Manager',
+        department: 'Operations',
+        location: 'Kochi, Kerala (Hybrid)',
+        employmentType: 'Full-time',
+        description: 'Own client relationships, coordinate squad delivery, and ensure subscribers get consistent value. Prior agency or SaaS experience is a plus.',
+        sortOrder: 2,
+      },
+    ]
+    for (const p of positions) {
+      insertPosition.run(p.title, p.department, p.location, p.employmentType, p.description, p.sortOrder)
+    }
   }
 }
 seed()
@@ -253,4 +313,47 @@ export function updateSubscriptionRequestStatus(id, status) {
 
   db.prepare('UPDATE subscription_requests SET status = ? WHERE id = ?').run(status, id)
   return { ...existing, status }
+}
+
+export function listOpenCareerPositions() {
+  return db.prepare(`
+    SELECT id, title, department, location, employment_type, description, created_at
+    FROM career_positions
+    WHERE is_open = 1
+    ORDER BY sort_order ASC, id ASC
+  `).all().map((row) => ({
+    id: row.id,
+    title: row.title,
+    department: row.department,
+    location: row.location,
+    employmentType: row.employment_type,
+    description: row.description,
+    createdAt: row.created_at,
+  }))
+}
+
+export function getOpenCareerPositionById(id) {
+  const row = db.prepare(`
+    SELECT id, title, department, location, employment_type, description, created_at
+    FROM career_positions
+    WHERE id = ? AND is_open = 1
+  `).get(id)
+  if (!row) return null
+  return {
+    id: row.id,
+    title: row.title,
+    department: row.department,
+    location: row.location,
+    employmentType: row.employment_type,
+    description: row.description,
+    createdAt: row.created_at,
+  }
+}
+
+export function createCareerApplication({ positionId, name, email, phone }) {
+  const info = db.prepare(`
+    INSERT INTO career_applications (position_id, name, email, phone)
+    VALUES (?, ?, ?, ?)
+  `).run(positionId, name, email, phone)
+  return info.lastInsertRowid
 }

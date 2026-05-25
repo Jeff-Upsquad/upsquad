@@ -1,5 +1,11 @@
 import express from 'express'
-import { getLandingPageBySlug, createSubscriptionRequest } from '../lib/db.js'
+import {
+  getLandingPageBySlug,
+  createSubscriptionRequest,
+  listOpenCareerPositions,
+  getOpenCareerPositionById,
+  createCareerApplication,
+} from '../lib/db.js'
 import { absolutize } from '../lib/urls.js'
 
 const router = express.Router()
@@ -82,6 +88,51 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
     res.status(201).json({ id, message: 'Subscription request submitted successfully' })
   } catch (err) {
     console.error('Subscription creation error:', err)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+router.get('/v1/careers/positions', (_req, res) => {
+  try {
+    res.json({ positions: listOpenCareerPositions() })
+  } catch (err) {
+    console.error('List career positions error:', err)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+router.post('/v1/careers/applications', express.json(), (req, res) => {
+  const { positionId, name, email, phone } = req.body || {}
+  const errors = []
+  const id = parseInt(positionId, 10)
+  if (!id) errors.push('Position is required')
+  if (!name || typeof name !== 'string' || name.trim().length === 0) errors.push('Name is required')
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Valid email is required')
+  if (!phone || typeof phone !== 'string' || phone.trim().length < 6) errors.push('Phone number is required')
+
+  if (errors.length > 0) {
+    return res.status(400).json({ error: 'Validation failed', details: errors })
+  }
+
+  const position = getOpenCareerPositionById(id)
+  if (!position) {
+    return res.status(404).json({ error: 'Position not found or no longer open' })
+  }
+
+  try {
+    const applicationId = createCareerApplication({
+      positionId: id,
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone.trim(),
+    })
+    res.status(201).json({
+      id: applicationId,
+      message: 'Application submitted successfully',
+      positionTitle: position.title,
+    })
+  } catch (err) {
+    console.error('Career application error:', err)
     res.status(500).json({ error: 'Internal server error' })
   }
 })
