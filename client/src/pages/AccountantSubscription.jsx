@@ -2,10 +2,12 @@
 import { useEffect, useRef, useState } from 'react'
 import AccountantHero from '../components/accountant/AccountantHero'
 import SubscriptionDetails from '../components/accountant/SubscriptionDetails'
+import AssignmentOptions from '../components/accountant/AssignmentOptions'
 import HiringOptions from '../components/accountant/HiringOptions'
 
 const TABS = [
   { id: 'subscription', label: 'Subscription' },
+  { id: 'assignments', label: 'Assignments' },
   { id: 'hiring', label: 'Hiring' },
 ]
 
@@ -54,11 +56,11 @@ export default function AccountantSubscription() {
       >
         <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-3 flex items-center justify-center sm:justify-between gap-4">
           <span className="hidden sm:block text-sm text-text-secondary">
-            Two ways to work with us — pick one:
+            Three ways to work with us — pick one:
           </span>
           <div
             role="tablist"
-            aria-label="Choose subscription or hiring"
+            aria-label="Choose subscription, assignments, or hiring"
             className="inline-flex p-1 rounded-full border-[1.5px] border-black bg-white shadow-brutal-sm"
           >
             {TABS.map((t) => {
@@ -84,7 +86,13 @@ export default function AccountantSubscription() {
 
       {/* Active panel */}
       <div role="tabpanel">
-        {tab === 'subscription' ? <SubscriptionDetails /> : <HiringOptions />}
+        {tab === 'subscription' ? (
+          <SubscriptionDetails />
+        ) : tab === 'assignments' ? (
+          <AssignmentOptions />
+        ) : (
+          <HiringOptions />
+        )}
       </div>
     </>
   )
