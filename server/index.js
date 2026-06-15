@@ -56,6 +56,12 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', service: 'UpSquad' })
 })
 
+// The partner page moved to a designer/editor-focused URL. Permanently
+// redirect the old path (with or without a trailing slash) to the new one.
+app.get(['/partner-program', '/partner-program/'], (_req, res) => {
+  res.redirect(301, '/designers-and-editors/')
+})
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('*', (req, res) => {
