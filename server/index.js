@@ -62,6 +62,12 @@ app.get(['/partner-program', '/partner-program/'], (_req, res) => {
   res.redirect(301, '/designers-and-editors/')
 })
 
+// The get-started landing page moved to a customer-focused URL. Permanently
+// redirect the old path (with or without a trailing slash) to the new one.
+app.get(['/lp/get-started', '/lp/get-started/'], (_req, res) => {
+  res.redirect(301, '/customers/designers-and-video-editors/')
+})
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('*', (req, res) => {
