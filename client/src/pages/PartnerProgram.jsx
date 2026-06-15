@@ -85,24 +85,34 @@ export default function PartnerProgram() {
     setGateOpen(false)
   }
 
-  // Switch tab, then align the tab bar just under the fixed navbar so the
-  // chosen panel is shown from its top.
+  // After a tab change commits, align the sticky tab bar just under the fixed
+  // nav so the chosen panel shows from its top. This runs in an effect (after
+  // the panel swaps) rather than the click handler, because scrolling before the
+  // swap lets the swap abort the smooth scroll and leave you mid-panel. The bar's
+  // natural position is read via a brief `position` toggle — getBoundingClientRect
+  // and offsetTop both report the *stuck* position once it is pinned.
+  // Only scroll in response to a user tab switch (goToTab sets the flag), never
+  // on mount — the flag also survives React StrictMode's double-invoked mount
+  // effect, which a plain "first render" ref would not.
+  const pendingScroll = useRef(false)
+  useEffect(() => {
+    if (!pendingScroll.current) return
+    pendingScroll.current = false
+    const el = tabsRef.current
+    if (!el) return
+    const saved = el.style.position
+    el.style.position = 'static'
+    const top = el.getBoundingClientRect().top + window.scrollY
+    el.style.position = saved
+    // Instant, not smooth: a smooth scroll started here gets aborted by the
+    // panel swap / ScrollReveal mount, stranding you mid-panel. A jump to the
+    // panel top is also the cleaner result when switching tabs.
+    window.scrollTo({ top: Math.max(0, top - 56), behavior: 'instant' })
+  }, [tab])
+
   const goToTab = (id) => {
+    pendingScroll.current = true
     setTab(id)
-    requestAnimationFrame(() => {
-      const el = tabsRef.current
-      if (!el) return
-      // Read the tab bar's natural document position. getBoundingClientRect() and
-      // offsetTop both report the *stuck* position once the sticky bar is pinned,
-      // so the scroll target would collapse to the current scroll and leave you
-      // mid-panel when switching tabs after scrolling down. Briefly neutralising
-      // `position` exposes the in-flow position (no repaint between sync writes).
-      const saved = el.style.position
-      el.style.position = 'static'
-      const top = el.getBoundingClientRect().top + window.scrollY
-      el.style.position = saved
-      window.scrollTo({ top: Math.max(0, top - 56), behavior: 'smooth' })
-    })
   }
 
   const copy = heroCopy[tab]
