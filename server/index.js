@@ -56,10 +56,16 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', service: 'UpSquad' })
 })
 
-// The partner page moved to a designer/editor-focused URL. Permanently
-// redirect the old path (with or without a trailing slash) to the new one.
+// Partner-program landing pages moved under /partner-program/<type>.
+// Permanently redirect the old paths (with or without a trailing slash).
+app.get(['/accountants', '/accountants/'], (_req, res) => {
+  res.redirect(301, '/partner-program/accountant/')
+})
+app.get(['/designers-and-editors', '/designers-and-editors/'], (_req, res) => {
+  res.redirect(301, '/partner-program/designer-and-video-editor/')
+})
 app.get(['/partner-program', '/partner-program/'], (_req, res) => {
-  res.redirect(301, '/designers-and-editors/')
+  res.redirect(301, '/partner-program/designer-and-video-editor/')
 })
 
 // The get-started landing page moved to a customer-focused URL. Permanently

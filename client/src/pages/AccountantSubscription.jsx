@@ -20,8 +20,16 @@ export default function AccountantSubscription() {
     requestAnimationFrame(() => {
       const el = tabsRef.current
       if (!el) return
-      const y = el.getBoundingClientRect().top + window.scrollY - 76
-      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' })
+      // Read the tab bar's natural document position. getBoundingClientRect() and
+      // offsetTop both report the *stuck* position once the sticky bar is pinned,
+      // so the scroll target would collapse to the current scroll and leave you
+      // mid-panel when switching tabs after scrolling down. Briefly neutralising
+      // `position` exposes the in-flow position (no repaint between sync writes).
+      const saved = el.style.position
+      el.style.position = 'static'
+      const top = el.getBoundingClientRect().top + window.scrollY
+      el.style.position = saved
+      window.scrollTo({ top: Math.max(0, top - 76), behavior: 'smooth' })
     })
   }
 
