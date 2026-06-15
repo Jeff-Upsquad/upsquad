@@ -57,12 +57,12 @@ const sampleOpenings = [
 // Placement-fee tiers, based on the salary package.
 const feeTiers = [
   {
-    label: 'Salary package below ₹20,000',
+    bracket: 'Below ₹20,000',
     amount: '₹3,000',
     note: 'One-time placement fee',
   },
   {
-    label: 'Salary package ₹20,000 & above',
+    bracket: '₹20,000 & above',
     amount: '₹5,000',
     note: 'One-time placement fee',
     highlighted: true,
@@ -205,18 +205,29 @@ export default function JobsTab() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {feeTiers.map((tier) => (
                   <div
-                    key={tier.label}
+                    key={tier.bracket}
                     className={`relative rounded-2xl border-[1.5px] border-black p-7 flex flex-col shadow-brutal-sm ${
                       tier.highlighted ? 'bg-brand-purple/15' : 'bg-white'
                     }`}
                   >
                     <span className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary">
-                      {tier.label}
+                      Placement fee
                     </span>
                     <div className="mt-4 font-heading text-4xl font-extrabold text-text-primary leading-none">
                       {tier.amount}
                     </div>
                     <span className="text-xs text-text-muted mt-2">{tier.note}</span>
+
+                    {/* Salary bracket this fee applies to — the key qualifier, shown prominently */}
+                    <div className="mt-6 pt-5 border-t border-[rgba(96,96,163,0.2)]">
+                      <span className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-muted">
+                        For salary packages
+                      </span>
+                      <div className="mt-1.5 font-heading text-2xl sm:text-[28px] font-extrabold text-text-primary leading-tight">
+                        {tier.bracket}
+                      </div>
+                    </div>
+
                     <div className="mt-auto pt-5">
                       <span className="inline-flex items-center gap-1.5 text-xs font-medium text-text-secondary">
                         <svg className="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
