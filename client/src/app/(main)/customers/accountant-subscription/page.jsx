@@ -1,4 +1,4 @@
-import AccountantSubscription from '../../../pages/AccountantSubscription'
+import AccountantSubscription from '../../../../pages/AccountantSubscription'
 
 export const metadata = {
   title: 'Accountant Subscription — UpSquad',
