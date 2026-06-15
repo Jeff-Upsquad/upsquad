@@ -1,7 +1,7 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
 
-const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/signup/talent'
+const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/creative'
 const WA_NUMBER = '919995266342'
 const waLink = (text) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`
 

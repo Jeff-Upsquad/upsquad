@@ -124,7 +124,7 @@ export default function PartnerProgram() {
 
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://squadhire.upsquadconnect.com/signup/talent"
+                href="https://squadhire.upsquadconnect.com/apply/creative"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 btn-gradient font-semibold text-sm px-6 py-3 rounded-lg transition-colors"

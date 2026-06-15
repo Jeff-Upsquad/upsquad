@@ -1,7 +1,7 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
 
-const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/signup/talent'
+const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/creative'
 
 /* ── data ─────────────────────────────────────────────── */
 

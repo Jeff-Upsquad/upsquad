@@ -1,6 +1,8 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
 
+const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/creative'
+
 /* ── data ─────────────────────────────────────────────── */
 
 const upsquadHandles = [
@@ -625,25 +627,35 @@ export default function PartnerProgramTab({ onSwitchTab }) {
         </section>
       </ScrollReveal>
 
-      {/* ── Bottom CTA ────────────────────────────────── */}
-      <section className="py-16 px-5 sm:px-8 bg-[#090C1D]">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white tracking-tight mb-4">
-            Ready to partner with UpSquad?
-          </h2>
-          <p className="text-base text-text-muted mb-8">
-            No contracts, no upfront costs. Just your skills and our support.
-          </p>
-          <a
-            href="https://squadhire.upsquadconnect.com/signup/talent"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-text-primary font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
-          >
-            Sign Up Now
-          </a>
-        </div>
-      </section>
+      {/* ── Closing CTA ─────────────────────────────────── */}
+      <ScrollReveal>
+        <section className="py-16 px-5 sm:px-8 bg-white">
+          <div className="max-w-[1160px] mx-auto">
+            <div className="rounded-2xl border-[1.5px] border-black bg-brand-purple/15 shadow-brutal p-7 sm:p-9 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+              <div>
+                <span className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary">
+                  Ready to partner
+                </span>
+                <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-text-primary mt-1">
+                  Partner with UpSquad
+                </h3>
+                <p className="text-sm text-text-secondary mt-2 max-w-xl leading-relaxed">
+                  No contracts, no upfront costs. Create your profile once and start working with
+                  clients assigned to you.
+                </p>
+              </div>
+              <a
+                href={SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gradient text-sm font-semibold px-7 py-3.5 shrink-0"
+              >
+                Sign up to partner &rarr;
+              </a>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
     </>
   )
 }
