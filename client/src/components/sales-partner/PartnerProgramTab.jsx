@@ -60,38 +60,8 @@ const upsquadHandles = [
 
 const partnerFocus = [
   {
-    title: 'Focus on Selling',
-    desc: 'Just do what you do best — outreach, demos, follow-ups, and closing.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Per-Client Payment',
-    desc: 'Earn per business assigned — plus performance incentives on results.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Full-Time or Part-Time',
-    desc: 'Choose how much you want to work — flexible commitment.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-]
-
-const whyFeatures = [
-  {
-    title: 'Accounts come to you',
-    desc: 'We assign businesses to you — no more cold prospecting for your own clients or chasing the next deal.',
+    title: 'Assigned clients, ongoing',
+    desc: "You're assigned one or more businesses and sell for them regularly — steady relationships, not one-off gigs.",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -99,8 +69,17 @@ const whyFeatures = [
     ),
   },
   {
-    title: 'Guaranteed monthly pay',
-    desc: 'Sell regularly for your assigned businesses and get paid every month. No chasing commissions.',
+    title: 'Your own virtual office hours',
+    desc: 'Set the days and hours that suit you. Full-time or part-time — your call.',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Paid every month',
+    desc: 'Guaranteed monthly payment for each business assigned, plus performance incentives — no chasing invoices.',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -108,20 +87,11 @@ const whyFeatures = [
     ),
   },
   {
-    title: 'We handle the business',
-    desc: 'Client acquisition, marketing, onboarding, and collections are all on us. You never touch the admin.',
+    title: 'Just focus on selling',
+    desc: "Outreach, demos, follow-ups, and closing — that's it. A dedicated Squad Manager handles the accounts.",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Work on your terms',
-    desc: 'Set your own working days and hours (virtual office timings). Full-time or part-time — your call.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
   },
@@ -131,15 +101,6 @@ const whyFeatures = [
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Focus only on selling',
-    desc: 'A dedicated Squad Manager handles the accounts, so you can stay on the phones and in the pipeline.',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
   },
@@ -228,41 +189,70 @@ const partnerVsFreelance = {
 export default function PartnerProgramTab({ onSwitchTab }) {
   return (
     <>
-      {/* ── Why UpSquad ─────────────────────────────────── */}
+      {/* ── How the Partner Program works ───────────────── */}
       <ScrollReveal>
         <section className="relative py-16 px-5 sm:px-8 bg-surface-secondary overflow-hidden">
           <div className="relative max-w-[1160px] mx-auto">
             {/* Header */}
-            <div className="mb-8 flex items-end justify-between flex-wrap gap-4">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="w-5 h-px bg-brand-purple" />
-                  <p className="text-[11px] font-bold text-text-primary uppercase tracking-[0.2em]">Why UpSquad</p>
-                </div>
-                <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-text-primary leading-[1.1] tracking-tight">
-                  Stop hunting for clients.{' '}
-                  <span className="italic font-medium text-text-muted">Start closing deals.</span>
-                </h2>
+            <div className="mb-10 max-w-3xl">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-5 h-px bg-brand-purple" />
+                <p className="text-[11px] font-bold text-text-primary uppercase tracking-[0.2em]">How the Partner Program works</p>
               </div>
-              <p className="text-sm text-text-secondary leading-relaxed max-w-sm">
-                The freelance grind drains your energy on everything except the selling itself. Here&apos;s what you get when you partner with UpSquad.
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-text-primary leading-[1.1] tracking-tight">
+                Stop hunting for clients.{' '}
+                <span className="italic font-medium text-text-muted">Start closing deals.</span>
+              </h2>
+              <p className="text-base text-text-secondary leading-relaxed mt-4">
+                You&apos;re assigned one or more businesses and sell for them on a regular basis — on your own virtual office hours, with guaranteed monthly pay. We take care of everything else.
               </p>
             </div>
 
-            {/* Feature grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {whyFeatures.map((f) => (
-                <div
-                  key={f.title}
-                  className="bg-white rounded-2xl p-6 border border-[rgba(96,96,163,0.2)] hover:-translate-y-0.5 hover:shadow-card-hover transition-all duration-200"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-brand-purple/20 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center mb-4">
-                    {f.icon}
-                  </div>
-                  <h3 className="font-heading text-base font-semibold text-text-primary mb-1.5">{f.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">{f.desc}</p>
+            {/* Two columns: what you get vs what we handle */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* What you get */}
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="w-2 h-2 rounded-full bg-brand-purple" />
+                  <h3 className="font-heading text-sm font-semibold text-text-primary uppercase tracking-wider">What you get</h3>
                 </div>
-              ))}
+                <div className="grid grid-cols-1 gap-3">
+                  {partnerFocus.map((item) => (
+                    <div
+                      key={item.title}
+                      className="bg-brand-purple/5 rounded-xl p-5 border border-brand-purple/20 hover:-translate-y-0.5 transition-transform duration-200"
+                    >
+                      <div className="w-9 h-9 rounded-lg bg-white border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center shadow-sm mb-3">
+                        {item.icon}
+                      </div>
+                      <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
+                      <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* What UpSquad handles */}
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="w-2 h-2 rounded-full bg-text-muted" />
+                  <h3 className="font-heading text-sm font-semibold text-text-primary uppercase tracking-wider">What UpSquad handles</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {upsquadHandles.map((item) => (
+                    <div
+                      key={item.title}
+                      className="bg-white rounded-xl p-5 border border-[rgba(96,96,163,0.2)] hover:-translate-y-0.5 transition-transform duration-200"
+                    >
+                      <div className="w-9 h-9 rounded-lg bg-surface-secondary border border-[rgba(96,96,163,0.2)] text-text-secondary flex items-center justify-center shadow-sm mb-3">
+                        {item.icon}
+                      </div>
+                      <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
+                      <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -341,65 +331,6 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                     Explore Freelance &rarr;
                   </button>
                 )}
-              </div>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ── How It Works ──────────────────────────────── */}
-      <ScrollReveal>
-        <section className="py-20 px-5 sm:px-8 bg-white">
-          <div className="max-w-[1160px] mx-auto">
-            <div className="mb-12">
-              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Partnership Model</p>
-              <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">How it works</h2>
-              <p className="text-base text-text-secondary mt-2">You handle the selling. We handle everything else.</p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-              {/* What UpSquad handles */}
-              <div>
-                <div className="flex items-center gap-2 mb-5">
-                  <span className="w-2 h-2 rounded-full bg-brand-purple" />
-                  <h3 className="font-heading text-sm font-semibold text-text-primary uppercase tracking-wider">What UpSquad Handles</h3>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {upsquadHandles.map((item) => (
-                    <div
-                      key={item.title}
-                      className="bg-surface-secondary rounded-xl p-5 border border-[rgba(96,96,163,0.2)] hover:-translate-y-0.5 transition-transform duration-200"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-white border border-[rgba(96,96,163,0.2)] text-text-secondary flex items-center justify-center shadow-sm mb-3">
-                        {item.icon}
-                      </div>
-                      <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
-                      <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* What you focus on */}
-              <div>
-                <div className="flex items-center gap-2 mb-5">
-                  <span className="w-2 h-2 rounded-full bg-brand-purple" />
-                  <h3 className="font-heading text-sm font-semibold text-text-primary uppercase tracking-wider">What You Focus On</h3>
-                </div>
-                <div className="grid grid-cols-1 gap-3">
-                  {partnerFocus.map((item) => (
-                    <div
-                      key={item.title}
-                      className="bg-surface-secondary rounded-xl p-5 border border-[rgba(96,96,163,0.2)] hover:-translate-y-0.5 transition-transform duration-200"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-white border border-[rgba(96,96,163,0.2)] text-text-secondary flex items-center justify-center shadow-sm mb-3">
-                        {item.icon}
-                      </div>
-                      <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
-                      <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

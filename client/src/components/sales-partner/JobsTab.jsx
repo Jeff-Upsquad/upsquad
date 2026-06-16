@@ -58,12 +58,12 @@ const sampleOpenings = [
 // Placement-fee tiers, based on the salary package.
 const feeTiers = [
   {
-    bracket: 'Below ₹25,000',
+    bracket: 'Below ₹20,000',
     amount: '₹3,000',
     note: 'One-time placement fee',
   },
   {
-    bracket: '₹25,000 & above',
+    bracket: '₹20,000 & above',
     amount: '₹5,000',
     note: 'One-time placement fee',
     highlighted: true,
