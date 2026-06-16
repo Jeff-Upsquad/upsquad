@@ -1,5 +1,7 @@
 "use client"
+import { useState } from 'react'
 import ScrollReveal from '../ScrollReveal'
+import VirtualOfficeHoursModal from '../partner/VirtualOfficeHoursModal'
 
 // TODO: Confirm the real sales application URL. Mirrors the creative flow
 // (/apply/creative) used on the designers-and-editors partner page.
@@ -71,6 +73,7 @@ const partnerFocus = [
   {
     title: 'Your own virtual office hours',
     desc: 'Set the days and hours that suit you. Full-time or part-time — your call.',
+    info: true,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -187,6 +190,8 @@ const partnerVsFreelance = {
 /* ── component ────────────────────────────────────────── */
 
 export default function PartnerProgramTab({ onSwitchTab }) {
+  const [hoursModalOpen, setHoursModalOpen] = useState(false)
+
   return (
     <>
       {/* ── How the Partner Program works ───────────────── */}
@@ -220,13 +225,28 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   {partnerFocus.map((item) => (
                     <div
                       key={item.title}
-                      className="bg-brand-purple/5 rounded-xl p-5 border border-brand-purple/20 hover:-translate-y-0.5 transition-transform duration-200"
+                      className="relative bg-brand-purple/5 rounded-xl p-5 border border-brand-purple/20 hover:-translate-y-0.5 transition-transform duration-200"
                     >
                       <div className="w-9 h-9 rounded-lg bg-white border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center shadow-sm mb-3">
                         {item.icon}
                       </div>
                       <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
                       <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
+
+                      {item.info && (
+                        <button
+                          type="button"
+                          onClick={() => setHoursModalOpen(true)}
+                          aria-label="See how virtual office hours work"
+                          title="See how it works"
+                          className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-white text-text-primary border-[1.5px] border-text-primary shadow-brutal-sm pl-2 pr-2.5 py-1 text-[10px] font-bold hover:-translate-y-0.5 hover:shadow-brutal active:translate-y-0 transition-all"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          How it works
+                        </button>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -592,6 +612,9 @@ export default function PartnerProgramTab({ onSwitchTab }) {
           </div>
         </section>
       </ScrollReveal>
+
+      {/* ── Virtual office hours infographic modal ───────── */}
+      <VirtualOfficeHoursModal open={hoursModalOpen} onClose={() => setHoursModalOpen(false)} />
     </>
   )
 }

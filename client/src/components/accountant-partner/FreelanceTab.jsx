@@ -1,5 +1,6 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
+import AssignmentExampleCard from '../partner/AssignmentExampleCard'
 
 // TODO: Confirm the real accountant application URL.
 const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/accountant'
@@ -29,31 +30,15 @@ const howItWorks = [
   },
 ]
 
-const bookkeepingWork = [
-  'Monthly bookkeeping',
-  'Bank reconciliation',
-  'Accounts payable / receivable',
-  'Ledger clean-up',
-  'Financial statements',
-  'MIS reports',
-]
-
-const complianceWork = [
-  'GST returns (GSTR-1 & 3B)',
-  'TDS returns',
-  'Income tax filing',
-  'ROC / MCA filings',
-  'Payroll processing',
-  'Year-end close',
-]
-
-const sampleAssignments = [
-  { category: 'Compliance', title: 'Monthly GST return (GSTR-1 & 3B)', fee: '1,500', timeline: '3 days' },
-  { category: 'Bookkeeping', title: '3 months book clean-up', fee: '6,000', timeline: '6 days' },
-  { category: 'Compliance', title: 'TDS return filing (1 quarter)', fee: '2,000', timeline: '3 days' },
-  { category: 'Bookkeeping', title: 'Bank reconciliation (1 year)', fee: '4,000', timeline: '5 days' },
-  { category: 'Compliance', title: 'ITR filing — small business', fee: '2,500', timeline: '4 days' },
-  { category: 'Bookkeeping', title: 'Year-end financial statements', fee: '5,000', timeline: '7 days' },
+// The kinds of one-time assignments you can take on. Each is a standalone job
+// with a start date, a deadline, and a fixed payment agreed upfront.
+const assignmentTypes = [
+  { category: 'Bookkeeping', accent: 'purple', title: 'Monthly bookkeeping (1 month)', start: '22 Jun', due: '25 Jun', duration: '3 days', fee: '2,000' },
+  { category: 'Bookkeeping', accent: 'purple', title: 'Accounts payable / receivable', start: '22 Jun', due: '26 Jun', duration: '4 days', fee: '2,500' },
+  { category: 'Bookkeeping', accent: 'purple', title: 'MIS report pack', start: '23 Jun', due: '26 Jun', duration: '3 days', fee: '2,800' },
+  { category: 'Compliance', accent: 'blue', title: 'Payroll processing (1 cycle)', start: '23 Jun', due: '25 Jun', duration: '2 days', fee: '1,800' },
+  { category: 'Compliance', accent: 'blue', title: 'ROC / MCA annual filing', start: '24 Jun', due: '28 Jun', duration: '4 days', fee: '3,000' },
+  { category: 'Compliance', accent: 'blue', title: 'GST returns (2 months)', start: '24 Jun', due: '27 Jun', duration: '3 days', fee: '2,000' },
 ]
 
 const perks = [
@@ -121,105 +106,19 @@ export default function FreelanceTab() {
               <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">What you can take on</p>
               <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">Types of assignments</h2>
               <p className="text-base text-text-secondary mt-2 max-w-2xl">
-                Assignments span the full range of accounting and compliance work. Take the ones that play to your strengths.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Bookkeeping */}
-              <div className="rounded-2xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-brand-purple/20 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 6h16M4 10h16M4 14h10M4 18h10" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-lg font-bold text-text-primary">Bookkeeping &amp; accounts</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {bookkeepingWork.map((w) => (
-                    <span
-                      key={w}
-                      className="text-xs font-medium text-text-secondary bg-white border border-[rgba(96,96,163,0.2)] px-3 py-1.5 rounded-full"
-                    >
-                      {w}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Compliance */}
-              <div className="rounded-2xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-brand-blue/20 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-lg font-bold text-text-primary">Compliance &amp; filings</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {complianceWork.map((w) => (
-                    <span
-                      key={w}
-                      className="text-xs font-medium text-text-secondary bg-white border border-[rgba(96,96,163,0.2)] px-3 py-1.5 rounded-full"
-                    >
-                      {w}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ── Sample assignments ──────────────────────────── */}
-      <ScrollReveal>
-        <section className="py-20 px-5 sm:px-8 bg-surface-secondary">
-          <div className="max-w-[1160px] mx-auto">
-            <div className="mb-10">
-              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Fixed fee &middot; Fixed timeline</p>
-              <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">What an assignment looks like</h2>
-              <p className="text-base text-text-secondary mt-2 max-w-2xl">
-                Every assignment shows its fee and deadline before you accept — so you always know exactly what you&apos;ll earn and by when.
+                Every assignment is a <span className="font-semibold text-text-primary">one-time job</span> — it comes with a
+                start date, a deadline, and a fixed payment agreed upfront. Here are the kinds of work you can pick up.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sampleAssignments.map((a) => (
-                <div
-                  key={a.title}
-                  className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] hover:-translate-y-1 hover:shadow-card-hover transition-all duration-short"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
-                        a.category === 'Bookkeeping'
-                          ? 'bg-brand-purple/20 border-[rgba(96,96,163,0.2)] text-text-primary'
-                          : 'bg-brand-blue/20 border-[rgba(96,96,163,0.2)] text-text-primary'
-                      }`}
-                    >
-                      {a.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-text-muted">
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {a.timeline}
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-base font-semibold text-text-primary mb-4 leading-snug">{a.title}</h3>
-                  <div className="pt-3 border-t border-[rgba(96,96,163,0.2)] flex items-baseline justify-between">
-                    <span className="text-xs font-medium text-text-muted uppercase tracking-wider">Fixed fee</span>
-                    <span className="font-heading text-xl font-extrabold text-text-primary">{'₹'}{a.fee}</span>
-                  </div>
-                </div>
+              {assignmentTypes.map((a) => (
+                <AssignmentExampleCard key={a.title} {...a} />
               ))}
             </div>
 
             <p className="text-xs text-text-muted text-center mt-6">
-              * Sample assignments shown for illustration. Live assignments list their own fee and deadline.
+              * Examples shown for illustration. Live assignments list their own start date, deadline, and fixed payment.
             </p>
           </div>
         </section>
@@ -227,7 +126,7 @@ export default function FreelanceTab() {
 
       {/* ── Why freelance with UpSquad ──────────────────── */}
       <ScrollReveal>
-        <section className="py-20 px-5 sm:px-8 bg-white">
+        <section className="py-20 px-5 sm:px-8 bg-surface-secondary">
           <div className="max-w-[1160px] mx-auto">
             <div className="mb-10">
               <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Why freelance here</p>

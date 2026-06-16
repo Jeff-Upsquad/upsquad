@@ -1,5 +1,6 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
+import AssignmentExampleCard from './AssignmentExampleCard'
 
 const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/creative'
 
@@ -28,31 +29,15 @@ const howItWorks = [
   },
 ]
 
-const designWork = [
-  'Social media creatives',
-  'Posters & flyers',
-  'Logo & brand marks',
-  'Brochures & menus',
-  'Presentation decks',
-  'Thumbnails',
-]
-
-const videoWork = [
-  'Instagram reels & shorts',
-  'YouTube long-form edits',
-  'Promo & ad cuts',
-  'Motion graphics',
-  'Subtitles & captions',
-  'Highlight reels',
-]
-
-const sampleAssignments = [
-  { category: 'Design', title: 'Set of 5 Instagram posts', fee: '1,500', timeline: '3 days' },
-  { category: 'Video', title: '30-sec product promo edit', fee: '2,500', timeline: '4 days' },
-  { category: 'Design', title: 'Logo + brand mark', fee: '4,000', timeline: '5 days' },
-  { category: 'Video', title: 'YouTube edit (10 min)', fee: '3,000', timeline: '3 days' },
-  { category: 'Design', title: 'Festival poster pack', fee: '2,000', timeline: '2 days' },
-  { category: 'Video', title: 'Instagram reels (pack of 3)', fee: '3,500', timeline: '5 days' },
+// The kinds of one-time assignments you can take on. Each is a standalone job
+// with a start date, a deadline, and a fixed payment agreed upfront.
+const assignmentTypes = [
+  { category: 'Design', accent: 'purple', title: 'Social media creative pack (8)', start: '22 Jun', due: '25 Jun', duration: '3 days', fee: '1,800' },
+  { category: 'Design', accent: 'purple', title: 'Brochure / menu design', start: '22 Jun', due: '26 Jun', duration: '4 days', fee: '2,200' },
+  { category: 'Design', accent: 'purple', title: 'Presentation deck (15 slides)', start: '23 Jun', due: '27 Jun', duration: '4 days', fee: '2,800' },
+  { category: 'Video', accent: 'blue', title: 'Instagram reel edit', start: '23 Jun', due: '25 Jun', duration: '2 days', fee: '1,500' },
+  { category: 'Video', accent: 'blue', title: 'YouTube long-form edit', start: '24 Jun', due: '27 Jun', duration: '3 days', fee: '3,000' },
+  { category: 'Video', accent: 'blue', title: 'Promo / ad cut (30s)', start: '24 Jun', due: '28 Jun', duration: '4 days', fee: '2,500' },
 ]
 
 const perks = [
@@ -120,105 +105,19 @@ export default function FreelanceTab() {
               <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">What you can take on</p>
               <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">Types of assignments</h2>
               <p className="text-base text-text-secondary mt-2 max-w-2xl">
-                Assignments span the full range of creative work. Take the ones that play to your strengths.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {/* Design */}
-              <div className="rounded-2xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-brand-purple/20 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h12a2 2 0 012 2v12a4 4 0 01-4 4H7zM7 21v-4a2 2 0 012-2h2M15 7h.01M15 11h.01" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-lg font-bold text-text-primary">Design</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {designWork.map((w) => (
-                    <span
-                      key={w}
-                      className="text-xs font-medium text-text-secondary bg-white border border-[rgba(96,96,163,0.2)] px-3 py-1.5 rounded-full"
-                    >
-                      {w}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Video */}
-              <div className="rounded-2xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-7">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-brand-blue/20 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading text-lg font-bold text-text-primary">Video editing</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {videoWork.map((w) => (
-                    <span
-                      key={w}
-                      className="text-xs font-medium text-text-secondary bg-white border border-[rgba(96,96,163,0.2)] px-3 py-1.5 rounded-full"
-                    >
-                      {w}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ── Sample assignments ──────────────────────────── */}
-      <ScrollReveal>
-        <section className="py-20 px-5 sm:px-8 bg-surface-secondary">
-          <div className="max-w-[1160px] mx-auto">
-            <div className="mb-10">
-              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Fixed fee &middot; Fixed timeline</p>
-              <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">What an assignment looks like</h2>
-              <p className="text-base text-text-secondary mt-2 max-w-2xl">
-                Every assignment shows its payment and deadline before you accept — so you always know exactly what you&apos;ll earn and by when.
+                Every assignment is a <span className="font-semibold text-text-primary">one-time job</span> — it comes with a
+                start date, a deadline, and a fixed payment agreed upfront. Here are the kinds of work you can pick up.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sampleAssignments.map((a) => (
-                <div
-                  key={a.title}
-                  className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] hover:-translate-y-1 hover:shadow-card-hover transition-all duration-short"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
-                        a.category === 'Design'
-                          ? 'bg-brand-purple/20 border-[rgba(96,96,163,0.2)] text-text-primary'
-                          : 'bg-brand-blue/20 border-[rgba(96,96,163,0.2)] text-text-primary'
-                      }`}
-                    >
-                      {a.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-text-muted">
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {a.timeline}
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-base font-semibold text-text-primary mb-4 leading-snug">{a.title}</h3>
-                  <div className="pt-3 border-t border-[rgba(96,96,163,0.2)] flex items-baseline justify-between">
-                    <span className="text-xs font-medium text-text-muted uppercase tracking-wider">Fixed fee</span>
-                    <span className="font-heading text-xl font-extrabold text-text-primary">{'₹'}{a.fee}</span>
-                  </div>
-                </div>
+              {assignmentTypes.map((a) => (
+                <AssignmentExampleCard key={a.title} {...a} />
               ))}
             </div>
 
             <p className="text-xs text-text-muted text-center mt-6">
-              * Sample assignments shown for illustration. Live assignments list their own fee and deadline.
+              * Examples shown for illustration. Live assignments list their own start date, deadline, and fixed payment.
             </p>
           </div>
         </section>
@@ -226,7 +125,7 @@ export default function FreelanceTab() {
 
       {/* ── Why freelance with UpSquad ──────────────────── */}
       <ScrollReveal>
-        <section className="py-20 px-5 sm:px-8 bg-white">
+        <section className="py-20 px-5 sm:px-8 bg-surface-secondary">
           <div className="max-w-[1160px] mx-auto">
             <div className="mb-10">
               <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Why freelance here</p>
