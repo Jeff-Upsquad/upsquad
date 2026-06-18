@@ -1,10 +1,12 @@
 "use client"
+import { useState } from 'react'
 import ScrollReveal from '../ScrollReveal'
 import { benefits } from '../../data/pricing'
 import { BenefitIcon } from '../pricing/icons'
 import WhatYouCanRequest from '../pricing/WhatYouCanRequest'
 import WorkingHours from '../pricing/WorkingHours'
 import ImportantNote from '../pricing/ImportantNote'
+import PlansModal from './PlansModal'
 
 // Where the creative (designer / video editor) "Client Brief" form lives
 // (squadhub web app). Mirrors the accountant page, which links to /connect/accountant.
@@ -32,6 +34,8 @@ const steps = [
 ]
 
 export default function CreativeSubscription() {
+  const [plansOpen, setPlansOpen] = useState(false)
+
   return (
     <>
       {/* What is a creative subscription */}
@@ -53,6 +57,25 @@ export default function CreativeSubscription() {
               budget, send your requests, and get steady, on-brand content every week — graphics,
               branding, social, and video edits.
             </p>
+
+            {/* Primary actions: build the subscription, or preview the plans */}
+            <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
+              <a
+                href={BUILD_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gradient text-sm font-semibold px-7 py-3.5 text-center"
+              >
+                Build my subscription &rarr;
+              </a>
+              <button
+                type="button"
+                onClick={() => setPlansOpen(true)}
+                className="btn-secondary text-sm font-semibold px-7 py-3.5"
+              >
+                Show plans
+              </button>
+            </div>
           </ScrollReveal>
 
           {/* How it works */}
@@ -144,6 +167,8 @@ export default function CreativeSubscription() {
           </ScrollReveal>
         </div>
       </section>
+
+      <PlansModal open={plansOpen} onClose={() => setPlansOpen(false)} buildUrl={BUILD_FORM_URL} />
     </>
   )
 }

@@ -49,7 +49,7 @@ const featureRows = [
   },
 ]
 
-export default function AvailabilityTable({ selectedPlan, onSelectPlan }) {
+export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta = true }) {
   const gridClass = 'grid-cols-[180px_repeat(5,1fr)]'
 
   return (
@@ -128,34 +128,53 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan }) {
           </div>
         ))}
 
-        {/* CTA Row */}
-        <div className={`grid ${gridClass} gap-0`}>
-          <div />
-          {availabilityPlans.map((plan) => {
-            const isSelected = selectedPlan === plan.id
-            return (
+        {/* CTA Row — hidden in read-only contexts (e.g. the "Show plans" popup) */}
+        {showCta && (
+          <div className={`grid ${gridClass} gap-0`}>
+            <div />
+            {availabilityPlans.map((plan) => {
+              const isSelected = selectedPlan === plan.id
+              return (
+                <div
+                  key={plan.id + '-cta'}
+                  className={`flex justify-center px-3 pt-4 pb-4 ${
+                    plan.highlighted
+                      ? 'bg-brand-purple/5 border-l-2 border-r-2 border-b-2 border-brand-purple rounded-b-xl'
+                      : ''
+                  }`}
+                >
+                  <button
+                    onClick={() => onSelectPlan(plan.id)}
+                    className={`px-5 py-2.5 text-sm transition-all ${
+                      isSelected
+                        ? 'btn-gradient font-bold'
+                        : 'btn-secondary font-medium'
+                    }`}
+                  >
+                    {isSelected ? 'Selected ✓' : 'Select Plan'}
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
+        {/* The bottom border of the highlighted column when the CTA row is hidden */}
+        {!showCta && (
+          <div className={`grid ${gridClass} gap-0`}>
+            <div />
+            {availabilityPlans.map((plan) => (
               <div
-                key={plan.id + '-cta'}
-                className={`flex justify-center px-3 pt-4 pb-4 ${
+                key={plan.id + '-foot'}
+                className={`pb-1 ${
                   plan.highlighted
                     ? 'bg-brand-purple/5 border-l-2 border-r-2 border-b-2 border-brand-purple rounded-b-xl'
                     : ''
                 }`}
-              >
-                <button
-                  onClick={() => onSelectPlan(plan.id)}
-                  className={`px-5 py-2.5 text-sm transition-all ${
-                    isSelected
-                      ? 'btn-gradient font-bold'
-                      : 'btn-secondary font-medium'
-                  }`}
-                >
-                  {isSelected ? 'Selected ✓' : 'Select Plan'}
-                </button>
-              </div>
-            )
-          })}
-        </div>
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
