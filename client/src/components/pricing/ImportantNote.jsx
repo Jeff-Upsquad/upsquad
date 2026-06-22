@@ -11,7 +11,7 @@ export default function ImportantNote() {
       </p>
 
       <div className="grid md:grid-cols-2 gap-6 mb-6">
-        <div className="border border-[rgba(96,96,163,0.2)] rounded-xl p-6 bg-white">
+        <div className="border border-[rgba(0,0,0,0.08)] rounded-xl p-6 bg-white">
           <div className="flex items-center gap-2 mb-3">
             <svg className="w-5 h-5 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
@@ -45,7 +45,7 @@ export default function ImportantNote() {
         </div>
       </div>
 
-      <div className="border border-[rgba(96,96,163,0.2)] rounded-xl p-5 bg-white">
+      <div className="border border-[rgba(0,0,0,0.08)] rounded-xl p-5 bg-white">
         <p className="text-sm text-text-secondary">
           We focus on delivering content that <strong>represents your brand beautifully</strong>, not on delivering high
           volumes at the expense of quality.

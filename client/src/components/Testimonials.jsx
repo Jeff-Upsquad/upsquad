@@ -42,7 +42,7 @@ export default function Testimonials() {
     <section id="testimonials" className="py-[60px] lg:py-[120px] px-5 sm:px-8 bg-white">
       <div className="max-w-[1160px] mx-auto">
         <ScrollReveal>
-          <div className="mb-14 pb-14 border-b border-[rgba(96,96,163,0.15)]">
+          <div className="mb-14 pb-14 border-b border-[rgba(0,0,0,0.06)]">
             <span className="inline-block w-8 h-1 rounded-full bg-gradient-to-r from-brand-pink to-brand-purple mb-3" />
             <p className="font-mono text-[11px] font-medium text-text-secondary uppercase tracking-[0.14em] mb-4">Our Vision</p>
             <p className="text-xl sm:text-2xl font-medium text-text-primary leading-relaxed max-w-3xl">
@@ -63,7 +63,7 @@ export default function Testimonials() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map((t, i) => (
               <ScrollReveal key={t.name} delay={i * 0.1}>
-                <div className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] shadow-sm hover:shadow-card-hover transition-all duration-short flex flex-col h-full">
+                <div className="bg-white rounded-xl p-6 border border-[rgba(0,0,0,0.08)] shadow-sm hover:shadow-card-hover transition-all duration-short flex flex-col h-full">
                   <Stars />
                   <blockquote className="text-sm text-text-secondary leading-relaxed flex-1 mb-6">
                     &ldquo;{t.quote}&rdquo;

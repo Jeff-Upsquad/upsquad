@@ -39,7 +39,7 @@ export default function OtherPricingDropdown({ options, activeType, onSelect }) 
         </svg>
       </button>
       {open && (
-        <div role="menu" className="absolute z-40 right-0 mt-2 w-60 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl shadow-lg overflow-hidden">
+        <div role="menu" className="absolute z-40 right-0 mt-2 w-60 bg-white border border-[rgba(0,0,0,0.08)] rounded-xl shadow-lg overflow-hidden">
           {options.map((opt) => (
             <button
               key={opt}

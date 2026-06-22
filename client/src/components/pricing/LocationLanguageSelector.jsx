@@ -51,7 +51,7 @@ export default function LocationLanguageSelector({
                   aria-pressed={isActive}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border-2 ${
                     isActive
-                      ? 'bg-brand-purple text-text-primary border-text-primary shadow-brutal-sm'
+                      ? 'bg-brand-purple text-white border-text-primary shadow-brutal-sm'
                       : 'bg-white text-text-secondary border-text-primary/30 hover:border-text-primary hover:text-text-primary'
                   }`}
                 >

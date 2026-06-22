@@ -21,7 +21,7 @@ export default function WhatYouCanRequest() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all border ${
               activeTab === tab
                 ? 'border-brand-purple bg-white text-text-primary'
-                : 'border-[rgba(96,96,163,0.2)] text-text-secondary hover:border-brand-purple/40'
+                : 'border-[rgba(0,0,0,0.08)] text-text-secondary hover:border-brand-purple/40'
             }`}
           >
             {tab}
@@ -34,8 +34,8 @@ export default function WhatYouCanRequest() {
             key={s.title}
             className={`border rounded-xl p-5 transition-all ${
               s.launchingSoon
-                ? 'bg-surface-secondary border-[rgba(96,96,163,0.2)]'
-                : 'bg-white border-[rgba(96,96,163,0.2)] hover:border-brand-purple/40'
+                ? 'bg-surface-secondary border-[rgba(0,0,0,0.08)]'
+                : 'bg-white border-[rgba(0,0,0,0.08)] hover:border-brand-purple/40'
             }`}
           >
             <div className="flex items-start justify-between gap-3">

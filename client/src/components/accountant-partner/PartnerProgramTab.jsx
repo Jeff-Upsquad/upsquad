@@ -225,7 +225,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                       key={item.title}
                       className="relative bg-brand-purple/5 rounded-xl p-5 border border-brand-purple/20 hover:-translate-y-0.5 transition-transform duration-200"
                     >
-                      <div className="w-9 h-9 rounded-lg bg-white border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center shadow-sm mb-3">
+                      <div className="w-9 h-9 rounded-lg bg-white border border-[rgba(0,0,0,0.08)] text-text-primary flex items-center justify-center shadow-sm mb-3">
                         {item.icon}
                       </div>
                       <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
@@ -260,9 +260,9 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   {upsquadHandles.map((item) => (
                     <div
                       key={item.title}
-                      className="bg-white rounded-xl p-5 border border-[rgba(96,96,163,0.2)] hover:-translate-y-0.5 transition-transform duration-200"
+                      className="bg-white rounded-xl p-5 border border-[rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-transform duration-200"
                     >
-                      <div className="w-9 h-9 rounded-lg bg-surface-secondary border border-[rgba(96,96,163,0.2)] text-text-secondary flex items-center justify-center shadow-sm mb-3">
+                      <div className="w-9 h-9 rounded-lg bg-surface-secondary border border-[rgba(0,0,0,0.08)] text-text-secondary flex items-center justify-center shadow-sm mb-3">
                         {item.icon}
                       </div>
                       <h4 className="font-heading text-sm font-semibold text-text-primary mb-1">{item.title}</h4>
@@ -293,7 +293,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
               {/* Partner Program */}
               <div className="rounded-2xl border-2 border-brand-purple bg-brand-purple/5 p-7">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-brand-purple text-text-primary border-2 border-text-primary shadow-brutal-sm">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-brand-purple text-white border-2 border-text-primary shadow-brutal-sm">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -306,7 +306,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                 <ul className="space-y-3.5">
                   {partnerVsFreelance.partner.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span className="inline-flex w-6 h-6 rounded-full bg-brand-purple border border-text-primary items-center justify-center shrink-0 mt-0.5">
+                      <span className="inline-flex w-6 h-6 rounded-full bg-brand-purple text-white border border-text-primary items-center justify-center shrink-0 mt-0.5">
                         <svg className="w-3.5 h-3.5 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
@@ -318,9 +318,9 @@ export default function PartnerProgramTab({ onSwitchTab }) {
               </div>
 
               {/* Freelance */}
-              <div className="rounded-2xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-7 flex flex-col">
+              <div className="rounded-2xl border border-[rgba(0,0,0,0.08)] bg-surface-secondary p-7 flex flex-col">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white text-text-primary border border-[rgba(96,96,163,0.2)]">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white text-text-primary border border-[rgba(0,0,0,0.08)]">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
@@ -333,7 +333,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                 <ul className="space-y-3.5 flex-1">
                   {partnerVsFreelance.freelance.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span className="inline-flex w-6 h-6 rounded-full bg-white border border-[rgba(96,96,163,0.2)] items-center justify-center shrink-0 mt-0.5">
+                      <span className="inline-flex w-6 h-6 rounded-full bg-white border border-[rgba(0,0,0,0.08)] items-center justify-center shrink-0 mt-0.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
                       </span>
                       <p className="text-sm text-text-secondary leading-snug">{item}</p>
@@ -372,9 +372,9 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   {i < gettingStartedSteps.length - 1 && (
                     <div className="hidden md:block absolute top-10 left-[calc(100%+2px)] w-[calc(100%-60px)] h-px bg-gray-300/60 -translate-x-1/2 z-0" />
                   )}
-                  <div className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] relative z-10">
+                  <div className="bg-white rounded-xl p-6 border border-[rgba(0,0,0,0.08)] relative z-10">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-7 h-7 rounded-lg bg-brand-purple text-text-primary text-xs font-bold flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-lg bg-brand-purple text-white text-xs font-bold flex items-center justify-center">
                         {step.number}
                       </div>
                       <span className="text-xs font-medium text-text-muted">Step {step.number}</span>
@@ -403,7 +403,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {/* Junior */}
-              <div className="rounded-xl p-6 border border-[rgba(96,96,163,0.2)] bg-surface-secondary hover:-translate-y-0.5 transition-transform duration-200">
+              <div className="rounded-xl p-6 border border-[rgba(0,0,0,0.08)] bg-surface-secondary hover:-translate-y-0.5 transition-transform duration-200">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-brand-blue/10 border border-brand-blue/20 text-brand-blue flex items-center justify-center">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -454,7 +454,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
               </div>
 
               {/* Top Talents */}
-              <div className="rounded-xl p-6 border border-[rgba(96,96,163,0.2)] bg-surface-secondary hover:-translate-y-0.5 transition-transform duration-200">
+              <div className="rounded-xl p-6 border border-[rgba(0,0,0,0.08)] bg-surface-secondary hover:-translate-y-0.5 transition-transform duration-200">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-brand-orange/10 border border-brand-orange/20 text-brand-orange flex items-center justify-center">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -480,7 +480,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
 
             {/* Custom Pricing Option */}
             <div className="mt-8 rounded-xl border border-dashed border-brand-purple/30 bg-white p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-brand-purple/10 border border-[rgba(96,96,163,0.2)] text-text-secondary flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-brand-purple/10 border border-[rgba(0,0,0,0.08)] text-text-secondary flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
@@ -495,7 +495,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                 href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('I want to discuss a custom accountant partner plan')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 text-sm font-medium text-text-primary border border-[rgba(96,96,163,0.2)] hover:border-gray-300 bg-white hover:bg-surface-secondary px-4 py-2 rounded-lg transition-all"
+                className="shrink-0 text-sm font-medium text-text-primary border border-[rgba(0,0,0,0.08)] hover:border-gray-300 bg-white hover:bg-surface-secondary px-4 py-2 rounded-lg transition-all"
               >
                 Let&apos;s talk
               </a>
@@ -523,7 +523,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   className={`rounded-xl p-6 border transition-all duration-200 hover:-translate-y-1 hover:shadow-lg relative ${
                     plan.highlighted
                       ? 'bg-brand-purple/5 border-brand-purple border-2'
-                      : 'bg-surface-secondary border-[rgba(96,96,163,0.2)]'
+                      : 'bg-surface-secondary border-[rgba(0,0,0,0.08)]'
                   }`}
                 >
                   {plan.badge && (
@@ -558,7 +558,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   </div>
 
                   {/* Payment */}
-                  <div className="pt-3 border-t border-[rgba(96,96,163,0.2)]">
+                  <div className="pt-3 border-t border-[rgba(0,0,0,0.08)]">
                     <div className="flex items-center gap-2 mb-1">
                       <svg className="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

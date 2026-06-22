@@ -155,7 +155,7 @@ export default function PartnerProgram() {
                   type="button"
                   onClick={() => setGateOpen(true)}
                   aria-label="Change language"
-                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-[rgba(96,96,163,0.2)] rounded-full px-3 py-1.5 hover:border-gray-300 bg-white"
+                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-[rgba(0,0,0,0.08)] rounded-full px-3 py-1.5 hover:border-gray-300 bg-white"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3 7.5 7.03 7.5 12s2.015 9 4.5 9zM3.6 9h16.8M3.6 15h16.8" />
@@ -181,7 +181,7 @@ export default function PartnerProgram() {
       {/* ── Tab switcher (sticky under the navbar) ──────── */}
       <div
         ref={tabsRef}
-        className="sticky top-14 z-40 border-y border-[rgba(96,96,163,0.2)] bg-[#F7F6F3]/95 backdrop-blur-md"
+        className="sticky top-16 z-40 border-y border-[rgba(0,0,0,0.08)] bg-white/90 backdrop-blur-md"
       >
         <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-3 flex items-center justify-center lg:justify-between gap-4">
           <span className="hidden lg:block text-sm text-text-secondary">
@@ -202,7 +202,7 @@ export default function PartnerProgram() {
                   aria-selected={active}
                   onClick={() => goToTab(t.id)}
                   className={`whitespace-nowrap px-4 sm:px-7 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-short ${
-                    active ? 'bg-brand-purple text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                    active ? 'bg-brand-purple text-white' : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
                   {t.label}

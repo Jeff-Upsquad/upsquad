@@ -23,7 +23,7 @@ export default function JobCard({ position }) {
   }
 
   return (
-    <article className="bg-white border border-[rgba(96,96,163,0.2)] rounded-xl p-8 shadow-sm hover:shadow-card-hover transition-all duration-short">
+    <article className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-8 shadow-sm hover:shadow-card-hover transition-all duration-short">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="flex-1">
           <h2 className="font-heading text-xl font-semibold text-text-primary">{position.title}</h2>
@@ -59,9 +59,9 @@ export default function JobCard({ position }) {
       <p className="text-sm text-text-secondary leading-relaxed mt-4">{position.description}</p>
 
       {submitted && (
-        <div className="mt-6 pt-6 border-t border-[rgba(96,96,163,0.2)]">
+        <div className="mt-6 pt-6 border-t border-[rgba(0,0,0,0.08)]">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 bg-brand-purple rounded-full flex items-center justify-center shrink-0 border-2 border-text-primary">
+            <div className="w-10 h-10 bg-brand-purple text-white rounded-full flex items-center justify-center shrink-0 border-2 border-text-primary">
               <svg className="w-5 h-5 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>

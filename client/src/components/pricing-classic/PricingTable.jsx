@@ -22,12 +22,12 @@ export default function PricingTable({ isYearly, activeSubtier }) {
               key={plan.name}
               className={`text-center px-3 pt-6 pb-4 relative ${
                 plan.highlighted
-                  ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl'
+                  ? 'bg-black/[0.04]/50 border-t-2 border-l-2 border-r-2 border-[#0A0A0A] rounded-t-xl'
                   : ''
               }`}
             >
               {plan.badge && (
-                <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+                <span className="inline-block bg-[#0A0A0A] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
                   {plan.badge}
                 </span>
               )}
@@ -46,7 +46,7 @@ export default function PricingTable({ isYearly, activeSubtier }) {
             <div
               key={plan.name + '-price'}
               className={`flex flex-col items-center justify-center py-4 ${
-                plan.highlighted ? 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500' : ''
+                plan.highlighted ? 'bg-black/[0.04]/50 border-l-2 border-r-2 border-[#0A0A0A]' : ''
               }`}
             >
               <span className="text-2xl font-bold text-slate-900">
@@ -79,8 +79,8 @@ export default function PricingTable({ isYearly, activeSubtier }) {
                   className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
                     plan.highlighted
                       ? rowIdx === featureRows.length - 1
-                        ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
-                        : 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500'
+                        ? 'bg-black/[0.04]/50 border-l-2 border-r-2 border-b-2 border-[#0A0A0A] rounded-b-xl'
+                        : 'bg-black/[0.04]/50 border-l-2 border-r-2 border-[#0A0A0A]'
                       : ''
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function PricingTable({ isYearly, activeSubtier }) {
               <button
                 className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
                   plan.ctaStyle === 'highlighted'
-                    ? 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                    ? 'bg-[#0A0A0A] hover:bg-black text-white'
                     : plan.ctaStyle === 'dark'
                     ? 'bg-gray-900 hover:bg-gray-700 text-white'
                     : 'bg-gray-900 hover:bg-gray-700 text-white'

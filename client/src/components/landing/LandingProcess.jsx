@@ -50,9 +50,9 @@ export default function LandingProcess() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, i) => (
             <ScrollReveal key={step.number} delay={i * 0.1}>
-              <div className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short h-full">
+              <div className="bg-white rounded-xl p-6 border border-[rgba(0,0,0,0.08)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short h-full">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="inline-flex items-center justify-center w-8 h-8 shrink-0 rounded-full bg-brand-purple text-text-primary text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
+                  <span className="inline-flex items-center justify-center w-8 h-8 shrink-0 rounded-full bg-brand-purple text-white text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
                     {step.number}
                   </span>
                   <span className="text-xs font-medium text-text-secondary">Step {step.step}</span>
@@ -65,7 +65,7 @@ export default function LandingProcess() {
         </div>
 
         <ScrollReveal delay={0.3}>
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-xl border border-[rgba(96,96,163,0.2)] shadow-sm px-6 py-3.5">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-xl border border-[rgba(0,0,0,0.08)] shadow-sm px-6 py-3.5">
             <p className="text-sm text-text-secondary">
               Build your own plan below, or let us build one for you.
             </p>

@@ -115,7 +115,7 @@ export default function SalesPartnerProgram() {
       {/* ── Tab switcher (sticky under the navbar) ──────── */}
       <div
         ref={tabsRef}
-        className="sticky top-14 z-40 border-y border-[rgba(96,96,163,0.2)] bg-[#F7F6F3]/95 backdrop-blur-md"
+        className="sticky top-16 z-40 border-y border-[rgba(0,0,0,0.08)] bg-white/90 backdrop-blur-md"
       >
         <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-3 flex items-center justify-center lg:justify-between gap-4">
           <span className="hidden lg:block text-sm text-text-secondary">
@@ -136,7 +136,7 @@ export default function SalesPartnerProgram() {
                   aria-selected={active}
                   onClick={() => goToTab(t.id)}
                   className={`whitespace-nowrap px-4 sm:px-7 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-short ${
-                    active ? 'bg-brand-purple text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                    active ? 'bg-brand-purple text-white' : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
                   {t.label}

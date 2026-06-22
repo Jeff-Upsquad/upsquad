@@ -49,7 +49,7 @@ export default function WhatYouCanRequest() {
                 </div>
               </div>
               {s.launchingSoon && (
-                <span className="flex-shrink-0 text-[10px] font-medium text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">
+                <span className="flex-shrink-0 text-[10px] font-medium text-text-primary bg-black/[0.06] px-2.5 py-1 rounded-full">
                   Launching Soon
                 </span>
               )}

@@ -34,7 +34,7 @@ const features = [
 
 function Check() {
   return (
-    <span className="inline-flex w-5 h-5 rounded-full bg-brand-purple border border-text-primary items-center justify-center">
+    <span className="inline-flex w-5 h-5 rounded-full bg-brand-purple text-white border border-text-primary items-center justify-center">
       <svg className="w-3 h-3 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
       </svg>
@@ -83,7 +83,7 @@ export default function CreativeHiring() {
             {steps.map((s) => (
               <div
                 key={s.n}
-                className="rounded-xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-5"
+                className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-surface-secondary p-5"
               >
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-text-primary text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
                   {s.n}
@@ -109,7 +109,7 @@ export default function CreativeHiring() {
                 </h3>
               </div>
 
-              <div className="px-2 sm:px-6 pt-7 sm:pt-8 pb-4 sm:pb-6 border-l border-[rgba(96,96,163,0.15)] text-center">
+              <div className="px-2 sm:px-6 pt-7 sm:pt-8 pb-4 sm:pb-6 border-l border-[rgba(0,0,0,0.06)] text-center">
                 <div className="font-heading text-base sm:text-lg font-extrabold text-text-primary">Basic</div>
                 <div className="mt-2 font-heading text-lg sm:text-3xl font-extrabold text-text-primary leading-none whitespace-nowrap">
                   {PRICING.basic.amount}
@@ -117,7 +117,7 @@ export default function CreativeHiring() {
                 <div className="text-[10px] sm:text-[11px] text-text-muted mt-1">{PRICING.basic.unit}</div>
               </div>
 
-              <div className="relative px-2 sm:px-6 pt-7 sm:pt-8 pb-4 sm:pb-6 border-l border-[rgba(96,96,163,0.15)] bg-brand-purple/10 text-center">
+              <div className="relative px-2 sm:px-6 pt-7 sm:pt-8 pb-4 sm:pb-6 border-l border-[rgba(0,0,0,0.06)] bg-brand-purple/10 text-center">
                 <span className="absolute top-1.5 left-1/2 -translate-x-1/2 ticker-tag text-[9px] sm:text-[10px] font-bold uppercase tracking-normal sm:tracking-wide px-2 py-0.5 rounded-full whitespace-nowrap">
                   <span className="sm:hidden">Popular</span>
                   <span className="hidden sm:inline">Most popular</span>
@@ -132,23 +132,23 @@ export default function CreativeHiring() {
               {/* Feature rows */}
               {features.map((f) => (
                 <Fragment key={f.label}>
-                  <div className="px-4 sm:px-6 py-3.5 border-t border-[rgba(96,96,163,0.15)] text-xs sm:text-sm text-text-secondary font-medium flex items-center">
+                  <div className="px-4 sm:px-6 py-3.5 border-t border-[rgba(0,0,0,0.06)] text-xs sm:text-sm text-text-secondary font-medium flex items-center">
                     {f.label}
                   </div>
-                  <div className="px-2 sm:px-6 py-3.5 border-t border-l border-[rgba(96,96,163,0.15)] flex items-center justify-center text-center">
+                  <div className="px-2 sm:px-6 py-3.5 border-t border-l border-[rgba(0,0,0,0.06)] flex items-center justify-center text-center">
                     <Cell v={f.basic} />
                   </div>
-                  <div className="px-2 sm:px-6 py-3.5 border-t border-l border-[rgba(96,96,163,0.15)] bg-brand-purple/10 flex items-center justify-center text-center">
+                  <div className="px-2 sm:px-6 py-3.5 border-t border-l border-[rgba(0,0,0,0.06)] bg-brand-purple/10 flex items-center justify-center text-center">
                     <Cell v={f.plus} />
                   </div>
                 </Fragment>
               ))}
 
               {/* CTA row */}
-              <div className="flex px-2 sm:px-6 py-4 sm:py-5 border-t border-[rgba(96,96,163,0.15)] items-center">
+              <div className="flex px-2 sm:px-6 py-4 sm:py-5 border-t border-[rgba(0,0,0,0.06)] items-center">
                 <span className="hidden sm:inline text-xs text-text-muted">Onboard directly into your team.</span>
               </div>
-              <div className="px-2 sm:px-6 py-4 sm:py-5 border-t border-l border-[rgba(96,96,163,0.15)] flex items-center justify-center">
+              <div className="px-2 sm:px-6 py-4 sm:py-5 border-t border-l border-[rgba(0,0,0,0.06)] flex items-center justify-center">
                 <a
                   href={waLink('Basic')}
                   target="_blank"
@@ -159,7 +159,7 @@ export default function CreativeHiring() {
                   Choose<span className="hidden sm:inline">&nbsp;Basic</span>
                 </a>
               </div>
-              <div className="px-2 sm:px-6 py-4 sm:py-5 border-t border-l border-[rgba(96,96,163,0.15)] bg-brand-purple/10 flex items-center justify-center">
+              <div className="px-2 sm:px-6 py-4 sm:py-5 border-t border-l border-[rgba(0,0,0,0.06)] bg-brand-purple/10 flex items-center justify-center">
                 <a
                   href={waLink('Plus')}
                   target="_blank"

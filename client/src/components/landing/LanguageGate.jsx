@@ -49,7 +49,7 @@ export default function LanguageGate({ open, languages, onSelect, onDismiss }) {
         ref={panelRef}
         className="w-full max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden"
       >
-        <div className="px-6 pt-6 pb-4 border-b border-[rgba(96,96,163,0.2)]">
+        <div className="px-6 pt-6 pb-4 border-b border-[rgba(0,0,0,0.08)]">
           <h2 id="language-gate-title" className="font-heading text-lg font-bold text-text-primary">
             Choose your language
           </h2>
@@ -71,7 +71,7 @@ export default function LanguageGate({ open, languages, onSelect, onDismiss }) {
             </li>
           ))}
         </ul>
-        <div className="px-6 py-3 border-t border-[rgba(96,96,163,0.2)] text-right">
+        <div className="px-6 py-3 border-t border-[rgba(0,0,0,0.08)] text-right">
           <button
             type="button"
             onClick={onDismiss}

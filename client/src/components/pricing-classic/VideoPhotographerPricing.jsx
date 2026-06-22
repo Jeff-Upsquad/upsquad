@@ -18,8 +18,8 @@ function VideographerTable() {
         <div className="grid grid-cols-[160px_repeat(5,1fr)]">
           <div />
           {videographerPlans.map((p) => (
-            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl' : ''}`}>
-              {p.badge && <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
+            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-black/[0.04]/50 border-t-2 border-l-2 border-r-2 border-[#0A0A0A] rounded-t-xl' : ''}`}>
+              {p.badge && <span className="inline-block bg-[#0A0A0A] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
               <h3 className="font-heading font-semibold text-slate-900 text-sm">{p.name}</h3>
             </div>
           ))}
@@ -33,8 +33,8 @@ function VideographerTable() {
               <div key={p.name + row.key} className={`flex items-center justify-center py-4 px-2 text-center text-xs ${
                 p.highlighted
                   ? rowIdx === rows.length - 1
-                    ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
-                    : 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500'
+                    ? 'bg-black/[0.04]/50 border-l-2 border-r-2 border-b-2 border-[#0A0A0A] rounded-b-xl'
+                    : 'bg-black/[0.04]/50 border-l-2 border-r-2 border-[#0A0A0A]'
                   : ''
               }`}>
                 {row.key === 'preShooting' && p[row.key] === null
@@ -49,7 +49,7 @@ function VideographerTable() {
           <div />
           {videographerPlans.map((p) => (
             <div key={p.name + '-cta'} className="flex justify-center px-3">
-              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
+              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-[#0A0A0A] hover:bg-black text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
                 {p.name === 'Personal' ? 'Contact Sales' : 'Get Started'}
               </button>
             </div>
@@ -67,8 +67,8 @@ function PresentationTable() {
         <div className="grid grid-cols-[160px_repeat(4,1fr)]">
           <div />
           {presentationPlans.map((p) => (
-            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-emerald-50/50 border-t-2 border-l-2 border-r-2 border-emerald-500 rounded-t-xl' : ''}`}>
-              {p.badge && <span className="inline-block bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
+            <div key={p.name} className={`text-center px-3 pt-6 pb-4 ${p.highlighted ? 'bg-black/[0.04]/50 border-t-2 border-l-2 border-r-2 border-[#0A0A0A] rounded-t-xl' : ''}`}>
+              {p.badge && <span className="inline-block bg-[#0A0A0A] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">{p.badge}</span>}
               <h3 className="font-heading font-semibold text-slate-900 text-sm">{p.name}</h3>
             </div>
           ))}
@@ -76,7 +76,7 @@ function PresentationTable() {
         <div className="grid grid-cols-[160px_repeat(4,1fr)] border-t border-gray-200">
           <div className="flex items-center px-4 py-4"><span className="text-sm font-medium text-slate-700">Monthly Price</span></div>
           {presentationPlans.map((p) => (
-            <div key={p.name + '-price'} className={`flex flex-col items-center justify-center py-4 ${p.highlighted ? 'bg-emerald-50/50 border-l-2 border-r-2 border-emerald-500' : ''}`}>
+            <div key={p.name + '-price'} className={`flex flex-col items-center justify-center py-4 ${p.highlighted ? 'bg-black/[0.04]/50 border-l-2 border-r-2 border-[#0A0A0A]' : ''}`}>
               <span className="text-2xl font-bold text-slate-900">₹{formatPrice(p.monthlyPrice)}</span>
               <span className="text-xs text-slate-400">/month</span>
             </div>
@@ -87,7 +87,7 @@ function PresentationTable() {
           {presentationPlans.map((p) => (
             <div key={p.name + '-videos'} className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
               p.highlighted
-                ? 'bg-emerald-50/50 border-l-2 border-r-2 border-b-2 border-emerald-500 rounded-b-xl'
+                ? 'bg-black/[0.04]/50 border-l-2 border-r-2 border-b-2 border-[#0A0A0A] rounded-b-xl'
                 : ''
             }`}>
               <span className="text-sm font-semibold text-slate-900">{p.videos}</span>
@@ -99,7 +99,7 @@ function PresentationTable() {
           <div />
           {presentationPlans.map((p) => (
             <div key={p.name + '-cta'} className="flex justify-center px-3">
-              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-emerald-500 hover:bg-emerald-600 text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
+              <button className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${p.highlighted ? 'bg-[#0A0A0A] hover:bg-black text-white' : 'bg-gray-900 hover:bg-gray-700 text-white'}`}>
                 Get Started
               </button>
             </div>

@@ -21,7 +21,7 @@ export function InfoTooltip({ text }) {
         <circle cx="12" cy="12" r="10" />
         <path d="M12 16v-4M12 8h.01" />
       </svg>
-      <div className="hidden group-hover/tip:block absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl shadow-lg p-4 text-xs text-text-secondary leading-relaxed text-center">
+      <div className="hidden group-hover/tip:block absolute z-50 left-0 top-full mt-2 w-64 bg-white border border-[rgba(0,0,0,0.08)] rounded-xl shadow-lg p-4 text-xs text-text-secondary leading-relaxed text-center">
         {text}
       </div>
     </span>

@@ -105,7 +105,7 @@ export default function JobsTab() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {howItWorks.map((step, i) => (
                   <ScrollReveal key={step.number} delay={i * 0.08}>
-                    <div className="bg-surface-secondary rounded-xl p-6 border border-[rgba(96,96,163,0.2)] h-full">
+                    <div className="bg-surface-secondary rounded-xl p-6 border border-[rgba(0,0,0,0.08)] h-full">
                       <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white text-text-primary text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
                         {step.number}
                       </span>
@@ -138,7 +138,7 @@ export default function JobsTab() {
               {sampleOpenings.map((job) => (
                 <div
                   key={job.role}
-                  className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short flex flex-col"
+                  className="bg-white rounded-xl p-6 border border-[rgba(0,0,0,0.08)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short flex flex-col"
                 >
                   <h3 className="font-heading text-lg font-semibold text-text-primary">{job.role}</h3>
                   <p className="text-sm text-text-secondary mt-0.5">{job.company}</p>
@@ -156,7 +156,7 @@ export default function JobsTab() {
                     </span>
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-[rgba(96,96,163,0.2)]">
+                  <div className="mt-4 pt-4 border-t border-[rgba(0,0,0,0.08)]">
                     <span className="text-xs font-medium text-text-muted uppercase tracking-wider">Salary / month</span>
                     <p className="font-heading text-base font-bold text-text-primary mt-0.5">{job.salary}</p>
                   </div>
@@ -219,7 +219,7 @@ export default function JobsTab() {
                     <span className="text-xs text-text-muted mt-2">{tier.note}</span>
 
                     {/* Salary bracket this fee applies to — the key qualifier, shown prominently */}
-                    <div className="mt-6 pt-5 border-t border-[rgba(96,96,163,0.2)]">
+                    <div className="mt-6 pt-5 border-t border-[rgba(0,0,0,0.08)]">
                       <span className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-muted">
                         For salary packages
                       </span>
@@ -246,7 +246,7 @@ export default function JobsTab() {
                 <ul className="mt-5 space-y-4">
                   {reassurance.map((r) => (
                     <li key={r} className="flex items-start gap-3">
-                      <span className="inline-flex w-6 h-6 rounded-full bg-brand-purple border border-text-primary items-center justify-center shrink-0 mt-0.5">
+                      <span className="inline-flex w-6 h-6 rounded-full bg-brand-purple text-white border border-text-primary items-center justify-center shrink-0 mt-0.5">
                         <svg className="w-3.5 h-3.5 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>

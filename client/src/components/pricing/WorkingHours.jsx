@@ -1,6 +1,6 @@
 export default function WorkingHours() {
   return (
-    <section className="mt-20 border border-[rgba(96,96,163,0.2)] rounded-xl p-8 bg-white">
+    <section className="mt-20 border border-[rgba(0,0,0,0.08)] rounded-xl p-8 bg-white">
       <h2 className="font-heading text-xl font-bold text-text-primary mb-6">Working Days & Business Hours</h2>
       <div className="grid md:grid-cols-2 gap-6 mb-6">
         <div className="flex gap-3">

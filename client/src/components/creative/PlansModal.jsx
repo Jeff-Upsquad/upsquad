@@ -60,7 +60,7 @@ export default function PlansModal({ open, onClose, buildUrl }) {
         className="w-full max-w-5xl max-h-[92vh] flex flex-col bg-white rounded-2xl border-[1.5px] border-text-primary shadow-brutal-lg animate-fade-up overflow-hidden"
       >
         {/* ── Header ─────────────────────────────────────── */}
-        <div className="flex items-start gap-4 px-6 sm:px-8 pt-6 pb-5 border-b border-[rgba(96,96,163,0.2)] bg-white">
+        <div className="flex items-start gap-4 px-6 sm:px-8 pt-6 pb-5 border-b border-[rgba(0,0,0,0.08)] bg-white">
           <div className="flex-1 min-w-0">
             <p className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary">
               Subscription plans
@@ -76,7 +76,7 @@ export default function PlansModal({ open, onClose, buildUrl }) {
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="shrink-0 w-9 h-9 rounded-lg border border-[rgba(96,96,163,0.2)] text-text-secondary hover:text-text-primary hover:bg-surface-secondary flex items-center justify-center transition-colors"
+            className="shrink-0 w-9 h-9 rounded-lg border border-[rgba(0,0,0,0.08)] text-text-secondary hover:text-text-primary hover:bg-surface-secondary flex items-center justify-center transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -90,7 +90,7 @@ export default function PlansModal({ open, onClose, buildUrl }) {
         </div>
 
         {/* ── Footer ─────────────────────────────────────── */}
-        <div className="px-6 sm:px-8 py-4 border-t border-[rgba(96,96,163,0.2)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
+        <div className="px-6 sm:px-8 py-4 border-t border-[rgba(0,0,0,0.08)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
           <p className="text-xs text-text-secondary">
             Flat monthly pricing · pause or cancel anytime.
           </p>

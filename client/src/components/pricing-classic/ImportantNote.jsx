@@ -28,9 +28,9 @@ export default function ImportantNote() {
           </p>
         </div>
 
-        <div className="border-2 border-emerald-500 rounded-xl p-6 bg-white">
+        <div className="border-2 border-[#0A0A0A] rounded-xl p-6 bg-white">
           <div className="flex items-center gap-2 mb-3">
-            <svg className="w-5 h-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <svg className="w-5 h-5 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
             </svg>
             <h4 className="text-sm font-semibold text-slate-900">Our plans are designed for:</h4>

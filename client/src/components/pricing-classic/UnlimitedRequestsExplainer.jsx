@@ -43,12 +43,12 @@ export default function UnlimitedRequestsExplainer() {
             <li>Your entire queue keeps moving smoothly.</li>
           </ul>
 
-          <div className="mt-6 bg-emerald-50 border border-emerald-200 rounded-xl p-5">
-            <h4 className="text-sm font-semibold text-emerald-800 mb-2">Important clarity:</h4>
-            <p className="text-sm text-emerald-700">
+          <div className="mt-6 bg-black/[0.04] border border-black/15 rounded-xl p-5">
+            <h4 className="text-sm font-semibold text-text-primary mb-2">Important clarity:</h4>
+            <p className="text-sm text-text-primary">
               The limit is <strong>not on how many tasks you can submit</strong>.
             </p>
-            <p className="text-sm text-emerald-700">
+            <p className="text-sm text-text-primary">
               The limit is only on <strong>how many tasks we work on simultaneously</strong>.
             </p>
           </div>

@@ -95,8 +95,8 @@ export default function SubscriptionDetails() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {steps.map((step, i) => (
               <ScrollReveal key={step.number} delay={i * 0.1}>
-                <div className="bg-white rounded-xl p-6 border border-[rgba(96,96,163,0.2)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short h-full">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-purple text-text-primary text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
+                <div className="bg-white rounded-xl p-6 border border-[rgba(0,0,0,0.08)] shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-short h-full">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-purple text-white text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
                     {step.number}
                   </span>
                   <h4 className="font-heading text-base font-semibold text-text-primary mt-4 mb-1.5">

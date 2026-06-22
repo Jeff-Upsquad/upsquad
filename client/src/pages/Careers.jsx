@@ -52,7 +52,7 @@ export default function Careers() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-40 rounded-xl bg-surface-secondary border border-[rgba(96,96,163,0.2)] animate-pulse"
+                className="h-40 rounded-xl bg-surface-secondary border border-[rgba(0,0,0,0.08)] animate-pulse"
               />
             ))}
           </div>
@@ -73,7 +73,7 @@ export default function Careers() {
         )}
 
         {!loading && !error && positions.length === 0 && (
-          <div className="bg-white border border-[rgba(96,96,163,0.2)] rounded-xl p-8 text-center">
+          <div className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-8 text-center">
             <p className="font-heading text-lg font-semibold text-text-primary mb-2">No open positions right now</p>
             <p className="text-sm text-text-secondary">
               Check back soon, or email{' '}

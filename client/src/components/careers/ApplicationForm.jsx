@@ -69,7 +69,7 @@ export default function ApplicationForm({ position, onCancel, onSuccess }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6 pt-6 border-t border-[rgba(96,96,163,0.2)] space-y-4">
+    <form onSubmit={handleSubmit} className="mt-6 pt-6 border-t border-[rgba(0,0,0,0.08)] space-y-4">
       <p className="text-sm font-semibold text-text-primary">Apply for {position.title}</p>
 
       <div>

@@ -7,14 +7,17 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          purple: '#D4FF4D',
-          blue: '#A8E8E8',
-          pink: '#A8E8E8',
-          orange: '#F76808',
-          green: '#42CC77',
-          lime: '#D4FF4D',
-          cyan: '#A8E8E8',
+          // Monochrome remap — tints (e.g. brand-purple/10) become soft grays,
+          // solids become black. The lone color accent (#FFFF99) is applied directly.
+          purple: '#0A0A0A',
+          blue: '#1A1A1A',
+          pink: '#1A1A1A',
+          orange: '#525252',
+          green: '#0A0A0A',
+          lime: '#0A0A0A',
+          cyan: '#1A1A1A',
           dark: '#000000',
+          accent: '#FFFF99',
         },
         surface: {
           primary: '#FFFFFF',
@@ -67,13 +70,13 @@ module.exports = {
         'md': '0 4px 8px rgba(0, 0, 0, 0.08)',
         'lg': '0 8px 24px rgba(0, 0, 0, 0.10)',
         'xl': '0 16px 48px rgba(0, 0, 0, 0.14)',
-        'card-hover': '0 4px 12px rgba(0, 0, 0, 0.10)',
-        'glow-purple': '0 0 40px rgba(212, 255, 77, 0.4)',
-        'glow-pink': '0 0 40px rgba(168, 232, 232, 0.35)',
-        'brutal': '4px 4px 0 0 #000000',
-        'brutal-sm': '3px 3px 0 0 #000000',
-        'brutal-lg': '6px 6px 0 0 #000000',
-        'brutal-hover': '6px 6px 0 0 #000000',
+        'card-hover': '0 6px 16px -6px rgba(0, 0, 0, 0.12)',
+        'glow-purple': '0 0 40px rgba(0, 0, 0, 0.10)',
+        'glow-pink': '0 0 40px rgba(0, 0, 0, 0.08)',
+        'brutal': '0 10px 30px -12px rgba(0, 0, 0, 0.22)',
+        'brutal-sm': '0 4px 14px -6px rgba(0, 0, 0, 0.16)',
+        'brutal-lg': '0 18px 44px -18px rgba(0, 0, 0, 0.28)',
+        'brutal-hover': '0 22px 50px -18px rgba(0, 0, 0, 0.30)',
       },
       animation: {
         'fade-up': 'fadeUp 0.6s cubic-bezier(0.5, 0, 0.5, 1) forwards',
@@ -116,8 +119,8 @@ module.exports = {
           '50%': { transform: 'translateY(-8px)' },
         },
         pulseGlow: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(212, 255, 77, 0.3)' },
-          '50%': { boxShadow: '0 0 40px rgba(212, 255, 77, 0.5)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' },
+          '50%': { boxShadow: '0 0 40px rgba(0, 0, 0, 0.10)' },
         },
       },
       transitionTimingFunction: {

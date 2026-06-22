@@ -79,7 +79,7 @@ export default function LandingPage({ slug }) {
       {/* Tab switcher (sticky under the navbar) */}
       <div
         ref={tabsRef}
-        className="sticky top-[76px] z-40 border-y border-[rgba(96,96,163,0.15)] bg-white/95 backdrop-blur-md"
+        className="sticky top-[76px] z-40 border-y border-[rgba(0,0,0,0.06)] bg-white/95 backdrop-blur-md"
       >
         <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-3 flex items-center justify-center sm:justify-between gap-4">
           <span className="hidden sm:block text-sm text-text-secondary">
@@ -100,7 +100,7 @@ export default function LandingPage({ slug }) {
                   aria-selected={active}
                   onClick={() => goToTab(t.id)}
                   className={`px-6 sm:px-9 py-2 rounded-full text-sm font-semibold transition-colors duration-short ${
-                    active ? 'bg-brand-purple text-text-primary' : 'text-text-secondary hover:text-text-primary'
+                    active ? 'bg-brand-purple text-white' : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
                   {t.label}

@@ -6,7 +6,7 @@ export default function BillingToggle({ isYearly, setIsYearly }) {
       <span className={`text-sm font-medium ${!isYearly ? 'text-slate-900' : 'text-slate-400'}`}>Monthly</span>
       <button
         onClick={() => setIsYearly(!isYearly)}
-        className={`relative w-11 h-6 rounded-full transition-colors ${isYearly ? 'bg-emerald-500' : 'bg-gray-300'}`}
+        className={`relative w-11 h-6 rounded-full transition-colors ${isYearly ? 'bg-[#0A0A0A]' : 'bg-gray-300'}`}
       >
         <span
           className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
@@ -15,7 +15,7 @@ export default function BillingToggle({ isYearly, setIsYearly }) {
         />
       </button>
       <span className={`text-sm font-medium ${isYearly ? 'text-slate-900' : 'text-slate-400'}`}>
-        Yearly <span className="text-emerald-500">2 months free</span>
+        Yearly <span className="text-text-primary">2 months free</span>
       </span>
     </div>
   )

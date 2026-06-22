@@ -62,7 +62,7 @@ export default function AudioPlayer({ audioUrl, onRequestGate }) {
   if (!audioUrl) {
     if (onRequestGate) {
       return (
-        <div className="mt-3 flex items-center gap-3 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl px-3 py-2 shadow-sm">
+        <div className="mt-3 flex items-center gap-3 bg-white border border-[rgba(0,0,0,0.08)] rounded-xl px-3 py-2 shadow-sm">
           <button
             type="button"
             onClick={() => onRequestGate()}
@@ -76,7 +76,7 @@ export default function AudioPlayer({ audioUrl, onRequestGate }) {
       )
     }
     return (
-      <div className="mt-3 h-14 rounded-xl bg-surface-secondary border border-[rgba(96,96,163,0.2)] animate-pulse" aria-label="Audio loading" />
+      <div className="mt-3 h-14 rounded-xl bg-surface-secondary border border-[rgba(0,0,0,0.08)] animate-pulse" aria-label="Audio loading" />
     )
   }
 
@@ -87,7 +87,7 @@ export default function AudioPlayer({ audioUrl, onRequestGate }) {
       aria-label="Hero audio player"
       tabIndex={0}
       onKeyDown={onKeyDown}
-      className="mt-3 flex items-center gap-3 bg-white border border-[rgba(96,96,163,0.2)] rounded-xl px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/40"
+      className="mt-3 flex items-center gap-3 bg-white border border-[rgba(0,0,0,0.08)] rounded-xl px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/40"
     >
       <audio
         ref={audioRef}
@@ -135,12 +135,12 @@ export default function AudioPlayer({ audioUrl, onRequestGate }) {
           aria-haspopup="menu"
           aria-expanded={speedOpen}
           aria-label="Playback speed"
-          className="flex-shrink-0 px-2.5 py-1 text-xs font-medium rounded-md border border-[rgba(96,96,163,0.2)] text-slate-700 hover:border-gray-300"
+          className="flex-shrink-0 px-2.5 py-1 text-xs font-medium rounded-md border border-[rgba(0,0,0,0.08)] text-slate-700 hover:border-gray-300"
         >
           {rate}×
         </button>
         {speedOpen && (
-          <div role="menu" className="absolute right-0 bottom-full mb-1 w-20 bg-white border border-[rgba(96,96,163,0.2)] rounded-lg shadow-lg overflow-hidden z-20">
+          <div role="menu" className="absolute right-0 bottom-full mb-1 w-20 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg shadow-lg overflow-hidden z-20">
             {SPEEDS.map((s) => (
               <button
                 key={s}

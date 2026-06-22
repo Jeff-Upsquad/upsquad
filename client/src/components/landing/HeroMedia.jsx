@@ -65,7 +65,7 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
           type="button"
           onClick={() => onRequestGate()}
           aria-label="Play hero video"
-          className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center group"
+          className="relative w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-[#1C1C1F] to-[#0A0A0A] flex items-center justify-center group"
         >
           <span className="w-16 h-16 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all">
             <svg className="w-6 h-6 ml-0.5 text-text-primary" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
       )
     }
     return (
-      <div className="w-full aspect-video rounded-xl bg-surface-secondary border border-[rgba(96,96,163,0.2)] animate-pulse" aria-label="Video loading" />
+      <div className="w-full aspect-video rounded-xl bg-surface-secondary border border-[rgba(0,0,0,0.08)] animate-pulse" aria-label="Video loading" />
     )
   }
 
@@ -98,7 +98,7 @@ export default function HeroMedia({ videoUrl, onRequestGate }) {
       )
     }
     return (
-      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#090C1D] flex items-center justify-center">
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#0A0A0A] flex items-center justify-center">
         <button
           type="button"
           onClick={handlePlayClick}

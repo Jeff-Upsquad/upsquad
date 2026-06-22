@@ -29,7 +29,7 @@ export default function WorkingDaysSelector({ selectedDays, onToggleDay }) {
               title={day.full + (day.optional ? ' (optional)' : '')}
               className={`relative flex flex-col items-center justify-center py-3 rounded-lg text-sm font-bold transition-all border-2 ${
                 isActive
-                  ? 'bg-brand-purple text-text-primary border-text-primary shadow-brutal-sm'
+                  ? 'bg-brand-purple text-white border-text-primary shadow-brutal-sm'
                   : day.optional
                   ? 'bg-white text-text-secondary border-text-primary/30 border-dashed hover:border-text-primary hover:text-text-primary'
                   : 'bg-white text-text-secondary border-text-primary/30 hover:border-text-primary hover:text-text-primary'

@@ -40,7 +40,7 @@ const clientWindows = ['10 AM – 6 PM', '3 PM – 6 PM', '6 PM – 10 PM']
 
 function StepBadge({ n }) {
   return (
-    <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-brand-purple text-text-primary text-xs font-bold border-[1.5px] border-text-primary shrink-0">
+    <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-brand-purple text-white text-xs font-bold border-[1.5px] border-text-primary shrink-0">
       {n}
     </span>
   )
@@ -50,7 +50,7 @@ function TimelineTrack({ children }) {
   return (
     <div className="relative">
       {/* base track */}
-      <div className="relative h-2 rounded-full bg-surface-secondary border border-[rgba(96,96,163,0.15)]" />
+      <div className="relative h-2 rounded-full bg-surface-secondary border border-[rgba(0,0,0,0.06)]" />
       {children}
     </div>
   )
@@ -112,8 +112,8 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
         className="w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-white rounded-2xl border-[1.5px] border-text-primary shadow-brutal-lg animate-fade-up"
       >
         {/* ── Header ─────────────────────────────────────── */}
-        <div className="sticky top-0 z-10 flex items-start gap-4 px-6 sm:px-8 pt-6 pb-5 border-b border-[rgba(96,96,163,0.2)] bg-white/95 backdrop-blur-sm">
-          <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-purple text-text-primary border-[1.5px] border-text-primary shadow-brutal-sm shrink-0">
+        <div className="sticky top-0 z-10 flex items-start gap-4 px-6 sm:px-8 pt-6 pb-5 border-b border-[rgba(0,0,0,0.08)] bg-white/95 backdrop-blur-sm">
+          <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-purple text-white border-[1.5px] border-text-primary shadow-brutal-sm shrink-0">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -128,7 +128,7 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="shrink-0 w-9 h-9 rounded-lg border border-[rgba(96,96,163,0.2)] text-text-secondary hover:text-text-primary hover:bg-surface-secondary flex items-center justify-center transition-colors"
+            className="shrink-0 w-9 h-9 rounded-lg border border-[rgba(0,0,0,0.08)] text-text-secondary hover:text-text-primary hover:bg-surface-secondary flex items-center justify-center transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -148,7 +148,7 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
               <StepBadge n="1" />
               <h3 className="font-heading text-base font-bold text-text-primary">Pick a daily commitment</h3>
             </div>
-            <div className="rounded-xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-5">
+            <div className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-surface-secondary p-5">
               <div className="grid grid-cols-4 gap-3 items-end h-32">
                 {capacity.map((c) => (
                   <div key={c.hrs} className="flex flex-col items-center justify-end h-full">
@@ -176,14 +176,14 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
               <StepBadge n="2" />
               <h3 className="font-heading text-base font-bold text-text-primary">Set your timing window</h3>
             </div>
-            <div className="rounded-xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-5">
+            <div className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-surface-secondary p-5">
               <div className="space-y-4">
                 {exampleWindows.map((w) => (
                   <div key={w.tag} className="grid grid-cols-[84px_1fr] items-center gap-3">
                     <span className="text-[11px] font-semibold text-text-secondary">{w.tag}</span>
                     <TimelineTrack>
                       <div
-                        className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full bg-brand-purple border border-text-primary"
+                        className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full bg-brand-purple text-white border border-text-primary"
                         style={{ left: `${pct(w.start)}%`, width: `${pct(w.end) - pct(w.start)}%` }}
                       >
                         <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] font-semibold text-text-primary whitespace-nowrap">{w.range}</span>
@@ -225,14 +225,14 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
               <StepBadge n="3" />
               <h3 className="font-heading text-base font-bold text-text-primary">Get matched with clients</h3>
             </div>
-            <div className="rounded-xl border border-[rgba(96,96,163,0.2)] bg-surface-secondary p-5">
+            <div className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-surface-secondary p-5">
               <div className="space-y-4">
                 {/* your window */}
                 <div className="grid grid-cols-[68px_1fr] items-center gap-3">
                   <span className="text-[11px] font-bold text-text-primary">You</span>
                   <TimelineTrack>
                     <div
-                      className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full bg-brand-purple border border-text-primary"
+                      className="absolute top-1/2 -translate-y-1/2 h-2 rounded-full bg-brand-purple text-white border border-text-primary"
                       style={{ left: `${pct(18)}%`, width: `${pct(22) - pct(18)}%` }}
                     />
                   </TimelineTrack>
@@ -262,7 +262,7 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
               </p>
               <div className="flex flex-wrap gap-2 mt-3">
                 {clientWindows.map((w) => (
-                  <span key={w} className="text-[11px] font-medium text-text-primary bg-white border border-[rgba(96,96,163,0.2)] rounded-full px-3 py-1">
+                  <span key={w} className="text-[11px] font-medium text-text-primary bg-white border border-[rgba(0,0,0,0.08)] rounded-full px-3 py-1">
                     {w}
                   </span>
                 ))}
@@ -272,7 +272,7 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
 
           {/* ── Online callout ──────────────────────────── */}
           <div className="rounded-xl border-[1.5px] border-text-primary bg-brand-purple/15 p-5 flex items-start gap-3">
-            <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white border border-[rgba(96,96,163,0.2)] text-text-primary shrink-0">
+            <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white border border-[rgba(0,0,0,0.08)] text-text-primary shrink-0">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
@@ -290,8 +290,8 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
             <p className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary mb-3">Good to know</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* rule 1 */}
-              <div className="rounded-xl border border-[rgba(96,96,163,0.2)] bg-white p-5">
-                <div className="w-9 h-9 rounded-lg bg-brand-cyan/30 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center mb-3">
+              <div className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-white p-5">
+                <div className="w-9 h-9 rounded-lg bg-brand-cyan/30 border border-[rgba(0,0,0,0.08)] text-text-primary flex items-center justify-center mb-3">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -302,8 +302,8 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
                 </p>
               </div>
               {/* rule 2 */}
-              <div className="rounded-xl border border-[rgba(96,96,163,0.2)] bg-white p-5">
-                <div className="w-9 h-9 rounded-lg bg-brand-cyan/30 border border-[rgba(96,96,163,0.2)] text-text-primary flex items-center justify-center mb-3">
+              <div className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-white p-5">
+                <div className="w-9 h-9 rounded-lg bg-brand-cyan/30 border border-[rgba(0,0,0,0.08)] text-text-primary flex items-center justify-center mb-3">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -318,7 +318,7 @@ export default function VirtualOfficeHoursModal({ open, onClose }) {
         </div>
 
         {/* ── Footer ─────────────────────────────────────── */}
-        <div className="px-6 sm:px-8 py-4 border-t border-[rgba(96,96,163,0.2)] flex justify-end bg-white">
+        <div className="px-6 sm:px-8 py-4 border-t border-[rgba(0,0,0,0.08)] flex justify-end bg-white">
           <button
             type="button"
             onClick={onClose}

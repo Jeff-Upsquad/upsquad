@@ -79,7 +79,7 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
         </div>
 
         {/* Availability Row (replaces Monthly Price) */}
-        <div className={`grid ${gridClass} gap-0 border-t border-[rgba(96,96,163,0.2)]`}>
+        <div className={`grid ${gridClass} gap-0 border-t border-[rgba(0,0,0,0.08)]`}>
           <div className="flex items-center px-4 py-4">
             <span className="text-sm font-medium text-text-primary">
               Availability
@@ -105,7 +105,7 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
         {featureRows.map((row) => (
           <div
             key={row.label}
-            className={`grid ${gridClass} gap-0 border-t border-[rgba(96,96,163,0.2)]`}
+            className={`grid ${gridClass} gap-0 border-t border-[rgba(0,0,0,0.08)]`}
           >
             <div className="flex items-center px-4 py-4">
               <span className="text-sm text-text-primary">
