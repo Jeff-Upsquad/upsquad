@@ -46,9 +46,9 @@ const ArrowIcon = () => (
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-36 lg:pb-28 px-5 sm:px-8 overflow-hidden bg-[radial-gradient(130%_120%_at_50%_-10%,#FFFFFF_0%,#F4F4F5_52%,#E9E9EC_100%)]">
+    <section className="relative pt-32 pb-20 lg:pt-36 lg:pb-28 px-5 sm:px-8 overflow-hidden bg-[radial-gradient(130%_120%_at_50%_-10%,#FFFFFF_0%,#F4F4F5_52%,#E9E9EC_100%)] dark:bg-[radial-gradient(130%_120%_at_50%_-10%,#1A1A1A_0%,#121212_52%,#0B0B0B_100%)]">
       {/* graph-paper grid pattern (light) */}
-      <div className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_right,rgba(10,10,10,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,10,10,0.06)_1px,transparent_1px)] [background-size:46px_46px] [mask-image:radial-gradient(118%_88%_at_50%_-4%,#000_42%,transparent_82%)] [-webkit-mask-image:radial-gradient(118%_88%_at_50%_-4%,#000_42%,transparent_82%)]" />
+      <div className="pointer-events-none absolute inset-0 [background-image:linear-gradient(to_right,rgba(10,10,10,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,10,10,0.06)_1px,transparent_1px)] dark:[background-image:linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:46px_46px] [mask-image:radial-gradient(118%_88%_at_50%_-4%,#000_42%,transparent_82%)] [-webkit-mask-image:radial-gradient(118%_88%_at_50%_-4%,#000_42%,transparent_82%)]" />
 
       <div className="relative max-w-[1160px] mx-auto">
         <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
@@ -130,7 +130,7 @@ export default function Hero() {
                     className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border ${
                       stat.dark
                         ? 'bg-white/10 border-white/15 text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.18)]'
-                        : 'bg-gradient-to-br from-[#F6F6F7] to-[#E7E7EA] border-black/[0.06] text-text-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_10px_-4px_rgba(0,0,0,0.15)]'
+                        : 'bg-gradient-to-br from-[#F6F6F7] to-[#E7E7EA] dark:from-[#262626] dark:to-[#1a1a1a] border-black/[0.06] dark:border-white/10 text-text-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_10px_-4px_rgba(0,0,0,0.15)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_4px_10px_-4px_rgba(0,0,0,0.5)]'
                     }`}
                   >
                     {stat.icon}

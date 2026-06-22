@@ -4,6 +4,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   THEME TOKENS
+   Light is the default. Dark is opt-in only — applied when the
+   user toggles it (adds `.dark` to <html>). The site NEVER reads
+   prefers-color-scheme, so it always loads light regardless of OS.
+   Channels are space-separated RGB so Tailwind's /opacity works.
+   ============================================================ */
+:root {
+  --c-text-primary: 10 10 10;      /* #0A0A0A */
+  --c-text-secondary: 82 82 82;    /* #525252 */
+  --c-text-muted: 163 163 163;     /* #A3A3A3 */
+  --c-surface-primary: 255 255 255;/* #FFFFFF */
+  --c-surface-secondary: 245 245 242; /* #F5F5F2 */
+  --c-page-bg: #FAFAFA;
+}
+
+.dark {
+  --c-text-primary: 237 237 237;   /* #EDEDED */
+  --c-text-secondary: 161 161 161; /* #A1A1A1 */
+  --c-text-muted: 115 115 115;     /* #737373 */
+  --c-surface-primary: 20 20 20;   /* #141414 */
+  --c-surface-secondary: 26 26 26; /* #1A1A1A */
+  --c-page-bg: #0B0B0B;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -15,14 +40,14 @@ body {
   line-height: 1.65;
   font-size: 15px;
   font-weight: 400;
-  color: #0A0A0A;
-  background: #FAFAFA;
+  color: rgb(var(--c-text-primary));
+  background: var(--c-page-bg);
   font-feature-settings: 'cv11', 'ss01', 'ss03';
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #0A0A0A;
+  color: rgb(var(--c-text-primary));
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.1;
@@ -277,3 +302,113 @@ h6 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.4; }
   .logo-sway { animation: none; }
   .logo-tap.is-tapped { animation: none; }
 }
+
+/* ============================================================
+   DARK MODE OVERRIDES
+   Semantic text/surface tokens already flip via CSS variables.
+   This block remaps the hardcoded monochrome literals + brand-*
+   utilities the components use, so the whole site reads coherently
+   in dark without touching 60+ component files. Each `.dark .x`
+   selector outranks Tailwind's single-class utility, so no
+   !important is needed.
+   ============================================================ */
+
+/* Smooth, one-shot fade applied ONLY during a toggle (the class is added
+   and then removed by ThemeToggle). A temporary class avoids permanently
+   overriding per-element transitions — e.g. transform-based hover lifts —
+   and sidesteps the universal-selector perf cost of an always-on rule. */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease !important;
+}
+
+/* White / light-gray surfaces -> dark cards */
+.dark .bg-white { background-color: #141414; }
+.dark .bg-\[\#FAFAFA\],
+.dark .bg-\[\#F4F4F6\],
+.dark .bg-\[\#F1F1F3\] { background-color: #181818; }
+
+/* Solid near-black fills -> lifted dark so they separate from the page */
+.dark .bg-\[\#0A0A0A\],
+.dark .bg-\[\#141414\],
+.dark .bg-\[\#1C1C1F\],
+.dark .bg-black,
+.dark .bg-brand-purple,
+.dark .bg-brand-blue,
+.dark .bg-brand-dark { background-color: #1f1f1f; }
+
+/* brand-purple low-opacity tints were soft grays -> faint light washes */
+.dark .bg-brand-purple\/5  { background-color: rgba(255,255,255,0.03); }
+.dark .bg-brand-purple\/10 { background-color: rgba(255,255,255,0.05); }
+.dark .bg-brand-purple\/15 { background-color: rgba(255,255,255,0.07); }
+.dark .bg-brand-purple\/20 { background-color: rgba(255,255,255,0.09); }
+.dark .bg-brand-blue\/10,
+.dark .bg-brand-blue\/20 { background-color: rgba(255,255,255,0.06); }
+.dark .bg-brand-orange\/10 { background-color: rgba(255,255,255,0.05); }
+.dark .bg-brand-cyan,
+.dark .bg-brand-cyan\/30 { background-color: rgba(255,255,255,0.08); }
+.dark .bg-brand-green\/10,
+.dark .bg-brand-green\/15 { background-color: rgba(255,255,255,0.06); }
+
+/* Dark text tokens -> light */
+.dark .text-brand-green,
+.dark .text-brand-blue,
+.dark .text-brand-purple,
+.dark .text-\[\#0A0A0A\] { color: #EDEDED; }
+.dark .text-brand-orange { color: #9a9a9a; }
+
+/* Borders: black outlines/hairlines -> light equivalents */
+.dark .border-black { border-color: rgba(255,255,255,0.16); }
+.dark .border-\[\#0A0A0A\],
+.dark .border-brand-purple,
+.dark .border-brand-orange { border-color: rgba(255,255,255,0.18); }
+.dark .border-black\/\[0\.05\],
+.dark .border-black\/\[0\.06\],
+.dark .border-black\/\[0\.07\],
+.dark .border-black\/\[0\.08\] { border-color: rgba(255,255,255,0.08); }
+.dark .border-black\/10,
+.dark .border-black\/15,
+.dark .border-black\/20,
+.dark .border-black\/25,
+.dark .border-brand-purple\/20,
+.dark .border-brand-purple\/30,
+.dark .border-brand-purple\/40,
+.dark .border-brand-orange\/20,
+.dark .border-brand-blue\/20,
+.dark .border-brand-green\/40 { border-color: rgba(255,255,255,0.14); }
+.dark .border-black\/80 { border-color: rgba(255,255,255,0.5); }
+
+/* Decorative backgrounds */
+.dark .bg-gradient-mesh,
+.dark .bg-dot-pattern {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(255,255,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 80%, rgba(255,255,255,0.04) 0%, transparent 60%),
+    linear-gradient(180deg, #0B0B0B 0%, #121212 100%);
+}
+.dark .bg-dots-overlay {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+}
+
+/* Component classes (defined in @layer utilities above) */
+.dark .btn-gradient {
+  background: #202020;
+  color: #FFFFFF;
+  border-color: rgba(255,255,255,0.14);
+  box-shadow: 0 10px 24px -10px rgba(0,0,0,0.7);
+}
+.dark .btn-gradient:hover { background: #2a2a2a; }
+.dark .btn-secondary {
+  background: #1a1a1a;
+  color: #EDEDED;
+  border-color: rgba(255,255,255,0.16);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+.dark .btn-secondary:hover { border-color: rgba(255,255,255,0.32); }
+.dark .ticker-tag {
+  background: #202020;
+  color: #FFFFFF;
+  border-color: rgba(255,255,255,0.14);
+}
+.dark .accent-bar { background: #EDEDED; }
+.dark .text-gradient { color: #EDEDED; -webkit-text-fill-color: #EDEDED; }

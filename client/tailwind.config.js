@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -20,14 +21,15 @@ module.exports = {
           accent: '#FFFF99',
         },
         surface: {
-          primary: '#FFFFFF',
-          secondary: '#F5F5F2',
+          // CSS-variable driven so the whole site flips on `.dark` (see index.css).
+          primary: 'rgb(var(--c-surface-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--c-surface-secondary) / <alpha-value>)',
           dark: '#0A0A0A',
           'dark-card': '#141414',
         },
-        'text-primary': '#0A0A0A',
-        'text-secondary': '#525252',
-        'text-muted': '#A3A3A3',
+        'text-primary': 'rgb(var(--c-text-primary) / <alpha-value>)',
+        'text-secondary': 'rgb(var(--c-text-secondary) / <alpha-value>)',
+        'text-muted': 'rgb(var(--c-text-muted) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'sans-serif'],
