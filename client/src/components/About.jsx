@@ -19,17 +19,22 @@ export default function About() {
                 The future of work starts here.
               </p>
               <p className="text-base text-text-secondary leading-relaxed mb-4">
-                UpSquad is a new way for businesses to build teams — without the complexity of
-                traditional hiring.
+                UpSquad is a new way for businesses to get work done — without the cost and
+                complexity of traditional hiring.
               </p>
               <p className="text-base text-text-secondary leading-relaxed mb-4">
-                Instead of recruiting full-time or part-time employees, businesses can subscribe to
-                UpSquad and access skilled professionals on demand. From design and development to
-                marketing and operations, you get the talent you need — when you need it.
+                It works three ways.{' '}
+                <span className="font-semibold text-text-primary">Subscribe</span> to a dedicated squad
+                that handles your work end to end, month after month.{' '}
+                <span className="font-semibold text-text-primary">Order a one-off assignment</span> when
+                you just need a single thing done. Or{' '}
+                <span className="font-semibold text-text-primary">hire vetted talent</span> directly,
+                backed by a replacement guarantee.
               </p>
               <p className="text-base text-text-secondary leading-relaxed">
-                Built for startups, growing brands, and modern businesses that want flexibility,
-                UpSquad helps you move faster without the cost and commitment of traditional hiring.
+                Subscription is where most brands start — the best value, and the least to manage.
+                Whichever way you choose, you get skilled professionals across content, marketing,
+                tech, accounts, and more, exactly when you need them.
               </p>
             </div>
           </ScrollReveal>

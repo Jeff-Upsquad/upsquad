@@ -75,7 +75,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-7">
             {isHome ? (
               <>
-                <a href="#how-it-works" className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-short">
+                <a href="#ways-to-work" className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-short">
                   How it Works
                 </a>
                 <a href="#categories" className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-short">
@@ -84,7 +84,7 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link href="/#how-it-works" className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-short">
+                <Link href="/#ways-to-work" className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-short">
                   How it Works
                 </Link>
                 <Link href="/#categories" className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-short">
@@ -146,7 +146,7 @@ export default function Navbar() {
           <div className="md:hidden bg-white border-t border-black/[0.06] py-3 space-y-0.5">
             {isHome ? (
               <>
-                {['How it Works|#how-it-works', 'The Squads|#categories'].map((item) => {
+                {['How it Works|#ways-to-work', 'The Squads|#categories'].map((item) => {
                   const [label, href] = item.split('|')
                   return (
                     <a

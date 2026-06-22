@@ -47,10 +47,10 @@ export default function HowItWorks() {
         <ScrollReveal>
           <div className="mb-12">
             <span className="inline-block w-8 h-[3px] rounded-full bg-text-primary mb-3" />
-            <p className="font-mono text-[11px] font-medium text-text-muted uppercase tracking-[0.18em] mb-3">Process</p>
-            <h2 className="font-heading text-3xl lg:text-h2 font-extrabold text-text-primary tracking-[-0.025em]">How UpSquad works</h2>
+            <p className="font-mono text-[11px] font-medium text-text-muted uppercase tracking-[0.18em] mb-3">Subscription &middot; How it works</p>
+            <h2 className="font-heading text-3xl lg:text-h2 font-extrabold text-text-primary tracking-[-0.025em]">How a subscription works</h2>
             <p className="text-base text-text-secondary mt-3">
-              Everything you need — nothing you don&apos;t.
+              Three steps to a dedicated squad — everything you need, nothing you don&apos;t.
             </p>
           </div>
         </ScrollReveal>

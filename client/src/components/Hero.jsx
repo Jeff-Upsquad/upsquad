@@ -1,39 +1,38 @@
 "use client"
 import ScrollReveal from './ScrollReveal'
 
+// The three ways to work, surfaced right in the hero — Subscribe (primary,
+// featured dark) first, then Assign, then Hire.
 const stats = [
   {
-    value: 'One plan',
-    label: 'Select the ones you want',
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M8.5 12.5l2.5 2.5 4.5-5" />
-      </svg>
-    ),
-  },
-  {
-    value: '6 squads',
-    label: 'Ready to deploy',
+    value: 'Subscribe',
+    label: 'A dedicated squad, monthly',
     dark: true,
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 10h18M7 15h4" />
       </svg>
     ),
   },
   {
-    value: 'No contracts',
-    label: 'Pause or cancel anytime',
+    value: 'Assign',
+    label: 'One-off work, fixed fee',
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 12a9 9 0 0115-6.4L21 8" />
-        <path d="M21 4v4h-4" />
-        <path d="M21 12a9 9 0 01-15 6.4L3 16" />
-        <path d="M3 20v-4h4" />
+        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+        <rect x="9" y="3" width="6" height="4" rx="1" />
+        <path d="M9 12h6M9 16h4" />
+      </svg>
+    ),
+  },
+  {
+    value: 'Hire',
+    label: 'Vetted talent, guaranteed',
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="9" cy="8" r="3.25" />
+        <path d="M3.5 20a5.5 5.5 0 0111 0M17 8h4.5M19.25 5.75v4.5" />
       </svg>
     ),
   },
@@ -81,9 +80,9 @@ export default function Hero() {
 
             <ScrollReveal delay={0.2}>
               <p className="text-base sm:text-lg text-text-secondary leading-[1.65] mb-8 max-w-lg">
-                Subscribing is better than hiring. One plan gives your brand access to content,
-                marketing, tech, accounts, legal, and hiring — all under one roof.
-                Stay consistent. Scale fast.
+                One subscription gives your brand a dedicated squad — content, marketing, tech,
+                accounts, and more — for a flat monthly price. Prefer something lighter? Order a
+                one-off assignment, or hire vetted talent directly.
               </p>
             </ScrollReveal>
 
@@ -101,10 +100,10 @@ export default function Hero() {
                   Connect on WhatsApp
                 </a>
                 <a
-                  href="#how-it-works"
+                  href="#ways-to-work"
                   className="group/btn flex items-center gap-3 bg-white text-text-primary font-semibold text-sm pl-6 pr-1.5 py-1.5 rounded-full border border-black/10 hover:border-black/25 transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
                 >
-                  <span>How it works</span>
+                  <span>Ways to work</span>
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#0A0A0A] text-white transition-transform duration-300 group-hover/btn:translate-x-0.5">
                     <ArrowIcon />
                   </span>
