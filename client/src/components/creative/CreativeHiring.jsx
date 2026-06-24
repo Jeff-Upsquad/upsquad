@@ -32,18 +32,22 @@ const features = [
   { label: 'Free replacement within the guarantee window', basic: true, plus: true },
 ]
 
-function Check() {
+function Check({ accent }) {
   return (
-    <span className="inline-flex w-5 h-5 rounded-full bg-brand-purple text-white border border-text-primary items-center justify-center">
-      <svg className="w-3 h-3 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <span
+      className={`inline-flex w-5 h-5 rounded-full border border-text-primary items-center justify-center ${
+        accent ? 'bg-brand-accent text-black' : 'bg-brand-purple text-white'
+      }`}
+    >
+      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
       </svg>
     </span>
   )
 }
 
-function Cell({ v }) {
-  if (v === true) return <Check />
+function Cell({ v, accent }) {
+  if (v === true) return <Check accent={accent} />
   if (v === false)
     return <span className="inline-block w-3.5 h-[2px] rounded bg-text-muted/60" aria-label="Not included" />
   return <span className="text-xs sm:text-sm font-bold text-text-primary whitespace-nowrap">{v}</span>
@@ -68,7 +72,12 @@ export default function CreativeHiring() {
             </span>
           </div>
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em] max-w-3xl">
-            Hire vetted designers &amp; editors — with a replacement guarantee.
+            Hire vetted designers &amp; editors — with a{' '}
+            <span className="relative inline-block">
+              <span className="relative z-10">replacement guarantee</span>
+              <span className="absolute inset-x-0 bottom-1 h-3 bg-brand-accent -z-0 rounded-sm" aria-hidden="true" />
+            </span>
+            .
           </h2>
           <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
             Want a designer or editor on your own payroll? We shortlist candidates that match your
@@ -85,7 +94,7 @@ export default function CreativeHiring() {
                 key={s.n}
                 className="rounded-xl border border-[rgba(0,0,0,0.08)] bg-surface-secondary p-5"
               >
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-text-primary text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-accent text-black text-xs font-bold border-2 border-text-primary shadow-brutal-sm">
                   {s.n}
                 </span>
                 <h4 className="font-heading text-sm font-semibold text-text-primary mt-3">{s.t}</h4>
@@ -118,7 +127,7 @@ export default function CreativeHiring() {
               </div>
 
               <div className="relative px-2 sm:px-6 pt-7 sm:pt-8 pb-4 sm:pb-6 border-l border-[rgba(0,0,0,0.06)] bg-brand-purple/10 text-center">
-                <span className="absolute top-1.5 left-1/2 -translate-x-1/2 ticker-tag text-[9px] sm:text-[10px] font-bold uppercase tracking-normal sm:tracking-wide px-2 py-0.5 rounded-full whitespace-nowrap">
+                <span className="absolute top-1.5 left-1/2 -translate-x-1/2 bg-brand-accent text-black border border-text-primary shadow-brutal-sm text-[9px] sm:text-[10px] font-bold uppercase tracking-normal sm:tracking-wide px-2 py-0.5 rounded-full whitespace-nowrap">
                   <span className="sm:hidden">Popular</span>
                   <span className="hidden sm:inline">Most popular</span>
                 </span>
@@ -136,10 +145,10 @@ export default function CreativeHiring() {
                     {f.label}
                   </div>
                   <div className="px-2 sm:px-6 py-3.5 border-t border-l border-[rgba(0,0,0,0.06)] flex items-center justify-center text-center">
-                    <Cell v={f.basic} />
+                    <Cell v={f.basic} accent />
                   </div>
                   <div className="px-2 sm:px-6 py-3.5 border-t border-l border-[rgba(0,0,0,0.06)] bg-brand-purple/10 flex items-center justify-center text-center">
-                    <Cell v={f.plus} />
+                    <Cell v={f.plus} accent />
                   </div>
                 </Fragment>
               ))}

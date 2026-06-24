@@ -52,6 +52,12 @@ export default function CreativeHero({
 
   const hasLangChooser = selected && (languages || []).length > 1
 
+  // Accent-highlight the role words (everything before " on …") so the marker
+  // sits behind "Designers and video editors" but not "on subscription."
+  const titleMatch = (heroTitle || '').match(/^(.*?)(\s+on\s+.*)$/i)
+  const titleHead = titleMatch ? titleMatch[1] : (heroTitle || '')
+  const titleTail = titleMatch ? titleMatch[2] : ''
+
   return (
     <section className="pt-24 md:pt-28 pb-12 md:pb-16 bg-white">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8 grid md:grid-cols-2 gap-10 lg:gap-12 items-center w-full">
@@ -66,7 +72,16 @@ export default function CreativeHero({
 
           <ScrollReveal delay={0.1}>
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-[-0.03em] text-text-primary">
-              {heroTitle}
+              <span
+                className="bg-no-repeat box-decoration-clone"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(transparent 66%, #FFFF99 66%, #FFFF99 92%, transparent 92%)',
+                }}
+              >
+                {titleHead}
+              </span>
+              {titleTail}
               <br />
               <span className="italic font-bold">Or hire one in-house.</span>
             </h1>

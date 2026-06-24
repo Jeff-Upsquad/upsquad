@@ -132,7 +132,16 @@ export default function PartnerProgram() {
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold leading-[1.15] tracking-tight mb-6">
               <span className="text-text-primary">UpSquad Partner Program</span>
               <span className="block mt-2 text-2xl sm:text-3xl font-bold text-text-secondary">
-                For designers &amp; video editors
+                For{' '}
+                <span
+                  className="bg-no-repeat box-decoration-clone text-text-primary"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(transparent 66%, #FFFF99 66%, #FFFF99 92%, transparent 92%)',
+                  }}
+                >
+                  designers &amp; video editors
+                </span>
               </span>
             </h1>
 

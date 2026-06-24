@@ -306,8 +306,8 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                 <ul className="space-y-3.5">
                   {partnerVsFreelance.partner.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <span className="inline-flex w-6 h-6 rounded-full bg-brand-purple text-white border border-text-primary items-center justify-center shrink-0 mt-0.5">
-                        <svg className="w-3.5 h-3.5 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="inline-flex w-6 h-6 rounded-full bg-brand-accent text-black border border-text-primary items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </span>
@@ -374,7 +374,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   )}
                   <div className="bg-white rounded-xl p-6 border border-[rgba(0,0,0,0.08)] relative z-10">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-7 h-7 rounded-lg bg-brand-purple text-white text-xs font-bold flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-lg bg-brand-accent text-black text-xs font-bold flex items-center justify-center">
                         {step.number}
                       </div>
                       <span className="text-xs font-medium text-text-muted">Step {step.number}</span>
@@ -428,7 +428,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
 
               {/* Pro */}
               <div className="rounded-xl p-6 border-2 border-brand-purple bg-brand-purple/5 hover:-translate-y-0.5 transition-transform duration-200 relative">
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-pink to-brand-purple text-text-primary text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-brand-accent text-black border border-text-primary shadow-brutal-sm text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                   Most Common
                 </span>
                 <div className="flex items-center gap-3 mb-4">
@@ -527,7 +527,7 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   }`}
                 >
                   {plan.badge && (
-                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-pink to-brand-purple text-text-primary text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-brand-accent text-black border border-text-primary shadow-brutal-sm text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                       {plan.badge}
                     </span>
                   )}
