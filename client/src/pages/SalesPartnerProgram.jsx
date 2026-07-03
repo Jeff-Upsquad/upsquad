@@ -14,7 +14,7 @@ const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/sales'
 const HERO_VIDEO_URL = 'https://www.w3schools.com/html/mov_bbb.mp4'
 
 const TABS = [
-  { id: 'partner', label: 'Partner Program' },
+  { id: 'partner', label: 'Subscriptions' },
   { id: 'freelance', label: 'Freelance' },
   { id: 'jobs', label: 'Jobs' },
 ]

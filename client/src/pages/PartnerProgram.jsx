@@ -10,7 +10,7 @@ import { getLang, setLang } from '../lib/localStoragePref'
 const LP_SLUG = 'partner-program'
 
 const TABS = [
-  { id: 'partner', label: 'Partner Program' },
+  { id: 'partner', label: 'Subscriptions' },
   { id: 'freelance', label: 'Freelance' },
   { id: 'jobs', label: 'Jobs' },
 ]
