@@ -13,6 +13,7 @@ const waLink = (pkg) =>
 const PRICING = {
   basic: { amount: '₹3,000', unit: 'one-time · per hire' },
   plus: { amount: '₹5,000', unit: 'one-time · per hire' },
+  personal: { amount: '₹10,000', unit: 'one month · up to 5 hires' },
 }
 
 const steps = [
@@ -35,7 +36,7 @@ const features = [
 function Check({ accent }) {
   return (
     <span
-      className={`inline-flex w-5 h-5 rounded-full border border-text-primary items-center justify-center ${
+      className={`inline-flex w-5 h-5 shrink-0 rounded-full border border-text-primary items-center justify-center ${
         accent ? 'bg-brand-accent text-black' : 'bg-brand-purple text-white'
       }`}
     >
@@ -187,6 +188,71 @@ export default function CreativeHiring() {
           Final fee depends on the role and seniority you’re hiring for. Replacement guarantee runs
           one month on Basic and three months on Plus.
         </p>
+
+        {/* Personal — the Recruiting Manager plan, for hiring several people at once */}
+        <ScrollReveal>
+          <div className="mt-6 overflow-hidden rounded-2xl border-[1.5px] border-black shadow-brutal bg-white">
+            <div className="grid lg:grid-cols-2">
+              {/* Left: pitch + price */}
+              <div className="p-6 sm:p-8 bg-brand-accent/10 border-b lg:border-b-0 lg:border-r border-[rgba(0,0,0,0.1)]">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex items-center bg-brand-accent text-black border border-text-primary shadow-brutal-sm text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full">
+                    Recruiting Manager
+                  </span>
+                  <span className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary">
+                    Hire up to 5
+                  </span>
+                </div>
+
+                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-text-primary tracking-[-0.02em] mt-4">
+                  Personal
+                </h3>
+                <p className="mt-2 text-sm sm:text-base text-text-secondary leading-relaxed max-w-md">
+                  For businesses hiring several people at once. Basic and Plus each cover a single
+                  hire — Personal gives you a dedicated recruiting manager for one month to fill up
+                  to five roles, with everything in the Plus plan included.
+                </p>
+
+                <div className="mt-6 flex items-end gap-2">
+                  <div className="font-heading text-4xl font-extrabold text-text-primary leading-none whitespace-nowrap">
+                    {PRICING.personal.amount}
+                  </div>
+                  <div className="text-[11px] text-text-muted pb-1">{PRICING.personal.unit}</div>
+                </div>
+
+                <a
+                  href={waLink('Personal')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gradient mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm font-semibold px-6 py-3.5"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                  Choose Personal
+                </a>
+              </div>
+
+              {/* Right: everything in Plus */}
+              <div className="p-6 sm:p-8">
+                <div className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary mb-4">
+                  Everything in the Plus plan
+                </div>
+                <ul className="flex flex-col gap-3">
+                  {features.map((f) => (
+                    <li key={f.label} className="flex items-start gap-2.5">
+                      <Check accent />
+                      <span className="text-sm text-text-secondary leading-snug">
+                        {f.label}
+                        {typeof f.plus === 'string' && (
+                          <span className="font-bold text-text-primary">{` — ${f.plus}`}</span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
 
         {/* Closing CTA */}
         <ScrollReveal>
