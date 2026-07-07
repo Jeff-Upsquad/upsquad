@@ -29,7 +29,7 @@ const features = [
   { label: 'You interview and select your hires', basic: true, plus: true },
   { label: 'Self-managed onboarding into your team', basic: true, plus: true },
   { label: 'Priority shortlisting from our talent pool', basic: false, plus: true },
-  { label: 'Replacement guarantee', basic: '1 month', plus: '3 months' },
+  { label: 'Replacement guarantee', basic: '1 month', plus: '3 months', personal: '1 month' },
   { label: 'Free replacement within the guarantee window', basic: true, plus: true },
 ]
 
@@ -210,7 +210,7 @@ export default function CreativeHiring() {
                 <p className="mt-2 text-sm sm:text-base text-text-secondary leading-relaxed max-w-md">
                   For businesses hiring several people at once. Basic and Plus each cover a single
                   hire — Personal gives you a dedicated recruiting manager for one month to fill up
-                  to five roles, with everything in the Plus plan included.
+                  to five roles, with priority shortlisting and a one-month replacement guarantee.
                 </p>
 
                 <div className="mt-6 flex items-end gap-2">
@@ -231,23 +231,28 @@ export default function CreativeHiring() {
                 </a>
               </div>
 
-              {/* Right: everything in Plus */}
+              {/* Right: what's included */}
               <div className="p-6 sm:p-8">
                 <div className="font-mono-tech text-[11px] uppercase tracking-[0.14em] text-text-secondary mb-4">
-                  Everything in the Plus plan
+                  What&rsquo;s included
                 </div>
                 <ul className="flex flex-col gap-3">
-                  {features.map((f) => (
-                    <li key={f.label} className="flex items-start gap-2.5">
-                      <Check accent />
-                      <span className="text-sm text-text-secondary leading-snug">
-                        {f.label}
-                        {typeof f.plus === 'string' && (
-                          <span className="font-bold text-text-primary">{` — ${f.plus}`}</span>
-                        )}
-                      </span>
-                    </li>
-                  ))}
+                  {features.map((f) => {
+                    // Personal inherits Plus values, except where it defines its own (e.g. a
+                    // shorter, 1-month replacement guarantee).
+                    const val = f.personal ?? f.plus
+                    return (
+                      <li key={f.label} className="flex items-start gap-2.5">
+                        <Check accent />
+                        <span className="text-sm text-text-secondary leading-snug">
+                          {f.label}
+                          {typeof val === 'string' && (
+                            <span className="font-bold text-text-primary">{` — ${val}`}</span>
+                          )}
+                        </span>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>
