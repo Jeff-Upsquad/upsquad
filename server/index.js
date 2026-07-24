@@ -73,6 +73,9 @@ app.get(['/partner-program', '/partner-program/'], (_req, res) => {
 app.get(['/lp/get-started', '/lp/get-started/'], (_req, res) => {
   res.redirect(301, '/customers/designers-and-video-editors/')
 })
+app.get(['/lp/accountant-subscription', '/lp/accountant-subscription/'], (_req, res) => {
+  res.redirect(301, '/customers/accountant-subscription/')
+})
 
 app.use(express.static(path.join(__dirname, 'public')))
 

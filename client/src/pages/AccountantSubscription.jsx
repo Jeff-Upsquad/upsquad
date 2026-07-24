@@ -4,6 +4,12 @@ import AccountantHero from '../components/accountant/AccountantHero'
 import SubscriptionDetails from '../components/accountant/SubscriptionDetails'
 import AssignmentOptions from '../components/accountant/AssignmentOptions'
 import HiringOptions from '../components/accountant/HiringOptions'
+import { fetchLandingPage } from '../lib/landingPageApi'
+
+// Admin-managed landing page whose per-language explainer videos feed the hero.
+// Content is edited under this slug in the admin (+ /api/v1/landing-pages/
+// accountant-subscription); videos are uploaded there, not hardcoded.
+const LANDING_SLUG = 'accountant-subscription'
 
 const TABS = [
   { id: 'subscription', label: 'Subscription' },
@@ -13,7 +19,16 @@ const TABS = [
 
 export default function AccountantSubscription() {
   const [tab, setTab] = useState('subscription')
+  const [content, setContent] = useState({ languages: [], defaultLanguageCode: 'en' })
   const tabsRef = useRef(null)
+
+  useEffect(() => {
+    let alive = true
+    fetchLandingPage(LANDING_SLUG).then((data) => {
+      if (alive && data) setContent((prev) => ({ ...prev, ...data }))
+    })
+    return () => { alive = false }
+  }, [])
 
   // After a tab change commits, align the sticky tab bar just under the fixed
   // nav so the chosen panel shows from its top. This runs in an effect (after
@@ -47,7 +62,12 @@ export default function AccountantSubscription() {
 
   return (
     <>
-      <AccountantHero onSelectTab={goToTab} />
+      <AccountantHero
+        slug={LANDING_SLUG}
+        languages={content.languages}
+        defaultLanguageCode={content.defaultLanguageCode}
+        onSelectTab={goToTab}
+      />
 
       {/* Tab switcher (sticky under the navbar) */}
       <div

@@ -120,6 +120,13 @@ function seed() {
       langs: [{ code: 'en' }, { code: 'hi' }],
     },
     {
+      slug: 'accountant-subscription',
+      heroTitle: 'Accountants on subscription.',
+      heroDescription: 'Keep your books clean and your business compliant — without building a finance team from scratch. Subscribe to a dedicated accounting squad, or hire vetted accountants directly.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }, { code: 'hi' }],
+    },
+    {
       slug: 'partner-program',
       heroTitle: 'UpSquad Partner Program',
       heroDescription: 'Are you a freelance designer or video editor? Partner with UpSquad and focus only on what you do best — we handle the sales, marketing, client support, and payments.',

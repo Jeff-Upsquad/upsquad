@@ -1,12 +1,57 @@
 "use client"
+import { useEffect, useState } from 'react'
 import ScrollReveal from '../ScrollReveal'
 import HeroMedia from '../landing/HeroMedia'
+import LanguageGate from '../landing/LanguageGate'
+import { getLang, setLang } from '../../lib/localStoragePref'
 
-// TODO: Replace with your real hero video (mp4 URL, or a YouTube / Vimeo / Loom link —
-// HeroMedia auto-embeds those). Using a sample clip as a placeholder for now.
-const HERO_VIDEO_URL = 'https://www.w3schools.com/html/mov_bbb.mp4'
+// Hero for the accountant landing page. The explainer video is admin-managed:
+// content comes from the "accountant-subscription" landing page (admin +
+// /api/v1/landing-pages/accountant-subscription), same multi-language gate the
+// designers/editors hero uses — so videos are uploaded in the admin, not
+// hardcoded here.
+export default function AccountantHero({
+  slug = 'accountant-subscription',
+  languages,
+  defaultLanguageCode,
+  onSelectTab,
+}) {
+  const [selectedCode, setSelectedCode] = useState(null)
+  const [gateOpen, setGateOpen] = useState(false)
 
-export default function AccountantHero({ onSelectTab }) {
+  useEffect(() => {
+    const stored = getLang(slug)
+    const validCodes = new Set((languages || []).map((l) => l.code))
+    if (stored && validCodes.has(stored)) {
+      setSelectedCode(stored)
+    } else if (defaultLanguageCode && validCodes.has(defaultLanguageCode) && (languages || []).length === 1) {
+      setSelectedCode(defaultLanguageCode)
+    } else {
+      setSelectedCode(null)
+    }
+  }, [slug, languages, defaultLanguageCode])
+
+  const selected = (languages || []).find((l) => l.code === selectedCode) || null
+
+  const ensureLanguage = () => {
+    const langs = languages || []
+    if (langs.length <= 1) {
+      if (langs.length === 1 && !selectedCode) setSelectedCode(langs[0].code)
+      return true
+    }
+    if (selectedCode) return true
+    setGateOpen(true)
+    return false
+  }
+
+  const onSelectLanguage = (code) => {
+    setSelectedCode(code)
+    setLang(slug, code)
+    setGateOpen(false)
+  }
+
+  const hasLangChooser = selected && (languages || []).length > 1
+
   return (
     <section className="pt-24 md:pt-28 pb-12 md:pb-16 bg-white">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8 grid md:grid-cols-2 gap-10 lg:gap-12 items-center w-full">
@@ -65,16 +110,37 @@ export default function AccountantHero({ onSelectTab }) {
             <p className="mt-4 text-xs text-text-muted">
               Flat monthly pricing &middot; Pause or cancel anytime
             </p>
+
+            {hasLangChooser && (
+              <button
+                type="button"
+                onClick={() => setGateOpen(true)}
+                aria-label="Change language"
+                className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-[rgba(0,0,0,0.08)] rounded-full px-3 py-1.5 hover:border-gray-300"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3 7.5 7.03 7.5 12s2.015 9 4.5 9zM3.6 9h16.8M3.6 15h16.8" />
+                </svg>
+                Language: {selected.name}
+              </button>
+            )}
           </ScrollReveal>
         </div>
 
         {/* Right: video */}
         <ScrollReveal direction="right" delay={0.2}>
           <div className="w-full">
-            <HeroMedia videoUrl={HERO_VIDEO_URL} />
+            <HeroMedia videoUrl={selected?.videoUrl} onRequestGate={ensureLanguage} />
           </div>
         </ScrollReveal>
       </div>
+
+      <LanguageGate
+        open={gateOpen}
+        languages={languages || []}
+        onSelect={onSelectLanguage}
+        onDismiss={() => setGateOpen(false)}
+      />
     </section>
   )
 }
