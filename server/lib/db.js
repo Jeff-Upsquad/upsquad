@@ -124,7 +124,11 @@ function seed() {
       heroTitle: 'Accountants on subscription.',
       heroDescription: 'Keep your books clean and your business compliant — without building a finance team from scratch. Subscribe to a dedicated accounting squad, or hire vetted accountants directly.',
       defaultLanguageCode: 'en',
-      langs: [{ code: 'en' }, { code: 'hi' }],
+      // Only seed languages that the base seed guarantees exist. On a DB whose
+      // `languages` table is missing a code (e.g. `hi` was removed via admin),
+      // referencing it here trips the FK constraint and crashes boot. Extra
+      // languages are added per-page in /admin, not seeded.
+      langs: [{ code: 'en' }],
     },
     {
       slug: 'partner-program',
