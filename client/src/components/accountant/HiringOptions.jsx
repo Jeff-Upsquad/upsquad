@@ -67,11 +67,11 @@ export default function HiringOptions() {
           <div className="inline-flex items-center gap-2.5 mb-4">
             <span className="h-px w-8 accent-bar" />
             <span className="font-mono-tech text-xs uppercase tracking-[0.14em] text-text-secondary">
-              Prefer to hire
+              Jobs &middot; Hire in-house
             </span>
           </div>
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em] max-w-3xl">
-            Hire vetted accountants — with a{' '}
+            Post a job and hire vetted accountants — with a{' '}
             <span className="relative inline-block">
               <span className="relative z-10">replacement guarantee</span>
               <span className="absolute inset-x-0 bottom-1 h-3 bg-brand-accent -z-0 rounded-sm" aria-hidden="true" />
@@ -79,9 +79,10 @@ export default function HiringOptions() {
             .
           </h2>
           <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
-            Want an accountant on your own payroll? We shortlist candidates that match your
-            requirements. You select who you want and onboard them into your team — and if
-            someone isn’t the right fit, we shortlist a replacement.
+            A job here means hiring someone onto <span className="font-semibold text-text-primary">your</span>{' '}
+            payroll — not contracting through us month to month. Share the role, we shortlist vetted
+            accountants matched to your brief, you interview and hire who you want, and if someone
+            isn’t the right fit we shortlist a replacement.
           </p>
         </ScrollReveal>
 
