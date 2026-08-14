@@ -28,7 +28,7 @@ export const featureRows = [
   },
   {
     label: 'Squad Manager',
-    tooltip: 'You will also be given a resource called Squad Manager, who will help you manage all the works. Coordinate works with designers and editors, and ensure delivery on time.',
+    tooltip: 'A Squad Manager assists you with overall management and support, and makes sure everything is getting done. They oversee and help — they are not a full project manager.',
     values: ['check', 'check', 'check', 'check', 'check'],
   },
   {
@@ -53,8 +53,8 @@ export const featureRows = [
     values: ['Standard queue priority', 'Standard queue priority', 'High priority queue', 'Ultra Priority queue', 'Ultra Priority + Instant Access'],
   },
   {
-    label: 'Access to Our Platform',
-    values: ['Per user Rs 500', 'Per user Rs 500', 'Per user Rs 500', 'Per user Rs 500', 'Per user Rs 500'],
+    label: 'Access to Squad Hub',
+    values: ['5 users free, then ₹500 / extra user', '5 users free, then ₹500 / extra user', '5 users free, then ₹500 / extra user', '5 users free, then ₹500 / extra user', '5 users free, then ₹500 / extra user'],
   },
   {
     label: 'Meetings',
@@ -75,15 +75,42 @@ export const featureRows = [
 ]
 
 export const benefits = [
-  { icon: 'squad-manager', title: 'Squad Manager', desc: 'You will also get a Squad Manager (project manager) to manage all the works and ensure delivery on time.' },
-  { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.' },
-  { icon: 'unlimited-requests', title: 'Unlimited Work Requests', desc: 'Submit as many tasks as you want. One request at a time, delivered with quality and consistency.' },
-  { icon: 'unlimited-changes', title: 'Unlimited Changes', desc: 'If you are not happy with the output, you can request an unlimited number of changes.' },
+  {
+    icon: 'squadhub',
+    title: 'Squad Hub',
+    featured: 'core',
+    label: 'Your workspace',
+    pills: ['View work', 'Track progress', 'Chat'],
+    desc: 'Manage all your work through Squad Hub. View submissions, track progress, chat, and interact with your designers and editors in one place.',
+  },
+  {
+    icon: 'squad-manager',
+    title: 'Squad Manager',
+    featured: 'core',
+    label: 'Your support',
+    pills: ['Oversee', 'Assist', 'Support'],
+    desc: 'A Squad Manager assists you with overall management and support, and makes sure everything is getting done. They oversee and help — they are not a full project manager.',
+  },
+  {
+    icon: 'pause',
+    title: 'Pause Anytime',
+    featured: 'flex',
+    label: 'No lock-in',
+    desc: 'Pause your subscription anytime. Your balance stays safe for 6 months.',
+  },
+  {
+    icon: 'cancel',
+    title: 'Cancel Anytime',
+    featured: 'flex',
+    label: 'No lock-in',
+    desc: 'No long-term commitments. Full flexibility, always.',
+  },
   { icon: 'replacement', title: 'Replacement', desc: 'If you are not happy with the resource assigned to you, you can replace them any number of times.' },
   { icon: 'talent-swapping', title: 'Talent Swapping', desc: 'Swap to another designer or editor anytime to perfectly match your exact project requirements.' },
+  { icon: 'unlimited-changes', title: 'Unlimited Changes', desc: 'If you are not happy with the output, you can request an unlimited number of changes.' },
+  { icon: 'unlimited-requests', title: 'Unlimited Work Requests', desc: 'Submit as many tasks as you want. One request at a time, delivered with quality and consistency.' },
   { icon: 'scale-up', title: 'Scale Up When Needed', desc: 'Upgrade or purchase multiple plans to expand your creative capacity instantly.' },
-  { icon: 'pause', title: 'Pause Anytime', desc: 'Pause your subscription anytime. Your balance stays safe for 6 months.' },
-  { icon: 'cancel', title: 'Cancel Anytime', desc: 'No long-term commitments. Full flexibility, always.' },
+  { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your designer or editor is on leave, you will get a backup.' },
 ]
 
 export const designServices = [

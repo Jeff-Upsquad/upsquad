@@ -5,7 +5,7 @@ import LanguageGate from '../components/landing/LanguageGate'
 import PartnerProgramTab from '../components/partner/PartnerProgramTab'
 import FreelanceTab from '../components/partner/FreelanceTab'
 import JobsTab from '../components/partner/JobsTab'
-import { getLang, setLang } from '../lib/localStoragePref'
+import { getLang, setLang, pickInitialLang } from '../lib/localStoragePref'
 
 const LP_SLUG = 'partner-program'
 
@@ -51,19 +51,12 @@ export default function PartnerProgram() {
       .catch(() => {})
   }, [])
 
-  // Mirror LandingHero's selection logic: stored preference wins, else
-  // auto-pick when there's only one language, else leave unset so the gate
-  // opens on the first play click.
   useEffect(() => {
-    const stored = getLang(LP_SLUG)
-    const validCodes = new Set((languages || []).map((l) => l.code))
-    if (stored && validCodes.has(stored)) {
-      setSelectedCode(stored)
-    } else if (defaultLanguageCode && validCodes.has(defaultLanguageCode) && (languages || []).length === 1) {
-      setSelectedCode(defaultLanguageCode)
-    } else {
-      setSelectedCode(null)
-    }
+    setSelectedCode(pickInitialLang({
+      stored: getLang(LP_SLUG),
+      languages,
+      defaultLanguageCode,
+    }))
   }, [languages, defaultLanguageCode])
 
   const selected = (languages || []).find((l) => l.code === selectedCode) || null

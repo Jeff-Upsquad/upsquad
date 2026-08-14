@@ -9,9 +9,14 @@ export default function WhatYouCanRequest() {
 
   return (
     <section className="mt-20">
-      <h2 className="font-heading text-2xl font-bold text-slate-900 mb-2">What You Can Request</h2>
-      <p className="text-slate-500 mb-6">
-        From social media graphics to complete brand identities—our design services cover everything your brand needs.
+      <p className="font-mono-tech text-[11px] uppercase tracking-[0.16em] text-slate-400 mb-2">
+        Examples — not a fixed menu
+      </p>
+      <h2 className="font-heading text-2xl font-bold text-slate-900 mb-2">What you can request</h2>
+      <p className="text-slate-500 mb-6 max-w-2xl leading-relaxed">
+        Below are examples of the kind of work people send. They are not a complete list, and not
+        every designer or editor does all of them. The actual skills depend on the talent you pick
+        — browse profiles and select the person whose work matches your brief.
       </p>
       <div className="flex gap-2 mb-6">
         {['Designs', 'Video edits'].map((tab) => (

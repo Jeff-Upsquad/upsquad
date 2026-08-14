@@ -1,8 +1,6 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
-
-// Where the accountant "Client Brief" form lives (squadhub web app).
-const BUILD_FORM_URL = 'https://squadhub.in/connect/accountant'
+import SignupCta from '../SignupCta'
 
 const steps = [
   {
@@ -15,7 +13,7 @@ const steps = [
     number: '02',
     title: 'Meet your squad',
     description:
-      'We match you with a dedicated team of qualified accountants and a manager who learn your business inside out.',
+      'We match you with a dedicated team of qualified accountants, plus a Squad Manager who assists you with overall management, support, and making sure work gets done.',
   },
   {
     number: '03',
@@ -47,8 +45,8 @@ const benefits = [
     icon: 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
   },
   {
-    title: 'A dedicated manager',
-    desc: 'One point of contact who plans the work, runs reviews, and answers your questions.',
+    title: 'A Squad Manager',
+    desc: 'Assists you with overall management and support, and makes sure everything is getting done. They oversee and help — they are not a full project manager.',
     icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 3v-3z',
   },
   {
@@ -154,14 +152,9 @@ export default function SubscriptionDetails() {
                 plan that fits. Takes under a minute.
               </p>
             </div>
-            <a
-              href={BUILD_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gradient text-sm font-semibold px-7 py-3.5 shrink-0"
-            >
-              Build my subscription &rarr;
-            </a>
+            <SignupCta className="btn-gradient text-sm font-semibold px-7 py-3.5 shrink-0">
+              Sign up &rarr;
+            </SignupCta>
           </div>
         </ScrollReveal>
       </div>

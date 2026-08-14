@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import ScrollReveal from '../ScrollReveal'
 import HeroMedia from '../landing/HeroMedia'
 import LanguageGate from '../landing/LanguageGate'
-import { getLang, setLang } from '../../lib/localStoragePref'
+import { getLang, setLang, pickInitialLang } from '../../lib/localStoragePref'
 
 // Hero for the creative (designers / video editors) landing page. Mirrors the
 // accountant hero (badge + dual CTA + sub-note) while keeping the existing
@@ -18,20 +18,18 @@ export default function CreativeHero({
 }) {
   const [selectedCode, setSelectedCode] = useState(null)
   const [gateOpen, setGateOpen] = useState(false)
+  const [pendingPlay, setPendingPlay] = useState(false)
 
   useEffect(() => {
-    const stored = getLang(slug)
-    const validCodes = new Set((languages || []).map((l) => l.code))
-    if (stored && validCodes.has(stored)) {
-      setSelectedCode(stored)
-    } else if (defaultLanguageCode && validCodes.has(defaultLanguageCode) && (languages || []).length === 1) {
-      setSelectedCode(defaultLanguageCode)
-    } else {
-      setSelectedCode(null)
-    }
+    setSelectedCode(pickInitialLang({
+      stored: getLang(slug),
+      languages,
+      defaultLanguageCode,
+    }))
   }, [slug, languages, defaultLanguageCode])
 
   const selected = (languages || []).find((l) => l.code === selectedCode) || null
+  const previewUrl = selected?.videoUrl || (languages || []).find((l) => l.videoUrl)?.videoUrl
 
   const ensureLanguage = () => {
     const langs = languages || []
@@ -40,6 +38,7 @@ export default function CreativeHero({
       return true
     }
     if (selectedCode) return true
+    setPendingPlay(true)
     setGateOpen(true)
     return false
   }
@@ -133,7 +132,12 @@ export default function CreativeHero({
         {/* Right: video */}
         <ScrollReveal direction="right" delay={0.2}>
           <div className="w-full">
-            <HeroMedia videoUrl={selected?.videoUrl} onRequestGate={ensureLanguage} />
+            <HeroMedia
+              videoUrl={selected?.videoUrl}
+              previewUrl={previewUrl}
+              autoPlay={pendingPlay}
+              onRequestGate={ensureLanguage}
+            />
           </div>
         </ScrollReveal>
       </div>

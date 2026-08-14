@@ -30,9 +30,24 @@ export function InfoTooltip({ text }) {
 
 export function BenefitIcon({ type }) {
   const icons = {
+    squadhub: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <rect x="3" y="4.5" width="18" height="15" rx="2.25" />
+        <path strokeLinecap="round" d="M3 8.25h18" />
+        <circle cx="6.25" cy="6.4" r="0.55" fill="currentColor" stroke="none" />
+        <circle cx="8.15" cy="6.4" r="0.55" fill="currentColor" stroke="none" />
+        <circle cx="10.05" cy="6.4" r="0.55" fill="currentColor" stroke="none" />
+        <rect x="5.5" y="10.5" width="5" height="3.25" rx="0.7" />
+        <rect x="13.5" y="10.5" width="5" height="3.25" rx="0.7" />
+        <rect x="5.5" y="15" width="13" height="2.25" rx="0.7" />
+      </svg>
+    ),
     'squad-manager': (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 10.5a4.5 4.5 0 019 0v1.25M7.5 10.5V9.25A4.5 4.5 0 0112 4.75a4.5 4.5 0 014.5 4.5V10.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 10.75a1.5 1.5 0 00-1.5 1.5v1.25a1.5 1.5 0 001.5 1.5h.35M16.5 10.75a1.5 1.5 0 011.5 1.5v1.25a1.5 1.5 0 01-1.5 1.5h-.35" />
+        <circle cx="12" cy="12.25" r="2.15" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.4 20.25c.7-2 2-3 3.6-3s2.9 1 3.6 3" />
       </svg>
     ),
     'zero-downtime': (

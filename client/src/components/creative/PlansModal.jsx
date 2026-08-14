@@ -1,12 +1,13 @@
 "use client"
 import { useEffect, useRef } from 'react'
 import AvailabilityTable from '../pricing/AvailabilityTable'
+import SignupCta from '../SignupCta'
 
 // Read-only "Show plans" popup. Mirrors the squadhub /connect brief-form
 // "Compare plans" modal — the same five availability plans (Starter → Personal)
 // in a side-by-side table — but display-only (no per-plan select), with a single
-// "Build my subscription" CTA that hands off to the brief form.
-export default function PlansModal({ open, onClose, buildUrl }) {
+// signup CTA that hands off to SquadHire.
+export default function PlansModal({ open, onClose }) {
   const panelRef = useRef(null)
   const previouslyFocused = useRef(null)
 
@@ -102,14 +103,9 @@ export default function PlansModal({ open, onClose, buildUrl }) {
             >
               Close
             </button>
-            <a
-              href={buildUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gradient text-sm font-semibold px-6 py-2.5"
-            >
-              Build my subscription &rarr;
-            </a>
+            <SignupCta className="btn-gradient text-sm font-semibold px-6 py-2.5">
+              Sign up &rarr;
+            </SignupCta>
           </div>
         </div>
       </div>

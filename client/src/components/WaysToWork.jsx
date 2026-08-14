@@ -17,7 +17,7 @@ const ArrowIcon = ({ className = 'w-4 h-4' }) => (
 )
 
 const subscriptionPoints = [
-  'A dedicated, vetted squad + a Squad Manager who learns your brand',
+  'A dedicated, vetted squad + a Squad Manager for overall oversight and support',
   'Flat monthly pricing — name the budget that works for you',
   'Send unlimited requests; get steady, on-brand work every week',
   'No contracts — pause or cancel anytime',

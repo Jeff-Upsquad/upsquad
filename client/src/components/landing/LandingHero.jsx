@@ -6,25 +6,23 @@ import HeroMedia from './HeroMedia'
 // URLs so this can be re-enabled later by restoring the import and <AudioPlayer />.
 // import AudioPlayer from './AudioPlayer'
 import LanguageGate from './LanguageGate'
-import { getLang, setLang } from '../../lib/localStoragePref'
+import { getLang, setLang, pickInitialLang } from '../../lib/localStoragePref'
 
 export default function LandingHero({ slug, heroTitle, heroDescription, languages, defaultLanguageCode }) {
   const [selectedCode, setSelectedCode] = useState(null)
   const [gateOpen, setGateOpen] = useState(false)
+  const [pendingPlay, setPendingPlay] = useState(false)
 
   useEffect(() => {
-    const stored = getLang(slug)
-    const validCodes = new Set((languages || []).map((l) => l.code))
-    if (stored && validCodes.has(stored)) {
-      setSelectedCode(stored)
-    } else if (defaultLanguageCode && validCodes.has(defaultLanguageCode) && (languages || []).length === 1) {
-      setSelectedCode(defaultLanguageCode)
-    } else {
-      setSelectedCode(null)
-    }
+    setSelectedCode(pickInitialLang({
+      stored: getLang(slug),
+      languages,
+      defaultLanguageCode,
+    }))
   }, [slug, languages, defaultLanguageCode])
 
   const selected = (languages || []).find((l) => l.code === selectedCode) || null
+  const previewUrl = selected?.videoUrl || (languages || []).find((l) => l.videoUrl)?.videoUrl
 
   const ensureLanguage = () => {
     const langs = languages || []
@@ -33,6 +31,7 @@ export default function LandingHero({ slug, heroTitle, heroDescription, language
       return true
     }
     if (selectedCode) return true
+    setPendingPlay(true)
     setGateOpen(true)
     return false
   }
@@ -68,7 +67,12 @@ export default function LandingHero({ slug, heroTitle, heroDescription, language
           )}
         </div>
         <div className="w-full">
-          <HeroMedia videoUrl={selected?.videoUrl} onRequestGate={ensureLanguage} />
+          <HeroMedia
+            videoUrl={selected?.videoUrl}
+            previewUrl={previewUrl}
+            autoPlay={pendingPlay}
+            onRequestGate={ensureLanguage}
+          />
           {/* Audio player hidden for now. Re-enable by restoring the import
               above and uncommenting the <AudioPlayer /> below. */}
           {/* <AudioPlayer audioUrl={selected?.audioUrl} onRequestGate={ensureLanguage} /> */}

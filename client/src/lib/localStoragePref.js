@@ -17,3 +17,13 @@ export function setLang(slug, code) {
     // ignore quota / disabled storage
   }
 }
+
+// Prefer the visitor's last choice, then the page default, then the first language.
+// Always pick something so the hero video is ready on the first play click.
+export function pickInitialLang({ stored, languages, defaultLanguageCode }) {
+  const list = languages || []
+  const codes = new Set(list.map((l) => l.code))
+  if (stored && codes.has(stored)) return stored
+  if (defaultLanguageCode && codes.has(defaultLanguageCode)) return defaultLanguageCode
+  return list[0]?.code || null
+}

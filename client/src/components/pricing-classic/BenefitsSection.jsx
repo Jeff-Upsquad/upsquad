@@ -1,7 +1,11 @@
 import { benefits } from '../../data/pricing-classic'
 import { BenefitIcon } from './icons'
+import IncludedHighlights from '../pricing/IncludedHighlights'
 
 export default function BenefitsSection() {
+  const featured = benefits.filter((b) => b.featured)
+  const rest = benefits.filter((b) => !b.featured)
+
   return (
     <section className="mt-20">
       <h2 className="font-heading text-2xl font-bold text-slate-900 mb-2">
@@ -10,8 +14,9 @@ export default function BenefitsSection() {
       <p className="text-slate-500 mb-10">
         Our Designer + Editor subscription gives your brand creativity, consistency, and complete flexibility.
       </p>
+      <IncludedHighlights items={featured} />
       <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-        {benefits.map((b) => (
+        {rest.map((b) => (
           <div key={b.title} className="flex gap-3">
             <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-slate-600">
               <BenefitIcon type={b.icon} />

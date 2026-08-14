@@ -10,7 +10,7 @@ const featureRows = [
   },
   {
     label: 'Squad Manager',
-    tooltip: 'You will also be given a resource called Squad Manager, who will help you manage all the works. Coordinate works with designers and editors, and ensure delivery on time.',
+    tooltip: 'A Squad Manager assists you with overall management and support, and makes sure everything is getting done. They oversee and help — they are not a full project manager.',
     render: () => <CheckIcon />,
   },
   {
@@ -19,11 +19,11 @@ const featureRows = [
     render: (plan) => plan.urgentWorks ? <CheckIcon /> : <CrossIcon />,
   },
   {
-    label: 'Access to Our Platform',
-    tooltip: 'We use our own platform called SquadHub to manage all the work. You will be able to view the work submitted, progress, chat, and interact with the designers and editors through this.',
+    label: 'Access to Squad Hub',
+    tooltip: 'We use our own platform called SquadHub to manage all the work. You will be able to view the work submitted, progress, chat, and interact with the designers and editors through this. Five users are included free. Additional users are ₹500 per user per month.',
     render: () => (
       <div className="text-xs text-text-secondary leading-relaxed">
-        <div><span className="font-semibold text-text-primary">One user:</span> free access</div>
+        <div><span className="font-semibold text-text-primary">5 users:</span> free access</div>
         <div><span className="font-semibold text-text-primary">Additional user:</span> ₹500 per month</div>
       </div>
     ),

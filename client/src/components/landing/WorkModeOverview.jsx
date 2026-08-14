@@ -17,7 +17,7 @@ const COPY = {
         name: 'Subscription',
         tagline: 'Your creative team, on a flat monthly plan',
         definition:
-          'A dedicated squad of designers and editors plus a Squad Manager. Send requests anytime, get steady on-brand work every week, and pause or cancel whenever you want.',
+          'A dedicated squad of designers and editors, plus a Squad Manager for oversight and support. Send requests anytime, get steady on-brand work every week, and pause or cancel whenever you want.',
         bestFor: 'Ongoing design & video needs',
         highlight: 'Recommended',
       },
@@ -51,7 +51,7 @@ const COPY = {
         name: 'Subscription',
         tagline: 'Your accounting team, on a flat monthly plan',
         definition:
-          'A dedicated squad of qualified accountants plus a manager. They keep your books current, file on time, and send clear reports every month — pause or cancel anytime.',
+          'A dedicated squad of qualified accountants, plus a Squad Manager for oversight and support. Your squad keeps your books current, files on time, and sends clear reports every month — pause or cancel anytime.',
         bestFor: 'Ongoing books & compliance',
         highlight: 'Recommended',
       },
