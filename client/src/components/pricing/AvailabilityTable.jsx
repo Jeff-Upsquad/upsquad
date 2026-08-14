@@ -2,63 +2,77 @@
 import { availabilityPlans } from '../../data/pricing'
 import { CheckIcon, CrossIcon, InfoTooltip } from './icons'
 
-const featureRows = [
-  {
-    label: 'Unlimited work requests',
-    tooltip: 'Unlimited work request means you can place as many design or video edit requests with us. We will deliver them one by one based on your applicable plan.',
-    render: () => <CheckIcon />,
-  },
-  {
-    label: 'Squad Manager',
-    tooltip: 'A Squad Manager assists you with overall management and support, and makes sure everything is getting done. They oversee and help — they are not a full project manager.',
-    render: () => <CheckIcon />,
-  },
-  {
-    label: 'Urgent Works',
-    tooltip: 'For starter, basic, and plus plan. We do not entertain urgent work meaning placing request today and expecting delivery today itself. If our designers or editors are available, we will try to accommodate it, but it is not guaranteed.',
-    render: (plan) => plan.urgentWorks ? <CheckIcon /> : <CrossIcon />,
-  },
-  {
-    label: 'Access to Squad Hub',
-    tooltip: 'We use our own platform called SquadHub to manage all the work. You will be able to view the work submitted, progress, chat, and interact with the designers and editors through this. Five users are included free. Additional users are ₹500 per user per month.',
-    render: () => (
-      <div className="text-xs text-text-secondary leading-relaxed">
-        <div><span className="font-semibold text-text-primary">5 users:</span> free access</div>
-        <div><span className="font-semibold text-text-primary">Additional user:</span> ₹500 per month</div>
-      </div>
-    ),
-  },
-  {
-    label: 'Meetings',
-    tooltip: 'If you want to take a meeting with the designers or editors, you need to schedule it. Instant meetings are not available. Instant meeting is only available in personal plan.',
-    render: (plan) => <span className="text-xs text-text-secondary">{plan.meetings}</span>,
-  },
-  {
-    label: 'Live Collaboration',
-    render: (plan) => plan.liveCollaboration
-      ? <span className="text-xs text-text-secondary">Yes — screen share & live edits</span>
-      : <span className="text-xs text-text-secondary">No</span>,
-  },
-  {
-    label: 'Shared Resource',
-    render: (plan) => <span className="text-xs text-text-secondary">{plan.resource}</span>,
-  },
-  {
-    label: 'Best For',
-    render: (plan) => <span className="text-xs text-text-secondary">{plan.bestFor}</span>,
-  },
-]
+function getFeatureRows(talent) {
+  return [
+    {
+      label: 'Unlimited work requests',
+      tooltip: 'Unlimited work request means you can place as many requests with us. We will deliver them one by one based on your applicable plan.',
+      render: () => <CheckIcon />,
+    },
+    {
+      label: 'Squad Manager',
+      tooltip: 'A Squad Manager assists you with overall management and support, and makes sure everything is getting done. They oversee and help — they are not a full project manager.',
+      render: () => <CheckIcon />,
+    },
+    {
+      label: 'Urgent Works',
+      tooltip: `For starter, basic, and plus plan. We do not entertain urgent work meaning placing request today and expecting delivery today itself. If our ${talent} are available, we will try to accommodate it, but it is not guaranteed.`,
+      render: (plan) => plan.urgentWorks ? <CheckIcon /> : <CrossIcon />,
+    },
+    {
+      label: 'Access to Squad Hub',
+      tooltip: `We use our own platform called SquadHub to manage all the work. You will be able to view the work submitted, progress, chat, and interact with your ${talent} through this. Five users are included free. Additional users are ₹500 per user per month.`,
+      render: () => (
+        <div className="text-xs text-text-secondary leading-relaxed">
+          <div><span className="font-semibold text-text-primary">5 users:</span> free access</div>
+          <div><span className="font-semibold text-text-primary">Additional user:</span> ₹500 per month</div>
+        </div>
+      ),
+    },
+    {
+      label: 'Meetings',
+      tooltip: `If you want to take a meeting with your ${talent}, you need to schedule it. Instant meetings are not available. Instant meeting is only available in personal plan.`,
+      render: (plan) => <span className="text-xs text-text-secondary">{plan.meetings}</span>,
+    },
+    {
+      label: 'Live Collaboration',
+      render: (plan) => plan.liveCollaboration
+        ? <span className="text-xs text-text-secondary">Yes — screen share & live edits</span>
+        : <span className="text-xs text-text-secondary">No</span>,
+    },
+    {
+      label: 'Shared Resource',
+      render: (plan) => <span className="text-xs text-text-secondary">{plan.resource}</span>,
+    },
+    {
+      label: 'Best For',
+      render: (plan) => <span className="text-xs text-text-secondary">{plan.bestFor}</span>,
+    },
+  ]
+}
 
-export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta = true }) {
+export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta = true, variant = 'creative' }) {
+  const talent = variant === 'accountant' ? 'accountants' : 'designers and editors'
+  const featureRows = getFeatureRows(talent)
+  const plans = availabilityPlans.map((plan) => {
+    if (variant !== 'accountant') return plan
+    return {
+      ...plan,
+      description:
+        plan.id === 'personal'
+          ? 'Your own personal accountant, like an in-house partner.'
+          : plan.description,
+      approach: plan.approach.replace('creative support', 'accounting support'),
+    }
+  })
   const gridClass = 'grid-cols-[180px_repeat(5,1fr)]'
 
   return (
     <div className="overflow-x-auto pb-4">
       <div className="min-w-[1000px]">
-        {/* Plan Headers */}
         <div className={`grid ${gridClass} gap-0`}>
           <div />
-          {availabilityPlans.map((plan) => (
+          {plans.map((plan) => (
             <div
               key={plan.id}
               className={`text-center px-3 pt-6 pb-4 relative ${
@@ -78,7 +92,6 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
           ))}
         </div>
 
-        {/* Availability Row (replaces Monthly Price) */}
         <div className={`grid ${gridClass} gap-0 border-t border-[rgba(0,0,0,0.08)]`}>
           <div className="flex items-center px-4 py-4">
             <span className="text-sm font-medium text-text-primary">
@@ -86,7 +99,7 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
               <InfoTooltip text="Availability shows the number of hours your selected talent will be available on a per-day and per-week basis." />
             </span>
           </div>
-          {availabilityPlans.map((plan) => (
+          {plans.map((plan) => (
             <div
               key={plan.id + '-avail'}
               className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
@@ -101,7 +114,6 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
           ))}
         </div>
 
-        {/* Feature Rows */}
         {featureRows.map((row) => (
           <div
             key={row.label}
@@ -113,7 +125,7 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
                 {row.tooltip && <InfoTooltip text={row.tooltip} />}
               </span>
             </div>
-            {availabilityPlans.map((plan) => (
+            {plans.map((plan) => (
               <div
                 key={`${row.label}-${plan.id}`}
                 className={`flex flex-col items-center justify-center py-4 px-2 text-center ${
@@ -128,11 +140,10 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
           </div>
         ))}
 
-        {/* CTA Row — hidden in read-only contexts (e.g. the "Show plans" popup) */}
         {showCta && (
           <div className={`grid ${gridClass} gap-0`}>
             <div />
-            {availabilityPlans.map((plan) => {
+            {plans.map((plan) => {
               const isSelected = selectedPlan === plan.id
               return (
                 <div
@@ -159,11 +170,10 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
           </div>
         )}
 
-        {/* The bottom border of the highlighted column when the CTA row is hidden */}
         {!showCta && (
           <div className={`grid ${gridClass} gap-0`}>
             <div />
-            {availabilityPlans.map((plan) => (
+            {plans.map((plan) => (
               <div
                 key={plan.id + '-foot'}
                 className={`pb-1 ${

@@ -7,7 +7,7 @@ import SignupCta from '../SignupCta'
 // "Compare plans" modal — the same five availability plans (Starter → Personal)
 // in a side-by-side table — but display-only (no per-plan select), with a single
 // signup CTA that hands off to SquadHire.
-export default function PlansModal({ open, onClose }) {
+export default function PlansModal({ open, onClose, variant = 'creative' }) {
   const panelRef = useRef(null)
   const previouslyFocused = useRef(null)
 
@@ -87,7 +87,7 @@ export default function PlansModal({ open, onClose }) {
 
         {/* ── Plans table (read-only) ────────────────────── */}
         <div className="overflow-y-auto px-5 sm:px-7 py-6">
-          <AvailabilityTable showCta={false} />
+          <AvailabilityTable showCta={false} variant={variant} />
         </div>
 
         {/* ── Footer ─────────────────────────────────────── */}

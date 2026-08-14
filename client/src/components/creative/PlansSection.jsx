@@ -18,8 +18,25 @@ function planRows(plan) {
   ]
 }
 
-export default function PlansSection() {
+function adaptPlan(plan, variant) {
+  if (variant !== 'accountant') return plan
+  return {
+    ...plan,
+    description:
+      plan.id === 'personal'
+        ? 'Your own personal accountant, like an in-house partner.'
+        : plan.description,
+    approach: plan.approach.replace('creative support', 'accounting support'),
+  }
+}
+
+export default function PlansSection({ variant = 'creative' }) {
   const [compareOpen, setCompareOpen] = useState(false)
+  const plans = availabilityPlans.map((plan) => adaptPlan(plan, variant))
+  const intro =
+    variant === 'accountant'
+      ? 'Every plan includes the same accounting squad, Squad Hub, and Squad Manager. What changes is how much of their week is yours.'
+      : 'Every plan includes the same squad, Squad Hub, and Squad Manager. What changes is how much of their week is yours.'
 
   return (
     <section id="plans" className="scroll-mt-24 py-16 lg:py-20 px-5 sm:px-8 bg-white">
@@ -35,13 +52,12 @@ export default function PlansSection() {
             Pick the availability that fits.
           </h2>
           <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
-            Every plan includes the same squad, Squad Hub, and Squad Manager. What changes is how
-            much of their week is yours.
+            {intro}
           </p>
         </ScrollReveal>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {availabilityPlans.map((plan, i) => (
+          {plans.map((plan, i) => (
             <ScrollReveal key={plan.id} delay={i * 0.05}>
               <article
                 className={`h-full flex flex-col rounded-2xl border-[1.5px] p-5 ${
@@ -113,7 +129,7 @@ export default function PlansSection() {
         </ScrollReveal>
       </div>
 
-      <PlansModal open={compareOpen} onClose={() => setCompareOpen(false)} />
+      <PlansModal open={compareOpen} onClose={() => setCompareOpen(false)} variant={variant} />
     </section>
   )
 }
