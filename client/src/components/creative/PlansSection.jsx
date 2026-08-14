@@ -39,7 +39,7 @@ export default function PlansSection({ variant = 'creative' }) {
       : 'Every plan includes the same squad, Squad Hub, and Squad Manager. What changes is how much of their week is yours.'
 
   return (
-    <section id="plans" className="scroll-mt-24 py-16 lg:py-20 px-5 sm:px-8 bg-white">
+    <section id="subscription-plans" className="scroll-mt-24 py-16 lg:py-20 px-5 sm:px-8 bg-white">
       <div className="max-w-[1160px] mx-auto">
         <ScrollReveal>
           <div className="inline-flex items-center gap-2.5 mb-4">

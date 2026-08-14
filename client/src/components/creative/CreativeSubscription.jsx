@@ -8,6 +8,7 @@ import WorkingHours from '../pricing/WorkingHours'
 import ImportantNote from '../pricing/ImportantNote'
 import PlansSection from './PlansSection'
 import SignupCta from '../SignupCta'
+import { scrollToSection } from '../../lib/useLandingScrollReset'
 
 const steps = [
   {
@@ -58,9 +59,13 @@ export default function CreativeSubscription() {
               <SignupCta className="btn-gradient text-sm font-semibold px-7 py-3.5 text-center">
                 Sign up &rarr;
               </SignupCta>
-              <a href="#plans" className="btn-secondary text-sm font-semibold px-7 py-3.5 text-center">
+              <button
+                type="button"
+                onClick={() => scrollToSection('subscription-plans')}
+                className="btn-secondary text-sm font-semibold px-7 py-3.5 text-center"
+              >
                 See plans
-              </a>
+              </button>
             </div>
           </ScrollReveal>
 

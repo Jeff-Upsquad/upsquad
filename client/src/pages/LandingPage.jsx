@@ -8,6 +8,7 @@ import WorkModeNav, { scrollToWorkMode } from '../components/landing/WorkModeNav
 import WorkModeOverview from '../components/landing/WorkModeOverview'
 import { getFallback } from '../data/landingPageFallbacks'
 import { fetchLandingPage } from '../lib/landingPageApi'
+import { useLandingScrollReset } from '../lib/useLandingScrollReset'
 
 export default function LandingPage({ slug }) {
   const fallback = getFallback(slug) || {
@@ -18,6 +19,7 @@ export default function LandingPage({ slug }) {
     defaultLanguageCode: 'en',
     languages: [],
   }
+  useLandingScrollReset()
   const [content, setContent] = useState(fallback)
 
   useEffect(() => {

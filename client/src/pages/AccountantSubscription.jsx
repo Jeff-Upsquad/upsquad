@@ -7,6 +7,7 @@ import HiringOptions from '../components/accountant/HiringOptions'
 import WorkModeNav, { scrollToWorkMode } from '../components/landing/WorkModeNav'
 import WorkModeOverview from '../components/landing/WorkModeOverview'
 import { fetchLandingPage } from '../lib/landingPageApi'
+import { useLandingScrollReset } from '../lib/useLandingScrollReset'
 
 // Admin-managed landing page whose per-language explainer videos feed the hero.
 // Content is edited under this slug in the admin (+ /api/v1/landing-pages/
@@ -14,6 +15,7 @@ import { fetchLandingPage } from '../lib/landingPageApi'
 const LANDING_SLUG = 'accountant-subscription'
 
 export default function AccountantSubscription() {
+  useLandingScrollReset()
   const [content, setContent] = useState({ languages: [], defaultLanguageCode: 'en' })
 
   useEffect(() => {
