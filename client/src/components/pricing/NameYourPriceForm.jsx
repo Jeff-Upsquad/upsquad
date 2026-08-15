@@ -139,7 +139,7 @@ const NameYourPriceForm = forwardRef(function NameYourPriceForm({
               <span className="text-label font-mono-tech text-text-muted">Final step</span>
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-text-primary mt-1 mb-1">Name Your Budget</h2>
               <p className="text-sm text-text-secondary">
-                You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.availability} availability) with <span className="font-semibold text-text-primary">{tiersLabel}</span> talent for <span className="font-semibold text-text-primary">{selectedService}</span>{daysLabel && <>, working <span className="font-semibold text-text-primary">{daysLabel}</span></>}.
+                You've selected <span className="font-semibold text-text-primary">{plan?.name}</span> ({plan?.hoursPerDay} / day) with <span className="font-semibold text-text-primary">{tiersLabel}</span> talent for <span className="font-semibold text-text-primary">{selectedService}</span>{daysLabel && <>, working <span className="font-semibold text-text-primary">{daysLabel}</span></>}.
               </p>
             </div>
 

@@ -331,6 +331,11 @@ h6 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.4; }
 
 /* White / light-gray surfaces -> dark cards */
 .dark .bg-white { background-color: #141414; }
+/* Opacity variants (bg-white/95 etc.) are different Tailwind classes and
+   would otherwise stay white — light text on them vanishes in dark mode. */
+.dark .bg-white\/95,
+.dark .bg-white\/90,
+.dark .bg-white\/80 { background-color: rgba(20, 20, 20, 0.92); }
 .dark .bg-\[\#FAFAFA\],
 .dark .bg-\[\#F4F4F6\],
 .dark .bg-\[\#F1F1F3\] { background-color: #181818; }
@@ -372,7 +377,9 @@ h6 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.4; }
 .dark .border-black\/\[0\.05\],
 .dark .border-black\/\[0\.06\],
 .dark .border-black\/\[0\.07\],
-.dark .border-black\/\[0\.08\] { border-color: rgba(255,255,255,0.08); }
+.dark .border-black\/\[0\.08\],
+.dark .border-\[rgba\(0\,0\,0\,0\.06\)\],
+.dark .border-\[rgba\(0\,0\,0\,0\.08\)\] { border-color: rgba(255,255,255,0.08); }
 .dark .border-black\/10,
 .dark .border-black\/15,
 .dark .border-black\/20,

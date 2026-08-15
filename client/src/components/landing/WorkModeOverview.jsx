@@ -133,7 +133,7 @@ export default function WorkModeOverview({ variant = 'creative' }) {
                   className={`group w-full h-full text-left rounded-2xl border-[1.5px] p-6 sm:p-7 transition-all duration-short hover:-translate-y-1 hover:shadow-card-hover ${
                     isPrimary
                       ? 'border-black bg-brand-purple/10 shadow-brutal-sm'
-                      : 'border-[rgba(0,0,0,0.1)] bg-surface-secondary'
+                      : 'border-black/10 bg-surface-secondary'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3 mb-4">
@@ -141,7 +141,7 @@ export default function WorkModeOverview({ variant = 'creative' }) {
                       className={`inline-flex w-10 h-10 rounded-xl items-center justify-center border ${
                         isPrimary
                           ? 'bg-brand-purple text-white border-text-primary shadow-brutal-sm'
-                          : 'bg-white text-text-primary border-[rgba(0,0,0,0.1)]'
+                          : 'bg-white text-text-primary border-black/10'
                       }`}
                     >
                       {icons[mode.id]}

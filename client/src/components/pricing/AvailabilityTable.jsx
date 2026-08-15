@@ -96,7 +96,7 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
           <div className="flex items-center px-4 py-4">
             <span className="text-sm font-medium text-text-primary">
               Availability
-              <InfoTooltip text="Availability shows the number of hours your selected talent will be available on a per-day and per-week basis." />
+              <InfoTooltip text="Availability shows the number of hours your selected talent will be available on a per-day, per-week, and per-month basis." />
             </span>
           </div>
           {plans.map((plan) => (
@@ -106,10 +106,11 @@ export default function AvailabilityTable({ selectedPlan, onSelectPlan, showCta 
                 plan.highlighted ? 'bg-brand-purple/5 border-l-2 border-r-2 border-brand-purple' : ''
               }`}
             >
-              <span className="text-2xl font-bold text-text-primary">{plan.availability}</span>
-              <span className="text-[11px] text-text-muted mt-0.5">{plan.approach}</span>
-              <span className="text-[11px] text-text-secondary italic mt-1">{plan.hoursPerDay} per day</span>
-              <span className="text-[11px] text-text-secondary italic">{plan.hoursPerWeek} per week</span>
+              <span className="text-2xl font-bold text-text-primary">{plan.hoursPerDay}</span>
+              <span className="text-[11px] text-text-secondary mt-0.5">per day</span>
+              <span className="text-[11px] text-text-muted mt-1">{plan.approach}</span>
+              <span className="text-[11px] text-text-secondary italic mt-1">{plan.hoursPerWeek} per week</span>
+              <span className="text-[11px] text-text-secondary italic">{plan.hoursPerMonth} per month</span>
             </div>
           ))}
         </div>

@@ -79,7 +79,7 @@ export default function WorkModeNav({ onSelect }) {
   }
 
   return (
-    <div className="sticky top-[76px] z-40 border-y border-[rgba(0,0,0,0.08)] bg-white/95 backdrop-blur-md">
+    <div className="sticky top-[76px] z-40 border-y border-black/[0.08] bg-surface-primary/95 backdrop-blur-md">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8">
         <div className="flex items-end justify-between gap-4 pt-3 pb-0">
           <div className="hidden sm:block pb-3">
@@ -106,7 +106,7 @@ export default function WorkModeNav({ onSelect }) {
                   className={`relative flex flex-col items-start sm:items-center sm:min-w-[140px] px-3 sm:px-5 pt-2.5 pb-3 transition-colors duration-short border-b-2 ${
                     isActive
                       ? 'border-text-primary text-text-primary'
-                      : 'border-transparent text-text-secondary hover:text-text-primary hover:border-[rgba(0,0,0,0.15)]'
+                      : 'border-transparent text-text-secondary hover:text-text-primary hover:border-black/15'
                   }`}
                 >
                   <span

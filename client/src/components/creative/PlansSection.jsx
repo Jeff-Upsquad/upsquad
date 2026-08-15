@@ -83,14 +83,18 @@ export default function PlansSection({ variant = 'creative' }) {
 
                 <div className="mt-4 mb-4">
                   <div className="font-heading text-3xl font-extrabold text-text-primary leading-none tracking-[-0.03em]">
-                    {plan.availability}
+                    {plan.hoursPerDay}
                   </div>
+                  <p className="text-[11px] text-text-secondary mt-1 leading-snug">
+                    per day
+                  </p>
                   <p className="text-[11px] text-text-secondary mt-1.5 leading-snug">
-                    {plan.hoursPerDay} / day
-                    <span className="text-black/25"> · </span>
                     {plan.hoursPerWeek} / week
                   </p>
-                  <p className="text-[11px] font-medium text-text-primary mt-1">
+                  <p className="text-[11px] text-text-secondary leading-snug">
+                    {plan.hoursPerMonth} / month
+                  </p>
+                  <p className="text-[11px] font-medium text-text-primary mt-1.5">
                     {plan.approach}
                   </p>
                 </div>
