@@ -369,6 +369,31 @@ h6 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.4; }
 .dark .text-\[\#0A0A0A\] { color: #EDEDED; }
 .dark .text-brand-orange { color: #9a9a9a; }
 
+/* Yellow accent cards stay yellow. Semantic text tokens still flip to light,
+   which makes Plus / recommended cards unreadable. Pin dark ink on them. */
+.dark .bg-\[\#FFFF99\],
+.dark .bg-brand-accent {
+  color: #0A0A0A;
+}
+.dark .bg-\[\#FFFF99\] .text-text-primary,
+.dark .bg-\[\#FFFF99\] .text-\[\#0A0A0A\],
+.dark .bg-brand-accent .text-text-primary,
+.dark .bg-brand-accent .text-\[\#0A0A0A\] {
+  color: #0A0A0A;
+}
+.dark .bg-\[\#FFFF99\] .text-text-secondary,
+.dark .bg-\[\#FFFF99\] .text-text-muted,
+.dark .bg-brand-accent .text-text-secondary,
+.dark .bg-brand-accent .text-text-muted {
+  color: #3f3f46;
+}
+.dark .bg-\[\#FFFF99\].border-black,
+.dark .bg-\[\#FFFF99\] .border-black,
+.dark .bg-\[\#FFFF99\] .border-black\/\[0\.08\],
+.dark .bg-brand-accent.border-black {
+  border-color: rgba(10, 10, 10, 0.88);
+}
+
 /* Borders: black outlines/hairlines -> light equivalents */
 .dark .border-black { border-color: rgba(255,255,255,0.16); }
 .dark .border-\[\#0A0A0A\],
