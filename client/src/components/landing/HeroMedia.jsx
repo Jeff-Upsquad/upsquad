@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
+import SpeedControl from './SpeedControl'
 
 function isEmbedUrl(url) {
   if (!url) return false
@@ -37,11 +38,11 @@ function toEmbed(url) {
     const u = new URL(url)
     if (u.hostname.includes('youtu.be')) {
       const id = u.pathname.replace('/', '')
-      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`
+      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&enablejsapi=1`
     }
     if (u.hostname.includes('youtube.com')) {
       const id = u.searchParams.get('v')
-      if (id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`
+      if (id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&enablejsapi=1`
     }
     if (u.hostname.includes('vimeo.com')) {
       const id = u.pathname.split('/').filter(Boolean).pop()
@@ -76,13 +77,40 @@ function PlayButton() {
   )
 }
 
+function applyEmbedPlaybackRate(iframe, url, rate) {
+  if (!iframe?.contentWindow || !url) return
+  try {
+    const host = new URL(url).hostname
+    if (host.includes('youtu.be') || host.includes('youtube.com')) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'setPlaybackRate',
+        args: [rate],
+      }), '*')
+    } else if (host.includes('vimeo.com')) {
+      iframe.contentWindow.postMessage({ method: 'setPlaybackRate', value: rate }, '*')
+    }
+  } catch {
+    // ignore invalid URLs / cross-origin failures
+  }
+}
+
+function supportsCustomSpeed(url) {
+  if (!url) return false
+  if (!isEmbedUrl(url)) return true
+  return /(?:youtube\.com|youtu\.be|vimeo\.com)/i.test(url)
+}
+
 export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPlay = false }) {
   const videoRef = useRef(null)
+  const iframeRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [embedActive, setEmbedActive] = useState(false)
+  const [rate, setRate] = useState(1)
   const source = videoUrl || previewUrl || ''
   const poster = getPosterUrl(source)
   const embed = isEmbedUrl(source)
+  const showSpeed = supportsCustomSpeed(videoUrl || source)
 
   const startPlayback = (url) => {
     if (!url) return
@@ -105,6 +133,16 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
     setPlaying(false)
     setEmbedActive(false)
   }, [videoUrl, previewUrl])
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (v) v.playbackRate = rate
+  }, [rate, videoUrl, playing])
+
+  useEffect(() => {
+    if (!embedActive) return
+    applyEmbedPlaybackRate(iframeRef.current, videoUrl || source, rate)
+  }, [rate, embedActive, videoUrl, source])
 
   useEffect(() => {
     if (!autoPlay || !videoUrl || playing || embedActive) return
@@ -148,14 +186,24 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
 
   if (embed && embedActive) {
     return (
-      <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
         <iframe
+          ref={iframeRef}
           src={toEmbed(videoUrl || source)}
           title="Hero video"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
+          onLoad={() => applyEmbedPlaybackRate(iframeRef.current, videoUrl || source, rate)}
           className="w-full h-full"
         />
+        {showSpeed && (
+          <SpeedControl
+            rate={rate}
+            onChange={setRate}
+            menuPlacement="down"
+            className="absolute top-3 right-3 z-10"
+          />
+        )}
       </div>
     )
   }
@@ -180,7 +228,10 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
           preload="metadata"
           poster={poster || undefined}
           controls={playing}
-          onLoadedMetadata={showFrame}
+          onLoadedMetadata={(e) => {
+            e.currentTarget.playbackRate = rate
+            showFrame(e)
+          }}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}
@@ -197,6 +248,15 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
         >
           <PlayButton />
         </button>
+      )}
+
+      {playing && showSpeed && (
+        <SpeedControl
+          rate={rate}
+          onChange={setRate}
+          menuPlacement="down"
+          className="absolute top-3 right-3 z-10"
+        />
       )}
     </div>
   )

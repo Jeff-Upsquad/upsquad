@@ -5,7 +5,7 @@ import LanguageGate from '../components/landing/LanguageGate'
 import PartnerProgramTab from '../components/general-partner/PartnerProgramTab'
 import FreelanceTab from '../components/general-partner/FreelanceTab'
 import JobsTab from '../components/general-partner/JobsTab'
-import { getLang, setLang, pickInitialLang } from '../lib/localStoragePref'
+import { useLanguageGate } from '../lib/useLanguageGate'
 
 const LP_SLUG = 'partner-program'
 
@@ -35,10 +35,17 @@ const heroCopy = {
 export default function PartnerProgram() {
   const [languages, setLanguages] = useState([])
   const [defaultLanguageCode, setDefaultLanguageCode] = useState('en')
-  const [selectedCode, setSelectedCode] = useState(null)
-  const [gateOpen, setGateOpen] = useState(false)
   const [tab, setTab] = useState('partner')
   const tabsRef = useRef(null)
+  const {
+    selected,
+    selectedCode,
+    gateOpen,
+    setGateOpen,
+    pendingPlay,
+    requestPlay,
+    onSelectLanguage,
+  } = useLanguageGate({ slug: LP_SLUG, languages, defaultLanguageCode })
 
   useEffect(() => {
     fetch(`/api/v1/landing-pages/${LP_SLUG}`)
@@ -50,33 +57,6 @@ export default function PartnerProgram() {
       })
       .catch(() => {})
   }, [])
-
-  useEffect(() => {
-    setSelectedCode(pickInitialLang({
-      stored: getLang(LP_SLUG),
-      languages,
-      defaultLanguageCode,
-    }))
-  }, [languages, defaultLanguageCode])
-
-  const selected = (languages || []).find((l) => l.code === selectedCode) || null
-
-  const ensureLanguage = () => {
-    const langs = languages || []
-    if (langs.length <= 1) {
-      if (langs.length === 1 && !selectedCode) setSelectedCode(langs[0].code)
-      return true
-    }
-    if (selectedCode) return true
-    setGateOpen(true)
-    return false
-  }
-
-  const onSelectLanguage = (code) => {
-    setSelectedCode(code)
-    setLang(LP_SLUG, code)
-    setGateOpen(false)
-  }
 
   // After a tab change commits, align the sticky tab bar just under the fixed
   // nav so the chosen panel shows from its top. This runs in an effect (after
@@ -168,13 +148,14 @@ export default function PartnerProgram() {
             </div>
           </div>
           <div className="w-full">
-            <HeroMedia videoUrl={selected?.videoUrl} onRequestGate={ensureLanguage} />
+            <HeroMedia videoUrl={selected?.videoUrl} autoPlay={pendingPlay} onRequestGate={requestPlay} />
           </div>
         </div>
 
         <LanguageGate
           open={gateOpen}
           languages={languages || []}
+          selectedCode={selectedCode}
           onSelect={onSelectLanguage}
           onDismiss={() => setGateOpen(false)}
         />

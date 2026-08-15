@@ -1,7 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
-
-const SPEEDS = [0.5, 1, 1.25, 1.5, 2]
+import SpeedControl from './SpeedControl'
 
 function formatTime(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) return '0:00'
@@ -17,7 +16,6 @@ export default function AudioPlayer({ audioUrl, onRequestGate }) {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [rate, setRate] = useState(1)
-  const [speedOpen, setSpeedOpen] = useState(false)
 
   useEffect(() => {
     const audio = audioRef.current
@@ -128,33 +126,7 @@ export default function AudioPlayer({ audioUrl, onRequestGate }) {
       />
       <span className="text-xs text-text-secondary tabular-nums w-10">{formatTime(duration)}</span>
 
-      <div className="relative">
-        <button
-          type="button"
-          onClick={() => setSpeedOpen((v) => !v)}
-          aria-haspopup="menu"
-          aria-expanded={speedOpen}
-          aria-label="Playback speed"
-          className="flex-shrink-0 px-2.5 py-1 text-xs font-medium rounded-md border border-[rgba(0,0,0,0.08)] text-slate-700 hover:border-gray-300"
-        >
-          {rate}×
-        </button>
-        {speedOpen && (
-          <div role="menu" className="absolute right-0 bottom-full mb-1 w-20 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg shadow-lg overflow-hidden z-20">
-            {SPEEDS.map((s) => (
-              <button
-                key={s}
-                role="menuitemradio"
-                aria-checked={s === rate}
-                onClick={() => { setRate(s); setSpeedOpen(false) }}
-                className={`w-full text-left px-3 py-1.5 text-xs ${s === rate ? 'bg-surface-secondary text-text-primary' : 'text-slate-600 hover:bg-surface-secondary'}`}
-              >
-                {s}×
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+      <SpeedControl rate={rate} onChange={setRate} />
     </div>
   )
 }

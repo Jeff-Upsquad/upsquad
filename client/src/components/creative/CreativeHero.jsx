@@ -1,9 +1,8 @@
 "use client"
-import { useEffect, useState } from 'react'
 import ScrollReveal from '../ScrollReveal'
 import HeroMedia from '../landing/HeroMedia'
 import LanguageGate from '../landing/LanguageGate'
-import { getLang, setLang, pickInitialLang } from '../../lib/localStoragePref'
+import { useLanguageGate } from '../../lib/useLanguageGate'
 
 // Hero for the creative (designers / video editors) landing page. Mirrors the
 // accountant hero (badge + dual CTA + sub-note) while keeping the existing
@@ -16,40 +15,18 @@ export default function CreativeHero({
   defaultLanguageCode,
   onSelectTab,
 }) {
-  const [selectedCode, setSelectedCode] = useState(null)
-  const [gateOpen, setGateOpen] = useState(false)
-  const [pendingPlay, setPendingPlay] = useState(false)
+  const {
+    selected,
+    selectedCode,
+    gateOpen,
+    setGateOpen,
+    pendingPlay,
+    requestPlay,
+    onSelectLanguage,
+    hasLangChooser,
+  } = useLanguageGate({ slug, languages, defaultLanguageCode })
 
-  useEffect(() => {
-    setSelectedCode(pickInitialLang({
-      stored: getLang(slug),
-      languages,
-      defaultLanguageCode,
-    }))
-  }, [slug, languages, defaultLanguageCode])
-
-  const selected = (languages || []).find((l) => l.code === selectedCode) || null
   const previewUrl = selected?.videoUrl || (languages || []).find((l) => l.videoUrl)?.videoUrl
-
-  const ensureLanguage = () => {
-    const langs = languages || []
-    if (langs.length <= 1) {
-      if (langs.length === 1 && !selectedCode) setSelectedCode(langs[0].code)
-      return true
-    }
-    if (selectedCode) return true
-    setPendingPlay(true)
-    setGateOpen(true)
-    return false
-  }
-
-  const onSelectLanguage = (code) => {
-    setSelectedCode(code)
-    setLang(slug, code)
-    setGateOpen(false)
-  }
-
-  const hasLangChooser = selected && (languages || []).length > 1
 
   // Accent-highlight the role words (everything before " on …") so the marker
   // sits behind "Designers and video editors" but not "on subscription."
@@ -136,7 +113,7 @@ export default function CreativeHero({
               videoUrl={selected?.videoUrl}
               previewUrl={previewUrl}
               autoPlay={pendingPlay}
-              onRequestGate={ensureLanguage}
+              onRequestGate={requestPlay}
             />
           </div>
         </ScrollReveal>
@@ -145,6 +122,7 @@ export default function CreativeHero({
       <LanguageGate
         open={gateOpen}
         languages={languages || []}
+        selectedCode={selectedCode}
         onSelect={onSelectLanguage}
         onDismiss={() => setGateOpen(false)}
       />

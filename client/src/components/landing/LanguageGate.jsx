@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useRef } from 'react'
 
-export default function LanguageGate({ open, languages, onSelect, onDismiss }) {
+export default function LanguageGate({ open, languages, selectedCode, onSelect, onDismiss }) {
   const panelRef = useRef(null)
   const previouslyFocused = useRef(null)
 
@@ -54,22 +54,32 @@ export default function LanguageGate({ open, languages, onSelect, onDismiss }) {
             Choose your language
           </h2>
           <p className="text-sm text-text-secondary mt-1">
-            Pick a language to watch the video and listen to the audio.
+            Pick a language to watch the video.
           </p>
         </div>
         <ul className="py-2">
-          {languages.map((lang) => (
-            <li key={lang.code}>
-              <button
-                type="button"
-                onClick={() => onSelect?.(lang.code)}
-                className="w-full text-left px-6 py-3 text-sm font-medium text-slate-800 hover:bg-surface-secondary transition-colors"
-              >
-                {lang.name}
-                <span className="ml-2 text-xs text-text-muted">{lang.code.toUpperCase()}</span>
-              </button>
-            </li>
-          ))}
+          {languages.map((lang) => {
+            const active = lang.code === selectedCode
+            return (
+              <li key={lang.code}>
+                <button
+                  type="button"
+                  onClick={() => onSelect?.(lang.code)}
+                  className={`w-full flex items-center text-left px-6 py-3 text-sm font-medium transition-colors ${
+                    active
+                      ? 'bg-surface-secondary text-text-primary'
+                      : 'text-slate-800 hover:bg-surface-secondary'
+                  }`}
+                >
+                  {lang.name}
+                  <span className="ml-2 text-xs text-text-muted">{lang.code.toUpperCase()}</span>
+                  {active && (
+                    <span className="ml-auto text-xs font-medium text-brand-purple">Selected</span>
+                  )}
+                </button>
+              </li>
+            )
+          })}
         </ul>
         <div className="px-6 py-3 border-t border-[rgba(0,0,0,0.08)] text-right">
           <button

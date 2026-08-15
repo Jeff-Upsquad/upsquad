@@ -19,7 +19,7 @@ export function setLang(slug, code) {
 }
 
 // Prefer the visitor's last choice, then the page default, then the first language.
-// Always pick something so the hero video is ready on the first play click.
+// Used for the poster / preview. Play still re-opens the language picker.
 export function pickInitialLang({ stored, languages, defaultLanguageCode }) {
   const list = languages || []
   const codes = new Set(list.map((l) => l.code))
