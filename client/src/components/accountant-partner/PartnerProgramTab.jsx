@@ -128,24 +128,27 @@ const gettingStartedSteps = [
 const planCards = [
   {
     name: 'Starter',
-    hours: '~1 hour/day',
-    capacity: '10% Capacity',
+    hours: '1 hour / day',
+    week: '~5 hours / week',
+    month: '~20 hours / month',
     deliverables: 'e.g. books for 1 micro business',
     payment: '6,000',
     highlighted: false,
   },
   {
     name: 'Basic',
-    hours: '2–3 hours/day',
-    capacity: '25% Capacity',
+    hours: '2 hours / day',
+    week: '10 hours / week',
+    month: '40 hours / month',
     deliverables: 'e.g. bookkeeping + GST for 2 businesses',
     payment: '15,000',
     highlighted: false,
   },
   {
     name: 'Plus',
-    hours: '4–5 hours/day',
-    capacity: '50% Capacity',
+    hours: '4 hours / day',
+    week: '20 hours / week',
+    month: '80 hours / month',
     deliverables: 'e.g. full books for 4–5 businesses',
     payment: '22,000',
     highlighted: true,
@@ -153,16 +156,18 @@ const planCards = [
   },
   {
     name: 'Pro',
-    hours: '6–7 hours/day',
-    capacity: '80% Capacity',
+    hours: '6 hours / day',
+    week: '30 hours / week',
+    month: '120 hours / month',
     deliverables: 'e.g. books + filings for 8 businesses',
     payment: '32,000',
     highlighted: false,
   },
   {
     name: 'Personal',
-    hours: 'Full-time',
-    capacity: '100% Capacity',
+    hours: '8 hours / day',
+    week: '~40 hours / week',
+    month: '~160 hours / month',
     deliverables: 'Dedicated full-time finance support',
     payment: '45,000',
     highlighted: false,
@@ -543,7 +548,8 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                       <span className="text-xs font-medium text-text-muted uppercase tracking-wider">Hours</span>
                     </div>
                     <p className="text-sm font-semibold text-text-primary">{plan.hours}</p>
-                    <p className="text-xs text-text-muted">{plan.capacity}</p>
+                    <p className="text-xs text-text-muted">{plan.week}</p>
+                    <p className="text-xs text-text-muted">{plan.month}</p>
                   </div>
 
                   {/* Deliverables */}
