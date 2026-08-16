@@ -368,3 +368,71 @@ export function createCareerApplication({ positionId, name, email, phone }) {
   `).run(positionId, name, email, phone)
   return info.lastInsertRowid
 }
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS offer_reservations (
+    id TEXT PRIMARY KEY,
+    role_ids TEXT NOT NULL,
+    plan_id TEXT NOT NULL,
+    amount INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    preference TEXT NOT NULL DEFAULT '',
+    payment_link_id TEXT NOT NULL DEFAULT '',
+    payment_link_url TEXT NOT NULL DEFAULT '',
+    payment_id TEXT NOT NULL DEFAULT '',
+    status TEXT NOT NULL DEFAULT 'created',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    paid_at TEXT
+  );
+`)
+
+export function createOfferReservation(row) {
+  db.prepare(`
+    INSERT INTO offer_reservations (
+      id, role_ids, plan_id, amount, name, email, phone, preference,
+      payment_link_id, payment_link_url, status
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'created')
+  `).run(
+    row.id,
+    row.roleIds,
+    row.planId,
+    row.amount,
+    row.name,
+    row.email,
+    row.phone,
+    row.preference || '',
+    row.paymentLinkId || '',
+    row.paymentLinkUrl || '',
+  )
+  return getOfferReservationById(row.id)
+}
+
+export function getOfferReservationById(id) {
+  return db.prepare('SELECT * FROM offer_reservations WHERE id = ?').get(id) || null
+}
+
+export function getOfferReservationByPaymentLinkId(linkId) {
+  return db.prepare('SELECT * FROM offer_reservations WHERE payment_link_id = ?').get(linkId) || null
+}
+
+export function markOfferReservationPaid(id, paymentId) {
+  db.prepare(`
+    UPDATE offer_reservations
+    SET status = 'paid',
+        payment_id = COALESCE(NULLIF(?, ''), payment_id),
+        paid_at = COALESCE(paid_at, CURRENT_TIMESTAMP)
+    WHERE id = ? AND status != 'paid'
+  `).run(paymentId || '', id)
+  return getOfferReservationById(id)
+}
+
+export function attachOfferPaymentLink(id, { paymentLinkId, paymentLinkUrl }) {
+  db.prepare(`
+    UPDATE offer_reservations
+    SET payment_link_id = ?, payment_link_url = ?
+    WHERE id = ?
+  `).run(paymentLinkId, paymentLinkUrl, id)
+  return getOfferReservationById(id)
+}
