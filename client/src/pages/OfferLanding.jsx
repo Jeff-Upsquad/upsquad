@@ -35,6 +35,13 @@ function toggleId(list, id) {
   return list.includes(id) ? list.filter((item) => item !== id) : [...list, id]
 }
 
+function scrollToAnchor(id) {
+  const el = document.getElementById(id)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - 96
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+}
+
 export default function OfferLanding() {
   const [roleIds, setRoleIds] = useState(['designer'])
   const [planId, setPlanId] = useState('basic')
@@ -233,10 +240,24 @@ export default function OfferLanding() {
             </ScrollReveal>
             <ScrollReveal delay={0.24}>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#reserve" className="btn-gradient text-sm font-semibold px-7 py-3.5">
+                <a
+                  href="#reserve"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    scrollToAnchor('reserve')
+                  }}
+                  className="btn-gradient text-sm font-semibold px-7 py-3.5"
+                >
                   Reserve a slot
                 </a>
-                <a href="#who" className="btn-secondary text-sm font-semibold px-7 py-3.5">
+                <a
+                  href="#who"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    scrollToAnchor('who')
+                  }}
+                  className="btn-secondary text-sm font-semibold px-7 py-3.5"
+                >
                   Who will I get?
                 </a>
               </div>
@@ -286,7 +307,7 @@ export default function OfferLanding() {
         </div>
       </section>
 
-      <section id="reserve" className="scroll-mt-24 py-16 lg:py-20 px-5 sm:px-8 bg-white overflow-x-clip">
+      <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white overflow-x-clip">
         <div className="max-w-[1160px] mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_400px] gap-10 lg:gap-12 items-start">
           <div className="min-w-0">
             <ScrollReveal>
@@ -366,8 +387,9 @@ export default function OfferLanding() {
 
           <aside className="lg:sticky lg:top-28">
             <form
+              id="reserve"
               onSubmit={handleReserve}
-              className="rounded-2xl border-[1.5px] border-black bg-white p-6 shadow-brutal"
+              className="scroll-mt-28 rounded-2xl border-[1.5px] border-black bg-white p-6 shadow-brutal"
             >
               <p className="font-mono-tech text-[11px] uppercase tracking-[0.16em] text-text-secondary">
                 Confirm your slot
