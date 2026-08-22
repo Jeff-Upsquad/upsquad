@@ -1,5 +1,6 @@
 "use client"
 import { useState } from 'react'
+import Link from 'next/link'
 import { squads, totalProductCount } from '../../data/squads'
 
 const statusMeta = {
@@ -78,21 +79,40 @@ export default function SquadProducts() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {squad.products.map((product) => {
                 const available = product.status === 'live' || product.status === 'waitlist'
-                return (
-                  <div
-                    key={product.name}
-                    className={`border rounded-xl p-5 transition-all ${
-                      available
-                        ? 'bg-white border-[rgba(0,0,0,0.08)] hover:border-brand-purple/40'
-                        : 'bg-surface-secondary border-[rgba(0,0,0,0.08)]'
-                    }`}
-                  >
+                const linked = available && product.href
+                const cardClasses = `group/card relative border rounded-xl p-5 transition-all ${
+                  available
+                    ? 'bg-white border-[rgba(0,0,0,0.08)] hover:border-brand-purple/40'
+                    : 'bg-surface-secondary border-[rgba(0,0,0,0.08)]'
+                } ${linked ? 'cursor-pointer hover:-translate-y-0.5 hover:shadow-card-hover' : ''}`
+                const inner = (
+                  <>
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <span className="text-xl shrink-0" aria-hidden>{product.emoji}</span>
                       <ProductStatus status={product.status} />
                     </div>
-                    <h4 className="text-sm font-semibold text-text-primary leading-snug">{product.name}</h4>
+                    <h4 className="text-sm font-semibold text-text-primary leading-snug flex items-center gap-1.5">
+                      {product.name}
+                      {linked && (
+                        <svg
+                          className="w-3.5 h-3.5 text-text-muted transition-transform duration-short group-hover/card:translate-x-0.5"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                          strokeLinecap="round" strokeLinejoin="round" aria-hidden
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      )}
+                    </h4>
                     <p className="text-xs text-text-secondary mt-1 leading-relaxed">{product.desc}</p>
+                  </>
+                )
+                return linked ? (
+                  <Link key={product.name} href={product.href} className={`block ${cardClasses}`}>
+                    {inner}
+                  </Link>
+                ) : (
+                  <div key={product.name} className={cardClasses}>
+                    {inner}
                   </div>
                 )
               })}

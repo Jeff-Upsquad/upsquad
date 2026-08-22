@@ -24,8 +24,8 @@ export const squads = [
     products: [
       { name: 'Creative Director', emoji: '🎬', desc: 'Oversees creative vision and brand direction across all content.', status: 'coming-soon' },
       { name: 'Copy / Content Writers', emoji: '✍️', desc: 'Creates compelling copy and content that speaks to your audience.', status: 'coming-soon' },
-      { name: 'Designers', emoji: '🎨', desc: 'Crafts visual assets, graphics, and brand identities that stand out.', status: 'live' },
-      { name: 'Editors', emoji: '🖥️', desc: 'Polishes and refines video and written content to perfection.', status: 'live' },
+      { name: 'Designers', emoji: '🎨', desc: 'Crafts visual assets, graphics, and brand identities that stand out.', status: 'live', href: '/customers/designers-and-video-editors' },
+      { name: 'Editors', emoji: '🖥️', desc: 'Polishes and refines video and written content to perfection.', status: 'live', href: '/customers/designers-and-video-editors' },
       { name: 'Social Media Managers', emoji: '📣', desc: 'Manages and grows your brand\'s presence across social platforms.', status: 'coming-soon' },
       { name: 'Videographers & Photographers', emoji: '📷', desc: 'Captures high-quality visual content that tells your brand story.', status: 'waitlist' },
       { name: 'AI Video & Image Creator', emoji: '🤖', desc: 'Produces AI-generated visuals and video content to accelerate your creative output.', status: 'coming-soon' },
@@ -88,7 +88,7 @@ export const squads = [
       note: 'Your complete finance back-office — sorted.',
     },
     products: [
-      { name: 'Accountants', emoji: '🧾', desc: 'Manages day-to-day bookkeeping, transactions, and financial records with accuracy.', status: 'live' },
+      { name: 'Accountants', emoji: '🧾', desc: 'Manages day-to-day bookkeeping, transactions, and financial records with accuracy.', status: 'live', href: '/customers/accountant-subscription' },
       { name: 'CFOs / CAs', emoji: '📈', desc: 'Provides strategic financial guidance, planning, and high-level business insights.', status: 'coming-soon' },
       { name: 'GST Experts', emoji: '🧮', desc: 'Handles GST filings, compliance, and advisory to ensure smooth tax operations.', status: 'coming-soon' },
       { name: 'TDS Experts', emoji: '📑', desc: 'Manages TDS calculations, deductions, and timely filings without errors.', status: 'coming-soon' },

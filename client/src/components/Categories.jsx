@@ -125,18 +125,40 @@ function Drawer({ squad, onClose }) {
           </p>
 
           <div className="flex flex-col gap-2.5">
-            {squad.products.map((talent) => (
-              <div
-                key={talent.name}
-                className="bg-[#FAFAFA] border border-black/[0.06] rounded-2xl p-4 flex items-start gap-4 hover:border-black/15 transition-colors"
-              >
-                <span className="text-2xl mt-0.5 shrink-0 grayscale opacity-90">{talent.emoji}</span>
-                <div>
-                  <p className="text-sm font-semibold text-text-primary leading-snug">{talent.name}</p>
-                  <p className="text-xs text-text-muted mt-1 leading-relaxed">{talent.desc}</p>
+            {squad.products.map((talent) => {
+              const rowClasses = "bg-[#FAFAFA] border border-black/[0.06] rounded-2xl p-4 flex items-start gap-4 transition-colors"
+              const content = (
+                <>
+                  <span className="text-2xl mt-0.5 shrink-0 grayscale opacity-90">{talent.emoji}</span>
+                  <div>
+                    <p className="text-sm font-semibold text-text-primary leading-snug">{talent.name}</p>
+                    <p className="text-xs text-text-muted mt-1 leading-relaxed">{talent.desc}</p>
+                  </div>
+                  {talent.href && (
+                    <svg
+                      className="w-4 h-4 mt-1 ml-auto shrink-0 text-text-muted"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" aria-hidden
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  )}
+                </>
+              )
+              return talent.href ? (
+                <Link
+                  key={talent.name}
+                  href={talent.href}
+                  className={`${rowClasses} cursor-pointer hover:border-black/20 hover:bg-white`}
+                >
+                  {content}
+                </Link>
+              ) : (
+                <div key={talent.name} className={`${rowClasses} hover:border-black/15`}>
+                  {content}
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
