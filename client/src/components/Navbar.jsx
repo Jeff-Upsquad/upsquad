@@ -99,7 +99,7 @@ export default function Navbar() {
                 pathname === '/pricing' ? 'text-text-primary font-semibold' : 'text-text-secondary hover:text-text-primary'
               }`}
             >
-              Pricing
+              Products
             </Link>
             <Link
               href="/contact"
@@ -176,7 +176,7 @@ export default function Navbar() {
                 pathname === '/pricing' ? 'text-text-primary font-medium' : 'text-text-secondary'
               }`}
             >
-              Pricing
+              Products
             </Link>
             <Link
               href="/contact"

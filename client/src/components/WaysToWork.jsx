@@ -135,7 +135,7 @@ export default function WaysToWork() {
                     <ArrowIcon />
                   </a>
                   <Link href="/pricing" className="btn-secondary inline-flex items-center justify-center text-sm font-semibold px-7 py-3.5">
-                    View pricing
+                    View products
                   </Link>
                 </div>
               </div>

@@ -1,0 +1,105 @@
+"use client"
+import { useState } from 'react'
+import { squads, totalProductCount } from '../../data/squads'
+
+const statusMeta = {
+  live: {
+    label: 'Live',
+    className:
+      'text-brand-green bg-brand-green/10 border border-brand-green/20',
+    dot: 'bg-brand-green',
+  },
+  waitlist: {
+    label: 'Join Waiting List',
+    className: 'text-white bg-[#0A0A0A] border border-black/10',
+    dot: 'bg-[#FFFF99]',
+  },
+  'coming-soon': {
+    label: 'Coming Soon',
+    className: 'text-text-muted bg-black/[0.03] border border-black/[0.06]',
+    dot: null,
+  },
+}
+
+function ProductStatus({ status }) {
+  const meta = statusMeta[status] ?? statusMeta['coming-soon']
+  return (
+    <span
+      className={`flex-shrink-0 inline-flex items-center gap-1.5 text-[10px] font-semibold px-2.5 py-1 rounded-full ${meta.className}`}
+    >
+      {meta.dot && <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />}
+      {meta.label}
+    </span>
+  )
+}
+
+export default function SquadProducts() {
+  const [activeSquadId, setActiveSquadId] = useState('all')
+  const visibleSquads = activeSquadId === 'all' ? squads : squads.filter((s) => s.id === activeSquadId)
+
+  return (
+    <section id="products" className="mt-20">
+      <p className="font-mono-tech text-[11px] uppercase tracking-[0.16em] text-text-muted mb-2">
+        Products — {totalProductCount} across {squads.length} squads
+      </p>
+      <h2 className="font-heading text-2xl font-bold text-text-primary mb-2">Every product, one subscription</h2>
+      <p className="text-text-secondary mb-6 max-w-2xl leading-relaxed">
+        Everything UpSquad offers, grouped by squad. Mix and match any products — each one is a dedicated,
+        subscription-based resource you can scale up or down as your brand grows.
+      </p>
+
+      <div className="flex flex-wrap gap-2 mb-10">
+        {[{ id: 'all', name: 'All Squads' }, ...squads].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveSquadId(tab.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all border ${
+              activeSquadId === tab.id
+                ? 'border-brand-purple bg-white text-text-primary'
+                : 'border-[rgba(0,0,0,0.08)] text-text-secondary hover:border-brand-purple/40'
+            }`}
+          >
+            {tab.name}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-14">
+        {visibleSquads.map((squad) => (
+          <div key={squad.id}>
+            <div className="flex items-start justify-between gap-3 mb-1">
+              <h3 className="font-heading text-lg font-bold text-text-primary tracking-[-0.01em] flex items-center gap-2.5">
+                <span aria-hidden>{squad.emoji}</span>
+                {squad.name}
+              </h3>
+            </div>
+            <p className="text-sm text-text-secondary leading-relaxed mb-5 max-w-2xl">{squad.description}</p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {squad.products.map((product) => {
+                const available = product.status === 'live' || product.status === 'waitlist'
+                return (
+                  <div
+                    key={product.name}
+                    className={`border rounded-xl p-5 transition-all ${
+                      available
+                        ? 'bg-white border-[rgba(0,0,0,0.08)] hover:border-brand-purple/40'
+                        : 'bg-surface-secondary border-[rgba(0,0,0,0.08)]'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <span className="text-xl shrink-0" aria-hidden>{product.emoji}</span>
+                      <ProductStatus status={product.status} />
+                    </div>
+                    <h4 className="text-sm font-semibold text-text-primary leading-snug">{product.name}</h4>
+                    <p className="text-xs text-text-secondary mt-1 leading-relaxed">{product.desc}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}

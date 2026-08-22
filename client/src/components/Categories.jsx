@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import ScrollReveal from './ScrollReveal'
+import { squads } from '../data/squads'
 
 const iconClass = "w-6 h-6"
 const iconProps = {
@@ -19,136 +20,48 @@ const ArrowIcon = () => (
   </svg>
 )
 
-const squads = [
-  {
-    name: 'Content Creation',
-    featured: true,
-    description:
-      'End-to-end content production for brands across design, video, and social. Access designers, editors, creative leads, social media managers, and copywriters — all under one subscription.',
-    emoji: '🎬',
-    icon: (
-      <svg className={iconClass} {...iconProps}>
-        <rect x="3" y="4" width="18" height="16" rx="2" />
-        <path d="M3 9h18M3 15h18M8 4v16M16 4v16" />
-      </svg>
-    ),
-    tags: ['Design', 'Video', 'Social', 'Copywriting'],
-    drawer: {
-      subtitle: 'Subscribe to',
-      highlight: 'Any one or All of the skills and talents your brand need.',
-      body: 'Save time, and scale your content effortlessly.',
-      note: 'Everything you need — nothing you don\'t.',
-      talents: [
-        { name: 'Creative Director', emoji: '🎬', desc: 'Oversees creative vision and brand direction across all content.' },
-        { name: 'Copy / Content Writers', emoji: '✍️', desc: 'Creates compelling copy and content that speaks to your audience.' },
-        { name: 'Designers', emoji: '🎨', desc: 'Crafts visual assets, graphics, and brand identities that stand out.' },
-        { name: 'Editors', emoji: '🖥️', desc: 'Polishes and refines video and written content to perfection.' },
-        { name: 'Social Media Managers', emoji: '📣', desc: 'Manages and grows your brand\'s presence across social platforms.' },
-        { name: 'Videographers & Photographers', emoji: '📷', desc: 'Captures high-quality visual content that tells your brand story.' },
-        { name: 'AI Video & Image Creator', emoji: '🤖', desc: 'Produces AI-generated visuals and video content to accelerate your creative output.' },
-      ],
-    },
-  },
-  {
-    name: 'Marketing',
-    description:
-      'Growth-focused marketing support across digital, offline, and PR channels. Work with ad specialists, digital marketers, offline marketers, and PR experts through a single subscription.',
-    emoji: '📣',
-    icon: (
-      <svg className={iconClass} {...iconProps}>
-        <path d="M4 9v6h3l9 4V5L7 9H4z" />
-        <path d="M18.5 9.5a3.5 3.5 0 010 5" />
-      </svg>
-    ),
-    tags: ['Digital', 'Offline', 'PR', 'Ads'],
-    badge: 'Beta',
-    ctaLabel: 'Join waiting list',
-    drawer: {
-      subtitle: 'Subscribe to',
-      highlight: 'Marketing talent that drives real growth — on demand.',
-      body: 'From ads to SEO to on-ground activations, we\'ve got you covered.',
-      note: 'Your full-stack marketing engine — ready to go.',
-      talents: [
-        { name: 'Ad Specialists', emoji: '🎯', desc: 'Plans, executes, and optimizes high-performance ad campaigns across platforms like Google, Meta, LinkedIn & more — focused on ROI and scalable growth.' },
-        { name: 'SEO Specialists', emoji: '🔍', desc: 'Improves your search visibility, drives organic traffic, and builds long-term inbound growth.' },
-        { name: 'Digital Marketing Team', emoji: '📊', desc: 'A complete team handling strategy, execution, analytics, and optimization across all channels.' },
-        { name: 'Influencer Marketing Experts', emoji: '🤝', desc: 'Connects your brand with the right creators to drive trust, reach, and conversions.' },
-        { name: 'Offline Marketing Specialists', emoji: '📢', desc: 'Executes on-ground campaigns, activations, and traditional marketing to build strong local presence.' },
-      ],
-    },
-  },
-  {
-    name: 'Tech',
-    description:
-      'Web development, app building, automation, and software solutions — built to scale with your brand. From MVPs to full platforms.',
-    emoji: '💻',
-    icon: (
-      <svg className={iconClass} {...iconProps}>
-        <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12" />
-      </svg>
-    ),
-    tags: ['Web Dev', 'Apps', 'Automation'],
-    badge: 'Pilot Run',
-  },
-  {
-    name: 'Accounts & Finance',
-    description:
-      'Bookkeeping, payroll, tax planning, financial reporting, and fractional CFO services. Your financial back office, fully managed.',
-    emoji: '📊',
-    icon: (
-      <svg className={iconClass} {...iconProps}>
-        <path d="M3 21h18" />
-        <path d="M6 21v-7M12 21V8M18 21v-4" />
-        <path d="M5 10l5-4 4 3 5-5" />
-      </svg>
-    ),
-    tags: ['Bookkeeping', 'Tax', 'CFO'],
-    badge: 'Beta',
-    ctaLabel: 'Join waiting list',
-    drawer: {
-      subtitle: 'Subscribe to',
-      highlight: 'Expert financial talent your business needs — on demand.',
-      body: 'Stay compliant, save costs, and scale with confidence.',
-      note: 'Your complete finance back-office — sorted.',
-      talents: [
-        { name: 'Accountants', emoji: '🧾', desc: 'Manages day-to-day bookkeeping, transactions, and financial records with accuracy.' },
-        { name: 'CFOs / CAs', emoji: '📈', desc: 'Provides strategic financial guidance, planning, and high-level business insights.' },
-        { name: 'GST Experts', emoji: '🧮', desc: 'Handles GST filings, compliance, and advisory to ensure smooth tax operations.' },
-        { name: 'TDS Experts', emoji: '📑', desc: 'Manages TDS calculations, deductions, and timely filings without errors.' },
-        { name: 'Labour Law Experts', emoji: '⚖️', desc: 'Ensures compliance with employment laws, payroll regulations, and statutory requirements.' },
-        { name: 'Incorporation & Licenses', emoji: '🏢', desc: 'Supports company registration, legal structuring, and all required business licenses.' },
-      ],
-    },
-  },
-  {
-    name: 'Legal',
-    description:
-      'Contract drafting, IP protection, compliance, and business formation — covered. Get legal support without the hourly rates.',
-    emoji: '⚖️',
-    icon: (
-      <svg className={iconClass} {...iconProps}>
-        <path d="M12 3v18M7 21h10M5 7h14" />
-        <path d="M5 7l-2.5 5.5a2.75 2.75 0 005 0L5 7zM19 7l-2.5 5.5a2.75 2.75 0 005 0L19 7z" />
-      </svg>
-    ),
-    tags: ['Contracts', 'Compliance', 'IP'],
-    badge: 'Launching Soon',
-  },
-  {
-    name: 'Hiring & HR',
-    description:
-      'End-to-end hiring support, team building, and HR process management for growing brands. Build your team with confidence.',
-    emoji: '🤝',
-    icon: (
-      <svg className={iconClass} {...iconProps}>
-        <circle cx="9" cy="8" r="3.25" />
-        <path d="M3.5 20a5.5 5.5 0 0111 0M17 8h4.5M19.25 5.75v4.5" />
-      </svg>
-    ),
-    tags: ['Recruiting', 'HR', 'Onboarding'],
-    badge: 'Launching Soon',
-  },
-]
+const squadIcons = {
+  content: (
+    <svg className={iconClass} {...iconProps}>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9h18M3 15h18M8 4v16M16 4v16" />
+    </svg>
+  ),
+  marketing: (
+    <svg className={iconClass} {...iconProps}>
+      <path d="M4 9v6h3l9 4V5L7 9H4z" />
+      <path d="M18.5 9.5a3.5 3.5 0 010 5" />
+    </svg>
+  ),
+  tech: (
+    <svg className={iconClass} {...iconProps}>
+      <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12" />
+    </svg>
+  ),
+  finance: (
+    <svg className={iconClass} {...iconProps}>
+      <path d="M3 21h18" />
+      <path d="M6 21v-7M12 21V8M18 21v-4" />
+      <path d="M5 10l5-4 4 3 5-5" />
+    </svg>
+  ),
+  legal: (
+    <svg className={iconClass} {...iconProps}>
+      <path d="M12 3v18M7 21h10M5 7h14" />
+      <path d="M5 7l-2.5 5.5a2.75 2.75 0 005 0L5 7zM19 7l-2.5 5.5a2.75 2.75 0 005 0L19 7z" />
+    </svg>
+  ),
+  hr: (
+    <svg className={iconClass} {...iconProps}>
+      <circle cx="9" cy="8" r="3.25" />
+      <path d="M3.5 20a5.5 5.5 0 0111 0M17 8h4.5M19.25 5.75v4.5" />
+    </svg>
+  ),
+}
+
+function SquadIcon({ squad }) {
+  return squadIcons[squad.iconKey] ?? null
+}
 
 function IconTile({ children, onDark }) {
   return (
@@ -177,7 +90,7 @@ function Drawer({ squad, onClose }) {
         <div className="flex items-center justify-between px-5 py-4 border-b border-black/[0.06]">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F6F6F7] to-[#E7E7EA] border border-black/[0.06] flex items-center justify-center text-text-primary">
-              <span className="[&>svg]:w-5 [&>svg]:h-5">{squad.icon}</span>
+              <span className="[&>svg]:w-5 [&>svg]:h-5"><SquadIcon squad={squad} /></span>
             </div>
             <span className="text-sm font-semibold text-text-primary">{squad.name}</span>
           </div>
@@ -198,7 +111,7 @@ function Drawer({ squad, onClose }) {
               href="/pricing"
               className="inline-flex items-center border border-black/[0.08] rounded-lg px-3 py-1.5 text-xs font-medium text-text-secondary hover:bg-black/[0.03] hover:border-black/20 transition-colors"
             >
-              Pricing
+              Products
             </Link>
           </div>
 
@@ -212,7 +125,7 @@ function Drawer({ squad, onClose }) {
           </p>
 
           <div className="flex flex-col gap-2.5">
-            {d.talents.map((talent) => (
+            {squad.products.map((talent) => (
               <div
                 key={talent.name}
                 className="bg-[#FAFAFA] border border-black/[0.06] rounded-2xl p-4 flex items-start gap-4 hover:border-black/15 transition-colors"
@@ -280,7 +193,7 @@ export default function Categories() {
                 >
                  <div className={`h-full flex flex-col p-6 rounded-[20px] ${dark ? 'bg-[#0A0A0A]' : 'bg-[#F4F4F6]'}`}>
                   <div className="flex items-start justify-between mb-5">
-                    <IconTile onDark={dark}>{squad.icon}</IconTile>
+                    <IconTile onDark={dark}><SquadIcon squad={squad} /></IconTile>
                     {dark ? (
                       <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white border border-white/25 rounded-full pl-2 pr-2.5 py-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#FFFF99] ring-1 ring-white/30" />

@@ -6,7 +6,7 @@ const links = {
     { name: 'How it Works', href: '/#how-it-works' },
     { name: 'Subscriptions', href: '/#categories' },
     { name: 'Join Waitlist', href: '#' },
-    { name: 'Pricing', href: '/pricing' }
+    { name: 'Products', href: '/pricing' }
   ],
   Squads: [
     { name: 'Content Squad', href: '#' },

@@ -7,7 +7,7 @@ const steps = [
     step: '1',
     title: 'Choose a plan & budget',
     description:
-      'Pick your talent type, experience level, and plan — then name the monthly budget that works for you.',
+      'Browse every squad, pick the products your brand needs, and name the monthly budget that works for you.',
     icon: (
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75}
@@ -67,10 +67,10 @@ export default function LandingProcess() {
         <ScrollReveal delay={0.3}>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-xl border border-[rgba(0,0,0,0.08)] shadow-sm px-6 py-3.5">
             <p className="text-sm text-text-secondary">
-              Build your own plan below, or let us build one for you.
+              Build your own subscription from the products above, or let us build one for you.
             </p>
             <a
-              href="https://wa.me/919995266385?text=Help%20me%20Build%20a%20Designer%20%2F%20Video%20Editor%20Subscription%20Plan"
+              href="https://wa.me/919995266385?text=Help%20me%20Build%20an%20UpSquad%20Subscription%20Plan"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 btn-gradient text-sm font-medium px-5 py-2 shrink-0"
