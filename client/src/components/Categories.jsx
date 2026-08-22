@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import ScrollReveal from './ScrollReveal'
+import ProductStatusBadge from './ProductStatusBadge'
 import { squads } from '../data/squads'
 
 const iconClass = "w-6 h-6"
@@ -134,15 +135,18 @@ function Drawer({ squad, onClose }) {
                     <p className="text-sm font-semibold text-text-primary leading-snug">{talent.name}</p>
                     <p className="text-xs text-text-muted mt-1 leading-relaxed">{talent.desc}</p>
                   </div>
-                  {talent.href && (
-                    <svg
-                      className="w-4 h-4 mt-1 ml-auto shrink-0 text-text-muted"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                      strokeLinecap="round" strokeLinejoin="round" aria-hidden
-                    >
-                      <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg>
-                  )}
+                  <div className="ml-auto flex items-center gap-2 shrink-0 mt-0.5">
+                    <ProductStatusBadge status={talent.status} />
+                    {talent.href && (
+                      <svg
+                        className="w-4 h-4 text-text-muted"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                        strokeLinecap="round" strokeLinejoin="round" aria-hidden
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    )}
+                  </div>
                 </>
               )
               return talent.href ? (

@@ -2,37 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { squads, totalProductCount } from '../../data/squads'
-
-const statusMeta = {
-  live: {
-    label: 'Live',
-    className:
-      'text-brand-green bg-brand-green/10 border border-brand-green/20',
-    dot: 'bg-brand-green',
-  },
-  waitlist: {
-    label: 'Join Waiting List',
-    className: 'text-white bg-[#0A0A0A] border border-black/10',
-    dot: 'bg-[#FFFF99]',
-  },
-  'coming-soon': {
-    label: 'Coming Soon',
-    className: 'text-text-muted bg-black/[0.03] border border-black/[0.06]',
-    dot: null,
-  },
-}
-
-function ProductStatus({ status }) {
-  const meta = statusMeta[status] ?? statusMeta['coming-soon']
-  return (
-    <span
-      className={`flex-shrink-0 inline-flex items-center gap-1.5 text-[10px] font-semibold px-2.5 py-1 rounded-full ${meta.className}`}
-    >
-      {meta.dot && <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />}
-      {meta.label}
-    </span>
-  )
-}
+import ProductStatusBadge from '../ProductStatusBadge'
 
 export default function SquadProducts() {
   const [activeSquadId, setActiveSquadId] = useState('all')
@@ -89,7 +59,7 @@ export default function SquadProducts() {
                   <>
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <span className="text-xl shrink-0" aria-hidden>{product.emoji}</span>
-                      <ProductStatus status={product.status} />
+                      <ProductStatusBadge status={product.status} />
                     </div>
                     <h4 className="text-sm font-semibold text-text-primary leading-snug flex items-center gap-1.5">
                       {product.name}
