@@ -80,9 +80,8 @@ export default function Hero() {
 
             <ScrollReveal delay={0.2}>
               <p className="text-base sm:text-lg text-text-secondary leading-[1.65] mb-8 max-w-lg">
-                One subscription gives your brand a dedicated squad — content, marketing, tech,
-                accounts, and more — for a flat monthly price. Prefer something lighter? Order a
-                one-off assignment, or hire vetted talent directly.
+                One flat fee for a full squad — content, marketing, tech and more. Need just
+                one job done? Pay per task or hire directly.
               </p>
             </ScrollReveal>
 
