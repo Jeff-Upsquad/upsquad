@@ -36,6 +36,17 @@ export const OFFER_PLANS = [
   },
 ]
 
+export const ACCOUNTANT_PLANS = [
+  {
+    ...OFFER_PLANS[0],
+    blurb: 'A focused daily block. Enough to keep your books current.',
+  },
+  {
+    ...OFFER_PLANS[1],
+    blurb: 'Half a workday, every day. For a proper monthly close.',
+  },
+]
+
 export const OFFER_SLOT_NOTE = 'Limited to the first subscribers. Payment confirms your slot.'
 
 export function formatInr(amount, { paise = false } = {}) {

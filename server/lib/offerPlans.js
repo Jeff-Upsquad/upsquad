@@ -1,6 +1,7 @@
 export const OFFER_ROLES = {
   designer: { id: 'designer', label: 'Designer', noun: 'designer' },
   editor: { id: 'editor', label: 'Video editor', noun: 'video editor' },
+  accountant: { id: 'accountant', label: 'Accountant', noun: 'accountant' },
 }
 
 export const OFFER_PLANS = {
@@ -34,7 +35,7 @@ export function roleLabel(roles) {
 }
 
 export function roleNoun(roles) {
-  if (roles.length === 2) return 'designer and a video editor'
+  if (roles.length === 2) return `${roles[0].noun} and a ${roles[1].noun}`
   return roles[0]?.noun || 'creative'
 }
 
