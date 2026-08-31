@@ -18,6 +18,28 @@ function AccentPreview({ accent }) {
     )
   }
 
+  if (accent === 'ink') {
+    return (
+      <div className="relative h-44 sm:h-52 overflow-hidden bg-[#0A0A0A] text-white">
+        <div className="relative h-full flex flex-col justify-end p-5 sm:p-6">
+          <div className="flex gap-1.5 mb-3">
+            <span className="font-mono text-[10px] tracking-wider uppercase bg-[#FFFF99] text-[#0A0A0A] px-2 py-0.5 font-bold">
+              Freelance
+            </span>
+            <span className="font-mono text-[10px] tracking-wider uppercase bg-[#FFFF99] text-[#0A0A0A] px-2 py-0.5 font-bold">
+              Jobs
+            </span>
+          </div>
+          <p className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight leading-none">
+            Content
+            <br />
+            squad.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="h-44 sm:h-52 bg-[#0A0A0A] text-white flex items-end p-5 sm:p-6">
       <p className="font-heading font-extrabold text-2xl tracking-tight">UpSquad</p>

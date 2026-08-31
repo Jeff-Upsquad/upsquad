@@ -14,6 +14,18 @@ export const STUDIO_PAGES = [
     formats: ['9:16', '4:5', '1:1', '1.91:1'],
     accent: 'yellow',
   },
+  {
+    id: 'content-squad',
+    href: '/studio/content-squad',
+    title: 'Content Squad',
+    kicker: 'Freelance & jobs',
+    audience: 'Eight content seats',
+    blurb:
+      'Invite editors, designers, copywriters, directors, social leads, shooters, and AI creators — freelance or as a hire. Meta posters on the page.',
+    status: 'live',
+    formats: ['9:16', '4:5', '1:1', '1.91:1'],
+    accent: 'ink',
+  },
 ]
 
 export function getStudioPage(id) {

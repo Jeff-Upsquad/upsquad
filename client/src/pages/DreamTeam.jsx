@@ -11,7 +11,7 @@ const TICKER = [
   'Designer',
   '₹10K – 1 Lakh',
   'Partner program',
-  'Send your CV',
+  'Connect with us in WhatsApp',
 ]
 
 function Ticker() {
@@ -83,7 +83,7 @@ export default function DreamTeam() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 btn-gradient font-semibold text-sm px-6 py-3 rounded-full"
             >
-              Send your CV · {COPY.phoneDisplay}
+              Connect with us in WhatsApp · {COPY.phoneDisplay}
             </a>
             <Link
               href={PARTNER_HREF}
@@ -125,7 +125,7 @@ export default function DreamTeam() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-[#0A0A0A] text-white font-semibold text-sm px-6 py-3 rounded-full hover:bg-black"
           >
-            WhatsApp your CV
+            Connect with us in WhatsApp
           </a>
         </div>
       </section>

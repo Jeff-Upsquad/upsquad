@@ -21,11 +21,11 @@ export const COPY = {
   phoneRaw: '919995566382',
   web: 'upsquadconnect.com',
   webUrl: 'https://www.upsquadconnect.com',
-  applyHint: 'Send your CV on WhatsApp',
+  applyHint: 'Connect with us in WhatsApp',
 }
 
 export const WHATSAPP_HREF = `https://wa.me/${COPY.phoneRaw}?text=${encodeURIComponent(
-  "Hi UpSquad, I'm a freelancer (video editor / designer) and I want to join the partner program. I'll send my CV."
+  "Hi UpSquad, I'm a freelancer (video editor / designer) and I want to join the partner program."
 )}`
 
 export const PARTNER_HREF = '/partner-program/designer-and-video-editor/'

@@ -1,6 +1,6 @@
-export function posterFilename(conceptId, format) {
+export function posterFilename(conceptId, format, prefix = 'upsquad-dream-team') {
   const ratio = format.ratio.replace(':', 'x')
-  return `upsquad-dream-team-${conceptId}-${ratio}-${format.w}x${format.h}.png`
+  return `${prefix}-${conceptId}-${ratio}-${format.w}x${format.h}.png`
 }
 
 function captureOptions(format, extra = {}) {
