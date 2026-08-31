@@ -102,16 +102,6 @@ export default function Navbar() {
               Products
             </Link>
             <Link
-              href="/studio"
-              className={`text-sm transition-colors duration-short ${
-                pathname.startsWith('/studio') || pathname.startsWith('/dream-team')
-                  ? 'text-text-primary font-semibold'
-                  : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              Studio
-            </Link>
-            <Link
               href="/contact"
               className={`text-sm transition-colors duration-short ${
                 pathname === '/contact' ? 'text-text-primary font-semibold' : 'text-text-secondary hover:text-text-primary'
@@ -187,16 +177,6 @@ export default function Navbar() {
               }`}
             >
               Products
-            </Link>
-            <Link
-              href="/studio"
-              className={`block text-sm px-2 py-2 rounded-md hover:bg-surface-secondary ${
-                pathname.startsWith('/studio') || pathname.startsWith('/dream-team')
-                  ? 'text-text-primary font-medium'
-                  : 'text-text-secondary'
-              }`}
-            >
-              Studio
             </Link>
             <Link
               href="/contact"
