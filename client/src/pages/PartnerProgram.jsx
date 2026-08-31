@@ -5,9 +5,12 @@ import LanguageGate from '../components/landing/LanguageGate'
 import PartnerProgramTab from '../components/partner/PartnerProgramTab'
 import FreelanceTab from '../components/partner/FreelanceTab'
 import JobsTab from '../components/partner/JobsTab'
+import PartnerSignupLink from '../components/PartnerSignupLink'
 import { useLanguageGate } from '../lib/useLanguageGate'
+import { usePartnerSignupUrl } from '../lib/usePartnerSignupUrl'
 
 const LP_SLUG = 'partner-program'
+const CTA_SLUG = 'designer-and-video-editor'
 
 const TABS = [
   { id: 'partner', label: 'Subscriptions' },
@@ -37,6 +40,7 @@ export default function PartnerProgram() {
   const [defaultLanguageCode, setDefaultLanguageCode] = useState('en')
   const [tab, setTab] = useState('partner')
   const tabsRef = useRef(null)
+  const signupUrl = usePartnerSignupUrl(CTA_SLUG)
   const {
     selected,
     selectedCode,
@@ -123,14 +127,12 @@ export default function PartnerProgram() {
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://squadhire.upsquadconnect.com/apply/creative"
-                target="_blank"
-                rel="noopener noreferrer"
+              <PartnerSignupLink
+                href={signupUrl}
                 className="inline-flex items-center gap-2 btn-gradient font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
               >
                 Sign Up Now
-              </a>
+              </PartnerSignupLink>
 
               {selected && (languages || []).length > 1 && (
                 <button
@@ -198,9 +200,9 @@ export default function PartnerProgram() {
 
       {/* ── Active panel ────────────────────────────────── */}
       <div role="tabpanel">
-        {tab === 'partner' && <PartnerProgramTab onSwitchTab={goToTab} />}
-        {tab === 'freelance' && <FreelanceTab />}
-        {tab === 'jobs' && <JobsTab />}
+        {tab === 'partner' && <PartnerProgramTab onSwitchTab={goToTab} signupUrl={signupUrl} />}
+        {tab === 'freelance' && <FreelanceTab signupUrl={signupUrl} />}
+        {tab === 'jobs' && <JobsTab signupUrl={signupUrl} />}
       </div>
     </div>
   )

@@ -4,10 +4,10 @@ import HeroMedia from '../components/landing/HeroMedia'
 import PartnerProgramTab from '../components/sales-partner/PartnerProgramTab'
 import FreelanceTab from '../components/sales-partner/FreelanceTab'
 import JobsTab from '../components/sales-partner/JobsTab'
+import PartnerSignupLink from '../components/PartnerSignupLink'
+import { usePartnerSignupUrl } from '../lib/usePartnerSignupUrl'
 
-// TODO: Confirm the real sales application URL. Mirrors the creative flow
-// (/apply/creative) used on the designers-and-editors partner page.
-const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/sales'
+const CTA_SLUG = 'sales'
 
 // TODO: Replace with the real hero video (mp4 URL, or a YouTube / Vimeo / Loom
 // link — HeroMedia auto-embeds those). Using a sample clip as a placeholder.
@@ -39,6 +39,7 @@ const heroCopy = {
 export default function SalesPartnerProgram() {
   const [tab, setTab] = useState('partner')
   const tabsRef = useRef(null)
+  const signupUrl = usePartnerSignupUrl(CTA_SLUG)
 
   // After a tab change commits, align the sticky tab bar just under the fixed
   // nav so the chosen panel shows from its top. This runs in an effect (after
@@ -105,14 +106,12 @@ export default function SalesPartnerProgram() {
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href={SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <PartnerSignupLink
+                href={signupUrl}
                 className="inline-flex items-center gap-2 btn-gradient font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
               >
                 Sign Up Now
-              </a>
+              </PartnerSignupLink>
             </div>
           </div>
           <div className="w-full">
@@ -158,9 +157,9 @@ export default function SalesPartnerProgram() {
 
       {/* ── Active panel ────────────────────────────────── */}
       <div role="tabpanel">
-        {tab === 'partner' && <PartnerProgramTab onSwitchTab={goToTab} />}
-        {tab === 'freelance' && <FreelanceTab />}
-        {tab === 'jobs' && <JobsTab />}
+        {tab === 'partner' && <PartnerProgramTab onSwitchTab={goToTab} signupUrl={signupUrl} />}
+        {tab === 'freelance' && <FreelanceTab signupUrl={signupUrl} />}
+        {tab === 'jobs' && <JobsTab signupUrl={signupUrl} />}
       </div>
     </div>
   )

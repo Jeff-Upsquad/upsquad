@@ -1,8 +1,8 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
 import AssignmentExampleCard from './AssignmentExampleCard'
-
-const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply'
+import PartnerSignupLink from '../PartnerSignupLink'
+import { SQUADHIRE_SIGNUP } from '../../lib/signup'
 
 /* ── data ─────────────────────────────────────────────── */
 
@@ -51,7 +51,7 @@ const perks = [
 
 /* ── component ────────────────────────────────────────── */
 
-export default function FreelanceTab() {
+export default function FreelanceTab({ signupUrl = SQUADHIRE_SIGNUP.talent }) {
   return (
     <>
       {/* ── Intro ───────────────────────────────────────── */}
@@ -163,14 +163,12 @@ export default function FreelanceTab() {
                   Create your profile once. We&apos;ll notify you when assignments that match your skills go live.
                 </p>
               </div>
-              <a
-                href={SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <PartnerSignupLink
+                href={signupUrl}
                 className="btn-gradient text-sm font-semibold px-7 py-3.5 shrink-0"
               >
                 Sign up to get assignments &rarr;
-              </a>
+              </PartnerSignupLink>
             </div>
           </div>
         </section>

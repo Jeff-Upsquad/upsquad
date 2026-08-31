@@ -1,7 +1,8 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
+import PartnerSignupLink from '../PartnerSignupLink'
+import { SQUADHIRE_SIGNUP } from '../../lib/signup'
 
-const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply'
 const WA_NUMBER = '919995266342'
 const waLink = (text) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`
 
@@ -77,7 +78,7 @@ const reassurance = [
 
 /* ── component ────────────────────────────────────────── */
 
-export default function JobsTab() {
+export default function JobsTab({ signupUrl = SQUADHIRE_SIGNUP.talent }) {
   return (
     <>
       {/* ── Intro ───────────────────────────────────────── */}
@@ -292,14 +293,12 @@ export default function JobsTab() {
                   brands hiring through UpSquad — and you only pay once you&apos;re placed.
                 </p>
               </div>
-              <a
-                href={SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <PartnerSignupLink
+                href={signupUrl}
                 className="btn-gradient text-sm font-semibold px-7 py-3.5 shrink-0"
               >
                 Browse jobs &amp; apply &rarr;
-              </a>
+              </PartnerSignupLink>
             </div>
           </div>
         </section>

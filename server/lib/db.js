@@ -436,3 +436,69 @@ export function attachOfferPaymentLink(id, { paymentLinkId, paymentLinkUrl }) {
   `).run(paymentLinkId, paymentLinkUrl, id)
   return getOfferReservationById(id)
 }
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS partner_landing_ctas (
+    slug TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    public_path TEXT NOT NULL,
+    destination TEXT NOT NULL DEFAULT 'talent_signup',
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+  );
+`)
+
+const seedPartnerCtas = [
+  {
+    slug: 'accountant',
+    title: 'Accountant partner program',
+    publicPath: '/partner-program/accountant/',
+  },
+  {
+    slug: 'designer-and-video-editor',
+    title: 'Designer & video-editor partner program',
+    publicPath: '/partner-program/designer-and-video-editor/',
+  },
+  {
+    slug: 'sales',
+    title: 'Sales partner program',
+    publicPath: '/partner-program/sales/',
+  },
+  {
+    slug: 'general',
+    title: 'General partner program',
+    publicPath: '/partner-program/general/',
+  },
+]
+const insertPartnerCta = db.prepare(`
+  INSERT OR IGNORE INTO partner_landing_ctas (slug, title, public_path, destination, sort_order)
+  VALUES (?, ?, ?, 'talent_signup', ?)
+`)
+seedPartnerCtas.forEach((p, i) => insertPartnerCta.run(p.slug, p.title, p.publicPath, i))
+
+export function listPartnerLandingCtas() {
+  return db.prepare(`
+    SELECT slug, title, public_path, destination, sort_order, updated_at
+    FROM partner_landing_ctas
+    ORDER BY sort_order ASC, slug ASC
+  `).all()
+}
+
+export function getPartnerLandingCtaBySlug(slug) {
+  return db.prepare(`
+    SELECT slug, title, public_path, destination, sort_order, updated_at
+    FROM partner_landing_ctas
+    WHERE slug = ?
+  `).get(slug) || null
+}
+
+export function updatePartnerLandingCtaDestination(slug, destination) {
+  const existing = getPartnerLandingCtaBySlug(slug)
+  if (!existing) return null
+  db.prepare(`
+    UPDATE partner_landing_ctas
+    SET destination = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE slug = ?
+  `).run(destination, slug)
+  return getPartnerLandingCtaBySlug(slug)
+}

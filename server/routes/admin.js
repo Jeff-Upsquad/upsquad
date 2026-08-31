@@ -7,7 +7,9 @@ import { fileURLToPath } from 'url'
 import {
   listLandingPages, getLandingPageBySlug, createLandingPage, updateLandingPage,
   deleteLandingPage, replaceLandingPageLanguages, listLanguages, createLanguage, deleteLanguage,
+  listPartnerLandingCtas, updatePartnerLandingCtaDestination,
 } from '../lib/db.js'
+import { isValidPartnerCtaDestination } from '../lib/signupCta.js'
 import { verifyCredentials, issueSession, clearSession, requireAuth, currentAdmin } from '../lib/auth.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -89,6 +91,37 @@ router.post('/languages', express.urlencoded({ extended: true }), (req, res) => 
 router.post('/languages/:code/delete', (req, res) => {
   deleteLanguage(req.params.code)
   res.redirect('/admin/languages')
+})
+
+router.get('/partner-ctas', (req, res) => {
+  res.render('partner-ctas', {
+    admin: req.admin,
+    pages: listPartnerLandingCtas(),
+    saved: req.query.saved === '1',
+    error: null,
+  })
+})
+
+router.post('/partner-ctas', express.urlencoded({ extended: true }), (req, res) => {
+  const cta = req.body.cta && typeof req.body.cta === 'object' ? req.body.cta : {}
+  const pages = listPartnerLandingCtas()
+  const updates = []
+  for (const page of pages) {
+    const destination = String(cta[page.slug] || '')
+    if (!isValidPartnerCtaDestination(destination)) {
+      return res.status(400).render('partner-ctas', {
+        admin: req.admin,
+        pages,
+        saved: false,
+        error: `Pick a sign-up destination for ${page.title}.`,
+      })
+    }
+    updates.push({ slug: page.slug, destination })
+  }
+  for (const { slug, destination } of updates) {
+    updatePartnerLandingCtaDestination(slug, destination)
+  }
+  res.redirect('/admin/partner-ctas?saved=1')
 })
 
 router.get('/landing-pages/new', (req, res) => {

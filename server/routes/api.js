@@ -2,6 +2,7 @@ import express from 'express'
 import { randomBytes } from 'crypto'
 import {
   getLandingPageBySlug,
+  getPartnerLandingCtaBySlug,
   createSubscriptionRequest,
   listOpenCareerPositions,
   getOpenCareerPositionById,
@@ -11,6 +12,7 @@ import {
   getOfferReservationByPaymentLinkId,
   markOfferReservationPaid,
 } from '../lib/db.js'
+import { resolvePartnerCtaUrl } from '../lib/signupCta.js'
 import { absolutize } from '../lib/urls.js'
 import { quoteFor, roleLabel, roleNoun, normalizePhone } from '../lib/offerPlans.js'
 import {
@@ -37,6 +39,19 @@ router.get('/v1/landing-pages/:slug', (req, res) => {
       videoUrl: absolutize(req, l.video_url),
       audioUrl: absolutize(req, l.audio_url),
     })),
+    updatedAt: page.updated_at,
+  })
+})
+
+router.get('/v1/partner-landing-ctas/:slug', (req, res) => {
+  const page = getPartnerLandingCtaBySlug(req.params.slug)
+  if (!page) return res.status(404).json({ error: 'Not found' })
+  res.json({
+    slug: page.slug,
+    title: page.title,
+    publicPath: page.public_path,
+    destination: page.destination,
+    url: resolvePartnerCtaUrl(page.destination),
     updatedAt: page.updated_at,
   })
 })

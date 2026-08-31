@@ -2,10 +2,8 @@
 import { useState } from 'react'
 import ScrollReveal from '../ScrollReveal'
 import VirtualOfficeHoursModal from '../partner/VirtualOfficeHoursModal'
-
-// TODO: Confirm the real accountant application URL. Mirrors the creative flow
-// (/apply/creative) used on the designers-and-editors partner page.
-const SIGNUP_URL = 'https://squadhire.upsquadconnect.com/apply/accountant'
+import PartnerSignupLink from '../PartnerSignupLink'
+import { SQUADHIRE_SIGNUP } from '../../lib/signup'
 const WA_NUMBER = '919995266385'
 
 /* ── data ─────────────────────────────────────────────── */
@@ -192,7 +190,7 @@ const partnerVsFreelance = {
 
 /* ── component ────────────────────────────────────────── */
 
-export default function PartnerProgramTab({ onSwitchTab }) {
+export default function PartnerProgramTab({ onSwitchTab, signupUrl = SQUADHIRE_SIGNUP.talent }) {
   const [hoursModalOpen, setHoursModalOpen] = useState(false)
 
   return (
@@ -604,14 +602,12 @@ export default function PartnerProgramTab({ onSwitchTab }) {
                   businesses assigned to you.
                 </p>
               </div>
-              <a
-                href={SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <PartnerSignupLink
+                href={signupUrl}
                 className="btn-gradient text-sm font-semibold px-7 py-3.5 shrink-0"
               >
                 Sign up to partner &rarr;
-              </a>
+              </PartnerSignupLink>
             </div>
           </div>
         </section>

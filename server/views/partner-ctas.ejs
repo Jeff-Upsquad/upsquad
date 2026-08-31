@@ -1,0 +1,59 @@
+<%- include('_header', { admin, title: 'Partner sign-up — UpSquad Admin' }) %>
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-bold">Partner sign-up buttons</h1>
+    <p class="text-sm text-slate-500 mt-1">Choose where the Sign up button on each partner-program landing page sends talent.</p>
+  </div>
+</div>
+
+<% if (saved) { %>
+  <div class="mb-4 px-3 py-2 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-lg text-sm">Saved. Public pages pick this up on the next visit.</div>
+<% } %>
+<% if (error) { %>
+  <div class="mb-4 px-3 py-2 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/admin/partner-ctas" class="space-y-4">
+  <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-50 text-slate-500 text-xs uppercase">
+        <tr>
+          <th class="text-left px-4 py-3">Landing page</th>
+          <th class="text-left px-4 py-3">Sign-up button goes to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pages.forEach(function(p) { %>
+          <tr class="border-t border-gray-100 align-top">
+            <td class="px-4 py-4">
+              <div class="font-medium text-slate-900"><%= p.title %></div>
+              <a href="<%= p.public_path %>" target="_blank" class="text-xs font-mono text-slate-500 hover:text-slate-900"><%= p.public_path %></a>
+            </td>
+            <td class="px-4 py-4">
+              <div class="flex flex-col gap-2">
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="radio" name="cta[<%= p.slug %>]" value="talent_signup" <%= p.destination === 'talent_signup' ? 'checked' : '' %> class="mt-1" />
+                  <span>
+                    <span class="font-medium text-slate-800">Talent sign-up</span>
+                    <span class="block text-xs text-slate-500">Straight to SquadHire talent signup.</span>
+                  </span>
+                </label>
+                <label class="flex items-start gap-2 cursor-pointer">
+                  <input type="radio" name="cta[<%= p.slug %>]" value="decide_form" <%= p.destination === 'decide_form' ? 'checked' : '' %> class="mt-1" />
+                  <span>
+                    <span class="font-medium text-slate-800">Decide form</span>
+                    <span class="block text-xs text-slate-500">Ask business vs talent first, then send them on.</span>
+                  </span>
+                </label>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex justify-end">
+    <button class="bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium px-5 py-2 rounded-lg">Save</button>
+  </div>
+</form>
+<%- include('_footer') %>
