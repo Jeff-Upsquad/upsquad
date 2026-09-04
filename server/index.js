@@ -77,6 +77,19 @@ app.get(['/lp/accountant-subscription', '/lp/accountant-subscription/'], (_req, 
   res.redirect(301, '/customers/accountant-subscription/')
 })
 
+// Psychology practical record — hosted as static subpage under /psychology/
+// Static files live in client/public/psychology -> server/public/psychology (built output).
+// Keep aliases for easy sharing.
+app.get(['/psychology-practical', '/psychology-practical/', '/psychology-practicals', '/psychology-practicals/', '/psychology-practical-record', '/psychology-practical-record/'], (_req, res) => {
+  res.redirect(301, '/psychology/')
+})
+// Explicit handler for the subpage index ensures the wildcard fallback below
+// (which serves the main SPA index.html) does not swallow /psychology requests
+// when trailing-slash handling is involved.
+app.get(['/psychology', '/psychology/'], (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'psychology', 'index.html'))
+})
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('*', (req, res) => {
