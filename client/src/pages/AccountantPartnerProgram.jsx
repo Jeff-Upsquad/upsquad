@@ -6,6 +6,8 @@ import FreelanceTab from '../components/accountant-partner/FreelanceTab'
 import JobsTab from '../components/accountant-partner/JobsTab'
 import PartnerSignupLink from '../components/PartnerSignupLink'
 import { usePartnerSignupUrl } from '../lib/usePartnerSignupUrl'
+import { partnerWaLink } from '../lib/partnerWhatsapp'
+import WhatsAppIcon from '../components/WhatsAppIcon'
 
 const CTA_SLUG = 'accountant'
 
@@ -112,6 +114,16 @@ export default function AccountantPartnerProgram() {
               >
                 Sign Up Now
               </PartnerSignupLink>
+
+              <a
+                href={partnerWaLink(CTA_SLUG)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-secondary font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                Connect on WhatsApp
+              </a>
             </div>
           </div>
           <div className="w-full">

@@ -8,6 +8,8 @@ import JobsTab from '../components/partner/JobsTab'
 import PartnerSignupLink from '../components/PartnerSignupLink'
 import { useLanguageGate } from '../lib/useLanguageGate'
 import { usePartnerSignupUrl } from '../lib/usePartnerSignupUrl'
+import { partnerWaLink } from '../lib/partnerWhatsapp'
+import WhatsAppIcon from '../components/WhatsAppIcon'
 
 const LP_SLUG = 'partner-program'
 const CTA_SLUG = 'designer-and-video-editor'
@@ -133,6 +135,16 @@ export default function PartnerProgram() {
               >
                 Sign Up Now
               </PartnerSignupLink>
+
+              <a
+                href={partnerWaLink(CTA_SLUG)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-secondary font-semibold text-sm px-6 py-3 rounded-lg transition-colors"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                Connect on WhatsApp
+              </a>
 
               {selected && (languages || []).length > 1 && (
                 <button
