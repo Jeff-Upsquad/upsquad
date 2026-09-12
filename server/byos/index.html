@@ -22,13 +22,13 @@
     --shadow:0 1px 2px rgba(18,18,18,.04),0 12px 40px -12px rgba(18,18,18,.16);
     --shadow-lg:0 2px 4px rgba(18,18,18,.05),0 40px 80px -30px rgba(18,18,18,.28);
     --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box}
   [hidden]{display:none!important}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:var(--grain)}
   a{color:inherit;text-decoration:none}
   img,svg{display:block;max-width:100%}
   button{font:inherit;color:inherit;cursor:pointer}
@@ -76,20 +76,45 @@
   @media (max-width:760px){.nav-links{display:none}.brand{padding-right:4px}}
 
   /* ---------- hero ---------- */
-  .hero{padding:150px 0 40px;position:relative}
-  .hero .wrap-n{max-width:980px}
-  .hero h1{margin-top:22px}
+  /* Sky gradient (deep ink-blue up top → the video's own sky tone) with the meadow footage anchored to the bottom.
+     The video's top edge is feathered into the gradient, and the instance card's foot is feathered so the meadow
+     mist + flowers appear to sit in front of it. Stops are in px from the top so they line up with .hero-scene. */
+  .hero{position:relative;padding:150px 0 110px;overflow:hidden;isolation:isolate;color:#fff;
+    background:linear-gradient(180deg,#0A1450 0px,#10309F 240px,#1E5FCC 520px,#4C9CE8 720px,#8CCBF7 900px,#BDE3FA 1100px,#DDF0FA 100%)}
+  .hero-scene{position:absolute;left:0;right:0;top:420px;bottom:0;z-index:-1;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 120px,#000 440px);mask-image:linear-gradient(180deg,transparent 0,transparent 120px,#000 440px)}
+  .hero-scene video,.hero-scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+  .hero-glow{position:absolute;left:50%;top:700px;width:1400px;height:520px;transform:translateX(-50%);z-index:-1;pointer-events:none;
+    background:radial-gradient(50% 55% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.5;background-image:var(--grain)}
+  .hero-fade{position:absolute;left:0;right:0;bottom:0;height:170px;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,rgba(236,234,229,0),rgba(236,234,229,.85) 60%,var(--bg))}
+  .hero .wrap-n{width:min(1000px,calc(100% - 40px))}
+  .hero h1{margin-top:22px;text-shadow:0 2px 24px rgba(6,20,80,.25)}
   .hero h1 .line{display:block}
-  .hero h1 em{font-style:normal;color:var(--muted)}
+  .hero h1 em{font-style:normal;color:rgba(255,255,255,.66)}
+  .hero .hl{color:var(--accent);background:none;padding:0;text-shadow:0 2px 24px rgba(6,20,80,.35)}
+  .hero .eyebrow{color:#fff;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .hero .eyebrow i{background:#8FF0B4;box-shadow:0 0 0 4px rgba(143,240,180,.22)}
+  .hero .lede{color:rgba(255,255,255,.86)}
+  .hero .lede strong{color:#fff}
+  .hero .btn-ink{background:#fff;color:var(--ink);box-shadow:0 14px 34px -12px rgba(6,20,80,.55)}
+  .hero .btn-ink:hover{background:#f4f2ee}
+  .hero .btn-wa{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .hero .btn-wa:hover{background:rgba(255,255,255,.22);box-shadow:none}
+  .hero .trust{color:rgba(255,255,255,.92);text-shadow:0 1px 12px rgba(6,20,80,.35)}
+  .hero .trust span::before{color:#8FF0B4}
   .hl{white-space:nowrap;color:var(--ink);background:linear-gradient(transparent 68%,var(--accent) 68%,var(--accent) 94%,transparent 94%);padding:0 .06em;border-radius:2px}
   .rise{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.3s}.d4{animation-delay:.42s}.d5{animation-delay:.55s}
+  @media (max-width:720px){.hero{padding:120px 0 90px}.hero-scene{top:380px}.hero-glow{width:900px;top:640px}}
 
   /* ---------- instance mockup ---------- */
-  .stage{position:relative;padding:40px 0 0}
-  .stage::before{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(180deg,transparent,var(--bg-2));z-index:0}
-  .instance{position:relative;z-index:1;margin:0 auto;max-width:1040px;background:var(--dark);color:#fff;border-radius:28px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+  .stage{position:relative;padding:44px 0 0}
+  .instance{position:relative;z-index:1;margin:0 auto;max-width:960px;background:var(--dark);color:#fff;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 2px 4px rgba(6,20,80,.08),0 50px 90px -30px rgba(6,20,80,.45);
+    -webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 170px),transparent 100%);mask-image:linear-gradient(180deg,#000 calc(100% - 170px),transparent 100%)}
   .inst-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--dark-line);font-size:12.5px;color:var(--dark-muted)}
   .dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#3a3a39}
   .dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
@@ -349,7 +374,13 @@
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
-  <div class="wrap-n center">
+  <!-- Meadow footage (assets/hero-scene.mp4, poster assets/hero-scene.jpg) anchored to the bottom of the hero; see .hero-scene -->
+  <div class="hero-scene" aria-hidden="true">
+    <img src="assets/hero-scene.jpg" alt="" width="1024" height="656" decoding="async" fetchpriority="high">
+    <video id="hero-video" src="assets/hero-scene.mp4" poster="assets/hero-scene.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap-n center hero-copy">
     <span class="eyebrow rise d1"><i></i> Build Your Own Software · Early access opening</span>
     <h1 class="rise d2">
       <span class="line">Your business.</span>
@@ -411,6 +442,7 @@
       </div>
     </div>
   </div>
+  <div class="hero-fade" aria-hidden="true"></div>
 </header>
 
 <!-- ================= WHY / CHIPS ================= -->
@@ -862,6 +894,59 @@
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 24), { passive: true });
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ===== Hero scene =====
+  // The meadow footage drifts up slower than the page (parallax) and the copy floats up a touch faster; the mockup scrolls at page speed.
+  const heroVideo = document.getElementById('hero-video');
+  const heroScene = heroVideo.parentElement;
+  const heroCopy = document.querySelector('.hero-copy');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
+  else {
+    heroVideo.play().catch(() => {});                  // poster stays if autoplay is blocked (e.g. Low Power Mode); the watchdog below retries
+
+    // Seamless loop: the clip's last frame doesn't match its first, so instead of a hard cut we run two copies and
+    // cross-fade to a fresh start over the final CROSS seconds, then swap which one is in front.
+    const CROSS = 1.4;
+    const twin = heroVideo.cloneNode();
+    twin.removeAttribute('id'); twin.removeAttribute('autoplay'); twin.removeAttribute('poster');
+    heroVideo.loop = twin.loop = false;
+    twin.style.opacity = '0';
+    heroVideo.after(twin);
+    let front = heroVideo, back = twin, fading = false;
+    const startFade = () => {
+      fading = true;
+      back.currentTime = 0; back.style.zIndex = '2'; front.style.zIndex = '1';
+      back.play().then(() => {
+        back.style.transition = `opacity ${CROSS}s linear`;
+        requestAnimationFrame(() => { back.style.opacity = '1'; });
+        setTimeout(() => {
+          if (!fading) return;
+          front.pause(); front.style.transition = 'none'; front.style.opacity = '0';
+          [front, back] = [back, front]; fading = false;
+        }, CROSS * 1000);
+      }).catch(() => { fading = false; back.style.opacity = '0'; });
+    };
+    const onTime = (e) => { if (e.target === front && !fading && front.duration && front.currentTime >= front.duration - CROSS) startFade(); };
+    [heroVideo, twin].forEach(v => v.addEventListener('timeupdate', onTime));
+    // Watchdog: browsers pause off-screen video to save power; pick the loop up again once the tab is visible.
+    setInterval(() => {
+      if (document.hidden) return;
+      if (fading && back.paused) { fading = false; back.style.transition = 'none'; back.style.opacity = '0'; }
+      if (!fading && front.paused) { if (front.ended) front.currentTime = 0; front.play().catch(() => {}); }
+    }, 1000);
+
+    let heroTick = false;
+    const heroUpdate = () => {
+      const y = Math.min(scrollY, innerHeight * 1.5);
+      heroScene.style.transform = `translateY(${y * 0.22}px)`;
+      heroCopy.style.transform = `translateY(${y * -0.12}px)`;
+      heroCopy.style.opacity = Math.max(0, 1 - y / (innerHeight * 0.9));
+      heroTick = false;
+    };
+    addEventListener('scroll', () => { if (!heroTick) { requestAnimationFrame(heroUpdate); heroTick = true; } }, { passive: true });
+    heroUpdate();
+  }
 
   // ===== Footer scene =====
   // Optional real footage: set to an .mp4 URL (muted, looping) to replace the drawn hills.
