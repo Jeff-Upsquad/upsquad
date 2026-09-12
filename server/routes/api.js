@@ -4,6 +4,7 @@ import {
   getLandingPageBySlug,
   getPartnerLandingCtaBySlug,
   createSubscriptionRequest,
+  createByosWaitlistEntry,
   listOpenCareerPositions,
   getOpenCareerPositionById,
   createCareerApplication,
@@ -116,6 +117,42 @@ router.post('/v1/subscriptions', express.json(), (req, res) => {
     res.status(201).json({ id, message: 'Subscription request submitted successfully' })
   } catch (err) {
     console.error('Subscription creation error:', err)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+// BYOS landing page — "Join waiting list". Public, no payment; the
+// landing page is a static file hosted separately, so its origin must be
+// in CORS_ORIGINS.
+const BYOS_PLANS = ['starter', 'basic', 'plus', 'pro', 'personal']
+
+router.post('/v1/byos-waitlist', express.json(), (req, res) => {
+  const { name, business, email, phone, plan, note, source } = req.body || {}
+
+  const errors = []
+  if (!name || typeof name !== 'string' || name.trim().length === 0) errors.push('Name is required')
+  if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Valid email is required')
+  if (!phone || typeof phone !== 'string' || phone.trim().length < 6) errors.push('Phone number is required')
+  if (!plan || !BYOS_PLANS.includes(plan)) errors.push('Invalid plan')
+  if (note && (typeof note !== 'string' || note.length > 2000)) errors.push('Note is too long')
+
+  if (errors.length > 0) {
+    return res.status(400).json({ error: 'Validation failed', details: errors })
+  }
+
+  try {
+    const id = createByosWaitlistEntry({
+      name: name.trim(),
+      business: typeof business === 'string' ? business.trim() : '',
+      email: email.trim().toLowerCase(),
+      phone: phone.trim(),
+      plan,
+      note: typeof note === 'string' ? note.trim() : '',
+      source: typeof source === 'string' && source.trim() ? source.trim().slice(0, 64) : 'landing',
+    })
+    res.status(201).json({ id, message: 'Added to the BYOS waiting list' })
+  } catch (err) {
+    console.error('BYOS waitlist error:', err)
     res.status(500).json({ error: 'Internal server error' })
   }
 })

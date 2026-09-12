@@ -8,6 +8,7 @@ import {
   listLandingPages, getLandingPageBySlug, createLandingPage, updateLandingPage,
   deleteLandingPage, replaceLandingPageLanguages, listLanguages, createLanguage, deleteLanguage,
   listPartnerLandingCtas, updatePartnerLandingCtaDestination,
+  listByosWaitlist,
 } from '../lib/db.js'
 import { isValidPartnerCtaDestination } from '../lib/signupCta.js'
 import { verifyCredentials, issueSession, clearSession, requireAuth, currentAdmin } from '../lib/auth.js'
@@ -62,6 +63,11 @@ router.use(requireAuth)
 router.get('/', (req, res) => {
   const pages = listLandingPages()
   res.render('dashboard', { pages, admin: req.admin })
+})
+
+router.get('/byos-waitlist', (req, res) => {
+  const { items, total } = listByosWaitlist({ limit: 200 })
+  res.render('byos-waitlist', { entries: items, total, admin: req.admin })
 })
 
 router.get('/languages', (req, res) => {

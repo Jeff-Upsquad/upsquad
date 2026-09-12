@@ -4,6 +4,8 @@ import {
   listSubscriptionRequests,
   getSubscriptionRequestById,
   updateSubscriptionRequestStatus,
+  listByosWaitlist,
+  updateByosWaitlistStatus,
 } from '../lib/db.js'
 
 const router = express.Router()
@@ -54,6 +56,36 @@ router.patch('/subscription-requests/:id', (req, res) => {
     res.json({ data })
   } catch (err) {
     console.error('Update subscription request error:', err)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+router.get('/byos-waitlist', (req, res) => {
+  const { status, search, limit, offset } = req.query
+  try {
+    const result = listByosWaitlist({
+      status: status || undefined,
+      search: search || undefined,
+      limit: limit ? Math.min(parseInt(limit, 10) || 50, 200) : 50,
+      offset: offset ? parseInt(offset, 10) || 0 : 0,
+    })
+    res.json(result)
+  } catch (err) {
+    console.error('List BYOS waitlist error:', err)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+router.patch('/byos-waitlist/:id/status', (req, res) => {
+  const id = parseInt(req.params.id, 10)
+  if (!id) return res.status(400).json({ error: 'Invalid ID' })
+  const { status } = req.body || {}
+  try {
+    const updated = updateByosWaitlistStatus(id, status)
+    if (!updated) return res.status(400).json({ error: 'Invalid status or entry not found' })
+    res.json(updated)
+  } catch (err) {
+    console.error('Update BYOS waitlist status error:', err)
     res.status(500).json({ error: 'Internal server error' })
   }
 })

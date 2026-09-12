@@ -41,6 +41,22 @@ app.use('/api', (req, res, next) => {
   next()
 })
 
+// BYOS landing page (byos.upsquadconnect.com). Same container, host-matched:
+// the static site lives in server/byos (canonical copy — the design source is
+// the Jeff-Upsquad/byos repo's landing/). /api and /admin stay reachable on the
+// subdomain so the waiting-list form posts same-origin.
+const BYOS_HOSTS = new Set(['byos.upsquadconnect.com', 'byos.localhost'])
+const BYOS_DIR = path.join(__dirname, 'byos')
+const byosStatic = express.static(BYOS_DIR, { index: 'index.html', maxAge: '1h' })
+app.use((req, res, next) => {
+  if (!BYOS_HOSTS.has(req.hostname)) return next()
+  if (/^\/(api|admin|uploads)(\/|$)/.test(req.path)) return next()
+  byosStatic(req, res, () => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next()
+    res.sendFile(path.join(BYOS_DIR, 'index.html'))
+  })
+})
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
   setHeaders: (res) => {
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')

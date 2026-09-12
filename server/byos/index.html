@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BYOS — Build Your Own Software | UpSquad</title>
+<meta name="description" content="Your business. Your software. Your server. Your data. Start from proven modules, customise them around your business, run it on infrastructure you control, and keep evolving it with AI + a BYOS Engineer on subscription. ₹10,000 for your first month.">
+<meta property="og:title" content="BYOS — Build Your Own Software">
+<meta property="og:description" content="Own your business software. Run it on your server. Keep evolving it with a BYOS Engineer on subscription. ₹10,000 first month.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23121212'/%3E%3Cpath d='M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECEAE5;--bg-2:#E4E1DB;--card:#FBFAF8;--card-2:#F4F2EE;
+    --ink:#121212;--ink-2:#3A3A38;--muted:#6E6D69;--line:rgba(18,18,18,.09);--line-2:rgba(18,18,18,.16);
+    --accent:#FFFF99;--accent-ink:#0A0A0A;--wa:#1FB85A;--wa-ink:#0B5C2B;--ok:#0E8A4A;--warn:#B23B1E;
+    --dark:#161615;--dark-2:#232322;--dark-line:rgba(255,255,255,.09);--dark-muted:#9C9B96;
+    --r:22px;--r-sm:14px;--pill:999px;
+    --shadow:0 1px 2px rgba(18,18,18,.04),0 12px 40px -12px rgba(18,18,18,.16);
+    --shadow-lg:0 2px 4px rgba(18,18,18,.05),0 40px 80px -30px rgba(18,18,18,.28);
+    --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  button{font:inherit;color:inherit;cursor:pointer}
+  ::selection{background:var(--ink);color:#fff}
+
+  .wrap{width:min(1120px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
+  .wrap-n{width:min(760px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
+  section{padding:88px 0}
+  @media (max-width:720px){section{padding:64px 0}}
+
+  h1,h2,h3{margin:0;letter-spacing:-.035em;line-height:1.02;font-weight:800}
+  h1{font-size:clamp(42px,6.6vw,80px)}
+  h2{font-size:clamp(34px,4.6vw,60px);letter-spacing:-.04em}
+  h3{font-size:clamp(20px,2vw,24px);letter-spacing:-.025em;line-height:1.15}
+  .lede{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);max-width:640px;margin:22px auto 0;line-height:1.5}
+  .center{text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:var(--pill);padding:7px 14px 7px 9px}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(14,138,74,.14)}
+  .muted{color:var(--muted)}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:15.5px;line-height:1;border:1px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;white-space:nowrap}
+  .btn:active{transform:translateY(1px) scale(.99)}
+  .btn-ink{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(18,18,18,.5)}
+  .btn-ink:hover{background:#000;transform:translateY(-1px)}
+  .btn-wa{background:var(--card);color:var(--ink);border-color:var(--line-2)}
+  .btn-wa:hover{background:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn-wa svg{width:20px;height:20px}
+  .btn-sm{padding:11px 18px;font-size:14px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .trust{margin-top:22px;font-size:13.5px;color:var(--muted);display:flex;gap:6px 18px;justify-content:center;flex-wrap:wrap}
+  .trust span::before{content:"✓";color:var(--ok);font-weight:800;margin-right:6px}
+
+  /* ---------- nav ---------- */
+  .nav{position:fixed;top:14px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
+  .nav-pill{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(251,250,248,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);padding:7px 7px 7px 12px;box-shadow:var(--shadow);transition:box-shadow .3s}
+  .nav.scrolled .nav-pill{box-shadow:var(--shadow-lg)}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;padding-right:10px}
+  .brand .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+  .brand .mark svg{width:16px;height:16px}
+  .brand small{font-weight:600;color:var(--muted);font-size:12px;margin-left:2px}
+  .nav-links{display:flex;gap:2px}
+  .nav-links a{padding:8px 12px;border-radius:var(--pill);font-size:14px;font-weight:600;color:var(--ink-2);transition:background .15s,color .15s}
+  .nav-links a:hover{background:rgba(18,18,18,.06);color:var(--ink)}
+  @media (max-width:760px){.nav-links{display:none}.brand{padding-right:4px}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:150px 0 40px;position:relative}
+  .hero .wrap-n{max-width:980px}
+  .hero h1{margin-top:22px}
+  .hero h1 .line{display:block}
+  .hero h1 em{font-style:normal;color:var(--muted)}
+  .hl{white-space:nowrap;color:var(--ink);background:linear-gradient(transparent 68%,var(--accent) 68%,var(--accent) 94%,transparent 94%);padding:0 .06em;border-radius:2px}
+  .rise{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.3s}.d4{animation-delay:.42s}.d5{animation-delay:.55s}
+
+  /* ---------- instance mockup ---------- */
+  .stage{position:relative;padding:40px 0 0}
+  .stage::before{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(180deg,transparent,var(--bg-2));z-index:0}
+  .instance{position:relative;z-index:1;margin:0 auto;max-width:1040px;background:var(--dark);color:#fff;border-radius:28px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+  .inst-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--dark-line);font-size:12.5px;color:var(--dark-muted)}
+  .dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#3a3a39}
+  .dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+  .url{background:#0f0f0e;border:1px solid var(--dark-line);border-radius:8px;padding:5px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#d6d5d0}
+  .url b{color:#7ee2a5;font-weight:600}
+  .inst-body{display:grid;grid-template-columns:200px 1fr;min-height:420px}
+  .inst-side{border-right:1px solid var(--dark-line);padding:16px 12px;display:flex;flex-direction:column;gap:2px;font-size:13px}
+  .inst-side .lbl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dark-muted);padding:10px 10px 6px}
+  .inst-side a{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;color:#d6d5d0}
+  .inst-side a.on{background:var(--dark-2);color:#fff}
+  .inst-side a i{width:7px;height:7px;border-radius:2px;background:#5e5e5b}
+  .inst-side a.on i{background:#7ee2a5}
+  .inst-main{padding:18px;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:min-content;gap:12px}
+  .tile{background:var(--dark-2);border:1px solid var(--dark-line);border-radius:14px;padding:14px;min-height:96px;display:flex;flex-direction:column;justify-content:space-between}
+  .tile .k{font-size:11.5px;color:var(--dark-muted);font-weight:600}
+  .tile .v{font-size:24px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+  .tile .v small{font-size:12px;color:#7ee2a5;font-weight:700;margin-left:6px;letter-spacing:0}
+  .tile.wide{grid-column:span 2}
+  .tile.tall{grid-row:span 2}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:56px;margin-top:10px}
+  .bars i{flex:1;background:#3d3d3b;border-radius:3px 3px 0 0;animation:grow 1.2s cubic-bezier(.2,.7,.2,1) both}
+  .bars i:nth-child(odd){background:#4a4a48}.bars i:last-child{background:#7ee2a5}
+  @keyframes grow{from{transform:scaleY(0);transform-origin:bottom}}
+  .feed{display:flex;flex-direction:column;gap:9px;margin-top:10px;font-size:12.5px}
+  .feed div{display:flex;align-items:center;gap:8px;color:#d6d5d0}
+  .feed i{width:6px;height:6px;border-radius:50%;background:#7ee2a5;flex:none}
+  .feed span{color:var(--dark-muted);margin-left:auto;font-size:11px;white-space:nowrap}
+  .pillrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .pillrow b{font-size:11px;font-weight:700;padding:4px 9px;border-radius:var(--pill);background:#2d2d2b;color:#e8e7e2}
+  .pillrow b.g{background:rgba(126,226,165,.14);color:#7ee2a5}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:var(--pill);background:rgba(126,226,165,.12);color:#7ee2a5;white-space:nowrap}
+  .badge i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
+  @keyframes pulse{50%{opacity:.35}}
+  @media (max-width:820px){.inst-body{grid-template-columns:1fr}.inst-side{display:none}.inst-main{grid-template-columns:1fr 1fr}.tile.wide{grid-column:span 2}.tile.tall{grid-row:auto}}
+  @media (max-width:480px){.inst-main{grid-template-columns:1fr}.tile.wide{grid-column:auto}.url{display:none}}
+
+  /* ---------- chips ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:30px;max-width:900px;margin-inline:auto}
+  .chip{font-size:13.5px;font-weight:700;padding:9px 15px;border-radius:var(--pill);background:var(--card);border:1px solid var(--line);color:var(--ink-2);transition:transform .15s,box-shadow .15s}
+  .chip:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .chip.soon{color:var(--muted);border-style:dashed}
+
+  /* ---------- comparison ---------- */
+  .cmp{margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+  .cmp-scroll{overflow-x:auto}
+  .cmp table{width:100%;border-collapse:collapse;min-width:720px;font-size:15px}
+  .cmp th,.cmp td{padding:18px 20px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp thead th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--card-2)}
+  .cmp td:first-child{font-weight:700;color:var(--ink);width:24%}
+  .cmp td:not(:first-child){color:var(--ink-2)}
+  .cmp .you{background:var(--ink);color:#fff !important;position:relative}
+  .cmp td.you::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+  .cmp td.you b{color:var(--accent)}
+
+  /* ---------- layers grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .card .ic{width:44px;height:44px;border-radius:13px;background:var(--ink);color:#fff;display:grid;place-items:center;margin-bottom:18px}
+  .card .ic svg{width:22px;height:22px}
+  .card h3{margin-bottom:8px}
+  .card p{margin:0;color:var(--ink-2);font-size:15px}
+  .card .inc{margin-top:14px;font-size:13px;color:var(--muted)}
+  .card .inc b{color:var(--ink-2);font-weight:700}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;background:var(--card-2);padding:1px 5px;border-radius:5px}
+
+  /* ---------- engineer ---------- */
+  .eng{background:var(--dark);color:#fff;border-radius:32px;padding:clamp(40px,6vw,80px) clamp(24px,5vw,72px);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .eng::after{content:"";position:absolute;width:640px;height:640px;right:-260px;top:-260px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,153,.12),transparent 70%);pointer-events:none}
+  .eng h2{color:#fff}
+  .eng .lede{color:#c9c8c2;margin-left:0}
+  .eng .eyebrow{background:rgba(255,255,255,.06);border-color:var(--dark-line);color:#e8e7e2}
+  .chain{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:44px;counter-reset:st;position:relative}
+  @media (max-width:980px){.chain{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:560px){.chain{grid-template-columns:1fr 1fr}}
+  .st{background:var(--dark-2);border:1px solid var(--dark-line);border-radius:16px;padding:16px 14px;counter-increment:st}
+  .st::before{content:"0" counter(st);font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--accent)}
+  .st b{display:block;margin-top:10px;font-size:15px;letter-spacing:-.01em}
+  .st span{display:block;margin-top:4px;font-size:12.5px;color:var(--dark-muted);line-height:1.4}
+  .eng-quote{margin-top:40px;padding-top:28px;border-top:1px solid var(--dark-line);display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start;position:relative}
+  @media (max-width:760px){.eng-quote{grid-template-columns:1fr}}
+  .eng-quote p{margin:0;font-size:clamp(18px,2vw,22px);letter-spacing:-.02em;line-height:1.35;font-weight:600}
+  .eng-quote ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px;color:#d6d5d0}
+  .eng-quote li::before{content:"—";color:var(--accent);margin-right:8px}
+
+  /* ---------- plans ---------- */
+  .plans-head .lede{max-width:560px}
+  .plan-card{margin:44px auto 0;max-width:720px;background:var(--card);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow-lg);padding:clamp(22px,4vw,40px);position:relative}
+  .plan-card .top{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:15px;text-align:center}
+  .plan-card .top .mark{flex:none;width:26px;height:26px;border-radius:7px;background:var(--ink);display:grid;place-items:center}
+  .plan-card .top .mark svg{width:14px;height:14px}
+  .seg{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--pill);padding:4px;margin-top:22px}
+  .seg button{border:0;background:transparent;border-radius:var(--pill);padding:11px 4px;font-size:14px;font-weight:700;color:var(--ink-2);transition:background .18s,color .18s,box-shadow .18s;line-height:1.1}
+  .seg button small{display:block;font-size:10.5px;font-weight:700;color:var(--muted);margin-top:3px;letter-spacing:.02em}
+  .seg button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
+  .seg button[aria-pressed="true"] small{color:var(--accent)}
+  @media (max-width:560px){.seg button{padding:10px 2px;font-size:12px}.seg button small{font-size:9.5px}}
+  .price{margin-top:30px;text-align:center}
+  .price .first{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .price .big{font-size:clamp(56px,9vw,84px);font-weight:800;letter-spacing:-.05em;line-height:1;margin-top:6px}
+  .price .big sup{font-size:.42em;vertical-align:top;margin-top:.35em;display:inline-block;letter-spacing:-.02em;color:var(--ink-2)}
+  .price .then{margin-top:12px;font-size:16px;color:var(--ink-2);display:flex;justify-content:center;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .price .then b{font-size:22px;letter-spacing:-.03em;transition:opacity .2s}
+  .price .then b.fade{opacity:.25}
+  .offer{margin-top:22px;background:var(--accent);color:var(--accent-ink);border:1px solid rgba(0,0,0,.2);border-radius:16px;padding:14px 16px;font-size:14px}
+  .offer .row{display:flex;justify-content:space-between;gap:12px;font-weight:700}
+  .offer .bar{height:6px;background:rgba(0,0,0,.12);border-radius:99px;margin-top:10px;overflow:hidden}
+  .offer .bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:99px;animation:fill 1.4s .3s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes fill{to{width:var(--w)}}
+  .offer .sub{font-size:12.5px;color:rgba(10,10,10,.7);margin-top:6px}
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px}
+  @media (max-width:480px){.spec{grid-template-columns:1fr}}
+  .spec div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+  .spec span{color:var(--muted);flex:none}.spec b{text-align:right;font-weight:700}
+  .spec b.no{color:var(--muted);font-weight:600}
+  .inc-list{list-style:none;margin:22px 0 0;padding:22px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:14.5px}
+  @media (max-width:560px){.inc-list{grid-template-columns:1fr}}
+  .inc-list li{display:flex;gap:10px;align-items:flex-start}
+  .inc-list li::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/11px no-repeat}
+  .plan-cta{display:flex;gap:10px;margin-top:28px}
+  .plan-cta .btn{flex:1}
+  @media (max-width:480px){.plan-cta{flex-direction:column}}
+  .plan-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+  .plans-foot{max-width:720px;margin:20px auto 0;text-align:center;font-size:14px;color:var(--muted)}
+  .plans-foot a{font-weight:700;color:var(--ink);text-decoration:underline}
+
+  /* ---------- steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px;counter-reset:s}
+  @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;counter-increment:s;box-shadow:var(--shadow)}
+  .step::before{content:counter(s,decimal-leading-zero);display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--muted);border:1px solid var(--line-2);border-radius:var(--pill);padding:4px 10px}
+  .step h3{margin-top:16px;font-size:19px}
+  .step p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+  /* ---------- promise ---------- */
+  .promise{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:clamp(28px,5vw,56px);box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden}
+  .promise::before{content:"“";position:absolute;left:24px;top:-30px;font-size:220px;line-height:1;color:var(--bg-2);font-weight:800;pointer-events:none}
+  .promise blockquote{margin:0;position:relative;font-size:clamp(22px,3vw,34px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
+  .promise .own{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;text-align:left;position:relative}
+  @media (max-width:560px){.promise .own{grid-template-columns:1fr}}
+  .promise .own div{background:var(--card-2);border-radius:16px;padding:18px 20px;font-size:14.5px}
+  .promise .own b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+
+  /* ---------- faq ---------- */
+  .faq{margin-top:40px;display:grid;gap:10px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:0 22px;box-shadow:var(--shadow);transition:background .2s}
+  details[open]{background:#fff}
+  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center/14px no-repeat;transition:transform .25s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{margin:0 0 22px;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+
+  /* ---------- waitlist ---------- */
+  .wl{background:var(--dark);color:#fff;border-radius:32px;box-shadow:var(--shadow-lg);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative}
+  .wl::before{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-260px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,153,.13),transparent 70%);pointer-events:none}
+  @media (max-width:860px){.wl{grid-template-columns:1fr}}
+  .wl-copy{padding:clamp(28px,5vw,56px);position:relative}
+  .wl-copy h2{color:#fff}
+  .wl-copy p{color:#c9c8c2;font-size:16px;margin:16px 0 0}
+  .wl-copy ul{margin:24px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:14.5px;color:#e8e7e2}
+  .wl-copy li{display:flex;gap:10px}.wl-copy li::before{content:"→";color:var(--accent);font-weight:800}
+  .wl-form{background:var(--card);color:var(--ink);padding:clamp(24px,4vw,40px);position:relative}
+  .f{display:grid;gap:12px}
+  .f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:480px){.f2{grid-template-columns:1fr}}
+  label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:6px}
+  .in{width:100%;border:1px solid var(--line-2);background:#fff;border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none}
+  .in:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(18,18,18,.08)}
+  textarea.in{min-height:84px;resize:vertical}
+  select.in{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 12px center/16px no-repeat;padding-right:38px}
+  .f .btn{width:100%;margin-top:4px}
+  .f .btn[disabled]{opacity:.6;cursor:wait}
+  .f-note{font-size:12.5px;color:var(--muted);text-align:center}
+  .msg{border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.5}
+  .msg.err{background:#fbeae6;border:1px solid #f0c3b8;color:var(--warn)}
+  .msg a{font-weight:700;text-decoration:underline}
+  .done{text-align:center;padding:20px 0}
+  .done .tick{width:64px;height:64px;border-radius:50%;background:var(--ink);margin:0 auto 18px;display:grid;place-items:center}
+  .done .tick svg{width:30px;height:30px}
+  .done h3{font-size:24px}.done p{color:var(--ink-2);margin:10px 0 22px}
+
+  /* ---------- footer ---------- */
+  .site-foot{position:relative;margin-top:40px;overflow:hidden;background:var(--bg)}
+  .foot-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:32px 28px;padding:72px 0 56px}
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-brand{grid-column:1/-1}}
+  @media (max-width:560px){.foot-grid{grid-template-columns:1fr 1fr;padding:56px 0 40px}}
+  .foot-brand .brand{font-size:16px}
+  .foot-brand h3{margin-top:22px;font-size:26px;letter-spacing:-.035em;line-height:1.05;max-width:360px}
+  .foot-brand p{margin:14px 0 0;font-size:14.5px;color:var(--ink-2);max-width:380px}
+  .foot-brand .btn{margin-top:22px}
+  .foot-brand .legal{margin-top:26px;font-size:12.5px;color:var(--muted)}
+  .foot-brand .legal a{font-weight:700;color:var(--ink-2)}
+  .foot-col h4{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .foot-col a{font-size:14.5px;font-weight:600;color:var(--ink-2);transition:color .15s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-col a i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);margin-right:8px;vertical-align:middle}
+
+  /* the scene: layered hills + drifting mist, bleeding in under the columns */
+  .scene{position:relative;z-index:1;height:clamp(380px,50vw,680px);margin-top:-120px;pointer-events:none}
+  @media (max-width:560px){.scene{margin-top:-60px}}
+  .scene-clip{position:absolute;inset:0;overflow:hidden}
+  .scene-zoom{position:absolute;inset:-4% -4% 0;transform-origin:50% 70%;animation:kb 36s cubic-bezier(.45,.05,.55,.95) infinite alternate;will-change:transform}
+  /* Ken Burns: open on the sunrise (left), push in and pan across to the far hills, then ease back. Min scale keeps edges hidden. */
+  @keyframes kb{from{transform:scale(1.06) translate(2.5%,1.2%)}to{transform:scale(1.2) translate(-3%,-2.2%)}}
+  .scene .sky{position:absolute;inset:0;background:
+    radial-gradient(60% 70% at 18% 72%,rgba(255,236,190,.55),transparent 70%),
+    linear-gradient(180deg,var(--bg) 0%,#e9e6dc 45%,#dfe0d0 100%)}
+  .layer{will-change:transform}
+  .photo{position:absolute;inset:-6% 0 0}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 100%}
+  .scene-fade-bottom{position:absolute;left:0;right:0;bottom:0;height:54%;background:linear-gradient(180deg,rgba(236,234,229,0) 0%,rgba(236,234,229,.55) 45%,var(--bg) 100%);z-index:3}
+  .wordmark{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;overflow:hidden;pointer-events:none}
+  .wordmark span{display:block;font-weight:700;letter-spacing:-.055em;line-height:.76;margin-bottom:-.1em;color:var(--bg);white-space:nowrap;font-size:var(--wm,33vw);transform:translateZ(0)}
+  .mist{position:absolute;left:-20%;right:-20%;height:22%;filter:blur(26px);opacity:.28;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.85) 20%,rgba(255,255,255,.35) 45%,rgba(255,255,255,.9) 70%,transparent)}
+  .mist-1{bottom:34%;animation:drift 38s linear infinite}
+  .mist-2{bottom:14%;height:16%;opacity:.2;animation:drift 52s linear infinite reverse}
+  @keyframes drift{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+  .scene-fade-top{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,var(--bg) 0%,rgba(236,234,229,.8) 30%,transparent 100%);z-index:3}
+
+  .scene-grain{position:absolute;inset:0;z-index:3;opacity:.22;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .scene video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  @media (prefers-reduced-motion:reduce){.scene-zoom,.mist{animation:none}}
+
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv,.rise{opacity:1;transform:none;animation:none;transition:none}.bars i,.offer .bar i{animation:none;width:var(--w)}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<div class="nav" id="nav">
+  <div class="nav-pill">
+    <a class="brand" href="#top" aria-label="BYOS home">
+      <span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span>
+      BYOS <small>by UpSquad</small>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#why">Why</a>
+      <a href="#layers">What's inside</a>
+      <a href="#engineer">Engineer</a>
+      <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-ink btn-sm" href="#waitlist">Join waiting list</a>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap-n center">
+    <span class="eyebrow rise d1"><i></i> Build Your Own Software · Early access opening</span>
+    <h1 class="rise d2">
+      <span class="line">Your business.</span>
+      <span class="line">Your software.</span>
+      <span class="line"><em>Your server. <span class="hl">Your data.</span></em></span>
+    </h1>
+    <p class="lede rise d3">Start from proven business modules, customise them around how you work, run everything on a server you control — and keep it evolving with AI plus a <strong>BYOS Engineer</strong> on subscription.</p>
+    <div class="cta-row rise d4">
+      <a class="btn btn-ink" href="#waitlist">Join waiting list</a>
+      <a class="btn btn-wa" data-wa="hero" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
+        Contact us on WhatsApp
+      </a>
+    </div>
+    <div class="trust rise d5">
+      <span>₹10,000 for your first month</span>
+      <span>Pause or cancel anytime</span>
+      <span>Software keeps running if you stop</span>
+    </div>
+  </div>
+
+  <!-- instance mockup -->
+  <div class="stage">
+    <div class="wrap">
+      <div class="instance rise d5" aria-label="Illustration of a BYOS Squad Instance dashboard">
+        <div class="inst-top">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="url">https://<b>app.yourbusiness.com</b> · Squad Instance</div>
+          <span class="badge"><i></i> Update channel: stable · v1.4.2 signed</span>
+        </div>
+        <div class="inst-body">
+          <aside class="inst-side">
+            <div class="lbl">Modules</div>
+            <a class="on"><i></i>Dashboard</a><a><i></i>CRM</a><a><i></i>Orders</a><a><i></i>Inventory</a><a><i></i>Finance</a><a><i></i>HR</a><a><i></i>Website</a>
+            <div class="lbl">Squad</div>
+            <a><i></i>Squad AI</a><a><i></i>Squad Connect</a><a><i></i>Updates</a>
+          </aside>
+          <div class="inst-main">
+            <div class="tile"><span class="k">Open deals · CRM</span><div class="v">128 <small>+12%</small></div></div>
+            <div class="tile"><span class="k">Orders today</span><div class="v">46 <small>on track</small></div></div>
+            <div class="tile"><span class="k">Stock alerts</span><div class="v">3 <small>low</small></div></div>
+            <div class="tile wide"><span class="k">Revenue · last 14 days</span>
+              <div class="bars"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:55%"></i><i style="height:47%"></i><i style="height:62%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:60%"></i><i style="height:74%"></i><i style="height:70%"></i><i style="height:82%"></i><i style="height:78%"></i><i style="height:96%"></i></div>
+            </div>
+            <div class="tile tall"><span class="k">Activity · Squad Connect</span>
+              <div class="feed">
+                <div><i></i>PO #2291 received from Meera Traders<span>2m</span></div>
+                <div><i></i>Invoice INV-0412 sent · Tally synced<span>9m</span></div>
+                <div><i></i>Backup completed · 1.2 GB<span>1h</span></div>
+                <div><i></i>Workflow: low stock → reorder draft<span>3h</span></div>
+                <div><i></i>Engineer shipped: “Dispatch slip v2”<span>1d</span></div>
+              </div>
+            </div>
+            <div class="tile wide"><span class="k">Squad AI · ask your data</span>
+              <div class="pillrow"><b class="g">Which customers haven't ordered in 60 days?</b><b>Draft follow-ups</b><b>GST summary for August</b><b>Reorder list</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WHY / CHIPS ================= -->
+<section id="why">
+  <div class="wrap center rv">
+    <h2>Everything your business runs on.<br>One instance. Yours.</h2>
+    <p class="lede">Not a bundle of apps that rent you access. An operating layer for your business: the modules you need, speaking one language, on infrastructure you control.</p>
+    <div class="chips">
+      <span class="chip">CRM</span><span class="chip">Orders</span><span class="chip">Inventory</span><span class="chip">Finance</span><span class="chip">Invoicing & GST</span><span class="chip">HR & Attendance</span><span class="chip">Booking</span><span class="chip">Projects & Tasks</span><span class="chip">Support</span><span class="chip">Website & CMS</span><span class="chip">Customer portal</span><span class="chip">Vendor portal</span><span class="chip">WhatsApp</span><span class="chip">Payments</span><span class="chip">Squad AI</span><span class="chip">Squad Connect</span><span class="chip">Signed updates</span><span class="chip">Backups & restore</span><span class="chip">Workflows</span><span class="chip soon">Marketplace · soon</span>
+    </div>
+  </div>
+
+  <div class="wrap rv">
+    <div class="cmp">
+      <div class="cmp-scroll">
+        <table>
+          <thead><tr><th></th><th>Traditional SaaS</th><th>Custom development</th><th class="you">BYOS</th></tr></thead>
+          <tbody>
+            <tr><td>Where it runs</td><td>Vendor's cloud</td><td>Your server</td><td class="you"><b>Your server</b> — or a VPS inside your own cloud account</td></tr>
+            <tr><td>Who owns the data</td><td>Vendor. You rent access.</td><td>You</td><td class="you"><b>You.</b> Always.</td></tr>
+            <tr><td>Time to launch</td><td>Days</td><td>Months</td><td class="you"><b>Days</b> — start from proven modules</td></tr>
+            <tr><td>Customisation</td><td>Limited</td><td>Unlimited, expensive</td><td class="you"><b>Configuration → workflows → extensions</b>, without forking</td></tr>
+            <tr><td>Updates</td><td>Forced</td><td>None</td><td class="you"><b>Signed, reversible,</b> on the channel you pick</td></tr>
+            <tr><td>If you stop paying</td><td>Software disappears</td><td>Nothing changes</td><td class="you"><b>Software keeps running.</b> You stop getting updates and engineer time.</td></tr>
+            <tr><td>Talks to other businesses</td><td>Rarely</td><td>Never</td><td class="you"><b>Squad Connect</b> — orders, invoices and channels between businesses</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LAYERS ================= -->
+<section id="layers">
+  <div class="wrap">
+    <div class="center rv">
+      <h2>Six layers. One system.</h2>
+      <p class="lede">AI models will change every year. These six things won't.</p>
+    </div>
+    <div class="grid">
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h3>Foundation</h3><p>The shared kernel every module inherits: users, roles, permissions, custom fields, forms, files, notifications, audit log, search, workflows and the event bus.</p>
+        <div class="inc"><b>Includes:</b> Identity, Permissions, Custom fields, Workflow engine, Audit, Module SDK.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+        <h3>Business modules</h3><p>Proven processes for orders, bookings, invoicing, inventory and HR — encoded once, improved for everyone, configured for you.</p>
+        <div class="inc"><b>Includes:</b> CRM, Orders, Inventory, Finance, HR, Booking, Projects, Support.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="3"/><path d="M8 21h8"/></svg></div>
+        <h3>Experience layer</h3><p>Your public website, CMS and e-commerce, plus customer, vendor and employee portals, dashboards and a mobile app — all on the same data.</p>
+        <div class="inc"><b>Includes:</b> Website builder, Portals, Dashboards, PWA & mobile.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 10.5l7-3.5M8.5 13.5l7 3.5"/></svg></div>
+        <h3>Squad Connect</h3><p>Modules talk to each other inside your business. Businesses talk to each other across instances — purchase orders, invoices, shared channels, guest seats.</p>
+        <div class="inc"><b>Includes:</b> Local events, Federation, Directory, Blind relay.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.3L20 10l-5.8 1.7L12 17l-2.2-5.3L4 10l5.8-1.7z"/><path d="M19 17l.8 1.7 1.7.8-1.7.8L19 22l-.8-1.7-1.7-.8 1.7-.8z"/></svg></div>
+        <h3>Squad AI</h3><p>An AI gateway where <em>you</em> choose the model, agents and tools per module, skills and knowledge — so your data answers questions and your workflows run themselves.</p>
+        <div class="inc"><b>Includes:</b> Gateway, Agents, MCP tools, Skills, RAG.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></div>
+        <h3>Runtime</h3><p>Packaging, one-command install, signed pull-based updates with rollback, backups, monitoring and the <code>byos</code> CLI. Four containers on your box.</p>
+        <div class="inc"><b>Includes:</b> Installer, Update agent, Channels, Backups, Doctor.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ENGINEER ================= -->
+<section id="engineer">
+  <div class="wrap">
+    <div class="eng rv">
+      <span class="eyebrow"><i></i> The BYOS Engineer subscription</span>
+      <h2 style="margin-top:20px;max-width:760px">Not a developer for hire.<br>Continuous software ownership.</h2>
+      <p class="lede">When AI writes most of the code, the accountable human who decides what to build, checks it, and ships it safely becomes <em>more</em> valuable — not less. Your BYOS Engineer is that person, on subscription.</p>
+      <div class="chain">
+        <div class="st"><b>Understands</b><span>Learns your business, not just your tickets.</span></div>
+        <div class="st"><b>Configures</b><span>Modules, fields, workflows, roles — tuned to you.</span></div>
+        <div class="st"><b>Supervises AI</b><span>Directs AI development with your context.</span></div>
+        <div class="st"><b>Builds</b><span>Extensions and integrations, without forking.</span></div>
+        <div class="st"><b>Reviews</b><span>Every change tested against your setup.</span></div>
+        <div class="st"><b>Ships</b><span>Signed releases, monitored, reversible.</span></div>
+      </div>
+      <div class="eng-quote">
+        <p>You choose the capacity. You manage the plan. You get a shared engineer who knows your business — and real development work delivered every month.</p>
+        <ul>
+          <li>Shared engineer, sized to the plan you pick</li>
+          <li>Upgrade, downgrade, pause or cancel — you're in control</li>
+          <li>Replace your engineer any time if it's not the right fit</li>
+          <li>Backed by a Squad Manager who keeps everything moving</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANS ================= -->
+<section id="plans">
+  <div class="wrap">
+    <div class="center plans-head rv">
+      <h2>₹10,000 for your first month.<br>Then pick your capacity.</h2>
+      <p class="lede">Every plan starts at the same price for month one. After that, you pay monthly for the engineer capacity you choose — and you can change it whenever you like.</p>
+    </div>
+
+    <div class="plan-card rv">
+      <div class="top"><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> BYOS Engineer · shared developer subscription</div>
+
+      <div class="seg" role="group" aria-label="Choose a plan" id="seg"></div>
+
+      <div class="price">
+        <div class="first">Your first month · any plan</div>
+        <div class="big"><sup>₹</sup>10,000</div>
+        <div class="then">then <b id="p-price">₹40,000</b> <span>/ month on the <span id="p-name">Plus</span> plan</span></div>
+      </div>
+
+      <div class="offer">
+        <div class="row"><span>Early access pricing 🎉</span><span>10 founding spots</span></div>
+        <div class="bar"><i style="--w:40%"></i></div>
+        <div class="sub">First month at ₹10,000 is for founding customers. Plan pricing locks in for 12 months when you join.</div>
+      </div>
+
+      <div class="spec">
+        <div><span>Capacity</span><b id="s-cap">50% of a full-time engineer</b></div>
+        <div><span>Hours</span><b id="s-hours">~4 hrs / day · ~80 / month</b></div>
+        <div><span>Queue</span><b id="s-queue">High priority</b></div>
+        <div><span>Urgent work</span><b id="s-urgent">Yes</b></div>
+        <div><span>Meetings</span><b id="s-meet">By request</b></div>
+        <div><span>Best for</span><b id="s-best">Growing teams shipping weekly</b></div>
+      </div>
+
+      <ul class="inc-list">
+        <li>Platform updates & security patches</li>
+        <li>Squad Connect & registry access</li>
+        <li>Real development work every month</li>
+        <li>Squad Manager support</li>
+        <li>Pause or cancel anytime</li>
+        <li>Replace your engineer anytime</li>
+        <li>Switch plans as you grow</li>
+        <li>Software keeps running if you cancel</li>
+      </ul>
+
+      <div class="plan-cta">
+        <a class="btn btn-ink" href="#waitlist" id="plan-join">Join waiting list · Plus</a>
+        <a class="btn btn-wa" data-wa="plan" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <div class="plan-note">Billed monthly in INR. Setup, vertical packs and managed hosting are quoted separately. Taxes may apply.</div>
+    </div>
+    <p class="plans-foot">Need more than one engineer, an enterprise deployment on Kubernetes, or a source-escrow licence? <a data-wa="enterprise" href="#" target="_blank" rel="noopener">Talk to us on WhatsApp.</a></p>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="center rv">
+      <h2>From first message to first release.</h2>
+      <p class="lede">Four steps. No procurement cycle.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><h3>Pick a plan</h3><p>Choose the engineer capacity that fits — Starter to Personal. You can change it any month.</p></div>
+      <div class="step rv"><h3>Pay ₹10,000</h3><p>Your first month is the same price on every plan. That confirms your place and starts onboarding.</p></div>
+      <div class="step rv"><h3>Onboard & install</h3><p>A discovery call, then BYOS goes on your server — or a VPS we provision inside your own cloud account.</p></div>
+      <div class="step rv"><h3>Ship every month</h3><p>Your engineer configures, builds and releases. Track everything in Squad Hub. Pause or cancel whenever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROMISE ================= -->
+<section id="promise">
+  <div class="wrap">
+    <div class="promise rv">
+      <blockquote>If you cancel your BYOS subscription, your software keeps running. You simply stop receiving updates, support, Squad Connect and engineering time.</blockquote>
+      <div class="own">
+        <div><b>You own</b>Your data, your server, your domain, your configuration, your workflows, your themes and every client-specific extension built for you.</div>
+        <div><b>UpSquad owns</b>The platform and standard modules — licensed to you under a source-available licence. Read it, modify it, self-host it for your business. Just don't resell it as a hosted service.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap-n">
+    <div class="center rv"><h2>Questions, answered.</h2></div>
+    <div class="faq rv">
+      <details><summary>What exactly is BYOS?</summary><p>BYOS — Build Your Own Software — is a modular business software platform from UpSquad. You assemble the modules your business needs (CRM, Orders, Inventory, Finance, HR, Website…), customise them, host them on infrastructure you control, and keep evolving them with AI plus a BYOS Engineer on subscription.</p></details>
+      <details><summary>Where does it run?</summary><p>On your own VPS, cloud or on-prem server — or on a "Client Cloud" VPS that we provision inside <em>your</em> hosting account (Hostinger, DigitalOcean, AWS). The minimum is a 2 vCPU / 4 GB box with Docker, roughly ₹500–1,000 a month. Enterprise deployments run on your Kubernetes.</p></details>
+      <details><summary>What is the ₹10,000 first month?</summary><p>Every plan costs ₹10,000 for the first month, regardless of which capacity you choose. It confirms your place, covers onboarding, and gets your engineer started. From month two you pay the monthly price of the plan you picked.</p></details>
+      <details><summary>What does a BYOS Engineer actually do?</summary><p>They understand your business, configure your modules, supervise AI-assisted development, build extensions and integrations, review every change, manage releases and troubleshoot. You get real development work each month, sized to your plan — not just support tickets.</p></details>
+      <details><summary>Is the engineer dedicated to me?</summary><p>Starter through Pro give you a shared engineer with capacity reserved for you (10% to 80% of a full-time engineer). The Personal plan is a dedicated, full-time-equivalent engineer with instant call access and live collaboration.</p></details>
+      <details><summary>Can I change, pause or cancel my plan?</summary><p>Yes. You choose and manage your subscription. Upgrade or downgrade any month, pause when things are quiet, or cancel outright. If you cancel, your software keeps running — you simply stop receiving updates, support and engineering time.</p></details>
+      <details><summary>Who owns the code and the data?</summary><p>Your data, server, domain, configuration, workflows, themes and client-specific extensions are yours. The platform and standard modules are UpSquad's, licensed to you under a source-available licence: read it, modify it, self-host it for your own business.</p></details>
+      <details><summary>How is this different from SaaS?</summary><p>SaaS rents you access to software on the vendor's cloud and takes it away when you stop paying. BYOS runs on your server, holds your data on your box, and keeps running after you cancel. Our recurring revenue comes from continuous improvement — never from holding your data hostage.</p></details>
+      <details><summary>When can I start?</summary><p>We're onboarding a small group of founding customers first. Join the waiting list or message us on WhatsApp and we'll reach out with a start date and a discovery call.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WAITLIST ================= -->
+<section id="waitlist">
+  <div class="wrap">
+    <div class="wl rv">
+      <div class="wl-copy">
+        <span class="eyebrow"><i></i> Founding customers</span>
+        <h2 style="margin-top:20px">Join the waiting list.</h2>
+        <p>Tell us a little about your business and the plan you're leaning towards. We'll reply on WhatsApp or email with your start date.</p>
+        <ul>
+          <li>First month ₹10,000 on any plan</li>
+          <li>Plan price locked for 12 months</li>
+          <li>Your extensions shape the first marketplace</li>
+          <li>No payment until we confirm your slot</li>
+        </ul>
+        <div style="margin-top:28px">
+          <a class="btn btn-wa" data-wa="waitlist" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
+            Prefer to chat? WhatsApp us
+          </a>
+        </div>
+      </div>
+      <div class="wl-form">
+        <form class="f" id="wl-form" novalidate>
+          <div class="f2">
+            <div><label for="f-name">Your name</label><input class="in" id="f-name" name="name" autocomplete="name" required placeholder="Priya Nair"></div>
+            <div><label for="f-biz">Business</label><input class="in" id="f-biz" name="business" autocomplete="organization" placeholder="Nair Traders"></div>
+          </div>
+          <div class="f2">
+            <div><label for="f-email">Email</label><input class="in" id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+            <div><label for="f-phone">WhatsApp number</label><input class="in" id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
+          </div>
+          <div><label for="f-plan">Plan you're leaning towards</label><select class="in" id="f-plan" name="plan"></select></div>
+          <div><label for="f-note">What would you build first? <span class="muted" style="font-weight:600">(optional)</span></label><textarea class="in" id="f-note" name="note" placeholder="e.g. Orders + inventory for our 3 shops, WhatsApp order confirmations, GST invoices…"></textarea></div>
+          <div id="f-msg" hidden></div>
+          <button class="btn btn-ink" type="submit" id="f-submit">Join waiting list</button>
+          <div class="f-note">No payment now. We'll confirm your slot before anything is billed.</div>
+        </form>
+        <div class="done" id="wl-done" hidden>
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h3>You're on the list.</h3>
+          <p>Thanks, <span id="done-name">there</span>. We'll reach out with your start date. Want to move faster? Say hi on WhatsApp.</p>
+          <a class="btn btn-wa" id="done-wa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
+            Continue on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot" id="footer">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> BYOS <small>by UpSquad</small></a>
+      <h3>Your business. Your software. Your server. Your data.</h3>
+      <p>Start from proven modules, customise them around how you work, run everything on a server you control — and keep it evolving with AI plus a BYOS Engineer on subscription.</p>
+      <a class="btn btn-ink btn-sm" href="#waitlist">Join waiting list</a>
+      <div class="legal">© <span id="yr"></span> UpSquad · Built with care in Kerala, India by <a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad</a></div>
+    </div>
+    <div class="foot-col">
+      <h4>BYOS</h4>
+      <ul>
+        <li><a href="#why">Why BYOS</a></li>
+        <li><a href="#layers">What's inside</a></li>
+        <li><a href="#engineer">BYOS Engineer</a></li>
+        <li><a href="#plans">Plans & pricing</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Modules</h4>
+      <ul>
+        <li><a href="#layers"><i></i>CRM</a></li>
+        <li><a href="#layers"><i></i>Orders & Inventory</a></li>
+        <li><a href="#layers"><i></i>Finance & GST</a></li>
+        <li><a href="#layers"><i></i>HR & Attendance</a></li>
+        <li><a href="#layers"><i></i>Website & Portals</a></li>
+        <li><a href="#layers"><i></i>Squad AI · Connect</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>More from UpSquad</h4>
+      <ul>
+        <li><a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad Connect</a></li>
+        <li><a href="https://www.upsquadconnect.com/customers/designers-and-video-editors/" target="_blank" rel="noopener">Designers & editors</a></li>
+        <li><a href="https://www.upsquadconnect.com/customers/accountant-subscription/" target="_blank" rel="noopener">Accountant subscription</a></li>
+        <li><a href="https://www.upsquadconnect.com/partner-program/designer-and-video-editor/" target="_blank" rel="noopener">Partner program</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a data-wa="footer" href="#" target="_blank" rel="noopener">WhatsApp us</a></li>
+        <li><a href="#waitlist">Join waiting list</a></li>
+        <li><a data-wa="enterprise" href="#" target="_blank" rel="noopener">Enterprise & partnerships</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Living scene: Kerala tea hills at sunrise (assets/footer-scene.jpg). Drop a video URL into FOOTER_VIDEO (script) to use footage instead. -->
+  <div class="scene" aria-hidden="true" id="scene">
+    <div class="scene-clip">
+      <div class="sky"></div>
+      <div class="scene-zoom">
+        <div class="layer photo" data-depth="0.18">
+          <picture>
+            <source media="(max-width: 700px)" srcset="assets/footer-scene-m.jpg">
+            <img src="assets/footer-scene.jpg" alt="" width="1916" height="821" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="mist mist-1"></div>
+        <div class="mist mist-2"></div>
+      </div>
+      <div class="scene-fade-top"></div>
+      <div class="scene-fade-bottom"></div>
+      <div class="scene-grain"></div>
+      <div class="wordmark"><span id="wordmark">BYOS</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Config =====
+  const WHATSAPP_NUMBER = '919995266385';
+  const FIRST_MONTH = 10000;
+  const LOCAL = /^(localhost|127\.0\.0\.1|)$/.test(location.hostname);
+  // Served from byos.upsquadconnect.com the API is same-origin; elsewhere call the UpSquad server directly.
+  const WAITLIST_ENDPOINT = LOCAL
+    ? 'http://localhost:3100/api/v1/byos-waitlist'
+    : (/upsquadconnect\.com$/.test(location.hostname) ? '/api/v1/byos-waitlist' : 'https://www.upsquadconnect.com/api/v1/byos-waitlist');
+
+  // Plans mirror UpSquad Connect's capacity ladder (Starter → Personal).
+  const PLANS = [
+    { id:'starter',  name:'Starter',  cap:'10%',  capText:'10% of a full-time engineer', hours:'~1 hr / day · ~20 / month',   price:15000, queue:'Standard',                        urgent:false, meetings:'By request',                       best:'First module, light-touch changes' },
+    { id:'basic',    name:'Basic',    cap:'25%',  capText:'25% of a full-time engineer', hours:'~2 hrs / day · ~40 / month',  price:25000, queue:'Standard',                        urgent:false, meetings:'By request',                       best:'Steady stream of small features' },
+    { id:'plus',     name:'Plus',     cap:'50%',  capText:'50% of a full-time engineer', hours:'~4 hrs / day · ~80 / month',  price:40000, queue:'High priority',                   urgent:true,  meetings:'By request',                       best:'Growing teams shipping weekly', popular:true },
+    { id:'pro',      name:'Pro',      cap:'80%',  capText:'80% of a full-time engineer', hours:'~6 hrs / day · ~120 / month', price:60000, queue:'Ultra priority',                  urgent:true,  meetings:'By request',                       best:'Multi-module rollouts & integrations' },
+    { id:'personal', name:'Personal', cap:'100%', capText:'Dedicated full-time engineer', hours:'~8 hrs / day · ~160 / month', price:90000, queue:'Ultra priority + instant access', urgent:true,  meetings:'Instant call + live collaboration', best:'Founders who want an in-house partner' },
+  ];
+  const inr = n => '₹' + new Intl.NumberFormat('en-IN').format(n);
+
+  // ===== Plan selector =====
+  const seg = document.getElementById('seg');
+  const planSel = document.getElementById('f-plan');
+  let current = PLANS.find(p => p.popular) || PLANS[0];
+
+  PLANS.forEach(p => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.dataset.id = p.id;
+    b.innerHTML = `${p.name}<small>${p.cap}</small>`;
+    b.addEventListener('click', () => selectPlan(p.id));
+    seg.appendChild(b);
+    const o = document.createElement('option');
+    o.value = p.id; o.textContent = `${p.name} — ${p.cap} capacity · ${inr(p.price)}/mo after first month`;
+    planSel.appendChild(o);
+  });
+
+  function selectPlan(id, fromForm) {
+    current = PLANS.find(p => p.id === id) || current;
+    seg.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === current.id));
+    const priceEl = document.getElementById('p-price');
+    priceEl.classList.add('fade');
+    setTimeout(() => { priceEl.textContent = inr(current.price); priceEl.classList.remove('fade'); }, 120);
+    document.getElementById('p-name').textContent = current.name;
+    document.getElementById('s-cap').textContent = current.capText;
+    document.getElementById('s-hours').textContent = current.hours;
+    document.getElementById('s-queue').textContent = current.queue;
+    const u = document.getElementById('s-urgent'); u.textContent = current.urgent ? 'Yes' : 'Not guaranteed'; u.classList.toggle('no', !current.urgent);
+    document.getElementById('s-meet').textContent = current.meetings;
+    document.getElementById('s-best').textContent = current.best;
+    document.getElementById('plan-join').textContent = 'Join waiting list · ' + current.name;
+    if (!fromForm) planSel.value = current.id;
+    refreshWa();
+  }
+  planSel.addEventListener('change', () => selectPlan(planSel.value, true));
+
+  // ===== WhatsApp links =====
+  const WA_TEXT = {
+    hero:       () => `Hi UpSquad, I want to know more about BYOS (Build Your Own Software).`,
+    plan:       () => `Hi UpSquad, I'm interested in BYOS on the ${current.name} plan (${current.cap} capacity, ${inr(FIRST_MONTH)} first month, then ${inr(current.price)}/month). Can we talk?`,
+    enterprise: () => `Hi UpSquad, I'd like to discuss an enterprise / custom BYOS setup.`,
+    waitlist:   () => `Hi UpSquad, I'd like to join the BYOS waiting list. I'm leaning towards the ${current.name} plan.`,
+    footer:     () => `Hi UpSquad, I want to know more about BYOS.`,
+  };
+  const waUrl = text => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  function refreshWa() {
+    document.querySelectorAll('[data-wa]').forEach(a => { const f = WA_TEXT[a.dataset.wa]; if (f) a.href = waUrl(f()); });
+  }
+  selectPlan(current.id);
+
+  // ===== Waitlist form =====
+  const form = document.getElementById('wl-form');
+  const msg = document.getElementById('f-msg');
+  const submitBtn = document.getElementById('f-submit');
+  function showMsg(kind, html) { msg.className = 'msg ' + kind; msg.innerHTML = html; msg.hidden = false; }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.hidden = true;
+    const data = {
+      name: form.name.value.trim(), business: form.business.value.trim(),
+      email: form.email.value.trim(), phone: form.phone.value.trim(),
+      plan: form.plan.value, note: form.note.value.trim(), source: 'byos-landing',
+    };
+    const problems = [];
+    if (!data.name) problems.push('your name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) problems.push('a valid email');
+    if (data.phone.replace(/\D/g, '').length < 10) problems.push('a WhatsApp number');
+    if (problems.length) { showMsg('err', 'Please add ' + problems.join(', ') + '.'); return; }
+
+    const plan = PLANS.find(p => p.id === data.plan) || current;
+    const fallbackText = `Hi UpSquad, I'd like to join the BYOS waiting list.\nName: ${data.name}\nBusiness: ${data.business || '-'}\nEmail: ${data.email}\nPlan: ${plan.name} (${plan.cap})\n${data.note ? 'Note: ' + data.note : ''}`.trim();
+
+    submitBtn.disabled = true; submitBtn.textContent = 'Adding you…';
+    try {
+      const r = await fetch(WAITLIST_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        const d = Array.isArray(body.details) ? body.details.join(', ') : (body.error || 'Something went wrong');
+        throw new Error(d);
+      }
+      form.hidden = true;
+      document.getElementById('done-name').textContent = data.name.split(' ')[0];
+      document.getElementById('done-wa').href = waUrl(`Hi UpSquad, I just joined the BYOS waiting list (${plan.name} plan). This is ${data.name} from ${data.business || 'my business'}.`);
+      document.getElementById('wl-done').hidden = false;
+      document.getElementById('wl-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      showMsg('err', `We couldn't reach our server (${err.message}). <a href="${waUrl(fallbackText)}" target="_blank" rel="noopener">Send your details on WhatsApp instead →</a>`);
+    } finally {
+      submitBtn.disabled = false; submitBtn.textContent = 'Join waiting list';
+    }
+  });
+
+  // Pre-fill the plan when arriving from the plan card CTA.
+  document.getElementById('plan-join').addEventListener('click', () => { planSel.value = current.id; });
+
+  // ===== Reveal on scroll + nav shadow =====
+  const io = new IntersectionObserver((es) => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('is-in'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 24), { passive: true });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ===== Footer scene =====
+  // Optional real footage: set to an .mp4 URL (muted, looping) to replace the drawn hills.
+  const FOOTER_VIDEO = '';
+  const scene = document.getElementById('scene');
+  if (FOOTER_VIDEO) {
+    const v = document.createElement('video');
+    v.src = FOOTER_VIDEO; v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+    scene.querySelector('.scene-zoom').replaceChildren(v);
+  }
+  // Fit the giant wordmark to the content column width (same width as .wrap).
+  const wm = document.getElementById('wordmark');
+  const fitWordmark = () => {
+    const target = Math.min(1120, innerWidth - 40);
+    wm.style.fontSize = '100px';
+    const w = wm.getBoundingClientRect().width || 1;
+    wm.style.fontSize = (100 * target / w) + 'px';
+  };
+  fitWordmark(); addEventListener('resize', fitWordmark, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
+
+  // Gentle parallax: each hill layer moves at its own depth as the footer scrolls into view.
+  const layers = scene.querySelectorAll('.layer');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && layers.length) {
+    let ticking = false;
+    const update = () => {
+      const r = scene.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height))); // 0 → entering, 1 → passed
+      layers.forEach(l => { l.style.transform = `translateY(${(1 - p) * 90 * l.dataset.depth}px)`; });
+      ticking = false;
+    };
+    addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+    update();
+  }
+</script>
+</body>
+</html>

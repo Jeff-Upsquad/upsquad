@@ -79,6 +79,19 @@ db.exec(`
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (position_id) REFERENCES career_positions(id) ON DELETE CASCADE
   );
+
+  CREATE TABLE IF NOT EXISTS byos_waitlist (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    business TEXT NOT NULL DEFAULT '',
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    plan TEXT NOT NULL,
+    note TEXT NOT NULL DEFAULT '',
+    source TEXT NOT NULL DEFAULT 'landing',
+    status TEXT DEFAULT 'new',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  );
 `)
 
 function migrate() {
@@ -323,6 +336,51 @@ export function updateSubscriptionRequestStatus(id, status) {
   if (!existing) return null
 
   db.prepare('UPDATE subscription_requests SET status = ? WHERE id = ?').run(status, id)
+  return { ...existing, status }
+}
+
+export function createByosWaitlistEntry({ name, business, email, phone, plan, note, source }) {
+  const info = db.prepare(`
+    INSERT INTO byos_waitlist (name, business, email, phone, plan, note, source)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `).run(name, business || '', email, phone, plan, note || '', source || 'landing')
+  return info.lastInsertRowid
+}
+
+export function listByosWaitlist({ status, search, limit = 50, offset = 0 } = {}) {
+  const conditions = []
+  const params = []
+
+  if (status) {
+    conditions.push('status = ?')
+    params.push(status)
+  }
+  if (search) {
+    conditions.push('(name LIKE ? OR email LIKE ? OR business LIKE ? OR phone LIKE ?)')
+    const term = `%${search}%`
+    params.push(term, term, term, term)
+  }
+
+  const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : ''
+
+  const total = db.prepare(`SELECT COUNT(*) as c FROM byos_waitlist ${where}`).get(...params).c
+  const items = db.prepare(`
+    SELECT * FROM byos_waitlist ${where}
+    ORDER BY created_at DESC
+    LIMIT ? OFFSET ?
+  `).all(...params, limit, offset)
+
+  return { items, total }
+}
+
+export function updateByosWaitlistStatus(id, status) {
+  const allowed = ['new', 'contacted', 'converted', 'declined']
+  if (!allowed.includes(status)) return null
+
+  const existing = db.prepare('SELECT * FROM byos_waitlist WHERE id = ?').get(id)
+  if (!existing) return null
+
+  db.prepare('UPDATE byos_waitlist SET status = ? WHERE id = ?').run(status, id)
   return { ...existing, status }
 }
 
