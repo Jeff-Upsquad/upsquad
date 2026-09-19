@@ -157,8 +157,8 @@
   .chip.soon{color:var(--muted);border-style:dashed}
 
   .cmp{margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-  .cmp-scroll{overflow-x:auto}
-  .cmp table{width:100%;border-collapse:collapse;min-width:720px;font-size:15px}
+  .cmp-scroll{overflow-x:auto;scrollbar-width:thin}
+  .cmp table{width:100%;border-collapse:collapse;min-width:640px;font-size:14px}
   .cmp th,.cmp td{padding:18px 20px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
   .cmp tr:last-child td{border-bottom:0}
   .cmp thead th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--card-2)}
@@ -167,27 +167,10 @@
   .cmp .you{background:var(--ink);color:#fff !important;position:relative}
   .cmp td.you::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
   .cmp td.you b{color:var(--accent)}
-  /* Mobile: the 4-column table hides columns off-screen with no affordance,
-     so replace it with a tab switcher + stacked cards (built from the table
-     by JS — single source of truth, table remains the no-JS fallback). */
-  .cmp-mobile{display:none}
   @media (max-width:720px){
-    .cmp{background:transparent;border:0;box-shadow:none;overflow:visible}
-    .cmp-scroll{display:none}
-    .cmp-mobile{display:block}
-    .cmp-tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:var(--pill);padding:4px;gap:4px;box-shadow:var(--shadow)}
-    .cmp-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:0;background:transparent;border-radius:var(--pill);padding:11px 4px;font:inherit;font-size:13px;font-weight:800;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
-    .cmp-tab[aria-selected="true"]{background:var(--ink);color:#fff;box-shadow:0 6px 16px -8px rgba(18,18,18,.5)}
-    .cmp-tab .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);flex:none}
-    .cmp-cards{display:grid;gap:10px;margin-top:14px}
-    .cmp-mrow{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 18px;box-shadow:var(--shadow)}
-    .cmp-mrow .k{font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-    .cmp-mrow .v{margin-top:5px;font-size:15.5px;font-weight:600;color:var(--ink-2);line-height:1.5}
-    .cmp-mrow.hot{background:var(--ink);border-color:var(--ink);color:#fff;position:relative;overflow:hidden}
-    .cmp-mrow.hot::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
-    .cmp-mrow.hot .k{color:#c9c8c2}
-    .cmp-mrow.hot .v{color:#fff}
-    .cmp-mrow.hot .v b{color:var(--accent)}
+    .cmp table{min-width:600px;font-size:13px}
+    .cmp th,.cmp td{padding:12px}
+    .cmp td:first-child{width:26%}
   }
 
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
@@ -489,10 +472,6 @@
             <tr><td>Hosting</td><td>"Figure it out yourself"</td><td>Locked into their platform</td><td class="you"><b>We set up your hosting,</b> or ₹3,000/yr on our shared VPS</td></tr>
           </tbody>
         </table>
-      </div>
-      <div class="cmp-mobile" id="cmp-mobile" hidden>
-        <div class="cmp-tabs" role="tablist" aria-label="Compare options" id="cmp-tabs"></div>
-        <div class="cmp-cards" id="cmp-cards"></div>
       </div>
     </div>
   </div>
@@ -923,65 +902,34 @@
     setFocus(focusIdx);
   })();
 
-  // Mobile comparison tabs — the 4-column table scrolls sideways on phones
-  // with no hint that more columns exist, so on small screens show a tab
-  // switcher (default: Sites by UpSquad) + one card per row instead.
-  // Cards are generated from the table above: single source of truth.
+  // Comparison table auto-glide — on phones the right columns sit
+  // off-screen, so when the table scrolls into view, glide it left once
+  // to reveal the Sites column. Runs once; honors reduced motion.
   (() => {
-    const table = document.querySelector('.cmp table');
-    const mount = document.getElementById('cmp-mobile');
-    if (!table || !mount) return;
-    const heads = Array.from(table.querySelectorAll('thead th')).slice(1).map(th => th.textContent.trim());
-    if (!heads.length) return;
-    const short = heads.map(h => (/site/i.test(h) ? 'Sites' : (/diy/i.test(h) ? 'DIY' : 'Freelancer')));
-    const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr => {
-      const cells = Array.from(tr.querySelectorAll('td'));
-      return { k: cells[0].innerHTML, vals: cells.slice(1).map(td => td.innerHTML) };
-    });
-    const tabsEl = document.getElementById('cmp-tabs');
-    const cardsEl = document.getElementById('cmp-cards');
-    let active = heads.findIndex(h => /site/i.test(h));
-    if (active < 0) active = heads.length - 1;
-    const render = () => {
-      tabsEl.innerHTML = '';
-      const hot = /site/i.test(heads[active]);
-      heads.forEach((h, i) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'cmp-tab';
-        b.setAttribute('role', 'tab');
-        b.setAttribute('aria-selected', i === active ? 'true' : 'false');
-        b.setAttribute('aria-label', h);
-        b.tabIndex = i === active ? 0 : -1;
-        const rec = /site/i.test(h);
-        b.innerHTML = (rec ? '<span class="dot" aria-hidden="true"></span>' : '') + '<span></span>';
-        b.lastChild.textContent = short[i];
-        b.addEventListener('click', () => { active = i; render(); });
-        tabsEl.appendChild(b);
+    const scroller = document.querySelector('.cmp-scroll');
+    if (!scroller) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let done = false;
+    const glide = new IntersectionObserver((es) => {
+      es.forEach(x => {
+        if (!x.isIntersecting || done) return;
+        done = true;
+        glide.disconnect();
+        const max = scroller.scrollWidth - scroller.clientWidth;
+        if (max <= 8) return;
+        if (reduce) { scroller.scrollLeft = max; return; }
+        const dur = 900;
+        let t0 = -1;
+        const step = (t) => {
+          if (t0 < 0) t0 = t;
+          const p = Math.min(1, (t - t0) / dur);
+          scroller.scrollLeft = max * (1 - Math.pow(1 - p, 3));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        setTimeout(() => requestAnimationFrame(step), 600);
       });
-      cardsEl.innerHTML = '';
-      rows.forEach(r => {
-        const d = document.createElement('div');
-        d.className = 'cmp-mrow' + (hot ? ' hot' : '');
-        const k = document.createElement('div');
-        k.className = 'k';
-        k.innerHTML = r.k;
-        const v = document.createElement('div');
-        v.className = 'v';
-        v.innerHTML = r.vals[active] || '';
-        d.append(k, v);
-        cardsEl.appendChild(d);
-      });
-    };
-    tabsEl.addEventListener('keydown', (e) => {
-      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-      e.preventDefault();
-      active = (active + (e.key === 'ArrowRight' ? 1 : -1) + heads.length) % heads.length;
-      render();
-      tabsEl.querySelectorAll('.cmp-tab')[active].focus();
-    });
-    render();
-    mount.removeAttribute('hidden');
+    }, { threshold: 0.45 });
+    glide.observe(scroller);
   })();
 
   const io = new IntersectionObserver((es) => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('is-in'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
