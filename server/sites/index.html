@@ -282,6 +282,24 @@
   .in:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(18,18,18,.08)}
   textarea.in{min-height:84px;resize:vertical}
   select.in{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 12px center/16px no-repeat;padding-right:38px}
+  .dd{position:relative}
+  .dd-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line-2);background:#fff;border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;font-weight:600;color:var(--ink);text-align:left;outline:none;transition:border-color .15s,box-shadow .15s}
+  .dd-btn:hover{border-color:rgba(18,18,18,.28)}
+  .dd-btn:focus-visible,.dd.open .dd-btn{border-color:var(--ink);box-shadow:0 0 0 4px rgba(18,18,18,.08)}
+  .dd-btn .chev{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:transform .2s,background .2s}
+  .dd-btn .chev svg{width:14px;height:14px}
+  .dd.open .dd-btn .chev{transform:rotate(180deg);background:var(--ink);border-color:var(--ink)}
+  .dd.open .dd-btn .chev svg path{stroke:#fff}
+  .dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:40;background:#fff;border:1px solid var(--line-2);border-radius:16px;box-shadow:var(--shadow-lg);padding:6px;margin:0;list-style:none;max-height:320px;overflow:auto;transform-origin:top center;animation:ddpop .18s cubic-bezier(.2,.7,.2,1)}
+  @keyframes ddpop{from{opacity:0;transform:translateY(-6px) scale(.99)}to{opacity:1;transform:none}}
+  .dd-opt{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:12px;border:0;border-radius:10px;background:transparent;font:inherit;font-size:15px;font-weight:600;line-height:1.35;color:var(--ink);text-align:left;cursor:pointer;transition:background .13s}
+  .dd-opt:hover{background:var(--card-2)}
+  .dd-opt.focus{background:var(--card-2)}
+  .dd-opt[aria-selected="true"]{background:var(--card-2)}
+  .dd-check{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;background:#fff;transition:background .15s,border-color .15s}
+  .dd-check svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:opacity .15s,transform .15s}
+  .dd-opt[aria-selected="true"] .dd-check{background:var(--ink);border-color:var(--ink)}
+  .dd-opt[aria-selected="true"] .dd-check svg{opacity:1;transform:none}
   .f .btn{width:100%;margin-top:4px}
   .f-note{font-size:12.5px;color:var(--muted);text-align:center}
   .msg{border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.5}
@@ -646,13 +664,22 @@
             <div><label for="f-phone">WhatsApp number</label><input class="in" id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
             <div><label for="f-email">Email <span class="muted" style="font-weight:600">(optional)</span></label><input class="in" id="f-email" name="email" type="email" autocomplete="email" placeholder="you@company.com"></div>
           </div>
-          <div><label for="f-type">What does your business need?</label><select class="in" id="f-type" name="type">
-            <option>Business website (services / company info)</option>
-            <option>Shop / restaurant / café website with menu</option>
-            <option>Booking / appointment website</option>
-            <option>Portfolio / personal brand website</option>
-            <option>Something else — I'll explain on WhatsApp</option>
-          </select></div>
+          <div><label id="f-type-label">What does your business need?</label>
+            <div class="dd" id="f-type-dd">
+              <button type="button" class="dd-btn" id="f-type-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="f-type-label f-type-btn-label">
+                <span id="f-type-btn-label">Business website (services / company info)</span>
+                <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+              </button>
+              <ul class="dd-list" id="f-type-list" role="listbox" aria-labelledby="f-type-label" hidden>
+                <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="true" data-value="Business website (services / company info)"><span>Business website (services / company info)</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+                <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Shop / restaurant / café website with menu" tabindex="-1"><span>Shop / restaurant / café website with menu</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+                <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Booking / appointment website" tabindex="-1"><span>Booking / appointment website</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+                <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Portfolio / personal brand website" tabindex="-1"><span>Portfolio / personal brand website</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+                <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Something else — I'll explain on WhatsApp" tabindex="-1"><span>Something else — I'll explain on WhatsApp</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+              </ul>
+              <input type="hidden" name="type" id="f-type" value="Business website (services / company info)">
+            </div>
+          </div>
           <div><label for="f-note">Anything we should know? <span class="muted" style="font-weight:600">(optional)</span></label><textarea class="in" id="f-note" name="note" placeholder="e.g. 5-page site for our clinic, need appointment button on WhatsApp…"></textarea></div>
           <div id="f-msg" hidden></div>
           <button class="btn btn-ink" type="submit" id="f-submit">Book free consultation</button>
@@ -768,7 +795,7 @@
     const data = {
       name: form.name.value.trim(), business: form.business.value.trim(),
       phone: form.phone.value.trim(), email: form.email.value.trim(),
-      type: form.type.value, note: form.note.value.trim(),
+      type: document.getElementById('f-type').value, note: form.note.value.trim(),
     };
     const problems = [];
     if (!data.name) problems.push('your name');
@@ -782,6 +809,64 @@
     document.getElementById('wl-done').hidden = false;
     document.getElementById('wl-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
+
+  // Custom dropdown — replaces the native <select> so Android / iOS
+  // never show the unstyled OS picker. Matches the Sites card design.
+  (() => {
+    const dd = document.getElementById('f-type-dd');
+    if (!dd) return;
+    const btn = document.getElementById('f-type-btn');
+    const label = document.getElementById('f-type-btn-label');
+    const list = document.getElementById('f-type-list');
+    const hidden = document.getElementById('f-type');
+    const opts = Array.from(list.querySelectorAll('.dd-opt'));
+    let focusIdx = opts.findIndex(o => o.getAttribute('aria-selected') === 'true');
+    const setFocus = (i) => {
+      focusIdx = (i + opts.length) % opts.length;
+      opts.forEach((o, k) => {
+        o.classList.toggle('focus', k === focusIdx);
+        o.tabIndex = k === focusIdx ? 0 : -1;
+      });
+    };
+    const open = () => {
+      dd.classList.add('open');
+      list.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+      setFocus(Math.max(0, focusIdx));
+    };
+    const close = (refocus) => {
+      dd.classList.remove('open');
+      list.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      if (refocus) btn.focus();
+    };
+    const isOpen = () => !list.hidden;
+    const pick = (opt) => {
+      opts.forEach(o => o.setAttribute('aria-selected', o === opt ? 'true' : 'false'));
+      label.textContent = opt.dataset.value;
+      hidden.value = opt.dataset.value;
+      focusIdx = opts.indexOf(opt);
+      close(true);
+    };
+    btn.addEventListener('click', () => (isOpen() ? close() : open()));
+    opts.forEach((opt) => opt.addEventListener('click', () => pick(opt)));
+    dd.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) { e.preventDefault(); close(true); }
+      else if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && isOpen()) {
+        e.preventDefault();
+        setFocus(focusIdx + (e.key === 'ArrowDown' ? 1 : -1));
+        opts[focusIdx].focus();
+      } else if ((e.key === 'Enter' || e.key === ' ') && document.activeElement?.classList?.contains('dd-opt')) {
+        e.preventDefault();
+        pick(document.activeElement);
+      } else if (e.key === 'ArrowDown' && !isOpen() && document.activeElement === btn) {
+        e.preventDefault();
+        open();
+      }
+    });
+    document.addEventListener('click', (e) => { if (isOpen() && !dd.contains(e.target)) close(); });
+    setFocus(Math.max(0, focusIdx));
+  })();
 
   const io = new IntersectionObserver((es) => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('is-in'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
