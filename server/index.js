@@ -41,6 +41,20 @@ app.use('/api', (req, res, next) => {
   next()
 })
 
+// Sites by UpSquad landing page (sites.upsquadconnect.com + /sites path).
+// Mirrors the BYOS setup: static site lives in server/sites.
+const SITES_HOSTS = new Set(['sites.upsquadconnect.com', 'sites.localhost'])
+const SITES_DIR = path.join(__dirname, 'sites')
+const sitesStatic = express.static(SITES_DIR, { index: 'index.html', maxAge: '1h' })
+app.use('/sites', sitesStatic)
+app.use((req, res, next) => {
+  if (!SITES_HOSTS.has(req.hostname)) return next()
+  if (/^\/(api|admin|uploads)(\/|$)/.test(req.path)) return next()
+  sitesStatic(req, res, () => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next()
+    res.sendFile(path.join(SITES_DIR, 'index.html'))
+  })
+})
 // BYOS landing page (byos.upsquadconnect.com). Same container, host-matched:
 // the static site lives in server/byos (canonical copy — the design source is
 // the Jeff-Upsquad/byos repo's landing/). /api and /admin stay reachable on the
