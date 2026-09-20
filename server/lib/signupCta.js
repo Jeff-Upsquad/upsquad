@@ -5,10 +5,17 @@ export const PARTNER_CTA_URLS = {
   decide_form: '/signup/',
 }
 
+const ROLE_SIGNUP_URLS = {
+  accountant: 'https://squadhire.upsquadconnect.com/apply/accountant',
+  'designer-and-video-editor': 'https://squadhire.upsquadconnect.com/apply/creative',
+  sales: 'https://squadhire.upsquadconnect.com/apply/sales',
+}
+
 export function isValidPartnerCtaDestination(destination) {
   return PARTNER_CTA_DESTINATIONS.includes(destination)
 }
 
-export function resolvePartnerCtaUrl(destination) {
+export function resolvePartnerCtaUrl(destination, slug) {
+  if (ROLE_SIGNUP_URLS[slug]) return ROLE_SIGNUP_URLS[slug]
   return PARTNER_CTA_URLS[destination] || PARTNER_CTA_URLS.talent_signup
 }

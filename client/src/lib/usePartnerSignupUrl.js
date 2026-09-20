@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react'
 import { SQUADHIRE_SIGNUP } from './signup'
 
 const TIMEOUT_MS = 5000
+const ROLE_SIGNUP_URLS = {
+  accountant: 'https://squadhire.upsquadconnect.com/apply/accountant',
+  'designer-and-video-editor': 'https://squadhire.upsquadconnect.com/apply/creative',
+  sales: 'https://squadhire.upsquadconnect.com/apply/sales',
+}
 
 export function usePartnerSignupUrl(slug) {
-  const [url, setUrl] = useState(SQUADHIRE_SIGNUP.talent)
+  const [url, setUrl] = useState(ROLE_SIGNUP_URLS[slug] || SQUADHIRE_SIGNUP.talent)
 
   useEffect(() => {
     if (!slug) return undefined

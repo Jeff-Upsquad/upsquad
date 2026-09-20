@@ -52,7 +52,7 @@ router.get('/v1/partner-landing-ctas/:slug', (req, res) => {
     title: page.title,
     publicPath: page.public_path,
     destination: page.destination,
-    url: resolvePartnerCtaUrl(page.destination),
+    url: resolvePartnerCtaUrl(page.destination, page.slug),
     updatedAt: page.updated_at,
   })
 })
@@ -369,4 +369,3 @@ router.post('/webhooks/razorpay', express.raw({ type: 'application/json' }), (re
 })
 
 export default router
-
