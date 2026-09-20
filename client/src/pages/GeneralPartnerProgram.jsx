@@ -235,10 +235,44 @@ export default function PartnerProgram() {
               Two ways to earn — pick one
             </h2>
           </div>
+          {/* Mobile: compact segmented tabs with descriptions */}
           <div
             role="tablist"
             aria-label="Choose how you want to work"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto"
+            className="sm:hidden grid grid-cols-2 gap-1 p-1.5 rounded-2xl bg-surface-secondary border border-[rgba(0,0,0,0.08)] max-w-3xl mx-auto"
+          >
+            {TABS.map((t) => {
+              const active = tab === t.id
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => goToTab(t.id)}
+                  className={`flex flex-col items-start gap-1 px-3 py-2.5 rounded-xl text-left transition-all duration-short border ${
+                    active
+                      ? 'bg-brand-accent text-black border-text-primary shadow-sm'
+                      : 'text-text-secondary border-transparent'
+                  }`}
+                >
+                  <span className="flex items-center gap-1.5 text-sm font-bold">
+                    <span className={active ? 'text-black' : 'text-text-muted'}>{t.icon}</span>
+                    {t.label}
+                  </span>
+                  <span className={`text-[11px] font-normal leading-snug ${active ? 'text-black/70' : 'text-text-muted'}`}>
+                    {t.desc}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Desktop: cards */}
+          <div
+            role="tablist"
+            aria-label="Choose how you want to work"
+            className="hidden sm:grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto"
           >
             {TABS.map((t) => {
               const active = tab === t.id
