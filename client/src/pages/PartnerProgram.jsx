@@ -15,17 +15,61 @@ const LP_SLUG = 'partner-program'
 const CTA_SLUG = 'designer-and-video-editor'
 
 const TABS = [
-  { id: 'partner', label: 'Subscriptions' },
-  { id: 'freelance', label: 'Freelance' },
-  { id: 'jobs', label: 'Jobs' },
+  {
+    id: 'partner',
+    label: 'Partner Program',
+    tagline: 'Ongoing & flexible work',
+    desc: 'Subscriptions with assigned clients, plus one-time assignments.',
+    meta: '2 options inside',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'jobs',
+    label: 'Jobs',
+    tagline: 'Full-time & part-time roles',
+    desc: 'Open roles from companies and brands hiring through UpSquad.',
+    meta: 'Apply directly',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+]
+
+const SUB_TABS = [
+  {
+    id: 'subscription',
+    label: 'Subscription',
+    hint: 'Steady · monthly pay',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'assignments',
+    label: 'Assignments',
+    hint: 'Flexible · per project',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
 ]
 
 const heroCopy = {
-  partner: {
+  partner_subscription: {
     badge: 'Now accepting partners',
     desc: 'Partner with UpSquad and focus only on what you do best — we handle the sales, marketing, client support, and payments while you work with assigned clients.',
   },
-  freelance: {
+  partner_assignments: {
     badge: 'New · One-time assignments',
     desc: 'Pick up standalone design and video editing assignments with a fixed payment and a clear timeline. Take what fits your schedule, deliver, and get paid.',
   },
@@ -41,6 +85,7 @@ export default function PartnerProgram() {
   const [languages, setLanguages] = useState([])
   const [defaultLanguageCode, setDefaultLanguageCode] = useState('en')
   const [tab, setTab] = useState('partner')
+  const [subTab, setSubTab] = useState('subscription')
   const tabsRef = useRef(null)
   const signupUrl = usePartnerSignupUrl(CTA_SLUG)
   const {
@@ -94,7 +139,23 @@ export default function PartnerProgram() {
     setTab(id)
   }
 
-  const copy = heroCopy[tab]
+  const goToSubTab = (id) => {
+    setSubTab(id)
+  }
+
+  // Legacy handler passed to the subscription panel: the old Freelance tab id
+  // now maps to the Assignments subdivision under Partner Program.
+  const handlePanelSwitch = (id) => {
+    if (id === 'freelance' || id === 'assignments') {
+      setTab('partner')
+      pendingScroll.current = true
+      setSubTab('assignments')
+      return
+    }
+    goToTab(id)
+  }
+
+  const copy = tab === 'partner' ? heroCopy[`partner_${subTab}`] : heroCopy[tab]
 
   return (
     <div className="pt-20 pb-0">
@@ -175,19 +236,21 @@ export default function PartnerProgram() {
         />
       </section>
 
-      {/* ── Tab switcher (sticky under the navbar) ──────── */}
-      <div
-        ref={tabsRef}
-        className="sticky top-16 z-40 border-y border-[rgba(0,0,0,0.08)] bg-white/90 backdrop-blur-md"
-      >
-        <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-3 flex items-center justify-center lg:justify-between gap-4">
-          <span className="hidden lg:block text-sm text-text-secondary">
-            Three ways to work with UpSquad — pick one:
-          </span>
+      {/* ── Top-level selector: card style ────────────── */}
+      <section ref={tabsRef} className="bg-white border-y border-[rgba(0,0,0,0.08)]">
+        <div className="max-w-[1160px] mx-auto px-5 sm:px-8 pt-10 pb-8">
+          <div className="text-center max-w-2xl mx-auto mb-6">
+            <p className="font-mono-tech text-[11px] uppercase tracking-[0.18em] text-text-muted">
+              Work with UpSquad
+            </p>
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight mt-2">
+              Two ways to earn — pick one
+            </h2>
+          </div>
           <div
             role="tablist"
             aria-label="Choose how you want to work"
-            className="inline-flex p-1 rounded-full border-[1.5px] border-black bg-white shadow-brutal-sm"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto"
           >
             {TABS.map((t) => {
               const active = tab === t.id
@@ -198,22 +261,110 @@ export default function PartnerProgram() {
                   role="tab"
                   aria-selected={active}
                   onClick={() => goToTab(t.id)}
-                  className={`whitespace-nowrap px-4 sm:px-7 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-short ${
-                    active ? 'bg-brand-purple text-white' : 'text-text-secondary hover:text-text-primary'
+                  className={`relative text-left rounded-2xl p-5 sm:p-6 border-2 transition-all duration-200 hover:-translate-y-0.5 ${
+                    active
+                      ? 'border-text-primary bg-brand-accent/30 shadow-brutal'
+                      : 'border-[rgba(0,0,0,0.08)] bg-white hover:border-gray-300 hover:shadow-card-hover'
                   }`}
                 >
-                  {t.label}
+                  {active && (
+                    <span className="absolute -top-2.5 left-5 inline-flex items-center gap-1 bg-text-primary text-brand-accent text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Selected
+                    </span>
+                  )}
+                  <div className="flex items-start gap-4">
+                    <span
+                      className={`inline-flex items-center justify-center w-11 h-11 rounded-xl shrink-0 border ${
+                        active
+                          ? 'bg-brand-accent text-black border-text-primary'
+                          : 'bg-surface-secondary text-text-secondary border-[rgba(0,0,0,0.08)]'
+                      }`}
+                    >
+                      {t.icon}
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block font-mono-tech text-[10px] uppercase tracking-[0.16em] text-text-muted">
+                        {t.tagline}
+                      </span>
+                      <span className="block font-heading text-lg font-bold text-text-primary mt-0.5">
+                        {t.label}
+                      </span>
+                      <span className="block text-sm text-text-secondary leading-relaxed mt-1">
+                        {t.desc}
+                      </span>
+                      <span
+                        className={`inline-flex items-center gap-1.5 text-xs font-semibold mt-3 px-2.5 py-1 rounded-full border ${
+                          active ? 'bg-brand-accent text-black border-text-primary' : 'bg-surface-secondary text-text-muted border-transparent'
+                        }`}
+                      >
+                        <span className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-black' : 'bg-text-muted'}`} />
+                        {t.meta}
+                      </span>
+                    </span>
+                    <span
+                      className={`mt-1 inline-flex w-5 h-5 rounded-full border-2 items-center justify-center shrink-0 ${
+                        active ? 'border-text-primary bg-brand-accent text-black' : 'border-gray-300 text-transparent'
+                      }`}
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  </div>
                 </button>
               )
             })}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ── Partner Program subdivisions: short wide strip (sticky) ── */}
+      {tab === 'partner' && (
+        <div className="sticky top-16 z-40 border-b border-[rgba(0,0,0,0.08)] bg-white/90 backdrop-blur-md">
+          <div className="max-w-[1160px] mx-auto px-5 sm:px-8 py-2.5 flex items-center gap-3">
+            <span className="hidden md:block text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted shrink-0">
+              Partner Program:
+            </span>
+            <div
+              role="radiogroup"
+              aria-label="Choose Partner Program type"
+              className="flex-1 grid grid-cols-2 gap-1 p-1 rounded-xl bg-surface-secondary border border-[rgba(0,0,0,0.08)]"
+            >
+              {SUB_TABS.map((t) => {
+                const active = subTab === t.id
+                return (
+                  <button
+                    key={t.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => goToSubTab(t.id)}
+                    className={`flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-short border ${
+                      active ? 'bg-brand-accent text-black border-text-primary shadow-sm' : 'text-text-secondary hover:text-text-primary border-transparent'
+                    }`}
+                  >
+                    <span className={active ? 'text-black' : 'text-text-muted'}>{t.icon}</span>
+                    {t.label}
+                    <span className={`hidden lg:inline font-normal ${active ? 'text-black/60' : 'text-text-muted'}`}>
+                      · {t.hint}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Active panel ────────────────────────────────── */}
       <div role="tabpanel">
-        {tab === 'partner' && <PartnerProgramTab onSwitchTab={goToTab} signupUrl={signupUrl} />}
-        {tab === 'freelance' && <FreelanceTab signupUrl={signupUrl} />}
+        {tab === 'partner' && subTab === 'subscription' && (
+          <PartnerProgramTab onSwitchTab={handlePanelSwitch} signupUrl={signupUrl} />
+        )}
+        {tab === 'partner' && subTab === 'assignments' && <FreelanceTab signupUrl={signupUrl} />}
         {tab === 'jobs' && <JobsTab signupUrl={signupUrl} />}
       </div>
     </div>

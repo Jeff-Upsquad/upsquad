@@ -281,11 +281,11 @@ export default function PartnerProgramTab({ onSwitchTab, signupUrl = SQUADHIRE_S
         <section className="py-20 px-5 sm:px-8 bg-white">
           <div className="max-w-[1160px] mx-auto">
             <div className="mb-10">
-              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Partner Program vs Freelance</p>
-              <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">How is this different from freelance?</h2>
+              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Subscription vs Assignments</p>
+              <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">How is this different from assignments?</h2>
               <p className="text-base text-text-secondary mt-2 max-w-2xl">
-                Both let you earn through UpSquad. The Partner Program is built for steady, ongoing work with
-                assigned businesses — Freelance is for one-off engagements you pick up whenever it suits you.
+                Both let you earn through UpSquad. Subscription is built for steady, ongoing work with
+                assigned businesses — Assignments are for one-off engagements you pick up whenever it suits you.
               </p>
             </div>
 
@@ -299,7 +299,7 @@ export default function PartnerProgramTab({ onSwitchTab, signupUrl = SQUADHIRE_S
                     </svg>
                   </span>
                   <div>
-                    <h3 className="font-heading text-lg font-bold text-text-primary">Partner Program</h3>
+                    <h3 className="font-heading text-lg font-bold text-text-primary">Subscription</h3>
                     <span className="text-[11px] text-text-muted font-medium">Steady, ongoing client work</span>
                   </div>
                 </div>
@@ -326,7 +326,7 @@ export default function PartnerProgramTab({ onSwitchTab, signupUrl = SQUADHIRE_S
                     </svg>
                   </span>
                   <div>
-                    <h3 className="font-heading text-lg font-bold text-text-primary">Freelance</h3>
+                    <h3 className="font-heading text-lg font-bold text-text-primary">Assignments</h3>
                     <span className="text-[11px] text-text-muted font-medium">One-time assignments</span>
                   </div>
                 </div>
@@ -343,10 +343,10 @@ export default function PartnerProgramTab({ onSwitchTab, signupUrl = SQUADHIRE_S
                 {onSwitchTab && (
                   <button
                     type="button"
-                    onClick={() => onSwitchTab('freelance')}
+                    onClick={() => onSwitchTab('assignments')}
                     className="btn-secondary mt-6 inline-flex items-center justify-center text-sm font-semibold px-5 py-2.5 self-start"
                   >
-                    Explore Freelance &rarr;
+                    Explore Assignments &rarr;
                   </button>
                 )}
               </div>

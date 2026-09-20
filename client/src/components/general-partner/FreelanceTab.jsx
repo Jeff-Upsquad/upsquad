@@ -61,7 +61,7 @@ export default function FreelanceTab({ signupUrl = SQUADHIRE_SIGNUP.talent }) {
             <div className="inline-flex items-center gap-2.5 mb-4">
               <span className="h-px w-8 accent-bar" />
               <span className="font-mono-tech text-xs uppercase tracking-[0.14em] text-text-secondary">
-                Freelance &middot; One-time work
+                Assignments &middot; One-time work
               </span>
             </div>
             <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em] max-w-3xl">
@@ -76,7 +76,7 @@ export default function FreelanceTab({ signupUrl = SQUADHIRE_SIGNUP.talent }) {
 
             {/* How it works */}
             <div className="mt-12">
-              <h3 className="font-heading text-lg font-bold text-text-primary mb-5">How freelance works</h3>
+              <h3 className="font-heading text-lg font-bold text-text-primary mb-5">How assignments work</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {howItWorks.map((step, i) => (
                   <ScrollReveal key={step.number} delay={i * 0.08}>
@@ -128,7 +128,7 @@ export default function FreelanceTab({ signupUrl = SQUADHIRE_SIGNUP.talent }) {
         <section className="py-20 px-5 sm:px-8 bg-surface-secondary">
           <div className="max-w-[1160px] mx-auto">
             <div className="mb-10">
-              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Why freelance here</p>
+              <p className="text-xs font-medium text-text-muted uppercase tracking-widest mb-2">Why assignments here</p>
               <h2 className="font-heading text-3xl font-bold text-text-primary tracking-tight">The upside of one-time work</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-5">
