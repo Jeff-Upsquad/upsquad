@@ -933,10 +933,6 @@
             </a>
           </div>
 
-          <a class="btn btn-wa" id="done-wa" href="#" target="_blank" rel="noopener" style="width:100%">
-            <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
-            Confirm & chat on WhatsApp
-          </a>
           <p id="done-email-note" style="margin-top:14px;font-size:12px;color:var(--muted)"></p>
         </div>
         <div class="dd-modal" id="tz-modal" hidden>
@@ -1583,13 +1579,6 @@
       } else {
         meetWrap.hidden = true;
       }
-
-      // WhatsApp confirmation message
-      const waTimeStr = selectedTz !== 'Asia/Kolkata'
-        ? `${formattedLocal} (${selectedTz}) / ${formatSlotTime(startsAt, 'Asia/Kolkata')} IST`
-        : `${formattedLocal} (IST)`;
-      const waConfirmText = `Hi UpSquad, I've booked a free consultation (Sites by UpSquad) on ${waTimeStr}.\nName: ${bookingState.name}\nBusiness: ${bookingState.business || '-'}\nPhone: ${bookingState.phone}`;
-      document.getElementById('done-wa').href = waUrl(waConfirmText);
 
       // Email note
       const emailNote = document.getElementById('done-email-note');
