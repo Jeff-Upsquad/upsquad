@@ -9,11 +9,13 @@ export const SQUADHIRE_WA_NUMBER = '919995266342'
 //   accountant                 -> "accountant partner program"
 //   designer-and-video-editor  -> "video editor partner program"
 //   sales                      -> "sales partner program"
+//   general                    -> "partner program"
 export const PARTNER_WA_MESSAGES = {
   accountant: "Hi UpSquad, I'm interested in the Accountant Partner Program.",
   'designer-and-video-editor':
     "Hi UpSquad, I'm interested in the Designer & Video Editor Partner Program.",
   sales: "Hi UpSquad, I'm interested in the Sales Partner Program.",
+  general: "Hi UpSquad, I'm interested in the Partner Program.",
 }
 
 export function partnerWaLink(slug) {
