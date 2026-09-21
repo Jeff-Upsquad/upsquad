@@ -357,6 +357,10 @@
   .time-slots-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
   .time-slots-head span{font-size:12px;font-weight:700;color:var(--ink-2)}
   .time-slots-tz{font-size:11px;color:var(--muted);font-weight:600}
+  .tz-btn{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line-2);border-radius:var(--pill);padding:4px 9px;font:inherit;font-size:11px;font-weight:700;color:var(--ink-2);cursor:pointer;transition:all .15s ease}
+  .tz-btn:hover{background:var(--card-2);border-color:rgba(18,18,18,.35);color:var(--ink)}
+  .tz-search{width:100%;padding:9px 12px;border:1px solid var(--line-2);border-radius:12px;font:inherit;font-size:13px;outline:none;transition:border-color .15s;box-sizing:border-box}
+  .tz-search:focus{border-color:var(--ink)}
   .time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:7px;max-height:230px;overflow-y:auto;padding:2px}
   .time-slot{padding:9px 5px;border-radius:12px;border:1px solid var(--line-2);background:#fff;font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center;transition:all .15s ease}
   .time-slot:hover{border-color:rgba(18,18,18,.35);transform:translateY(-1px)}
@@ -793,7 +797,11 @@
           <div class="time-slots-section">
             <div class="time-slots-head">
               <span>Available time slots</span>
-              <span class="time-slots-tz">Asia/Kolkata (IST)</span>
+              <button type="button" class="tz-btn" id="tz-toggle-btn" aria-haspopup="dialog" aria-expanded="false" title="Change timezone">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span id="tz-current-label">Asia/Kolkata (IST)</span>
+                <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
             </div>
             <div id="slots-container"></div>
           </div>
@@ -816,7 +824,7 @@
               <div class="done-icon">📅</div>
               <div class="done-detail">
                 <b id="done-time">Tuesday, 22 Sep 2026 at 2:00 PM</b>
-                <span>India Standard Time (IST)</span>
+                <span id="done-tz-sub">India Standard Time (IST)</span>
               </div>
             </div>
             <div class="done-row">
@@ -840,6 +848,19 @@
             Confirm & chat on WhatsApp
           </a>
           <p id="done-email-note" style="margin-top:14px;font-size:12px;color:var(--muted)"></p>
+        </div>
+        <div class="dd-modal" id="tz-modal" hidden>
+          <div class="dd-backdrop" id="tz-backdrop"></div>
+          <div class="dd-panel" role="dialog" aria-modal="true" aria-labelledby="tz-sheet-title" style="max-height:min(85vh,520px)">
+            <div class="dd-panel-head">
+              <span id="tz-sheet-title">Select your timezone</span>
+              <button type="button" class="dd-x" id="tz-close-btn" aria-label="Close timezone picker"><svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+            <div style="padding:4px 8px 8px">
+              <input type="text" class="tz-search" id="tz-search-input" placeholder="Search timezone or city (e.g. Dubai, New York, IST)..." autocomplete="off">
+            </div>
+            <div class="dd-list" id="tz-list" role="listbox" style="overflow-y:auto;max-height:340px"></div>
+          </div>
         </div>
         <div class="dd-modal" id="f-type-modal" hidden>
           <div class="dd-backdrop" data-close></div>
@@ -995,6 +1016,59 @@
     selectedDay: '', selectedSlot: ''
   };
 
+  const DEFAULT_TZ = 'Asia/Kolkata';
+  let selectedTz = DEFAULT_TZ;
+  let currentLoadedSlots = [];
+
+  const POPULAR_TIMEZONES = [
+    { tz: 'Asia/Kolkata', name: 'India Standard Time (IST)', region: 'India' },
+    { tz: 'Asia/Dubai', name: 'Gulf Standard Time (GST)', region: 'UAE, Dubai, Abu Dhabi' },
+    { tz: 'Asia/Riyadh', name: 'Arabia Standard Time (AST)', region: 'Saudi Arabia' },
+    { tz: 'Asia/Qatar', name: 'Arabia Standard Time (AST)', region: 'Qatar, Doha' },
+    { tz: 'Asia/Singapore', name: 'Singapore Time (SGT)', region: 'Singapore, Malaysia' },
+    { tz: 'Europe/London', name: 'Greenwich Mean Time / BST', region: 'UK, London' },
+    { tz: 'Europe/Paris', name: 'Central European Time (CET)', region: 'France, Germany, Netherlands' },
+    { tz: 'America/New_York', name: 'Eastern Time (ET)', region: 'New York, Toronto, Florida' },
+    { tz: 'America/Chicago', name: 'Central Time (CT)', region: 'Chicago, Texas' },
+    { tz: 'America/Denver', name: 'Mountain Time (MT)', region: 'Denver, Phoenix' },
+    { tz: 'America/Los_Angeles', name: 'Pacific Time (PT)', region: 'California, Seattle, Vancouver' },
+    { tz: 'Australia/Sydney', name: 'Australian Eastern Time (AET)', region: 'Sydney, Melbourne' },
+    { tz: 'Australia/Perth', name: 'Australian Western Time (AWST)', region: 'Perth' },
+    { tz: 'Pacific/Auckland', name: 'New Zealand Time (NZST)', region: 'New Zealand' },
+    { tz: 'Asia/Tokyo', name: 'Japan Standard Time (JST)', region: 'Tokyo, Japan' },
+    { tz: 'Asia/Dhaka', name: 'Bangladesh Standard Time (BST)', region: 'Bangladesh' },
+    { tz: 'Asia/Karachi', name: 'Pakistan Standard Time (PKT)', region: 'Pakistan' },
+    { tz: 'UTC', name: 'Coordinated Universal Time (UTC)', region: 'UTC / GMT' },
+  ];
+
+  try {
+    const userLocalTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (userLocalTz && !POPULAR_TIMEZONES.some(item => item.tz === userLocalTz)) {
+      POPULAR_TIMEZONES.unshift({
+        tz: userLocalTz,
+        name: 'Your Device Timezone',
+        region: userLocalTz
+      });
+    }
+  } catch (e) {}
+
+  function getTzAbbr(tz) {
+    try {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        timeZoneName: 'short'
+      }).formatToParts(new Date());
+      return parts.find(p => p.type === 'timeZoneName')?.value || '';
+    } catch {
+      return '';
+    }
+  }
+
+  function getTzDisplayLabel(tz) {
+    const abbr = getTzAbbr(tz);
+    return abbr ? `${tz} (${abbr})` : tz;
+  }
+
   // Format a local date in Asia/Kolkata timezone: YYYY-MM-DD
   function getTodayKolkata() {
     const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
@@ -1022,15 +1096,20 @@
     return new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric' }).format(d);
   }
 
-  function formatSlotTime(isoString) {
+  function formatSlotTime(isoString, tz = selectedTz) {
     const d = new Date(isoString);
-    return new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true }).format(d);
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    }).format(d);
   }
 
-  function formatFullDateTime(isoString) {
+  function formatFullDateTime(isoString, tz = selectedTz) {
     const d = new Date(isoString);
-    return new Intl.DateTimeFormat('en-IN', {
-      timeZone: 'Asia/Kolkata',
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
       weekday: 'long',
       day: 'numeric',
       month: 'short',
@@ -1165,6 +1244,7 @@
   }
 
   function renderSlots(slots, dayStr) {
+    currentLoadedSlots = slots || [];
     if (!slots || slots.length === 0) {
       const isMeet = bookingState.comm === 'Google Meet';
       slotsContainer.innerHTML = `
@@ -1182,8 +1262,8 @@
     slots.forEach(slotIso => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'time-slot';
-      btn.textContent = formatSlotTime(slotIso);
+      btn.className = 'time-slot' + (bookingState.selectedSlot === slotIso ? ' active' : '');
+      btn.textContent = formatSlotTime(slotIso, selectedTz);
       btn.dataset.iso = slotIso;
 
       btn.addEventListener('click', () => {
@@ -1223,6 +1303,7 @@
           type: bookingState.type,
           note: bookingState.note,
           starts_at: bookingState.selectedSlot,
+          customer_timezone: selectedTz,
         }),
       });
 
@@ -1235,11 +1316,22 @@
 
       const bookedSlot = json.data || {};
       const startsAt = bookedSlot.starts_at || bookingState.selectedSlot;
-      const formattedDateTime = formatFullDateTime(startsAt);
+      const formattedLocal = formatFullDateTime(startsAt, selectedTz);
       const isMeet = bookingState.comm === 'Google Meet';
 
       document.getElementById('done-name').textContent = bookingState.name.split(' ')[0];
-      document.getElementById('done-time').textContent = formattedDateTime;
+      document.getElementById('done-time').textContent = formattedLocal;
+
+      const doneTzSub = document.getElementById('done-tz-sub');
+      if (doneTzSub) {
+        if (selectedTz !== 'Asia/Kolkata') {
+          const istTime = formatSlotTime(startsAt, 'Asia/Kolkata');
+          doneTzSub.textContent = `${getTzDisplayLabel(selectedTz)} · ${istTime} India Standard Time (IST)`;
+        } else {
+          doneTzSub.textContent = 'India Standard Time (IST)';
+        }
+      }
+
       document.getElementById('done-mode').textContent = isMeet ? 'Google Meet · 30 min' : 'Phone call · 20 min';
       document.getElementById('done-mode-icon').textContent = isMeet ? '◉' : '☎';
 
@@ -1254,7 +1346,10 @@
       }
 
       // WhatsApp confirmation message
-      const waConfirmText = `Hi UpSquad, I've booked a free consultation (Sites by UpSquad) on ${formattedDateTime}.\nName: ${bookingState.name}\nBusiness: ${bookingState.business || '-'}\nPhone: ${bookingState.phone}`;
+      const waTimeStr = selectedTz !== 'Asia/Kolkata'
+        ? `${formattedLocal} (${selectedTz}) / ${formatSlotTime(startsAt, 'Asia/Kolkata')} IST`
+        : `${formattedLocal} (IST)`;
+      const waConfirmText = `Hi UpSquad, I've booked a free consultation (Sites by UpSquad) on ${waTimeStr}.\nName: ${bookingState.name}\nBusiness: ${bookingState.business || '-'}\nPhone: ${bookingState.phone}`;
       document.getElementById('done-wa').href = waUrl(waConfirmText);
 
       // Email note
@@ -1275,6 +1370,117 @@
       confirmBtn.disabled = false;
       confirmBtn.textContent = 'Retry confirmation';
       loadSlotsForDay(bookingState.selectedDay);
+    }
+  });
+
+  // Timezone Picker Modal Handlers
+  const tzToggleBtn = document.getElementById('tz-toggle-btn');
+  const tzModal = document.getElementById('tz-modal');
+  const tzBackdrop = document.getElementById('tz-backdrop');
+  const tzCloseBtn = document.getElementById('tz-close-btn');
+  const tzSearchInput = document.getElementById('tz-search-input');
+  const tzCurrentLabel = document.getElementById('tz-current-label');
+
+  function renderTimezoneList(query = '') {
+    const listEl = document.getElementById('tz-list');
+    if (!listEl) return;
+    listEl.innerHTML = '';
+    const q = (query || '').trim().toLowerCase();
+
+    const matches = POPULAR_TIMEZONES.filter(item => {
+      if (!q) return true;
+      return item.tz.toLowerCase().includes(q) ||
+             item.name.toLowerCase().includes(q) ||
+             (item.region && item.region.toLowerCase().includes(q));
+    });
+
+    if (matches.length === 0) {
+      listEl.innerHTML = '<div style="padding:22px 14px;text-align:center;font-size:13px;color:var(--muted)">No timezones found matching your search.</div>';
+      return;
+    }
+
+    matches.forEach(item => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'dd-opt';
+      btn.setAttribute('role', 'option');
+      const isSelected = item.tz === selectedTz;
+      btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+
+      let previewTime = '';
+      try {
+        previewTime = new Intl.DateTimeFormat('en-US', {
+          timeZone: item.tz,
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        }).format(new Date());
+      } catch {}
+
+      btn.innerHTML = `
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:13.5px;color:var(--ink)">
+            ${item.tz} <span style="font-size:11.5px;color:var(--muted);font-weight:600;margin-left:5px">${previewTime}</span>
+          </div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:2px">${item.name}${item.region ? ' · ' + item.region : ''}</div>
+        </div>
+        <span class="dd-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+      `;
+
+      btn.addEventListener('click', () => {
+        setBookingTimezone(item.tz);
+        closeTzModal();
+      });
+
+      listEl.appendChild(btn);
+    });
+  }
+
+  function setBookingTimezone(tz) {
+    selectedTz = tz;
+    if (tzCurrentLabel) tzCurrentLabel.textContent = getTzDisplayLabel(tz);
+    // Re-render currently displayed slots
+    if (currentLoadedSlots && currentLoadedSlots.length > 0) {
+      renderSlots(currentLoadedSlots, bookingState.selectedDay);
+    }
+    // Update confirm button text if a slot is already selected
+    if (bookingState.selectedSlot) {
+      confirmBtn.textContent = `Confirm for ${formatSlotTime(bookingState.selectedSlot, selectedTz)} →`;
+    }
+  }
+
+  function openTzModal() {
+    if (!tzModal) return;
+    tzModal.hidden = false;
+    if (tzToggleBtn) tzToggleBtn.setAttribute('aria-expanded', 'true');
+    renderTimezoneList(tzSearchInput ? tzSearchInput.value : '');
+    document.body.style.overflow = 'hidden';
+    if (tzSearchInput) {
+      setTimeout(() => tzSearchInput.focus(), 60);
+    }
+  }
+
+  function closeTzModal() {
+    if (!tzModal || tzModal.hidden) return;
+    tzModal.hidden = true;
+    if (tzToggleBtn) {
+      tzToggleBtn.setAttribute('aria-expanded', 'false');
+      tzToggleBtn.focus();
+    }
+    document.body.style.overflow = '';
+  }
+
+  if (tzToggleBtn) tzToggleBtn.addEventListener('click', openTzModal);
+  if (tzBackdrop) tzBackdrop.addEventListener('click', closeTzModal);
+  if (tzCloseBtn) tzCloseBtn.addEventListener('click', closeTzModal);
+  if (tzSearchInput) {
+    tzSearchInput.addEventListener('input', (e) => {
+      renderTimezoneList(e.target.value);
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && tzModal && !tzModal.hidden) {
+      closeTzModal();
     }
   });
 

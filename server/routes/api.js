@@ -401,7 +401,13 @@ router.get('/v1/booking/slots', async (req, res) => {
     if (!crmRes.ok) {
       return res.status(crmRes.status).json({ error: json.error || 'Could not fetch booking slots' })
     }
-    return res.json({ success: true, data: json.data || [] })
+    const rawSlots = json.data || []
+    // Ensure strict half-hour gap (:00 and :30 intervals)
+    const halfHourSlots = rawSlots.filter((iso) => {
+      const mins = new Date(iso).getMinutes()
+      return mins === 0 || mins === 30
+    })
+    return res.json({ success: true, data: halfHourSlots })
   } catch (err) {
     console.error('CRM booking slots proxy error:', err)
     return res.status(502).json({ error: 'Failed to communicate with booking service' })
@@ -419,6 +425,7 @@ router.post('/v1/booking/book', express.json(), async (req, res) => {
     type,
     note,
     starts_at,
+    customer_timezone,
     website,
   } = req.body || {}
 
@@ -432,7 +439,35 @@ router.post('/v1/booking/book', express.json(), async (req, res) => {
   const selectedKind = (comm === 'Google Meet' || comm === 'meet') ? 'meet' : 'call'
   const selectedLang = (lang === 'Malayalam' || lang === 'ml') ? 'ml' : 'en'
 
-  const noteParts = []
+  // Log in our system's default timezone (Asia/Kolkata) plus customer's chosen timezone
+  const DEFAULT_TZ = 'Asia/Kolkata'
+  const bookingDate = new Date(starts_at)
+  let formattedDefaultTime = ''
+  try {
+    formattedDefaultTime = new Intl.DateTimeFormat('en-IN', {
+      timeZone: DEFAULT_TZ,
+      dateStyle: 'full',
+      timeStyle: 'short',
+    }).format(bookingDate)
+  } catch {
+    formattedDefaultTime = starts_at
+  }
+
+  let customerTimeStr = ''
+  if (customer_timezone && customer_timezone !== DEFAULT_TZ) {
+    try {
+      const custTime = new Intl.DateTimeFormat('en-US', {
+        timeZone: customer_timezone,
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }).format(bookingDate)
+      customerTimeStr = ` (Customer Timezone: ${customer_timezone} — ${custTime})`
+    } catch {}
+  }
+
+  const noteParts = [
+    `Consultation: ${formattedDefaultTime} IST${customerTimeStr}`,
+  ]
   if (business && business.trim()) noteParts.push(`Business: ${business.trim()}`)
   if (type && type.trim()) noteParts.push(`Need: ${type.trim()}`)
   if (note && note.trim()) noteParts.push(`Note: ${note.trim()}`)
