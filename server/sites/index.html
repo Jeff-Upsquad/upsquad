@@ -326,6 +326,54 @@
   .done .tick svg{width:30px;height:30px}
   .done h3{font-size:24px}.done p{color:var(--ink-2);margin:10px 0 22px}
 
+  /* Multi-step consultation booking flow */
+  .wl-steps{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:12px;font-weight:700}
+  .wl-step-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--pill);background:var(--card-2);color:var(--muted);transition:all .18s ease}
+  .wl-step-pill.active{background:var(--ink);color:#fff}
+  .wl-step-num{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.2);font-size:10.5px}
+  .wl-step-pill:not(.active) .wl-step-num{background:var(--line-2);color:var(--ink-2)}
+  .wl-step-sep{color:var(--line-2);font-size:13px}
+
+  .slots-step{display:flex;flex-direction:column;gap:16px;animation:ddfade .2s ease}
+  .slots-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line-2);padding-bottom:12px}
+  .slots-back{display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:var(--ink-2);font:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:4px 0;transition:color .15s}
+  .slots-back:hover{color:var(--ink)}
+  .slots-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--pill);background:#fff;border:1px solid var(--line-2);font-size:12px;font-weight:700;color:var(--ink)}
+  .slots-badge i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
+  .date-chips-wrap{position:relative}
+  .date-chips-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:12px;font-weight:700;color:var(--ink-2)}
+  .date-chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .date-chips::-webkit-scrollbar{display:none}
+  .date-chip{flex:none;min-width:66px;padding:9px 7px;border-radius:14px;border:1px solid var(--line-2);background:#fff;text-align:center;cursor:pointer;transition:all .15s ease;display:flex;flex-direction:column;gap:2px}
+  .date-chip:hover{border-color:rgba(18,18,18,.35);transform:translateY(-1px)}
+  .date-chip.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 6px 16px -4px rgba(18,18,18,.35)}
+  .date-chip-day{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.7}
+  .date-chip-num{font-size:17px;font-weight:800;line-height:1.15}
+  .date-chip-sub{font-size:10px;font-weight:600;opacity:.8}
+  .date-chip.active .date-chip-day,.date-chip.active .date-chip-sub{opacity:.9}
+
+  .time-slots-section{margin-top:2px}
+  .time-slots-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+  .time-slots-head span{font-size:12px;font-weight:700;color:var(--ink-2)}
+  .time-slots-tz{font-size:11px;color:var(--muted);font-weight:600}
+  .time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:7px;max-height:230px;overflow-y:auto;padding:2px}
+  .time-slot{padding:9px 5px;border-radius:12px;border:1px solid var(--line-2);background:#fff;font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center;transition:all .15s ease}
+  .time-slot:hover{border-color:rgba(18,18,18,.35);transform:translateY(-1px)}
+  .time-slot.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 4px 14px -3px rgba(18,18,18,.4)}
+  .slots-loading{padding:26px 10px;text-align:center;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:10px}
+  .slots-loading-spin{width:16px;height:16px;border:2px solid var(--line-2);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .slots-empty{padding:20px 14px;border-radius:14px;background:#fff;border:1px dashed var(--line-2);text-align:center;font-size:13px;color:var(--ink-2);line-height:1.5}
+
+  .done-card{background:#fff;border:1px solid var(--line-2);border-radius:18px;padding:16px;margin:16px 0;text-align:left;display:grid;gap:10px;box-shadow:0 6px 20px -8px rgba(18,18,18,.08)}
+  .done-row{display:flex;align-items:center;gap:10px;font-size:13.5px}
+  .done-icon{flex:none;width:32px;height:32px;border-radius:10px;background:var(--card-2);display:grid;place-items:center;font-size:14px}
+  .done-detail b{display:block;font-size:13.5px;color:var(--ink);font-weight:700}
+  .done-detail span{font-size:11.5px;color:var(--muted)}
+  .meet-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;border-radius:var(--pill);background:#1a73e8;color:#fff;font-weight:700;font-size:14px;text-decoration:none;transition:background .15s}
+  .meet-btn:hover{background:#1557b0}
+
   .site-foot{position:relative;margin-top:40px;overflow:hidden;background:var(--bg)}
   .foot-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:32px 28px;padding:72px 0 56px}
   @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-brand{grid-column:1/-1}}
@@ -671,6 +719,12 @@
         </div>
       </div>
       <div class="wl-form">
+        <div class="wl-steps" id="wl-steps">
+          <span class="wl-step-pill active" id="pill-step-1"><span class="wl-step-num">1</span> Details</span>
+          <span class="wl-step-sep">→</span>
+          <span class="wl-step-pill" id="pill-step-2"><span class="wl-step-num">2</span> Date & time</span>
+        </div>
+
         <form class="f" id="wl-form" novalidate>
           <div class="f2">
             <div><label for="f-name">Your name</label><input class="in" id="f-name" name="name" autocomplete="name" required placeholder="Priya Nair"></div>
@@ -713,17 +767,79 @@
           </div>
           <div><label for="f-note">Anything we should know? <span class="muted" style="font-weight:600">(optional)</span></label><textarea class="in" id="f-note" name="note" placeholder="e.g. 5-page site for our clinic, need appointment button on WhatsApp…"></textarea></div>
           <div id="f-msg" hidden></div>
-          <button class="btn btn-ink" type="submit" id="f-submit">Book free consultation</button>
+          <button class="btn btn-ink" type="submit" id="f-submit">Continue to select date & time →</button>
           <div class="f-note">No payment now. Deposit only after the free consultation, if you want to proceed.</div>
         </form>
+
+        <div class="slots-step" id="wl-slots-step" hidden>
+          <div class="slots-head">
+            <button type="button" class="slots-back" id="slots-back-btn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Back to details
+            </button>
+            <div class="slots-badge" id="slots-mode-badge">
+              <i></i> <span id="slots-mode-text">Phone call · 20 min</span>
+            </div>
+          </div>
+
+          <div class="date-chips-wrap">
+            <div class="date-chips-label">
+              <span>Select date</span>
+              <span class="muted" style="font-size:11.5px;font-weight:600">Next 14 days</span>
+            </div>
+            <div class="date-chips" id="date-chips-container"></div>
+          </div>
+
+          <div class="time-slots-section">
+            <div class="time-slots-head">
+              <span>Available time slots</span>
+              <span class="time-slots-tz">Asia/Kolkata (IST)</span>
+            </div>
+            <div id="slots-container"></div>
+          </div>
+
+          <div id="f-slot-err" class="msg err" hidden></div>
+
+          <button class="btn btn-ink" type="button" id="f-confirm-btn" disabled>
+            Select a time slot
+          </button>
+          <div class="f-note">Your consultation will be confirmed instantly and assigned to our sales team.</div>
+        </div>
+
         <div class="done" id="wl-done" hidden>
           <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
-          <h3>Request received.</h3>
-          <p>Thanks, <span id="done-name">there</span>. Tap below to confirm your free consultation on WhatsApp — that's the fastest way to lock a slot.</p>
-          <a class="btn btn-wa" id="done-wa" href="#" target="_blank" rel="noopener">
+          <h3 style="font-size:22px;letter-spacing:-.02em">Consultation confirmed!</h3>
+          <p style="margin:8px 0 16px;font-size:14.5px">Thanks, <span id="done-name" style="font-weight:700">there</span>. Your slot is booked with the UpSquad team.</p>
+
+          <div class="done-card">
+            <div class="done-row">
+              <div class="done-icon">📅</div>
+              <div class="done-detail">
+                <b id="done-time">Tuesday, 22 Sep 2026 at 2:00 PM</b>
+                <span>India Standard Time (IST)</span>
+              </div>
+            </div>
+            <div class="done-row">
+              <div class="done-icon" id="done-mode-icon">☎</div>
+              <div class="done-detail">
+                <b id="done-mode">Phone call · 20 min</b>
+                <span id="done-assignee">Assigned to an UpSquad specialist</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="done-meet-wrap" style="margin-bottom:12px" hidden>
+            <a class="meet-btn" id="done-meet-link" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 7a1 1 0 0 0-1 1v2.586l-3.293-3.293A1 1 0 0 0 14 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a1 1 0 0 0 .707-.293L18 15.414V18a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-1z"/></svg>
+              Open Google Meet room
+            </a>
+          </div>
+
+          <a class="btn btn-wa" id="done-wa" href="#" target="_blank" rel="noopener" style="width:100%">
             <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
-            Confirm on WhatsApp
+            Confirm & chat on WhatsApp
           </a>
+          <p id="done-email-note" style="margin-top:14px;font-size:12px;color:var(--muted)"></p>
         </div>
         <div class="dd-modal" id="f-type-modal" hidden>
           <div class="dd-backdrop" data-close></div>
@@ -859,9 +975,73 @@
 
   const form = document.getElementById('wl-form');
   const msg = document.getElementById('f-msg');
-  const submitBtn = document.getElementById('f-submit');
-  function showMsg(kind, html) { msg.className = 'msg ' + kind; msg.innerHTML = html; msg.hidden = false; }
+  const slotErr = document.getElementById('f-slot-err');
+  const slotsStep = document.getElementById('wl-slots-step');
+  const slotsBackBtn = document.getElementById('slots-back-btn');
+  const slotsModeText = document.getElementById('slots-mode-text');
+  const dateChipsContainer = document.getElementById('date-chips-container');
+  const slotsContainer = document.getElementById('slots-container');
+  const confirmBtn = document.getElementById('f-confirm-btn');
+  const pillStep1 = document.getElementById('pill-step-1');
+  const pillStep2 = document.getElementById('pill-step-2');
 
+  function showMsg(kind, html) { msg.className = 'msg ' + kind; msg.innerHTML = html; msg.hidden = false; }
+  function showSlotErr(text) { slotErr.textContent = text; slotErr.hidden = false; }
+  function clearSlotErr() { slotErr.hidden = true; slotErr.textContent = ''; }
+
+  let bookingState = {
+    name: '', business: '', phone: '', email: '',
+    comm: '', lang: '', type: '', note: '',
+    selectedDay: '', selectedSlot: ''
+  };
+
+  // Format a local date in Asia/Kolkata timezone: YYYY-MM-DD
+  function getTodayKolkata() {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+    const val = (type) => parts.find(p => p.type === type)?.value || '';
+    return `${val('year')}-${val('month')}-${val('day')}`;
+  }
+
+  function addDays(dayStr, n) {
+    const d = new Date(Date.parse(`${dayStr}T12:00:00Z`) + n * 86400000);
+    return d.toISOString().slice(0, 10);
+  }
+
+  function formatDayName(dayStr) {
+    const d = new Date(`${dayStr}T12:00:00Z`);
+    return new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short' }).format(d);
+  }
+
+  function formatDayMonth(dayStr) {
+    const d = new Date(`${dayStr}T12:00:00Z`);
+    return new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', month: 'short' }).format(d);
+  }
+
+  function formatDayNum(dayStr) {
+    const d = new Date(`${dayStr}T12:00:00Z`);
+    return new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric' }).format(d);
+  }
+
+  function formatSlotTime(isoString) {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true }).format(d);
+  }
+
+  function formatFullDateTime(isoString) {
+    const d = new Date(isoString);
+    return new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      weekday: 'long',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    }).format(d);
+  }
+
+  // Step 1 Submission: Validate and proceed to Date & Time selection
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     msg.hidden = true;
@@ -879,12 +1059,223 @@
     if (!data.comm) problems.push('a preferred communication method');
     if (!data.lang) problems.push('a preferred language');
     if (problems.length) { showMsg('err', 'Please add ' + problems.join(', ') + '.'); return; }
-    const text = `Hi UpSquad, I'd like to book a free consultation (Sites by UpSquad).\nName: ${data.name}\nBusiness: ${data.business || '-'}\nPhone: ${data.phone}\n${data.email ? 'Email: ' + data.email + '\n' : ''}Preferred communication: ${data.comm}\nLanguage: ${data.lang}\nNeed: ${data.type}\n${data.note ? 'Note: ' + data.note : ''}`.trim();
+
+    bookingState = { ...bookingState, ...data };
+
+    // Update UI to Step 2
+    pillStep1.classList.remove('active');
+    pillStep2.classList.add('active');
     form.hidden = true;
-    document.getElementById('done-name').textContent = data.name.split(' ')[0];
-    document.getElementById('done-wa').href = waUrl(text);
-    document.getElementById('wl-done').hidden = false;
-    document.getElementById('wl-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    slotsStep.hidden = false;
+    clearSlotErr();
+
+    // Set badge text
+    const isMeet = bookingState.comm === 'Google Meet';
+    slotsModeText.textContent = isMeet ? 'Google Meet · 30 min' : 'Phone call · 20 min';
+
+    // Render Date Chips & fetch slots
+    setupDateChips();
+
+    slotsStep.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // Step 2 Back Button
+  slotsBackBtn.addEventListener('click', () => {
+    pillStep2.classList.remove('active');
+    pillStep1.classList.add('active');
+    slotsStep.hidden = true;
+    form.hidden = false;
+    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // Date Chips Setup
+  function setupDateChips() {
+    dateChipsContainer.innerHTML = '';
+    const today = getTodayKolkata();
+    const days = [];
+    for (let i = 1; i <= 14; i++) {
+      days.push(addDays(today, i));
+    }
+
+    bookingState.selectedDay = days[0];
+    bookingState.selectedSlot = '';
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Select a time slot';
+
+    days.forEach((dayStr, idx) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'date-chip' + (idx === 0 ? ' active' : '');
+      chip.dataset.day = dayStr;
+
+      const dayName = idx === 0 ? 'Tmrw' : formatDayName(dayStr);
+      const dayNum = formatDayNum(dayStr);
+      const month = formatDayMonth(dayStr);
+
+      chip.innerHTML = `
+        <span class="date-chip-day">${dayName}</span>
+        <span class="date-chip-num">${dayNum}</span>
+        <span class="date-chip-sub">${month}</span>
+      `;
+
+      chip.addEventListener('click', () => {
+        if (bookingState.selectedDay === dayStr) return;
+        dateChipsContainer.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        bookingState.selectedDay = dayStr;
+        bookingState.selectedSlot = '';
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = 'Select a time slot';
+        loadSlotsForDay(dayStr);
+      });
+
+      dateChipsContainer.appendChild(chip);
+    });
+
+    loadSlotsForDay(bookingState.selectedDay);
+  }
+
+  // Fetch and render slots for selected day
+  async function loadSlotsForDay(dayStr) {
+    clearSlotErr();
+    slotsContainer.innerHTML = `
+      <div class="slots-loading">
+        <span class="slots-loading-spin"></span>
+        <span>Checking sales rep availability…</span>
+      </div>
+    `;
+
+    const kind = bookingState.comm === 'Google Meet' ? 'meet' : 'call';
+    const lang = bookingState.lang === 'Malayalam' ? 'ml' : 'en';
+
+    try {
+      const res = await fetch(`/api/v1/booking/slots?date=${encodeURIComponent(dayStr)}&kind=${kind}&language=${lang}`);
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Failed to load slots');
+
+      const slots = json.data || [];
+      renderSlots(slots, dayStr);
+    } catch (err) {
+      slotsContainer.innerHTML = `
+        <div class="slots-empty" style="border-color:#f0c3b8;color:var(--warn);background:#fbeae6">
+          Could not load slots: ${err.message}. Please tap another day to retry.
+        </div>
+      `;
+    }
+  }
+
+  function renderSlots(slots, dayStr) {
+    if (!slots || slots.length === 0) {
+      const isMeet = bookingState.comm === 'Google Meet';
+      slotsContainer.innerHTML = `
+        <div class="slots-empty">
+          <b>No slots available on this date.</b><br>
+          <span style="display:inline-block;margin-top:4px">${isMeet ? 'Sales reps for Google Meet may be booked on this day. Try another day or choose Phone Call for more openings.' : 'Our sales team is fully booked on this day. Please select another date above.'}</span>
+        </div>
+      `;
+      return;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'time-grid';
+
+    slots.forEach(slotIso => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'time-slot';
+      btn.textContent = formatSlotTime(slotIso);
+      btn.dataset.iso = slotIso;
+
+      btn.addEventListener('click', () => {
+        grid.querySelectorAll('.time-slot').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        bookingState.selectedSlot = slotIso;
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = `Confirm for ${btn.textContent} →`;
+        clearSlotErr();
+      });
+
+      grid.appendChild(btn);
+    });
+
+    slotsContainer.innerHTML = '';
+    slotsContainer.appendChild(grid);
+  }
+
+  // Confirm booking button
+  confirmBtn.addEventListener('click', async () => {
+    if (!bookingState.selectedSlot) return;
+    confirmBtn.disabled = true;
+    confirmBtn.innerHTML = '<span class="slots-loading-spin" style="margin-right:8px;vertical-align:middle;display:inline-block"></span> Confirming your consultation…';
+    clearSlotErr();
+
+    try {
+      const res = await fetch('/api/v1/booking/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: bookingState.name,
+          business: bookingState.business,
+          phone: bookingState.phone,
+          email: bookingState.email,
+          comm: bookingState.comm,
+          lang: bookingState.lang,
+          type: bookingState.type,
+          note: bookingState.note,
+          starts_at: bookingState.selectedSlot,
+        }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Failed to confirm booking');
+
+      // Success: Show confirmation step
+      slotsStep.hidden = true;
+      document.getElementById('wl-steps').hidden = true;
+
+      const bookedSlot = json.data || {};
+      const startsAt = bookedSlot.starts_at || bookingState.selectedSlot;
+      const formattedDateTime = formatFullDateTime(startsAt);
+      const isMeet = bookingState.comm === 'Google Meet';
+
+      document.getElementById('done-name').textContent = bookingState.name.split(' ')[0];
+      document.getElementById('done-time').textContent = formattedDateTime;
+      document.getElementById('done-mode').textContent = isMeet ? 'Google Meet · 30 min' : 'Phone call · 20 min';
+      document.getElementById('done-mode-icon').textContent = isMeet ? '◉' : '☎';
+
+      // If Google Meet room link is returned
+      const meetWrap = document.getElementById('done-meet-wrap');
+      const meetLink = document.getElementById('done-meet-link');
+      if (isMeet && bookedSlot.meeting_url) {
+        meetLink.href = bookedSlot.meeting_url;
+        meetWrap.hidden = false;
+      } else {
+        meetWrap.hidden = true;
+      }
+
+      // WhatsApp confirmation message
+      const waConfirmText = `Hi UpSquad, I've booked a free consultation (Sites by UpSquad) on ${formattedDateTime}.\nName: ${bookingState.name}\nBusiness: ${bookingState.business || '-'}\nPhone: ${bookingState.phone}`;
+      document.getElementById('done-wa').href = waUrl(waConfirmText);
+
+      // Email note
+      const emailNote = document.getElementById('done-email-note');
+      if (bookingState.email) {
+        emailNote.textContent = `A calendar invitation and details have been sent to ${bookingState.email}.`;
+        emailNote.hidden = false;
+      } else {
+        emailNote.hidden = true;
+      }
+
+      const doneEl = document.getElementById('wl-done');
+      doneEl.hidden = false;
+      doneEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    } catch (err) {
+      showSlotErr(err.message || 'Could not lock this slot. Please try another time.');
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = 'Retry confirmation';
+      loadSlotsForDay(bookingState.selectedDay);
+    }
   });
 
   // Custom dropdown popup — replaces the native <select> so Android / iOS
