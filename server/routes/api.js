@@ -368,4 +368,121 @@ router.post('/webhooks/razorpay', express.raw({ type: 'application/json' }), (re
   return res.json({ received: true })
 })
 
+// ---------------------------------------------------------------------------
+// Squad CRM Consultation Booking Integration (Sites by UpSquad)
+// ---------------------------------------------------------------------------
+const CRM_API_URL = (process.env.CRM_API_URL || 'https://crm-api.squadhub.in').replace(/\/+$/, '')
+const CRM_BOOKING_SLUG = process.env.CRM_BOOKING_SLUG || 'faee252d53ebe8448484c0018c86ab2d'
+const CRM_SITES_PRODUCT_ID = process.env.CRM_SITES_PRODUCT_ID || '8f1b7e77-150d-4317-a239-236a846fa289'
+
+router.get('/v1/booking/slots', async (req, res) => {
+  const { date, kind, language } = req.query || {}
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return res.status(400).json({ error: 'Valid date (YYYY-MM-DD) is required' })
+  }
+  const selectedKind = kind === 'meet' ? 'meet' : 'call'
+  const selectedLang = language === 'ml' || language === 'Malayalam' ? 'ml' : 'en'
+
+  try {
+    const params = new URLSearchParams({
+      product_id: CRM_SITES_PRODUCT_ID,
+      kind: selectedKind,
+      language: selectedLang,
+      date,
+    })
+    const url = `${CRM_API_URL}/booking/public/${encodeURIComponent(CRM_BOOKING_SLUG)}/slots?${params}`
+    const crmRes = await fetch(url, {
+      headers: {
+        Accept: 'application/json',
+        'X-Forwarded-For': req.headers['x-forwarded-for'] || req.ip || '',
+      },
+    })
+    const json = await crmRes.json().catch(() => ({}))
+    if (!crmRes.ok) {
+      return res.status(crmRes.status).json({ error: json.error || 'Could not fetch booking slots' })
+    }
+    return res.json({ success: true, data: json.data || [] })
+  } catch (err) {
+    console.error('CRM booking slots proxy error:', err)
+    return res.status(502).json({ error: 'Failed to communicate with booking service' })
+  }
+})
+
+router.post('/v1/booking/book', express.json(), async (req, res) => {
+  const {
+    name,
+    phone,
+    email,
+    business,
+    comm,
+    lang,
+    type,
+    note,
+    starts_at,
+    website,
+  } = req.body || {}
+
+  if (website) return res.status(400).json({ error: 'Invalid submission' })
+  if (!name || typeof name !== 'string' || !name.trim()) return res.status(400).json({ error: 'Name is required' })
+  if (!phone || typeof phone !== 'string' || phone.replace(/\D/g, '').length < 10) {
+    return res.status(400).json({ error: 'Valid phone number is required' })
+  }
+  if (!starts_at) return res.status(400).json({ error: 'Please select an appointment time slot' })
+
+  const selectedKind = (comm === 'Google Meet' || comm === 'meet') ? 'meet' : 'call'
+  const selectedLang = (lang === 'Malayalam' || lang === 'ml') ? 'ml' : 'en'
+
+  const noteParts = []
+  if (business && business.trim()) noteParts.push(`Business: ${business.trim()}`)
+  if (type && type.trim()) noteParts.push(`Need: ${type.trim()}`)
+  if (note && note.trim()) noteParts.push(`Note: ${note.trim()}`)
+  const combinedNotes = noteParts.join(' | ')
+
+  let normalizedPhone = phone.trim()
+  if (!normalizedPhone.startsWith('+')) {
+    const digits = normalizedPhone.replace(/\D/g, '')
+    normalizedPhone = digits.length === 10 ? `+91${digits}` : `+${digits}`
+  }
+
+  const cleanDigits = phone.replace(/\D/g, '')
+  const validEmail = (email && typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+    ? email.trim().toLowerCase()
+    : `consultation-${cleanDigits || Date.now()}@sites.upsquadconnect.com`
+
+  const payload = {
+    product_id: CRM_SITES_PRODUCT_ID,
+    kind: selectedKind,
+    language: selectedLang,
+    starts_at,
+    customer_name: name.trim(),
+    customer_email: validEmail,
+    customer_phone: normalizedPhone,
+    notes: combinedNotes.slice(0, 2000),
+    source: 'sites_by_upsquad',
+    website: '',
+  }
+
+  try {
+    const url = `${CRM_API_URL}/booking/public/${encodeURIComponent(CRM_BOOKING_SLUG)}/book`
+    const crmRes = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'X-Forwarded-For': req.headers['x-forwarded-for'] || req.ip || '',
+      },
+      body: JSON.stringify(payload),
+    })
+    const json = await crmRes.json().catch(() => ({}))
+    if (!crmRes.ok) {
+      return res.status(crmRes.status).json({ error: json.error || 'Failed to complete booking' })
+    }
+    return res.json({ success: true, data: json.data })
+  } catch (err) {
+    console.error('CRM book proxy error:', err)
+    return res.status(502).json({ error: 'Failed to communicate with booking service' })
+  }
+})
+
 export default router
+
