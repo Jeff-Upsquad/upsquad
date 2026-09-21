@@ -390,6 +390,9 @@
   .slots-loading-spin{width:16px;height:16px;border:2px solid var(--line-2);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   .slots-empty{padding:20px 14px;border-radius:14px;background:#fff;border:1px dashed var(--line-2);text-align:center;font-size:13px;color:var(--ink-2);line-height:1.5}
+  @keyframes slotShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+  .time-slots-section.warn-shake{animation:slotShake .4s ease}
+  .time-slots-section.warn-shake .time-slots-head span:first-child{color:var(--warn);transition:color .2s}
 
   .done-card{background:#fff;border:1px solid var(--line-2);border-radius:18px;padding:16px;margin:16px 0;text-align:left;display:grid;gap:10px;box-shadow:0 6px 20px -8px rgba(18,18,18,.08)}
   .done-row{display:flex;align-items:center;gap:10px;font-size:13.5px}
@@ -869,7 +872,7 @@
 
           <div id="f-slot-err" class="msg err" hidden></div>
 
-          <button class="btn btn-ink" type="button" id="f-confirm-btn" disabled>
+          <button class="btn btn-ink" type="button" id="f-confirm-btn">
             Select a time slot
           </button>
           <div class="f-note">Your consultation will be confirmed instantly and assigned to our sales team.</div>
@@ -1098,8 +1101,22 @@
   const pillStep2 = document.getElementById('pill-step-2');
 
   function showMsg(kind, html) { msg.className = 'msg ' + kind; msg.innerHTML = html; msg.hidden = false; }
-  function showSlotErr(text) { slotErr.textContent = text; slotErr.hidden = false; }
-  function clearSlotErr() { slotErr.hidden = true; slotErr.textContent = ''; }
+  function showSlotErr(text) {
+    if (!slotErr) return;
+    slotErr.className = 'msg err';
+    slotErr.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;color:var(--warn)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span style="font-weight:600">${text}</span>
+      </div>
+    `;
+    slotErr.hidden = false;
+  }
+  function clearSlotErr() {
+    if (!slotErr) return;
+    slotErr.hidden = true;
+    slotErr.innerHTML = '';
+  }
 
   let bookingState = {
     name: '', business: '', phone: '', email: '',
@@ -1271,7 +1288,6 @@
 
     if (refreshSlots) {
       bookingState.selectedSlot = '';
-      confirmBtn.disabled = true;
       confirmBtn.textContent = 'Select a time slot';
       if (bookingState.selectedDay) {
         loadSlotsForDay(bookingState.selectedDay);
@@ -1362,7 +1378,6 @@
 
     bookingState.selectedDay = days[0];
     bookingState.selectedSlot = '';
-    confirmBtn.disabled = true;
     confirmBtn.textContent = 'Select a time slot';
 
     days.forEach((dayStr, idx) => {
@@ -1387,7 +1402,6 @@
         chip.classList.add('active');
         bookingState.selectedDay = dayStr;
         bookingState.selectedSlot = '';
-        confirmBtn.disabled = true;
         confirmBtn.textContent = 'Select a time slot';
         loadSlotsForDay(dayStr);
       });
@@ -1468,7 +1482,22 @@
 
   // Confirm booking button
   confirmBtn.addEventListener('click', async () => {
-    if (!bookingState.selectedSlot) return;
+    if (!bookingState.selectedSlot) {
+      if (!currentLoadedSlots || currentLoadedSlots.length === 0) {
+        showSlotErr('No slots are available on this date. Please select another date above or switch meeting format.');
+      } else {
+        showSlotErr('Please select an available time slot above to confirm your consultation.');
+      }
+      const slotsSec = document.querySelector('.time-slots-section');
+      if (slotsSec) {
+        slotsSec.classList.remove('warn-shake');
+        void slotsSec.offsetWidth;
+        slotsSec.classList.add('warn-shake');
+        slotsSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => slotsSec.classList.remove('warn-shake'), 600);
+      }
+      return;
+    }
     confirmBtn.disabled = true;
     confirmBtn.innerHTML = '<span class="slots-loading-spin" style="margin-right:8px;vertical-align:middle;display:inline-block"></span> Confirming your consultation…';
     clearSlotErr();
