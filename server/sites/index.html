@@ -314,6 +314,8 @@
   .dd-check svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:opacity .15s,transform .15s}
   .dd-opt[aria-selected="true"] .dd-check{background:var(--ink);border-color:var(--ink)}
   .dd-opt[aria-selected="true"] .dd-check svg{opacity:1;transform:none}
+  .dd-btn span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dd-placeholder{color:var(--muted);font-weight:500}
   .f .btn{width:100%;margin-top:4px}
   .f-note{font-size:12.5px;color:var(--muted);text-align:center}
   .msg{border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.5}
@@ -672,11 +674,33 @@
         <form class="f" id="wl-form" novalidate>
           <div class="f2">
             <div><label for="f-name">Your name</label><input class="in" id="f-name" name="name" autocomplete="name" required placeholder="Priya Nair"></div>
-            <div><label for="f-biz">Business</label><input class="in" id="f-biz" name="business" autocomplete="organization" placeholder="Nair Traders"></div>
+            <div><label for="f-biz">Business name</label><input class="in" id="f-biz" name="business" autocomplete="organization" placeholder="Nair Traders"></div>
           </div>
           <div class="f2">
             <div><label for="f-phone">WhatsApp number</label><input class="in" id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="+91 98765 43210"></div>
             <div><label for="f-email">Email <span class="muted" style="font-weight:600">(optional)</span></label><input class="in" id="f-email" name="email" type="email" autocomplete="email" placeholder="you@company.com"></div>
+          </div>
+          <div class="f2">
+            <div>
+              <label id="f-comm-label">Preferred communication</label>
+              <div class="dd" id="f-comm-dd">
+                <button type="button" class="dd-btn" id="f-comm-btn" aria-haspopup="dialog" aria-labelledby="f-comm-label f-comm-btn-label">
+                  <span id="f-comm-btn-label" class="dd-placeholder">Select</span>
+                  <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                </button>
+                <input type="hidden" name="comm" id="f-comm" value="">
+              </div>
+            </div>
+            <div>
+              <label id="f-lang-label">Preferred language</label>
+              <div class="dd" id="f-lang-dd">
+                <button type="button" class="dd-btn" id="f-lang-btn" aria-haspopup="dialog" aria-labelledby="f-lang-label f-lang-btn-label">
+                  <span id="f-lang-btn-label" class="dd-placeholder">Select</span>
+                  <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                </button>
+                <input type="hidden" name="lang" id="f-lang" value="">
+              </div>
+            </div>
           </div>
           <div><label id="f-type-label">What does your business need?</label>
             <div class="dd" id="f-type-dd">
@@ -714,6 +738,32 @@
               <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Booking / appointment website" tabindex="-1"><span>Booking / appointment website</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
               <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Portfolio / personal brand website" tabindex="-1"><span>Portfolio / personal brand website</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
               <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Something else — I'll explain on WhatsApp" tabindex="-1"><span>Something else — I'll explain on WhatsApp</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dd-modal" id="f-comm-modal" hidden>
+          <div class="dd-backdrop" data-close></div>
+          <div class="dd-panel" role="dialog" aria-modal="true" aria-labelledby="f-comm-sheet-title">
+            <div class="dd-panel-head">
+              <span id="f-comm-sheet-title">Preferred communication</span>
+              <button type="button" class="dd-x" id="f-comm-x" aria-label="Close options"><svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+            <ul class="dd-list" id="f-comm-list" role="listbox" aria-labelledby="f-comm-sheet-title">
+              <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Call" tabindex="-1"><span>Call</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+              <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Google Meet" tabindex="-1"><span>Google Meet</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dd-modal" id="f-lang-modal" hidden>
+          <div class="dd-backdrop" data-close></div>
+          <div class="dd-panel" role="dialog" aria-modal="true" aria-labelledby="f-lang-sheet-title">
+            <div class="dd-panel-head">
+              <span id="f-lang-sheet-title">Preferred language</span>
+              <button type="button" class="dd-x" id="f-lang-x" aria-label="Close options"><svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+            <ul class="dd-list" id="f-lang-list" role="listbox" aria-labelledby="f-lang-sheet-title">
+              <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="English" tabindex="-1"><span>English</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
+              <li role="none"><button type="button" role="option" class="dd-opt" aria-selected="false" data-value="Malayalam" tabindex="-1"><span>Malayalam</span><span class="dd-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span></button></li>
             </ul>
           </div>
         </div>
@@ -818,14 +868,18 @@
     const data = {
       name: form.name.value.trim(), business: form.business.value.trim(),
       phone: form.phone.value.trim(), email: form.email.value.trim(),
+      comm: document.getElementById('f-comm')?.value || '',
+      lang: document.getElementById('f-lang')?.value || '',
       type: document.getElementById('f-type').value, note: form.note.value.trim(),
     };
     const problems = [];
     if (!data.name) problems.push('your name');
     if (data.phone.replace(/\D/g, '').length < 10) problems.push('a WhatsApp number');
     if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) problems.push('a valid email');
+    if (!data.comm) problems.push('a preferred communication method');
+    if (!data.lang) problems.push('a preferred language');
     if (problems.length) { showMsg('err', 'Please add ' + problems.join(', ') + '.'); return; }
-    const text = `Hi UpSquad, I'd like to book a free consultation (Sites by UpSquad).\nName: ${data.name}\nBusiness: ${data.business || '-'}\nPhone: ${data.phone}\n${data.email ? 'Email: ' + data.email + '\n' : ''}Need: ${data.type}\n${data.note ? 'Note: ' + data.note : ''}`.trim();
+    const text = `Hi UpSquad, I'd like to book a free consultation (Sites by UpSquad).\nName: ${data.name}\nBusiness: ${data.business || '-'}\nPhone: ${data.phone}\n${data.email ? 'Email: ' + data.email + '\n' : ''}Preferred communication: ${data.comm}\nLanguage: ${data.lang}\nNeed: ${data.type}\n${data.note ? 'Note: ' + data.note : ''}`.trim();
     form.hidden = true;
     document.getElementById('done-name').textContent = data.name.split(' ')[0];
     document.getElementById('done-wa').href = waUrl(text);
@@ -836,15 +890,15 @@
   // Custom dropdown popup — replaces the native <select> so Android / iOS
   // never show the unstyled OS picker. Options open in a branded modal
   // dialog instead of an inline list, so nothing gets clipped by the card.
-  (() => {
-    const dd = document.getElementById('f-type-dd');
-    const modal = document.getElementById('f-type-modal');
+  function setupDropdown(idPrefix) {
+    const dd = document.getElementById(`${idPrefix}-dd`);
+    const modal = document.getElementById(`${idPrefix}-modal`);
     if (!dd || !modal) return;
-    const btn = document.getElementById('f-type-btn');
-    const label = document.getElementById('f-type-btn-label');
-    const list = document.getElementById('f-type-list');
-    const hidden = document.getElementById('f-type');
-    const closeBtn = document.getElementById('f-type-x');
+    const btn = document.getElementById(`${idPrefix}-btn`);
+    const label = document.getElementById(`${idPrefix}-btn-label`);
+    const list = document.getElementById(`${idPrefix}-list`);
+    const hidden = document.getElementById(idPrefix);
+    const closeBtn = document.getElementById(`${idPrefix}-x`);
     const opts = Array.from(list.querySelectorAll('.dd-opt'));
     let focusIdx = Math.max(0, opts.findIndex(o => o.getAttribute('aria-selected') === 'true'));
     let prevOverflow = '';
@@ -874,6 +928,7 @@
     const pick = (opt) => {
       opts.forEach(o => o.setAttribute('aria-selected', o === opt ? 'true' : 'false'));
       label.textContent = opt.dataset.value;
+      label.classList.remove('dd-placeholder');
       hidden.value = opt.dataset.value;
       focusIdx = opts.indexOf(opt);
       close(true);
@@ -900,7 +955,11 @@
       }
     });
     setFocus(focusIdx);
-  })();
+  }
+
+  setupDropdown('f-comm');
+  setupDropdown('f-lang');
+  setupDropdown('f-type');
 
   // Comparison table auto-glide — on phones the right columns sit
   // off-screen, so when the table scrolls into view, glide it left once
