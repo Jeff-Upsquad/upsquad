@@ -431,6 +431,7 @@
   .rv.is-in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.rv,.rise{opacity:1;transform:none;animation:none;transition:none}.offer .bar i{animation:none;width:var(--w)}}
 </style>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -1037,10 +1038,38 @@
   }
   refreshWa();
 
+  // Reveal animations (.rv)
+  const io = new IntersectionObserver((es) => es.forEach(x => {
+    if (x.isIntersecting) {
+      x.target.classList.add('is-in');
+      io.unobserve(x.target);
+    }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Immediate visibility fallback for hash navigation (e.g. #consult) or initial load
+  if (location.hash) {
+    const hashEl = document.querySelector(location.hash);
+    if (hashEl) {
+      hashEl.classList.add('is-in');
+      hashEl.querySelectorAll('.rv').forEach(el => el.classList.add('is-in'));
+    }
+  }
+  // Safety timeout: ensure visible content is never stuck at opacity:0
+  setTimeout(() => {
+    document.querySelectorAll('.rv:not(.is-in)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < (window.innerHeight || 800) * 1.5) {
+        el.classList.add('is-in');
+      }
+    });
+  }, 350);
+
   const form = document.getElementById('wl-form');
   const msg = document.getElementById('f-msg');
   const slotErr = document.getElementById('f-slot-err');
   const slotsStep = document.getElementById('wl-slots-step');
+  const slotsBackBtn = document.getElementById('slots-back-btn');
   const modeBtnCall = document.getElementById('mode-btn-call');
   const modeBtnMeet = document.getElementById('mode-btn-meet');
   const phoneCcEl = document.getElementById('f-phone-cc');
@@ -1276,13 +1305,17 @@
   });
 
   // Step 2 Back Button
-  slotsBackBtn.addEventListener('click', () => {
-    pillStep2.classList.remove('active');
-    pillStep1.classList.add('active');
-    slotsStep.hidden = true;
-    form.hidden = false;
-    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
+  if (slotsBackBtn) {
+    slotsBackBtn.addEventListener('click', () => {
+      if (pillStep2) pillStep2.classList.remove('active');
+      if (pillStep1) pillStep1.classList.add('active');
+      if (slotsStep) slotsStep.hidden = true;
+      if (form) {
+        form.hidden = false;
+        form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
 
   // Date Chips Setup
   function setupDateChips() {
@@ -1613,7 +1646,9 @@
     const list = document.getElementById(`${idPrefix}-list`);
     const hidden = document.getElementById(idPrefix);
     const closeBtn = document.getElementById(`${idPrefix}-x`);
+    if (!btn || !label || !list || !hidden) return;
     const opts = Array.from(list.querySelectorAll('.dd-opt'));
+    if (!opts.length) return;
     let focusIdx = Math.max(0, opts.findIndex(o => o.getAttribute('aria-selected') === 'true'));
     let prevOverflow = '';
     const setFocus = (i) => {
@@ -1629,14 +1664,14 @@
       document.body.style.overflow = 'hidden';
       modal.hidden = false;
       setFocus(focusIdx);
-      opts[focusIdx].focus();
+      if (opts[focusIdx]) opts[focusIdx].focus();
     };
     const close = (refocus) => {
       if (modal.hidden) return;
       dd.classList.remove('open');
       modal.hidden = true;
       document.body.style.overflow = prevOverflow;
-      if (refocus) btn.focus();
+      if (refocus && btn) btn.focus();
     };
     const isOpen = () => !modal.hidden;
     const pick = (opt) => {
@@ -1648,8 +1683,9 @@
       close(true);
     };
     btn.addEventListener('click', open);
-    closeBtn.addEventListener('click', () => close(true));
-    modal.querySelector('[data-close]').addEventListener('click', () => close(true));
+    if (closeBtn) closeBtn.addEventListener('click', () => close(true));
+    const closeTrigger = modal.querySelector('[data-close]');
+    if (closeTrigger) closeTrigger.addEventListener('click', () => close(true));
     opts.forEach((opt) => opt.addEventListener('click', () => pick(opt)));
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && isOpen()) { e.preventDefault(); close(true); }
@@ -1658,14 +1694,14 @@
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
         setFocus(focusIdx + (e.key === 'ArrowDown' ? 1 : -1));
-        opts[focusIdx].focus();
+        if (opts[focusIdx]) opts[focusIdx].focus();
       } else if ((e.key === 'Enter' || e.key === ' ') && document.activeElement?.classList?.contains('dd-opt')) {
         e.preventDefault();
         pick(document.activeElement);
       } else if (e.key === 'Tab') {
         const last = opts[opts.length - 1];
-        if (e.shiftKey && document.activeElement === closeBtn) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); closeBtn.focus(); }
+        if (e.shiftKey && document.activeElement === closeBtn) { e.preventDefault(); if (last) last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); if (closeBtn) closeBtn.focus(); }
       }
     });
     setFocus(focusIdx);
@@ -1704,55 +1740,59 @@
     }, { threshold: 0.45 });
     glide.observe(scroller);
   })();
-
-  const io = new IntersectionObserver((es) => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('is-in'); io.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 24), { passive: true });
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   const heroVideo = document.getElementById('hero-video');
-  const heroScene = heroVideo.parentElement;
+  const heroScene = heroVideo ? heroVideo.parentElement : null;
   const heroCopy = document.querySelector('.hero-copy');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
-  else {
-    heroVideo.play().catch(() => {});
-    heroVideo.loop = true;
-    let heroTick = false;
-    const heroUpdate = () => {
-      const y = Math.min(scrollY, innerHeight * 1.5);
-      heroScene.style.transform = `translateY(${y * 0.22}px)`;
-      heroCopy.style.transform = `translateY(${y * -0.12}px)`;
-      heroCopy.style.opacity = Math.max(0, 1 - y / (innerHeight * 0.9));
-      heroTick = false;
-    };
-    addEventListener('scroll', () => { if (!heroTick) { requestAnimationFrame(heroUpdate); heroTick = true; } }, { passive: true });
-    heroUpdate();
+  if (heroVideo && heroScene && heroCopy) {
+    if (reduceMotion) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
+    else {
+      heroVideo.play().catch(() => {});
+      heroVideo.loop = true;
+      let heroTick = false;
+      const heroUpdate = () => {
+        const y = Math.min(scrollY, innerHeight * 1.5);
+        heroScene.style.transform = `translateY(${y * 0.22}px)`;
+        heroCopy.style.transform = `translateY(${y * -0.12}px)`;
+        heroCopy.style.opacity = Math.max(0, 1 - y / (innerHeight * 0.9));
+        heroTick = false;
+      };
+      addEventListener('scroll', () => { if (!heroTick) { requestAnimationFrame(heroUpdate); heroTick = true; } }, { passive: true });
+      heroUpdate();
+    }
   }
 
   const scene = document.getElementById('scene');
   const wm = document.getElementById('wordmark');
   const fitWordmark = () => {
+    if (!wm) return;
     const target = Math.min(1120, innerWidth - 40);
     wm.style.fontSize = '100px';
     const w = wm.getBoundingClientRect().width || 1;
     wm.style.fontSize = (100 * target / w) + 'px';
   };
-  fitWordmark(); addEventListener('resize', fitWordmark, { passive: true });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
-  const layers = scene.querySelectorAll('.layer');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce && layers.length) {
-    let ticking = false;
-    const update = () => {
-      const r = scene.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
-      layers.forEach(l => { l.style.transform = `translateY(${(1 - p) * 90 * l.dataset.depth}px)`; });
-      ticking = false;
-    };
-    addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
-    update();
+  if (wm) {
+    fitWordmark(); addEventListener('resize', fitWordmark, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
+  }
+  if (scene) {
+    const layers = scene.querySelectorAll('.layer');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && layers.length) {
+      let ticking = false;
+      const update = () => {
+        const r = scene.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+        layers.forEach(l => { l.style.transform = `translateY(${(1 - p) * 90 * l.dataset.depth}px)`; });
+        ticking = false;
+      };
+      addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+      update();
+    }
   }
 </script>
 </body>
