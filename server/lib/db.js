@@ -150,6 +150,13 @@ function seed() {
       defaultLanguageCode: 'en',
       langs: [{ code: 'en' }],
     },
+    {
+      slug: 'partnerprogram-accountant',
+      heroTitle: 'UpSquad Partner Program — For Accountants',
+      heroDescription: 'Partner with UpSquad and focus only on the numbers — we handle the sales, marketing, client support, and payments while you work with assigned businesses.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
   ]
 
   const findPage = db.prepare('SELECT id FROM landing_pages WHERE slug = ?')

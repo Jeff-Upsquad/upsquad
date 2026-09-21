@@ -98,13 +98,26 @@ app.get(['/partner-program', '/partner-program/'], (_req, res) => {
   res.redirect(301, '/partner-program/designer-and-video-editor/')
 })
 
-// The get-started landing page moved to a customer-focused URL. Permanently
-// redirect the old path (with or without a trailing slash) to the new one.
-app.get(['/lp/get-started', '/lp/get-started/'], (_req, res) => {
-  res.redirect(301, '/customers/designers-and-video-editors/')
-})
-app.get(['/lp/accountant-subscription', '/lp/accountant-subscription/'], (_req, res) => {
-  res.redirect(301, '/customers/accountant-subscription/')
+// Landing-page redirects: map admin slugs to their canonical public URLs.
+const LP_REDIRECTS = {
+  'get-started': '/customers/designers-and-video-editors/',
+  'accountant-subscription': '/customers/accountant-subscription/',
+  'partner-program': '/partner-program/designer-and-video-editor/',
+  'partnerprogram-accountant': '/partner-program/accountant/',
+  'partner-program-accountant': '/partner-program/accountant/',
+  'accountant': '/partner-program/accountant/',
+  'sales': '/partner-program/sales/',
+  'partner-program-sales': '/partner-program/sales/',
+  'general': '/partner-program/general/',
+  'partner-program-general': '/partner-program/general/',
+}
+
+app.get(['/lp/:slug', '/lp/:slug/'], (req, res, next) => {
+  const target = LP_REDIRECTS[req.params.slug]
+  if (target) {
+    return res.redirect(301, target)
+  }
+  next()
 })
 
 // Psychology practical record — hosted as static subpage under /psychology/

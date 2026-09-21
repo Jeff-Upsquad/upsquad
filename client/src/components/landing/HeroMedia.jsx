@@ -33,24 +33,24 @@ function getPosterUrl(url) {
   return null
 }
 
-function toEmbed(url) {
+function toEmbed(url, autoplay = true) {
   try {
     const u = new URL(url)
     if (u.hostname.includes('youtu.be')) {
       const id = u.pathname.replace('/', '')
-      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&enablejsapi=1`
+      return `https://www.youtube.com/embed/${id}${autoplay ? '?autoplay=1&rel=0&enablejsapi=1' : '?rel=0&enablejsapi=1'}`
     }
     if (u.hostname.includes('youtube.com')) {
       const id = u.searchParams.get('v')
-      if (id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&enablejsapi=1`
+      if (id) return `https://www.youtube.com/embed/${id}${autoplay ? '?autoplay=1&rel=0&enablejsapi=1' : '?rel=0&enablejsapi=1'}`
     }
     if (u.hostname.includes('vimeo.com')) {
       const id = u.pathname.split('/').filter(Boolean).pop()
-      if (id) return `https://player.vimeo.com/video/${id}?autoplay=1`
+      return `https://player.vimeo.com/video/${id}${autoplay ? '?autoplay=1' : ''}`
     }
     if (u.hostname.includes('loom.com')) {
       const id = u.pathname.split('/').filter(Boolean).pop()
-      if (id) return `https://www.loom.com/embed/${id}?autoplay=1`
+      return `https://www.loom.com/embed/${id}${autoplay ? '?autoplay=1' : ''}`
     }
     // SquadClips shares (clips.squadhub.in/share/<id> or /embed/<id>) are
     // multi-segment recordings the clips player stitches on the fly, so only
@@ -59,7 +59,7 @@ function toEmbed(url) {
     // frame-ancestors CSP (set at the edge in the SquadHub Caddyfile).
     if (u.hostname.includes('clips.squadhub.in')) {
       const id = u.pathname.split('/').filter(Boolean).pop()
-      if (id) return `https://clips.squadhub.in/embed/${id}?autoplay=1`
+      if (id) return `https://clips.squadhub.in/embed/${id}${autoplay ? '?autoplay=1' : ''}`
     }
   } catch {
     return url
@@ -218,7 +218,12 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
             className="absolute inset-0 w-full h-full object-cover"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1C1C1F] to-[#0A0A0A]" />
+          <iframe
+            src={toEmbed(videoUrl || source, false)}
+            title="Hero video preview"
+            allow="picture-in-picture"
+            className="absolute inset-0 w-full h-full border-0 pointer-events-none"
+          />
         )
       ) : (
         <video

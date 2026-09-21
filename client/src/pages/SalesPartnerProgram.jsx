@@ -1,19 +1,19 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
 import HeroMedia from '../components/landing/HeroMedia'
+import LanguageGate from '../components/landing/LanguageGate'
 import PartnerProgramTab from '../components/sales-partner/PartnerProgramTab'
 import FreelanceTab from '../components/sales-partner/FreelanceTab'
 import JobsTab from '../components/sales-partner/JobsTab'
 import PartnerSignupLink from '../components/PartnerSignupLink'
+import { useLanguageGate } from '../lib/useLanguageGate'
 import { usePartnerSignupUrl } from '../lib/usePartnerSignupUrl'
 import { partnerWaLink } from '../lib/partnerWhatsapp'
 import WhatsAppIcon from '../components/WhatsAppIcon'
 
+const LP_SLUG = 'partner-program-sales'
+const LP_FALLBACK_SLUG = 'sales'
 const CTA_SLUG = 'sales'
-
-// TODO: Replace with the real hero video (mp4 URL, or a YouTube / Vimeo / Loom
-// link — HeroMedia auto-embeds those). Using a sample clip as a placeholder.
-const HERO_VIDEO_URL = 'https://www.w3schools.com/html/mov_bbb.mp4'
 
 const TABS = [
   {
@@ -83,10 +83,38 @@ const heroCopy = {
 /* ── component ────────────────────────────────────────── */
 
 export default function SalesPartnerProgram() {
+  const [languages, setLanguages] = useState([])
+  const [defaultLanguageCode, setDefaultLanguageCode] = useState('en')
   const [tab, setTab] = useState('partner')
   const [subTab, setSubTab] = useState('subscription')
   const tabsRef = useRef(null)
   const signupUrl = usePartnerSignupUrl(CTA_SLUG)
+  const {
+    selected,
+    selectedCode,
+    gateOpen,
+    setGateOpen,
+    pendingPlay,
+    requestPlay,
+    onSelectLanguage,
+  } = useLanguageGate({ slug: LP_SLUG, languages, defaultLanguageCode })
+
+  useEffect(() => {
+    fetch(`/api/v1/landing-pages/${LP_SLUG}`)
+      .then((r) => {
+        if (r.ok) return r.json()
+        if (r.status === 404 && LP_FALLBACK_SLUG) {
+          return fetch(`/api/v1/landing-pages/${LP_FALLBACK_SLUG}`).then((r2) => (r2.ok ? r2.json() : null))
+        }
+        return null
+      })
+      .then((d) => {
+        if (!d) return
+        setLanguages(d.languages || [])
+        if (d.defaultLanguageCode) setDefaultLanguageCode(d.defaultLanguageCode)
+      })
+      .catch(() => {})
+  }, [])
 
   // After a tab change commits, align the sticky tab bar just under the fixed
   // nav so the chosen panel shows from its top. This runs in an effect (after
@@ -185,12 +213,34 @@ export default function SalesPartnerProgram() {
                 <WhatsAppIcon className="w-4 h-4" />
                 Connect on WhatsApp
               </a>
+
+              {selected && (languages || []).length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setGateOpen(true)}
+                  aria-label="Change language"
+                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 border border-[rgba(0,0,0,0.08)] rounded-full px-3 py-1.5 hover:border-gray-300 bg-white"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3 7.5 7.03 7.5 12s2.015 9 4.5 9zM3.6 9h16.8M3.6 15h16.8" />
+                  </svg>
+                  Language: {selected.name}
+                </button>
+              )}
             </div>
           </div>
           <div className="w-full">
-            <HeroMedia videoUrl={HERO_VIDEO_URL} />
+            <HeroMedia videoUrl={selected?.videoUrl} autoPlay={pendingPlay} onRequestGate={requestPlay} />
           </div>
         </div>
+
+        <LanguageGate
+          open={gateOpen}
+          languages={languages || []}
+          selectedCode={selectedCode}
+          onSelect={onSelectLanguage}
+          onDismiss={() => setGateOpen(false)}
+        />
       </section>
 
       {/* ── Top-level selector: card style ────────────── */}
