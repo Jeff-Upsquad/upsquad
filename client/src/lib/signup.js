@@ -5,4 +5,5 @@ export const SQUADHIRE_ORIGIN = 'https://squadhire.upsquadconnect.com'
 export const SQUADHIRE_SIGNUP = {
   talent: `${SQUADHIRE_ORIGIN}/signup/talent`,
   business: `${SQUADHIRE_ORIGIN}/signup/business`,
+  agency: `${SQUADHIRE_ORIGIN}/signup/agency`,
 }
