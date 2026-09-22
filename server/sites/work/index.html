@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our work — Sites by UpSquad</title>
+<meta name="description" content="Websites we have designed and built for businesses. Open any one and see the live site.">
+<meta property="og:title" content="Our work — Sites by UpSquad">
+<meta property="og:description" content="Websites we have designed and built for businesses. Open any one and see the live site.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23121212'/%3E%3Cpath d='M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECEAE5;--card:#FBFAF8;--card-2:#F4F2EE;
+    --ink:#121212;--ink-2:#3A3A38;--muted:#6E6D69;--line:rgba(18,18,18,.09);--line-2:rgba(18,18,18,.16);
+    --accent:#FFFF99;--accent-ink:#0A0A0A;--ok:#0E8A4A;
+    --dark:#161615;--dark-2:#232322;--dark-line:rgba(255,255,255,.1);--dark-muted:#9C9B96;
+    --r:22px;--r-sm:14px;--pill:999px;
+    --shadow:0 1px 2px rgba(18,18,18,.04),0 12px 40px -12px rgba(18,18,18,.16);
+    --shadow-lg:0 2px 4px rgba(18,18,18,.05),0 40px 80px -30px rgba(18,18,18,.28);
+    --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:var(--grain)}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  ::selection{background:var(--ink);color:#fff}
+  .wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
+  h1,h2,h3{margin:0;letter-spacing:-.035em;line-height:1.05;font-weight:800}
+  h1{font-size:clamp(38px,5.4vw,66px)}
+  h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.04em}
+  .lede{font-size:clamp(16.5px,1.5vw,20px);color:var(--ink-2);max-width:600px;line-height:1.5}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:var(--pill);padding:7px 14px 7px 9px}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(14,138,74,.14);flex:none}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:15.5px;line-height:1;border:1px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;white-space:nowrap;cursor:pointer}
+  .btn:active{transform:translateY(1px) scale(.99)}
+  .btn-ink{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(18,18,18,.5)}
+  .btn-ink:hover{background:#000;transform:translateY(-1px)}
+  .btn-wa{background:var(--card);color:var(--ink);border-color:var(--line-2)}
+  .btn-wa:hover{background:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn-accent{background:var(--accent);color:var(--accent-ink)}
+  .btn-accent:hover{transform:translateY(-1px);filter:brightness(1.04)}
+  .btn-sm{padding:11px 18px;font-size:14px}
+
+  /* nav */
+  .nav{position:fixed;top:14px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
+  .nav-pill{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(251,250,248,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);padding:7px 7px 7px 12px;box-shadow:var(--shadow);transition:box-shadow .3s}
+  .nav.scrolled .nav-pill{box-shadow:var(--shadow-lg)}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;padding-right:10px;white-space:nowrap;flex:none}
+  .brand .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center;flex:none}
+  .brand .mark svg{width:16px;height:16px}
+  .brand small{font-weight:600;color:var(--muted);font-size:12px;margin-left:2px}
+  .nav-links{display:flex;gap:2px}
+  .nav-links a{padding:8px 12px;border-radius:var(--pill);font-size:14px;font-weight:600;color:var(--ink-2);transition:background .15s,color .15s}
+  .nav-links a:hover{background:rgba(18,18,18,.06);color:var(--ink)}
+  .nav-links a.active{background:var(--ink);color:#fff}
+  @media (max-width:900px){.nav-links{display:none}.brand{padding-right:4px}}
+  .nav-cta .short{display:none}
+  @media (max-width:520px){
+    .nav{padding:0 10px}
+    .nav-pill{gap:4px;padding:6px 6px 6px 10px;max-width:calc(100vw - 20px)}
+    .brand{font-size:15px;gap:7px}
+    .nav-cta{padding:11px 14px;font-size:13px;flex:none}
+    .nav-cta .full{display:none}.nav-cta .short{display:inline}
+  }
+
+  /* header */
+  .head{padding:128px 0 44px}
+  @media (max-width:720px){.head{padding:104px 0 32px}}
+  .head h1{margin-top:18px}
+  .head .lede{margin-top:18px}
+  .head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .count{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding-bottom:6px}
+
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-bottom:20px}
+  @media (max-width:1000px){.grid{grid-template-columns:1fr 1fr;gap:20px}}
+  @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+  .item{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);
+    transition:transform .25s ease,box-shadow .25s ease}
+  .item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .thumb{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--card-2);border-bottom:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .item:hover .thumb img{transform:scale(1.035)}
+  .thumb.empty{background:linear-gradient(150deg,#E7E4DD,#D9D5CC)}
+  .thumb.empty img{display:none}
+  .thumb.empty::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+  .live{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    background:rgba(18,18,18,.72);color:#fff;backdrop-filter:blur(8px);border-radius:var(--pill);padding:6px 11px}
+  .live i{width:5px;height:5px;border-radius:50%;background:#8FF0B4}
+
+  .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .name{font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+  .facts{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted)}
+  .facts .dot{width:4px;height:4px;border-radius:50%;background:var(--line-2)}
+  .note{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+  .foot{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .open{display:inline-flex;align-items:center;gap:7px;font-size:14.5px;font-weight:800;border-bottom:2px solid var(--accent);padding-bottom:2px;transition:gap .18s}
+  .open:hover{gap:11px}
+  .open svg{width:14px;height:14px}
+  .site{font-size:12.5px;font-weight:600;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:45%}
+
+  /* closing band */
+  .band{background:var(--dark);color:#fff;border-radius:28px;padding:clamp(34px,5vw,60px) clamp(24px,5vw,56px);margin:70px 0 0;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .band::after{content:"";position:absolute;width:560px;height:560px;right:-230px;top:-230px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,153,.14),transparent 70%);pointer-events:none}
+  .band h2{color:#fff;max-width:17ch}
+  .band p{color:#C9C8C2;margin:16px 0 0;max-width:56ch;font-size:16.5px}
+  .band .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;position:relative;z-index:1}
+
+  /* footer */
+  .site-foot{background:var(--bg);border-top:1px solid var(--line);margin-top:70px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px 28px;padding:60px 0 50px}
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-brand{grid-column:1/-1}}
+  @media (max-width:560px){.foot-grid{grid-template-columns:1fr 1fr;padding:48px 0 38px}}
+  .foot-brand h3{margin-top:20px;font-size:24px;letter-spacing:-.035em;line-height:1.1;max-width:340px}
+  .foot-brand p{margin:12px 0 0;font-size:14.5px;color:var(--ink-2);max-width:380px}
+  .foot-brand .btn{margin-top:20px}
+  .foot-brand .legal{margin-top:22px;font-size:12.5px;color:var(--muted)}
+  .foot-brand .legal a{font-weight:700;color:var(--ink-2)}
+  .foot-col h4{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .foot-col a{font-size:14.5px;font-weight:600;color:var(--ink-2);transition:color .15s}
+  .foot-col a:hover{color:var(--ink)}
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+
+<div class="nav" id="nav">
+  <div class="nav-pill">
+    <a class="brand" href="/sites/" data-home="" aria-label="Sites by UpSquad — home">
+      <span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span>
+      Sites <small>by UpSquad</small>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="/sites/" data-home="">Home</a>
+      <a href="./" class="active" aria-current="page">Our work</a>
+      <a href="/sites/#included" data-home="#included">What's included</a>
+      <a href="/sites/#process" data-home="#process">Process</a>
+      <a href="/sites/#pricing" data-home="#pricing">Pricing</a>
+      <a href="/sites/#faq" data-home="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-ink btn-sm nav-cta" href="/sites/#consult" data-home="#consult"><span class="full">Book free consultation</span><span class="short">Free consult</span></a>
+  </div>
+</div>
+
+<main>
+<header class="head">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <span class="eyebrow"><i></i> Websites we've built</span>
+        <h1>Our work.</h1>
+        <p class="lede">Every site below is live. Click through and have a look around — that's the best way to judge whether we're right for your business.</p>
+      </div>
+      <div class="count" id="count"></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="grid" id="grid">
+
+      <!--
+        ONE BLOCK PER PROJECT. To add a site, copy a block and change six things:
+          1. href          → the live website (used on the thumbnail and the "Open website" link)
+          2. <img src>     → ../assets/work/<name>.jpg   (screenshot of the site, ~1280x800)
+          3. <img alt>     → short description of the screenshot
+          4. .name         → the client / business name
+          5. .facts        → two or three short facts (industry · what we built · year)
+          6. .note         → one line about the site
+        No screenshot yet? Delete the whole <img> tag and the card shows a neutral tile instead.
+      -->
+
+      <article class="item">
+        <a class="thumb" href="https://example.com" target="_blank" rel="noopener" data-label="Screenshot coming soon">
+          <span class="live"><i></i> Live site</span>
+          <img src="../assets/work/example-one.jpg" alt="Home page of the first project" loading="lazy" width="1280" height="800">
+        </a>
+        <div class="body">
+          <h3 class="name">Project name</h3>
+          <div class="facts"><span>Industry</span><span class="dot"></span><span>5 pages</span><span class="dot"></span><span>2026</span></div>
+          <p class="note">One line on what the site does for the business.</p>
+          <div class="foot">
+            <a class="open" href="https://example.com" target="_blank" rel="noopener">Open website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <span class="site">example.com</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <a class="thumb" href="https://example.com" target="_blank" rel="noopener" data-label="Screenshot coming soon">
+          <span class="live"><i></i> Live site</span>
+          <img src="../assets/work/example-two.jpg" alt="Home page of the second project" loading="lazy" width="1280" height="800">
+        </a>
+        <div class="body">
+          <h3 class="name">Project name</h3>
+          <div class="facts"><span>Industry</span><span class="dot"></span><span>Online store</span><span class="dot"></span><span>2026</span></div>
+          <p class="note">One line on what the site does for the business.</p>
+          <div class="foot">
+            <a class="open" href="https://example.com" target="_blank" rel="noopener">Open website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <span class="site">example.com</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <a class="thumb" href="https://example.com" target="_blank" rel="noopener" data-label="Screenshot coming soon">
+          <span class="live"><i></i> Live site</span>
+          <img src="../assets/work/example-three.jpg" alt="Home page of the third project" loading="lazy" width="1280" height="800">
+        </a>
+        <div class="body">
+          <h3 class="name">Project name</h3>
+          <div class="facts"><span>Industry</span><span class="dot"></span><span>Booking site</span><span class="dot"></span><span>2026</span></div>
+          <p class="note">One line on what the site does for the business.</p>
+          <div class="foot">
+            <a class="open" href="https://example.com" target="_blank" rel="noopener">Open website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <span class="site">example.com</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="band">
+      <span class="eyebrow" style="background:rgba(255,255,255,.07);border-color:var(--dark-line);color:#EDECE7"><i></i> Your site could be next</span>
+      <h2 style="margin-top:18px">We charge only if you like the website.</h2>
+      <p>Start with a deposit, see the real site, and pay the rest only if you're happy with it. If you're not, you get the full amount back. Business websites from ₹10,000 onwards, live in 7–10 days.</p>
+      <div class="row">
+        <a class="btn btn-accent" href="/sites/#consult" data-home="#consult">Book a free consultation →</a>
+        <a class="btn btn-wa" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.28)" data-wa="hero" href="#" target="_blank" rel="noopener">Talk to us on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="/sites/" data-home=""><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> Sites <small>by UpSquad</small></a>
+      <h3>We charge only if you like the website.</h3>
+      <p>Business websites from ₹10,000 onwards — planned with you, built for your customers, risk-free with a full amount refund.</p>
+      <a class="btn btn-ink btn-sm" href="/sites/#consult" data-home="#consult">Book free consultation</a>
+      <div class="legal">© <span id="yr"></span> UpSquad · Built with care in Kerala, India by <a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad</a></div>
+    </div>
+    <div class="foot-col">
+      <h4>Sites</h4>
+      <ul>
+        <li><a href="/sites/" data-home="">Home</a></li>
+        <li><a href="./">Our work</a></li>
+        <li><a href="/sites/#included" data-home="#included">What's included</a></li>
+        <li><a href="/sites/#process" data-home="#process">Process</a></li>
+        <li><a href="/sites/#pricing" data-home="#pricing">Pricing &amp; hosting</a></li>
+        <li><a href="/sites/#faq" data-home="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>More from UpSquad</h4>
+      <ul>
+        <li><a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad Connect</a></li>
+        <li><a href="https://www.upsquadconnect.com/customers/designers-and-video-editors/" target="_blank" rel="noopener">Designers &amp; editors</a></li>
+        <li><a href="https://www.upsquadconnect.com/customers/accountant-subscription/" target="_blank" rel="noopener">Accountant subscription</a></li>
+        <li><a href="https://www.upsquadconnect.com/partner-program/designer-and-video-editor/" target="_blank" rel="noopener">Partner program</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a data-wa="footer" href="#" target="_blank" rel="noopener">WhatsApp us</a></li>
+        <li><a href="/sites/#consult" data-home="#consult">Book free consultation</a></li>
+        <li><a data-wa="enterprise" href="#" target="_blank" rel="noopener">Questions &amp; partnerships</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
+
+  /* links work on sites.upsquadconnect.com and on /sites/ alike */
+  if (location.hostname.indexOf('sites.') === 0) {
+    document.querySelectorAll('[data-home]').forEach(function(a){ a.setAttribute('href', '/' + a.dataset.home); });
+  }
+
+  /* WhatsApp */
+  var NUM = '919995266385';
+  var TEXT = {
+    hero: 'Hi UpSquad, I saw your work page and I want a website for my business. Can we talk?',
+    footer: 'Hi UpSquad, I want to know more about Sites by UpSquad.',
+    enterprise: 'Hi UpSquad, I have a question about Sites by UpSquad (websites from Rs 10,000).'
+  };
+  document.querySelectorAll('[data-wa]').forEach(function(a){
+    var t = TEXT[a.dataset.wa];
+    if (t) a.href = 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(t);
+  });
+
+  /* nav shadow */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 10); };
+  onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+
+  /* a missing screenshot falls back to a neutral tile instead of a broken image */
+  document.querySelectorAll('.thumb img').forEach(function(img){
+    img.addEventListener('error', function(){ img.closest('.thumb').classList.add('empty'); });
+    if (img.complete && img.naturalWidth === 0) img.closest('.thumb').classList.add('empty');
+  });
+
+  /* count in the header */
+  var n = document.querySelectorAll('.grid .item').length;
+  var c = document.getElementById('count');
+  if (c) c.textContent = n + (n === 1 ? ' website' : ' websites');
+})();
+</script>
+</body>
+</html>
