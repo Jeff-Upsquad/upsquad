@@ -45,11 +45,20 @@ app.use('/api', (req, res, next) => {
 // Mirrors the BYOS setup: static site lives in server/sites.
 const SITES_HOSTS = new Set(['sites.upsquadconnect.com', 'sites.localhost'])
 const SITES_DIR = path.join(__dirname, 'sites')
-const sitesStatic = express.static(SITES_DIR, { index: 'index.html', maxAge: '1h' })
+const sitesStatic = express.static(SITES_DIR, { index: ['index.html'], extensions: ['html'], maxAge: '1h' })
+
+// Dedicated portfolio page routes
+app.get(['/sites/portfolio', '/sites/portfolio/'], (_req, res) => {
+  res.sendFile(path.join(SITES_DIR, 'portfolio', 'index.html'))
+})
+
 app.use('/sites', sitesStatic)
 app.use((req, res, next) => {
   if (!SITES_HOSTS.has(req.hostname)) return next()
   if (/^\/(api|admin|uploads)(\/|$)/.test(req.path)) return next()
+  if (req.path === '/portfolio' || req.path === '/portfolio/') {
+    return res.sendFile(path.join(SITES_DIR, 'portfolio', 'index.html'))
+  }
   sitesStatic(req, res, () => {
     if (req.method !== 'GET' && req.method !== 'HEAD') return next()
     res.sendFile(path.join(SITES_DIR, 'index.html'))
@@ -97,6 +106,9 @@ app.get(['/designers-and-editors', '/designers-and-editors/'], (_req, res) => {
 app.get(['/partner-program', '/partner-program/'], (_req, res) => {
   res.redirect(301, '/partner-program/designer-and-video-editor/')
 })
+app.get(['/partner-program/agencies', '/partner-program/agencies/'], (_req, res) => {
+  res.redirect(301, '/partner-program/agency/')
+})
 
 // Landing-page redirects: map admin slugs to their canonical public URLs.
 const LP_REDIRECTS = {
@@ -110,6 +122,10 @@ const LP_REDIRECTS = {
   'partner-program-sales': '/partner-program/sales/',
   'general': '/partner-program/general/',
   'partner-program-general': '/partner-program/general/',
+  'agency': '/partner-program/agency/',
+  'agencies': '/partner-program/agency/',
+  'partner-program-agency': '/partner-program/agency/',
+  'partner-program-agencies': '/partner-program/agency/',
 }
 
 app.get(['/lp/:slug', '/lp/:slug/'], (req, res, next) => {

@@ -32,6 +32,7 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 | `partnerprogram-accountant` / `partner-program-accountant` | Talent (Accountants) | `AccountantPartnerProgram.jsx` | `/partner-program/accountant/` |
 | `partner-program-sales` / `sales` | Talent (Sales) | `SalesPartnerProgram.jsx` | `/partner-program/sales/` |
 | `partner-program-general` / `general` | Talent (General) | `GeneralPartnerProgram.jsx` | `/partner-program/general/` |
+| `partner-program-agency` / `agency` | Agencies | `AgencyPartnerProgram.jsx` | `/partner-program/agency/` |
 
 ---
 

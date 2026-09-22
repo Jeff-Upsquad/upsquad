@@ -482,6 +482,7 @@
     </a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#why">Why</a>
+      <a href="/sites/portfolio/" id="nav-portfolio-link">Portfolio</a>
       <a href="#included">What's included</a>
       <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
@@ -548,6 +549,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="center rise d5" style="margin-top:24px;position:relative;z-index:2">
+        <a class="btn btn-wa btn-sm" id="hero-portfolio-link" href="/sites/portfolio/">Browse all previous website designs & case studies →</a>
       </div>
     </div>
   </div>
@@ -1008,6 +1012,7 @@
       <h4>Sites</h4>
       <ul>
         <li><a href="#why">Why Sites</a></li>
+        <li><a id="foot-portfolio-link" href="/sites/portfolio/">Portfolio & Works</a></li>
         <li><a href="#included">What's included</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#pricing">Pricing & hosting</a></li>
@@ -1079,6 +1084,14 @@
     document.querySelectorAll('[data-wa]').forEach(a => { const f = WA_TEXT[a.dataset.wa]; if (f) a.href = waUrl(f()); });
   }
   refreshWa();
+
+  // Dynamic portfolio link resolution (subdomain vs path)
+  const isSitesSubdomain = location.hostname.startsWith('sites.') || location.hostname === 'sites.localhost';
+  const portfolioUrl = isSitesSubdomain ? '/portfolio/' : '/sites/portfolio/';
+  ['nav-portfolio-link', 'hero-portfolio-link', 'foot-portfolio-link'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = portfolioUrl;
+  });
 
   // Reveal animations (.rv)
   const io = new IntersectionObserver((es) => es.forEach(x => {

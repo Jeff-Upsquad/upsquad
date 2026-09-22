@@ -157,6 +157,13 @@ function seed() {
       defaultLanguageCode: 'en',
       langs: [{ code: 'en' }],
     },
+    {
+      slug: 'partner-program-agency',
+      heroTitle: 'UpSquad Partner Program — For Agencies',
+      heroDescription: 'Scale your agency revenue without the overhead of sales or client acquisition. Partner with UpSquad to deliver subscription client squads and high-ticket project assignments across all categories.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
   ]
 
   const findPage = db.prepare('SELECT id FROM landing_pages WHERE slug = ?')

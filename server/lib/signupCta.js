@@ -9,6 +9,7 @@ const ROLE_SIGNUP_URLS = {
   accountant: 'https://squadhire.upsquadconnect.com/apply/accountant',
   'designer-and-video-editor': 'https://squadhire.upsquadconnect.com/apply/creative',
   sales: 'https://squadhire.upsquadconnect.com/apply/sales',
+  agency: 'https://squadhire.upsquadconnect.com/signup/agency',
 }
 
 export function isValidPartnerCtaDestination(destination) {
