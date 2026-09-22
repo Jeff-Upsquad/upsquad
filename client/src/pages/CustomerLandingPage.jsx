@@ -17,10 +17,10 @@ import { BenefitIcon } from '../components/pricing/icons'
 import { useLanguageGate } from '../lib/useLanguageGate'
 import { fetchLandingPage } from '../lib/landingPageApi'
 import { getFallback } from '../data/landingPageFallbacks'
-import { useLandingScrollReset, scrollToSection } from '../lib/useLandingScrollReset'
+import { useLandingScrollReset } from '../lib/useLandingScrollReset'
 import { squads } from '../data/squads'
-import { availabilityPlans, designServices, videoServices, benefits } from '../data/pricing'
-import { bookkeepingServices, complianceServices } from '../data/accountant'
+import { benefits } from '../data/pricing'
+import ProductStatusBadge from '../components/ProductStatusBadge'
 
 const LANDING_SLUG = 'customer-general'
 const WA_NUMBER = '919995266385'
@@ -326,323 +326,173 @@ export default function CustomerLandingPage() {
 
             {/* Squad Tabs — 6 distinct squads */}
             <div className="mt-8 flex flex-wrap gap-2 pb-2 border-b border-black/[0.08]">
-              {[
-                { id: 'content-creation', name: 'Content Creation', badge: 'Live', emoji: '🎬' },
-                { id: 'accounts-finance', name: 'Accounts & Finance', badge: 'Live', emoji: '📊' },
-                { id: 'marketing', name: 'Marketing', badge: 'Beta', emoji: '📣' },
-                { id: 'tech', name: 'Tech', badge: 'Pilot', emoji: '💻' },
-                { id: 'legal', name: 'Legal', badge: 'Soon', emoji: '⚖️' },
-                { id: 'hiring-hr', name: 'Hiring & HR', badge: 'Soon', emoji: '🤝' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveSquadTab(tab.id)}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                    activeSquadTab === tab.id
-                      ? 'bg-[#0A0A0A] text-white shadow-md'
-                      : 'bg-white text-text-secondary hover:text-text-primary border border-black/[0.06]'
-                  }`}
-                >
-                  <span className="text-base leading-none">{tab.emoji}</span>
-                  <span>{tab.name}</span>
-                  <span
-                    className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-mono ${
-                      activeSquadTab === tab.id
-                        ? 'bg-white/20 text-white'
-                        : 'bg-black/[0.05] text-text-muted'
+              {squads.map((squad) => {
+                const isLive = squad.id === 'content-creation' || squad.id === 'accounts-finance'
+                const badge = isLive ? 'Live' : squad.badge || 'Soon'
+                return (
+                  <button
+                    key={squad.id}
+                    onClick={() => setActiveSquadTab(squad.id)}
+                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                      activeSquadTab === squad.id
+                        ? 'bg-[#0A0A0A] text-white shadow-md'
+                        : 'bg-white text-text-secondary hover:text-text-primary border border-black/[0.06]'
                     }`}
                   >
-                    {tab.badge}
-                  </span>
-                </button>
-              ))}
+                    <span className="text-base leading-none">{squad.emoji}</span>
+                    <span>{squad.name}</span>
+                    <span
+                      className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-mono ${
+                        activeSquadTab === squad.id
+                          ? 'bg-white/20 text-white'
+                          : 'bg-black/[0.05] text-text-muted'
+                      }`}
+                    >
+                      {badge}
+                    </span>
+                  </button>
+                )
+              })}
             </div>
           </ScrollReveal>
 
-          {/* Dynamic Tab Content for all 6 squads */}
+          {/* Dynamic Tab Content for the selected squad */}
           <div className="mt-8">
-            {/* 1. SQUAD: CONTENT CREATION */}
-            {activeSquadTab === 'content-creation' && (
-              <ScrollReveal>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 border-b border-black/[0.06]">
-                    <div>
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full mb-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        Live Subscription
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold text-text-primary">
-                        Content Creation: Graphic Designers &amp; Video Editors
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-1 max-w-2xl">
-                        Unlimited static visuals, social media branding, presentations, UI design, reels, and video edits delivered one request at a time.
-                      </p>
-                    </div>
-                    <Link
-                      href="/customers/designers-and-video-editors/"
-                      className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-xl bg-black text-white hover:bg-black/90 transition-colors shrink-0"
-                    >
-                      View dedicated page &rarr;
-                    </Link>
-                  </div>
+            {(() => {
+              const currentSquad = squads.find((s) => s.id === activeSquadTab) || squads[0]
+              const isLive = currentSquad.id === 'content-creation' || currentSquad.id === 'accounts-finance'
+              const dedicatedLink =
+                currentSquad.id === 'content-creation'
+                  ? '/customers/designers-and-video-editors/'
+                  : currentSquad.id === 'accounts-finance'
+                  ? '/customers/accountant-subscription/'
+                  : null
 
-                  <div className="mt-6">
-                    <h4 className="font-mono-tech text-xs uppercase tracking-wider text-text-muted mb-3">
-                      Included Design &amp; Video Capabilities
-                    </h4>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {[...designServices, ...videoServices].slice(0, 9).map((srv) => (
-                        <div key={srv.title} className="p-3.5 rounded-xl bg-surface-secondary/70 border border-black/[0.04]">
-                          <div className="text-sm font-semibold text-text-primary">{srv.title}</div>
-                          <div className="text-xs text-text-secondary mt-1 line-clamp-2">{srv.desc}</div>
+              return (
+                <ScrollReveal key={currentSquad.id}>
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
+                    {/* Squad Header */}
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 border-b border-black/[0.06]">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span
+                            className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${
+                              isLive
+                                ? 'text-emerald-700 bg-emerald-50'
+                                : currentSquad.badge === 'Beta'
+                                ? 'text-amber-700 bg-amber-50'
+                                : currentSquad.badge === 'Pilot Run'
+                                ? 'text-indigo-700 bg-indigo-50'
+                                : 'text-slate-700 bg-slate-100'
+                            }`}
+                          >
+                            {isLive && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />}
+                            {isLive ? 'Live Subscription' : currentSquad.badge || 'Launching Soon'}
+                          </span>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <h3 className="font-heading text-2xl font-bold text-text-primary flex items-center gap-2.5">
+                          <span>{currentSquad.emoji}</span>
+                          <span>{currentSquad.name} Squad</span>
+                        </h3>
+                        <p className="text-sm text-text-secondary mt-1.5 max-w-2xl leading-relaxed">
+                          {currentSquad.description}
+                        </p>
+                      </div>
 
-                  <div className="mt-8 pt-6 border-t border-black/[0.06]">
-                    <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-mono-tech text-xs uppercase tracking-wider text-text-muted">
-                        Availability Plans (Shared &amp; Dedicated)
-                      </h4>
-                      <button
-                        type="button"
-                        onClick={() => scrollToSection('subscription-plans')}
-                        className="text-xs font-semibold text-brand-purple hover:underline"
-                      >
-                        Explore detailed calculator &darr;
-                      </button>
-                    </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                      {availabilityPlans.map((p) => (
-                        <div
-                          key={p.id}
-                          className={`p-3.5 rounded-xl border ${
-                            p.highlighted
-                              ? 'bg-amber-50/50 border-amber-200'
-                              : 'bg-white border-black/[0.06]'
-                          }`}
+                      {dedicatedLink ? (
+                        <Link
+                          href={dedicatedLink}
+                          className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-xl bg-black text-white hover:bg-black/90 transition-colors shrink-0"
                         >
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-heading font-bold text-sm text-text-primary">{p.name}</span>
-                            <span className="text-[10px] font-mono bg-black/[0.05] px-1.5 py-0.5 rounded">{p.availability}</span>
-                          </div>
-                          <div className="text-xs font-semibold text-text-primary">{p.hoursPerDay} / day</div>
-                          <div className="text-[11px] text-text-muted mt-0.5">{p.hoursPerMonth}</div>
-                          <div className="text-xs text-text-secondary mt-2 border-t border-black/[0.04] pt-2">{p.bestFor}</div>
-                        </div>
-                      ))}
+                          View dedicated page &rarr;
+                        </Link>
+                      ) : (
+                        <a
+                          href={waLink(`Hi UpSquad, I'd like early access to the ${currentSquad.name} Squad.`)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-secondary text-xs px-4 py-2.5 shrink-0"
+                        >
+                          {currentSquad.ctaLabel || 'Join waitlist'}
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Squad Products & Talents (Sub-section) */}
+                    <div className="mt-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h4 className="font-mono-tech text-xs uppercase tracking-wider text-text-muted">
+                          Included Roles &amp; Capabilities
+                        </h4>
+                        <span className="text-xs text-text-muted font-mono">
+                          {currentSquad.products.length} roles available
+                        </span>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                        {currentSquad.products.map((product) => {
+                          const isProductLive = product.status === 'live'
+                          const cardContent = (
+                            <div
+                              className={`p-4 rounded-xl border transition-all h-full flex flex-col justify-between ${
+                                isProductLive
+                                  ? 'bg-surface-secondary/70 border-black/[0.08] hover:border-brand-purple/40 hover:bg-white hover:shadow-xs'
+                                  : 'bg-surface-secondary/50 border-black/[0.04]'
+                              }`}
+                            >
+                              <div>
+                                <div className="flex items-start justify-between gap-2 mb-2.5">
+                                  <span className="text-2xl shrink-0" aria-hidden>
+                                    {product.emoji}
+                                  </span>
+                                  <ProductStatusBadge status={product.status} />
+                                </div>
+                                <h5 className="font-heading font-semibold text-sm text-text-primary flex items-center gap-1.5">
+                                  {product.name}
+                                  {product.href && (
+                                    <svg
+                                      className="w-3.5 h-3.5 text-text-muted transition-transform group-hover:translate-x-0.5"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      aria-hidden
+                                    >
+                                      <path d="M5 12h14M13 6l6 6-6 6" />
+                                    </svg>
+                                  )}
+                                </h5>
+                                <p className="text-xs text-text-secondary mt-1.5 leading-relaxed">
+                                  {product.desc}
+                                </p>
+                              </div>
+                              {product.href && (
+                                <div className="mt-3 pt-2.5 border-t border-black/[0.04] text-[11px] font-semibold text-brand-purple flex items-center justify-between">
+                                  <span>View dedicated page</span>
+                                  <span>&rarr;</span>
+                                </div>
+                              )}
+                            </div>
+                          )
+
+                          return product.href ? (
+                            <Link key={product.name} href={product.href} className="group block h-full">
+                              {cardContent}
+                            </Link>
+                          ) : (
+                            <div key={product.name} className="h-full">
+                              {cardContent}
+                            </div>
+                          )
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            )}
-
-            {/* 2. SQUAD: ACCOUNTS & FINANCE */}
-            {activeSquadTab === 'accounts-finance' && (
-              <ScrollReveal>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 border-b border-black/[0.06]">
-                    <div>
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full mb-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        Live Subscription
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold text-text-primary">
-                        Accounts &amp; Finance: Qualified Accountants &amp; Tax Specialists
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-1 max-w-2xl">
-                        Clean books, on-time GST and TDS filings, statutory payroll processing, bank reconciliation, and insightful MIS reports on flat monthly retainers.
-                      </p>
-                    </div>
-                    <Link
-                      href="/customers/accountant-subscription/"
-                      className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-xl bg-black text-white hover:bg-black/90 transition-colors shrink-0"
-                    >
-                      View dedicated page &rarr;
-                    </Link>
-                  </div>
-
-                  <div className="mt-6">
-                    <h4 className="font-mono-tech text-xs uppercase tracking-wider text-text-muted mb-3">
-                      Included Bookkeeping &amp; Compliance Services
-                    </h4>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {[...bookkeepingServices, ...complianceServices].map((srv) => (
-                        <div key={srv.title} className="p-3.5 rounded-xl bg-surface-secondary/70 border border-black/[0.04]">
-                          <div className="text-sm font-semibold text-text-primary">{srv.title}</div>
-                          <div className="text-xs text-text-secondary mt-1 leading-relaxed">{srv.desc}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            )}
-
-            {/* 3. SQUAD: MARKETING */}
-            {activeSquadTab === 'marketing' && (
-              <ScrollReveal>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
-                  <div className="flex items-center justify-between pb-4 border-b border-black/[0.06]">
-                    <div>
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full mb-2">
-                        Beta Access
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold text-text-primary">
-                        Marketing Squad: Performance, SEO &amp; Growth
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-1 max-w-xl">
-                        End-to-end growth support from ad campaign managers, SEO specialists, digital marketing leads, and creator outreach coordinators.
-                      </p>
-                    </div>
-                    <a
-                      href={waLink("Hi UpSquad, I'd like early access to the Marketing Squad.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary text-xs px-4 py-2"
-                    >
-                      Join waitlist
-                    </a>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
-                    {squads.find((s) => s.id === 'marketing')?.products.map((p) => (
-                      <div key={p.name} className="p-3.5 rounded-xl bg-surface-secondary/70 border border-black/[0.04]">
-                        <div className="flex items-center gap-2 text-sm font-semibold text-text-primary">
-                          <span>{p.emoji}</span>
-                          <span>{p.name}</span>
-                        </div>
-                        <div className="text-xs text-text-secondary mt-1 leading-relaxed">{p.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            )}
-
-            {/* 4. SQUAD: TECH */}
-            {activeSquadTab === 'tech' && (
-              <ScrollReveal>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
-                  <div className="flex items-center justify-between pb-4 border-b border-black/[0.06]">
-                    <div>
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full mb-2">
-                        Pilot Run
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold text-text-primary">
-                        Tech Squad: Web, Apps &amp; Workflows
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-1 max-w-xl">
-                        Frontend &amp; backend engineers, website builders, and automation specialists to build and maintain your digital products.
-                      </p>
-                    </div>
-                    <a
-                      href={waLink("Hi UpSquad, I'm interested in the Tech Squad pilot.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary text-xs px-4 py-2"
-                    >
-                      Request invite
-                    </a>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-                    {squads.find((s) => s.id === 'tech')?.products.map((p) => (
-                      <div key={p.name} className="p-3.5 rounded-xl bg-surface-secondary/70 border border-black/[0.04]">
-                        <div className="flex items-center gap-2 text-sm font-semibold text-text-primary">
-                          <span>{p.emoji}</span>
-                          <span>{p.name}</span>
-                        </div>
-                        <div className="text-xs text-text-secondary mt-1 leading-relaxed">{p.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            )}
-
-            {/* 5. SQUAD: LEGAL */}
-            {activeSquadTab === 'legal' && (
-              <ScrollReveal>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
-                  <div className="flex items-center justify-between pb-4 border-b border-black/[0.06]">
-                    <div>
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full mb-2">
-                        Launching Soon
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold text-text-primary">
-                        Legal Squad: Contracts, IP &amp; Compliance
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-1 max-w-xl">
-                        Contract drafting, IP protection, regulatory compliance, and business formation — dependable legal backing without the hourly rates.
-                      </p>
-                    </div>
-                    <a
-                      href={waLink("Hi UpSquad, I'd like early access to the Legal Squad.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary text-xs px-4 py-2"
-                    >
-                      Join waitlist
-                    </a>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-                    {squads.find((s) => s.id === 'legal')?.products.map((p) => (
-                      <div key={p.name} className="p-3.5 rounded-xl bg-surface-secondary/70 border border-black/[0.04]">
-                        <div className="flex items-center gap-2 text-sm font-semibold text-text-primary">
-                          <span>{p.emoji}</span>
-                          <span>{p.name}</span>
-                        </div>
-                        <div className="text-xs text-text-secondary mt-1 leading-relaxed">{p.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            )}
-
-            {/* 6. SQUAD: HIRING & HR */}
-            {activeSquadTab === 'hiring-hr' && (
-              <ScrollReveal>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-black/[0.06] shadow-sm">
-                  <div className="flex items-center justify-between pb-4 border-b border-black/[0.06]">
-                    <div>
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full mb-2">
-                        Launching Soon
-                      </div>
-                      <h3 className="font-heading text-2xl font-bold text-text-primary">
-                        Hiring &amp; HR Squad: Talent Acquisition &amp; People Ops
-                      </h3>
-                      <p className="text-sm text-text-secondary mt-1 max-w-xl">
-                        End-to-end talent sourcing, team building, candidate screening, and HR policy workflows tailored for high-growth brands.
-                      </p>
-                    </div>
-                    <a
-                      href={waLink("Hi UpSquad, I'd like early access to the Hiring & HR Squad.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary text-xs px-4 py-2"
-                    >
-                      Join waitlist
-                    </a>
-                  </div>
-
-                  <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-3 mt-6">
-                    {squads.find((s) => s.id === 'hiring-hr')?.products.map((p) => (
-                      <div key={p.name} className="p-3.5 rounded-xl bg-surface-secondary/70 border border-black/[0.04]">
-                        <div className="flex items-center gap-2 text-sm font-semibold text-text-primary">
-                          <span>{p.emoji}</span>
-                          <span>{p.name}</span>
-                        </div>
-                        <div className="text-xs text-text-secondary mt-1 leading-relaxed">{p.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
-            )}
+                </ScrollReveal>
+              )
+            })()}
           </div>
 
           {/* How a Subscription Works (3 Steps) */}
