@@ -72,6 +72,41 @@ const COPY = {
         definition:
           'Post a role and we shortlist vetted accountants. You interview, hire them onto your payroll, and get a replacement guarantee if it isn’t a fit.',
         bestFor: 'Building an in-house finance team',
+        highlight: '',
+      },
+    ],
+  },
+  customers: {
+    intro:
+      'Every squad your brand needs — three different ways to bring them in. Pick the model that matches how often you need help.',
+    modes: [
+      {
+        id: 'subscription',
+        step: '01',
+        name: 'Subscription',
+        tagline: 'Your dedicated squad, on a flat monthly plan',
+        definition:
+          'A dedicated team across design, video, accounts, marketing, or tech — plus a Squad Manager for oversight and support. Send requests anytime, pause or cancel whenever you want.',
+        bestFor: 'Ongoing brand & operational needs',
+        highlight: 'Recommended',
+      },
+      {
+        id: 'assignments',
+        step: '02',
+        name: 'Assignments',
+        tagline: 'One project. Fixed fee. Fixed deadline.',
+        definition:
+          'A one-off task or project quoted as a flat price with a clear delivery date. No monthly commitment — you pay only for that piece of work.',
+        bestFor: 'One-time projects & specific tasks',
+      },
+      {
+        id: 'hiring',
+        step: '03',
+        name: 'Jobs',
+        tagline: 'Hire vetted talent onto your own team',
+        definition:
+          'Share your requirements and get a curated shortlist of vetted specialists. You interview, hire them onto your payroll, and get a replacement guarantee.',
+        bestFor: 'Building an in-house team',
       },
     ],
   },

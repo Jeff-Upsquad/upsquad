@@ -123,7 +123,8 @@ const LP_REDIRECTS = {
   'general': '/partner-program/general/',
   'partner-program-general': '/partner-program/general/',
   'agency': '/partner-program/agency/',
-  'agencies': '/partner-program/agency/',
+  'customers': '/customers/',
+  'customer-general': '/customers/',
   'partner-program-agency': '/partner-program/agency/',
   'partner-program-agencies': '/partner-program/agency/',
 }

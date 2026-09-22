@@ -164,6 +164,13 @@ function seed() {
       defaultLanguageCode: 'en',
       langs: [{ code: 'en' }],
     },
+    {
+      slug: 'customer-general',
+      heroTitle: 'Every squad your brand needs — on subscription.',
+      heroDescription: 'Design, video, finance, marketing, and tech. Subscribe to a dedicated squad, order fixed-fee assignments, or hire vetted talent in-house.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
   ]
 
   const findPage = db.prepare('SELECT id FROM landing_pages WHERE slug = ?')
