@@ -23,6 +23,14 @@ export const LANDING_PAGE_FALLBACKS = {
     defaultLanguageCode: 'en',
     languages: [],
   },
+  'partners': {
+    slug: 'partners',
+    heroTitle: 'UpSquad Partner Program',
+    heroDescription:
+      'One partner program for designers, video editors, accountants, sales professionals, agencies, and every other skill brands need. We handle sales, marketing, client support, and payments — you do the work you love.',
+    defaultLanguageCode: 'en',
+    languages: [],
+  },
 }
 
 export function getFallback(slug) {

@@ -39,7 +39,17 @@ export function scrollToWorkMode(modeId) {
   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
 }
 
-export default function WorkModeNav({ onSelect }) {
+// Partner-facing pages describe the same three modes from the talent side.
+const BLURBS = {
+  partners: {
+    subscription: 'Assigned clients',
+    assignments: 'Paid per project',
+    hiring: 'Full & part-time',
+  },
+}
+
+export default function WorkModeNav({ onSelect, variant }) {
+  const blurbs = BLURBS[variant] || {}
   const [active, setActive] = useState('subscription')
   const clickLock = useRef(false)
 
@@ -122,7 +132,7 @@ export default function WorkModeNav({ onSelect }) {
                       isActive ? 'text-text-secondary' : 'text-text-muted'
                     }`}
                   >
-                    {m.blurb}
+                    {blurbs[m.id] || m.blurb}
                   </span>
                 </button>
               )

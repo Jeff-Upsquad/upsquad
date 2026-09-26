@@ -29,6 +29,7 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 | `get-started` | Customers | `LandingPage.jsx` | `/customers/designers-and-video-editors/` |
 | `accountant-subscription` | Customers | `AccountantSubscription.jsx` | `/customers/accountant-subscription/` |
 | `customer-general` / `customers` | Customers (All Services) | `CustomerLandingPage.jsx` | `/customers/` |
+| `partners` / `partner-program-common` | Talent (All Programs) | `PartnerLandingPage.jsx` | `/partner-program/` |
 | `partner-program` | Talent (Creatives) | `PartnerProgram.jsx` | `/partner-program/designer-and-video-editor/` |
 | `partnerprogram-accountant` / `partner-program-accountant` | Talent (Accountants) | `AccountantPartnerProgram.jsx` | `/partner-program/accountant/` |
 | `partner-program-sales` / `sales` | Talent (Sales) | `SalesPartnerProgram.jsx` | `/partner-program/sales/` |

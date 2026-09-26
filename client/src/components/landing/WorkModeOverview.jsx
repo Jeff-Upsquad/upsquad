@@ -76,6 +76,40 @@ const COPY = {
       },
     ],
   },
+  partners: {
+    intro:
+      'One partner program, three ways to earn. Pick the one that fits how much you want to work — or combine them.',
+    modes: [
+      {
+        id: 'subscription',
+        step: '01',
+        name: 'Subscription',
+        tagline: 'Assigned clients, paid every month',
+        definition:
+          'We match you with one or more clients on an UpSquad subscription. You work with them regularly during your own virtual office hours — we handle sales, client support, and payments.',
+        bestFor: 'Steady, recurring income',
+        highlight: 'Recommended',
+      },
+      {
+        id: 'assignments',
+        step: '02',
+        name: 'Assignments',
+        tagline: 'One project. Fixed payout. Fixed deadline.',
+        definition:
+          'Claim standalone assignments with a flat payment and a clear timeline. Take what fits your schedule, deliver, and get paid — no ongoing commitment.',
+        bestFor: 'Flexible, per-project earnings',
+      },
+      {
+        id: 'hiring',
+        step: '03',
+        name: 'Jobs',
+        tagline: 'Get hired onto a company’s team',
+        definition:
+          'Browse full-time and part-time openings from businesses hiring through UpSquad. Set your preferences, apply, interview, and join their payroll.',
+        bestFor: 'A full-time or part-time role',
+      },
+    ],
+  },
   customers: {
     intro:
       'Every squad your brand needs — three different ways to bring them in. Pick the model that matches how often you need help.',

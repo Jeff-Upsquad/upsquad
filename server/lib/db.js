@@ -165,6 +165,13 @@ function seed() {
       langs: [{ code: 'en' }],
     },
     {
+      slug: 'partners',
+      heroTitle: 'UpSquad Partner Program',
+      heroDescription: 'One partner program for designers, video editors, accountants, sales professionals, agencies, and every other skill brands need. We handle sales, marketing, client support, and payments — you do the work you love.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
+    {
       slug: 'customer-general',
       heroTitle: 'Every squad your brand needs — on subscription.',
       heroDescription: 'Design, video, finance, marketing, and tech. Subscribe to a dedicated squad, order fixed-fee assignments, or hire vetted talent in-house.',

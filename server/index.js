@@ -103,9 +103,6 @@ app.get(['/accountants', '/accountants/'], (_req, res) => {
 app.get(['/designers-and-editors', '/designers-and-editors/'], (_req, res) => {
   res.redirect(301, '/partner-program/designer-and-video-editor/')
 })
-app.get(['/partner-program', '/partner-program/'], (_req, res) => {
-  res.redirect(301, '/partner-program/designer-and-video-editor/')
-})
 app.get(['/partner-program/agencies', '/partner-program/agencies/'], (_req, res) => {
   res.redirect(301, '/partner-program/agency/')
 })
@@ -125,6 +122,8 @@ const LP_REDIRECTS = {
   'agency': '/partner-program/agency/',
   'customers': '/customers/',
   'customer-general': '/customers/',
+  'partners': '/partner-program/',
+  'partner-program-common': '/partner-program/',
   'partner-program-agency': '/partner-program/agency/',
   'partner-program-agencies': '/partner-program/agency/',
 }
