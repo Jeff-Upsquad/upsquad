@@ -1408,7 +1408,7 @@
     dateChipsContainer.innerHTML = '';
     const today = getTodayKolkata();
     const days = [];
-    for (let i = 1; i <= 14; i++) {
+    for (let i = 0; i <= 13; i++) {
       days.push(addDays(today, i));
     }
 
@@ -1422,7 +1422,7 @@
       chip.className = 'date-chip' + (idx === 0 ? ' active' : '');
       chip.dataset.day = dayStr;
 
-      const dayName = idx === 0 ? 'Tmrw' : formatDayName(dayStr);
+      const dayName = idx === 0 ? 'Today' : idx === 1 ? 'Tmrw' : formatDayName(dayStr);
       const dayNum = formatDayNum(dayStr);
       const month = formatDayMonth(dayStr);
 
@@ -1466,7 +1466,17 @@
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Failed to load slots');
 
-      const slots = json.data || [];
+      let slots = json.data || [];
+      // For today, hide slots that have already passed (client-side safety,
+      // in case the API returns full-day list). Uses absolute time so it
+      // works in any viewer timezone.
+      if (dayStr === getTodayKolkata()) {
+        const now = Date.now();
+        slots = slots.filter(slotIso => {
+          const t = new Date(slotIso).getTime();
+          return !isNaN(t) && t > now;
+        });
+      }
       renderSlots(slots, dayStr);
     } catch (err) {
       slotsContainer.innerHTML = `
@@ -1481,10 +1491,14 @@
     currentLoadedSlots = slots || [];
     if (!slots || slots.length === 0) {
       const isMeet = bookingState.comm === 'Google Meet';
+      const isToday = dayStr === getTodayKolkata();
+      const emptyMsg = isToday
+        ? (isMeet ? 'Today\u2019s Google Meet slots are over or fully booked. Try tomorrow or choose Phone Call for more openings.' : 'Today\u2019s slots are over or fully booked. Please select tomorrow or another date above.')
+        : (isMeet ? 'Sales reps for Google Meet may be booked on this day. Try another day or choose Phone Call for more openings.' : 'Our sales team is fully booked on this day. Please select another date above.');
       slotsContainer.innerHTML = `
         <div class="slots-empty">
-          <b>No slots available on this date.</b><br>
-          <span style="display:inline-block;margin-top:4px">${isMeet ? 'Sales reps for Google Meet may be booked on this day. Try another day or choose Phone Call for more openings.' : 'Our sales team is fully booked on this day. Please select another date above.'}</span>
+          <b>No slots available ${isToday ? 'today' : 'on this date'}.</b><br>
+          <span style="display:inline-block;margin-top:4px">${emptyMsg}</span>
         </div>
       `;
       return;
