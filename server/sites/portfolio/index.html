@@ -14,65 +14,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#ECEAE5;--bg-2:#E4E1DB;--card:#FBFAF8;--card-2:#F4F2EE;
-    --ink:#121212;--ink-2:#3A3A38;--muted:#6E6D69;--line:rgba(18,18,18,.09);--line-2:rgba(18,18,18,.16);
-    --accent:#FFFF99;--accent-ink:#0A0A0A;--wa:#1FB85A;--ok:#0E8A4A;--warn:#B23B1E;
-    --dark:#161615;--dark-2:#232322;--dark-line:rgba(255,255,255,.09);--dark-muted:#9C9B96;
-    --r:22px;--r-sm:14px;--pill:999px;
-    --shadow:0 1px 2px rgba(18,18,18,.04),0 12px 40px -12px rgba(18,18,18,.16);
-    --shadow-lg:0 2px 4px rgba(18,18,18,.05),0 40px 80px -30px rgba(18,18,18,.28);
+    --bg:#0B0B0C;--bg-2:#111112;--card:#151517;--card-2:#1B1B1E;
+    --ink:#EDEDEB;--ink-2:#C4C4C0;--muted:#8A8A8F;
+    --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.15);
+    --accent:#FFFF99;--accent-ink:#0A0A0A;--wa:#1FB85A;--ok:#3ECF8E;--warn:#E0603F;
+    --r:16px;--r-sm:10px;--pill:999px;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 40px -12px rgba(0,0,0,.6);
+    --shadow-lg:0 2px 4px rgba(0,0,0,.5),0 40px 80px -30px rgba(0,0,0,.8);
     --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box}
   [hidden]{display:none!important}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:var(--grain)}
   a{color:inherit;text-decoration:none}
   img,svg{display:block;max-width:100%}
   button{font:inherit;color:inherit;cursor:pointer}
-  ::selection{background:var(--ink);color:#fff}
+  ::selection{background:var(--accent);color:var(--accent-ink)}
 
-  .wrap{width:min(1160px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
+  .wrap{width:min(1200px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
   .wrap-n{width:min(820px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
-  section{padding:88px 0}
-  @media (max-width:720px){section{padding:54px 0}}
+  section{padding:56px 0}
+  @media (max-width:720px){section{padding:40px 0}}
 
-  h1,h2,h3,h4{margin:0;letter-spacing:-.035em;line-height:1.06;font-weight:800}
-  h1{font-size:clamp(38px,5.8vw,68px);letter-spacing:-.04em}
-  h2{font-size:clamp(30px,4.2vw,50px);letter-spacing:-.035em}
-  h3{font-size:clamp(20px,2vw,24px);letter-spacing:-.025em}
-  h4{font-size:17px;letter-spacing:-.02em}
-  .lede{font-size:clamp(17px,1.5vw,20px);color:var(--ink-2);max-width:680px;margin:20px auto 0;line-height:1.5}
+  h1,h2,h3,h4{margin:0;letter-spacing:-.03em;line-height:1.1;font-weight:800}
+  h1{font-size:clamp(34px,5vw,56px);letter-spacing:-.04em}
+  h2{font-size:clamp(26px,3.4vw,38px)}
+  h3{font-size:clamp(19px,1.8vw,22px);letter-spacing:-.02em}
+  h4{font-size:16px;letter-spacing:-.01em}
+  .lede{font-size:clamp(16px,1.4vw,19px);color:var(--ink-2);max-width:680px;margin:16px auto 0;line-height:1.55}
   .center{text-align:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:var(--pill);padding:7px 14px 7px 9px}
-  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(14,138,74,.14)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:var(--pill);padding:7px 14px 7px 9px}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(62,207,142,.15)}
   .muted{color:var(--muted)}
 
   /* Buttons */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:var(--pill);font-weight:700;font-size:15px;line-height:1;border:1px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;white-space:nowrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:var(--pill);font-weight:700;font-size:14.5px;line-height:1;border:1px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;white-space:nowrap}
   .btn:active{transform:translateY(1px) scale(.99)}
-  .btn-ink{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(18,18,18,.5)}
-  .btn-ink:hover{background:#000;transform:translateY(-1px)}
-  .btn-wa{background:var(--card);color:var(--ink);border-color:var(--line-2)}
-  .btn-wa:hover{background:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
-  .btn-sm{padding:10px 18px;font-size:13.5px}
-  .btn-accent{background:var(--accent);color:var(--accent-ink);border:1px solid rgba(18,18,18,.08)}
+  .btn-ink{background:var(--ink);color:#0B0B0C;box-shadow:0 10px 24px -10px rgba(0,0,0,.7)}
+  .btn-ink:hover{background:#fff;transform:translateY(-1px)}
+  .btn-wa{background:var(--card-2);color:var(--ink);border-color:var(--line-2)}
+  .btn-wa:hover{background:#232326;transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn-sm{padding:10px 16px;font-size:13.5px}
+  .btn-accent{background:var(--accent);color:var(--accent-ink);border:1px solid rgba(255,255,255,.14)}
   .btn-accent:hover{background:#fffa75;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink-2)}
+  .btn-ghost:hover{color:var(--ink);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04)}
 
   /* Nav */
   .nav{position:fixed;top:14px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
-  .nav-pill{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(251,250,248,.88);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);padding:7px 7px 7px 12px;box-shadow:var(--shadow);transition:box-shadow .3s}
-  .nav.scrolled .nav-pill{box-shadow:var(--shadow-lg)}
+  .nav-pill{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(21,21,23,.9);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);padding:7px 7px 7px 12px;box-shadow:var(--shadow);transition:box-shadow .3s,border-color .3s}
+  .nav.scrolled .nav-pill{box-shadow:var(--shadow-lg);border-color:var(--line-2)}
   .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;padding-right:10px;white-space:nowrap;flex:none}
-  .brand .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+  .brand .mark{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center}
   .brand .mark svg{width:16px;height:16px}
   .brand small{font-weight:600;color:var(--muted);font-size:12px;margin-left:2px}
   .nav-links{display:flex;gap:3px}
   .nav-links a{padding:8px 13px;border-radius:var(--pill);font-size:14px;font-weight:600;color:var(--ink-2);transition:background .15s,color .15s}
-  .nav-links a:hover{background:rgba(18,18,18,.06);color:var(--ink)}
-  .nav-links a.active{background:var(--ink);color:#fff}
+  .nav-links a:hover{background:rgba(255,255,255,.08);color:var(--ink)}
+  .nav-links a.active{background:rgba(255,255,255,.12);color:var(--ink)}
   @media (max-width:860px){.nav-links{display:none}.brand{padding-right:4px}}
   @media (max-width:520px){
     .nav{padding:0 10px}
@@ -82,128 +82,116 @@
     .nav-cta{padding:10px 14px;font-size:13px}
   }
 
-  /* Portfolio Hero */
-  .p-hero{padding:130px 0 50px;position:relative;text-align:center}
-  .p-hero-inner{max-width:860px;margin:0 auto}
-  .p-hero h1{margin-top:20px}
-  .p-hero h1 .hl{background:linear-gradient(180deg,transparent 60%,rgba(255,255,153,.9) 60%);border-radius:4px;padding:0 4px}
-  .p-trust{margin-top:26px;display:flex;justify-content:center;gap:12px 24px;flex-wrap:wrap;font-size:14px;color:var(--ink-2);font-weight:600}
-  .p-trust span{display:inline-flex;align-items:center;gap:7px}
-  .p-trust span::before{content:"✓";color:var(--ok);font-weight:800;font-size:15px}
+  /* Hero / directory header (community style) */
+  .p-hero{padding:120px 0 8px;position:relative}
+  .p-hero h1{margin-top:18px}
+  .p-hero h1 .hl{color:var(--accent)}
+  .p-trust{margin-top:20px;display:flex;justify-content:flex-start;gap:8px 20px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);font-weight:600}
+  .p-trust span{display:inline-flex;align-items:center;gap:6px}
+  .p-trust span::before{content:"✓";color:var(--ok);font-weight:800;font-size:14px}
 
-  /* Filters */
-  .filter-bar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:40px 0 20px;padding:6px;background:rgba(18,18,18,.04);border-radius:var(--pill);width:fit-content;margin-inline:auto}
-  .filter-btn{padding:8px 18px;border-radius:var(--pill);font-size:13.5px;font-weight:700;color:var(--ink-2);background:transparent;border:none;transition:all .2s ease;cursor:pointer}
-  .filter-btn:hover{color:var(--ink);background:rgba(255,255,255,.6)}
-  .filter-btn.active{background:var(--ink);color:#fff;box-shadow:0 4px 12px rgba(18,18,18,.15)}
+  /* Search */
+  .p-search{position:relative;margin-top:28px;max-width:640px}
+  .p-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted);pointer-events:none}
+  .p-search input{width:100%;padding:14px 16px 14px 44px;background:var(--card);border:1px solid var(--line-2);border-radius:12px;color:var(--ink);font:inherit;font-size:15px;outline:none;transition:border-color .15s,box-shadow .15s}
+  .p-search input::placeholder{color:var(--muted)}
+  .p-search input:focus{border-color:rgba(255,255,153,.5);box-shadow:0 0 0 3px rgba(255,255,153,.12)}
+
+  /* Filter chips (tag style with counts) */
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .filter-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--pill);font-size:13.5px;font-weight:700;color:var(--ink-2);background:var(--card);border:1px solid var(--line);transition:all .18s ease;cursor:pointer}
+  .filter-btn b{font-weight:700;color:var(--muted);font-size:12.5px}
+  .filter-btn:hover{border-color:var(--line-2);color:var(--ink);transform:translateY(-1px)}
+  .filter-btn.active{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+  .filter-btn.active b{color:rgba(10,10,10,.55)}
   @media (max-width:680px){
-    .filter-bar{border-radius:18px;padding:6px;gap:6px;justify-content:flex-start;overflow-x:auto;max-width:100%;white-space:nowrap;-webkit-overflow-scrolling:touch}
-    .filter-btn{font-size:12.5px;padding:7px 14px}
+    .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .chips::-webkit-scrollbar{display:none}
+    .filter-btn{font-size:12.5px;padding:7px 13px;flex:none}
   }
 
-  /* Portfolio Grid */
-  .p-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:30px}
-  @media (max-width:960px){.p-grid{grid-template-columns:1fr;gap:28px}}
+  /* Section headers (community style) */
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+  .sec-head h2{font-size:clamp(21px,2.4vw,26px);letter-spacing:-.02em}
+  .sec-head p{margin:4px 0 0;font-size:14.5px;color:var(--muted)}
 
-  /* Project Card */
-  .p-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;display:flex;flex-direction:column}
-  .p-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
+  /* Grid */
+  .p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+  @media (max-width:760px){.p-grid{grid-template-columns:1fr;gap:20px}}
 
-  /* Browser Chrome */
-  .p-frame{background:#1e1e1e;border-top-left-radius:calc(var(--r) - 1px);border-top-right-radius:calc(var(--r) - 1px);overflow:hidden;position:relative}
-  .p-frame-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#181818;border-bottom:1px solid rgba(255,255,255,.08);color:#999;font-size:12px;font-weight:600}
-  .p-frame-dots{display:flex;gap:6px}
-  .p-frame-dots i{width:10px;height:10px;border-radius:50%;display:inline-block}
-  .p-frame-dots i:nth-child(1){background:#ff5f57}
-  .p-frame-dots i:nth-child(2){background:#febc2e}
-  .p-frame-dots i:nth-child(3){background:#28c840}
-  .p-frame-url{flex:1;background:rgba(255,255,255,.07);border-radius:6px;padding:3px 12px;display:flex;align-items:center;gap:6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:#ddd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .p-frame-url svg{width:11px;height:11px;color:#28c840;flex:none}
-  .p-frame-badge{font-size:11px;padding:2px 8px;border-radius:var(--pill);background:rgba(255,255,255,.1);color:#eee;flex:none}
+  /* Project card (community preview card) */
+  .p-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;display:flex;flex-direction:column}
+  .p-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--line-2)}
+  .p-card-hit{display:flex;flex-direction:column;flex:1;color:inherit}
+  .p-card-hit:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r)}
+  .p-screen--img{padding:0}
+  .p-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .4s ease}
+  .p-card:hover .p-thumb{transform:scale(1.04)}
 
-  /* Live Styled Mockup Area */
-  .p-screen{height:250px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;user-select:none;color:#fff}
+  /* Preview thumb */
+  .p-screen{height:210px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:18px;user-select:none;color:#fff;border-bottom:1px solid var(--line)}
   .p-screen-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;transition:transform .4s ease}
-  .p-card:hover .p-screen-bg{transform:scale(1.03)}
-  .p-screen-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,18,18,.35) 0%,rgba(18,18,18,.75) 100%);z-index:1}
+  .p-card:hover .p-screen-bg{transform:scale(1.04)}
+  .p-screen-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.3) 0%,rgba(0,0,0,.72) 100%);z-index:1}
   .p-screen-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between}
-  .p-screen-top{display:flex;justify-content:space-between;align-items:center}
-  .p-screen-logo{font-weight:800;letter-spacing:-.02em;font-size:15px;display:flex;align-items:center;gap:6px;text-shadow:0 1px 4px rgba(0,0,0,.6)}
-  .p-screen-tag{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:var(--pill)}
-  .p-screen-mid{margin-top:auto}
-  .p-screen-headline{font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1.15;text-shadow:0 2px 8px rgba(0,0,0,.7);max-width:380px}
-  .p-screen-sub{font-size:13px;color:rgba(255,255,255,.85);margin-top:5px;line-height:1.35;max-width:340px}
-  .p-screen-foot{display:flex;align-items:center;gap:8px;margin-top:14px}
-  .p-screen-btn{font-size:12px;font-weight:700;padding:6px 14px;border-radius:var(--pill);background:#fff;color:#121212;box-shadow:0 4px 10px rgba(0,0,0,.3)}
-  .p-screen-pill{font-size:11.5px;padding:4px 10px;border-radius:var(--pill);background:rgba(0,0,0,.45);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15)}
+  .p-screen-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .p-screen-logo{font-weight:800;letter-spacing:-.02em;font-size:13.5px;display:flex;align-items:center;gap:6px;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+  .p-screen-tag{background:rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:var(--pill);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .p-screen-headline{font-size:18px;font-weight:800;letter-spacing:-.03em;line-height:1.18;text-shadow:0 2px 8px rgba(0,0,0,.7);max-width:340px}
+  .p-screen-sub{font-size:12.5px;color:rgba(255,255,255,.85);margin-top:4px;line-height:1.35;max-width:320px}
 
-  /* Card Details Body */
-  .p-body{padding:24px 26px;display:flex;flex-direction:column;flex:1}
-  .p-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-  .p-cat{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-  .p-score{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--ok);background:#eaf8ef;padding:3px 9px;border-radius:var(--pill)}
-  .p-title{font-size:23px;font-weight:800;letter-spacing:-.03em;color:var(--ink);margin-bottom:6px}
-  .p-tagline{font-size:14.5px;font-weight:600;color:var(--ink-2);margin-bottom:12px}
-  .p-desc{font-size:14.5px;color:var(--muted);line-height:1.55;margin-bottom:18px;flex:1}
+  /* Card body */
+  .p-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+  .p-title{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
+  .p-tagline{font-size:13.5px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
+  .p-desc{font-size:14px;color:var(--muted);line-height:1.55;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:none}
 
-  /* Metric chips */
-  .p-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:var(--card-2);border-radius:var(--r-sm);padding:12px;margin-bottom:18px;border:1px solid var(--line)}
-  .p-metric-item b{display:block;font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
-  .p-metric-item span{display:block;font-size:11px;color:var(--muted);line-height:1.25;margin-top:2px}
-
-  /* Tags */
-  .p-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
-  .p-tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:var(--pill);background:rgba(18,18,18,.05);color:var(--ink-2);border:1px solid var(--line)}
-
-  /* Actions */
-  .p-actions{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
-  .p-actions .btn{flex:1}
-  @media (max-width:540px){
-    .p-metrics{grid-template-columns:1fr;gap:8px}
-    .p-actions{flex-direction:column}
-    .p-actions .btn{width:100%}
-  }
+  /* Empty state */
+  .p-empty{display:none;text-align:center;padding:60px 20px;border:1px dashed var(--line-2);border-radius:var(--r);color:var(--muted);font-size:15px;background:var(--bg-2)}
+  .p-empty.show{display:block}
+  .p-empty b{color:var(--ink)}
 
   /* Case Study Modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(18,18,18,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease}
   .modal-backdrop.open{opacity:1;pointer-events:auto}
-  .modal-sheet{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lg);width:min(780px,100%);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;transform:scale(.96) translateY(12px);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+  .modal-sheet{background:var(--card);border:1px solid var(--line-2);border-radius:20px;box-shadow:var(--shadow-lg);width:min(760px,100%);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;transform:scale(.96) translateY(12px);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
   .modal-backdrop.open .modal-sheet{transform:scale(1) translateY(0)}
-  .modal-head{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--card-2);flex:none}
-  .modal-head-title{display:flex;align-items:center;gap:10px}
-  .modal-head-title h3{font-size:19px;font-weight:800}
-  .modal-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;transition:all .15s}
-  .modal-close:hover{background:var(--ink);color:#fff}
-  .modal-close svg{width:18px;height:18px}
-  .modal-body{padding:28px 24px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:24px}
-  .modal-section h4{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:8px}
+  .modal-head{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);background:var(--bg-2);flex:none}
+  .modal-head-title{display:flex;align-items:center;gap:10px;min-width:0}
+  .modal-head-title h3{font-size:18px;font-weight:800}
+  .modal-close{width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);background:var(--card-2);display:grid;place-items:center;cursor:pointer;transition:all .15s;flex:none}
+  .modal-close:hover{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+  .modal-close svg{width:17px;height:17px}
+  .modal-body{padding:26px 22px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:22px}
+  .modal-section h4{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
   .modal-section p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.6}
   .modal-list{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-2);line-height:1.65}
-  .modal-quote{background:var(--card-2);border-left:3px solid var(--ink);border-radius:0 12px 12px 0;padding:16px 20px;font-style:italic;color:var(--ink);font-size:15px;line-height:1.5}
+  .modal-quote{background:var(--bg-2);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;font-style:italic;color:var(--ink);font-size:15px;line-height:1.5}
   .modal-quote cite{display:block;margin-top:8px;font-style:normal;font-weight:700;font-size:13px;color:var(--muted)}
-  .modal-foot{padding:18px 24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--card-2);flex:none}
+  .modal-foot{padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--bg-2);flex:none}
   @media (max-width:600px){
     .modal-foot{flex-direction:column;align-items:stretch}
     .modal-foot .btn{width:100%}
   }
 
-  /* Guarantee / Banner section */
-  .p-guarantee{background:var(--dark);color:#fff;border-radius:var(--r);padding:60px 40px;margin:80px 0;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
-  .p-guarantee::before{content:"";position:absolute;inset:0;opacity:.15;background-image:var(--grain);pointer-events:none}
-  .p-guarantee h2{color:#fff;font-size:clamp(30px,4.5vw,46px);max-width:700px;margin:0 auto}
-  .p-guarantee p{color:var(--dark-muted);font-size:17px;max-width:620px;margin:18px auto 0;line-height:1.6}
-  .p-guarantee .cta-row{margin-top:30px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  /* Guarantee banner */
+  .p-guarantee{background:linear-gradient(180deg,#161617,#111112);border:1px solid var(--line-2);border-radius:20px;padding:clamp(36px,5vw,56px) clamp(24px,4vw,48px);margin:24px 0 8px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .p-guarantee::before{content:"";position:absolute;width:520px;height:520px;left:50%;top:-320px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,153,.1),transparent 70%);pointer-events:none}
+  .p-guarantee h2{color:#fff;font-size:clamp(26px,3.6vw,40px);max-width:680px;margin:16px auto 0}
+  .p-guarantee p{color:var(--muted);font-size:16px;max-width:620px;margin:14px auto 0;line-height:1.6}
+  .p-guarantee .cta-row{margin-top:26px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;position:relative}
 
   /* Footer */
-  .site-foot{background:var(--bg-2);border-top:1px solid var(--line);padding:70px 0 50px;position:relative}
+  .site-foot{background:var(--bg-2);border-top:1px solid var(--line);padding:60px 0 44px;position:relative;margin-top:40px}
   .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
-  .foot-brand h3{font-size:20px;margin:16px 0 10px;font-weight:800}
+  .foot-brand h3{font-size:19px;margin:16px 0 10px;font-weight:800}
   .foot-brand p{color:var(--muted);font-size:14px;max-width:340px;margin:0 0 20px;line-height:1.55}
   .foot-brand .legal{font-size:12.5px;color:var(--muted);margin-top:24px}
-  .foot-col h4{font-size:14px;font-weight:800;margin-bottom:14px;letter-spacing:-.01em}
+  .foot-brand .legal a{color:var(--ink-2);text-decoration:underline}
+  .foot-col h4{font-size:13px;font-weight:800;margin-bottom:14px;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
   .foot-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
-  .foot-col a{font-size:13.5px;color:var(--muted);transition:color .15s}
-  .foot-col a:hover{color:var(--ink)}
+  .foot-col a{font-size:13.5px;color:var(--ink-2);transition:color .15s}
+  .foot-col a:hover{color:var(--accent)}
   @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
   @media (max-width:540px){.foot-grid{grid-template-columns:1fr;gap:28px}}
 </style>
@@ -214,7 +202,7 @@
 <div class="nav" id="nav">
   <div class="nav-pill">
     <a class="brand" href="/sites/" id="nav-brand" aria-label="Sites home">
-      <span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span>
+      <span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#0A0A0A"/></svg></span>
       Sites <small>by UpSquad</small>
     </a>
     <nav class="nav-links" aria-label="Sections">
@@ -225,18 +213,18 @@
       <a href="/sites/#pricing" id="nav-pricing">Pricing</a>
       <a href="/sites/#faq" id="nav-faq">FAQ</a>
     </nav>
-    <a class="btn btn-ink btn-sm nav-cta" href="/sites/#consult" id="nav-consult">Book free consultation</a>
+    <a class="btn btn-accent btn-sm nav-cta" href="/sites/#consult" id="nav-consult">Book free consultation</a>
   </div>
 </div>
 
 <main>
-  <!-- Hero Section -->
+  <!-- Directory header (community style) -->
   <header class="p-hero">
-    <div class="wrap-n p-hero-inner">
-      <span class="eyebrow"><i></i> Selected Work · Sites by UpSquad</span>
-      <h1>Websites designed to turn visitors <span class="hl">into paying customers.</span></h1>
-      <p class="lede">Explore recent custom website designs created for real businesses across restaurants, healthcare, real estate, agencies, and high-growth brands. Every project is backed by our full money-back guarantee.</p>
-      
+    <div class="wrap">
+      <span class="eyebrow"><i></i> Portfolio directory · Sites by UpSquad</span>
+      <h1>Previous website designs <span class="hl">&amp; case studies.</span></h1>
+      <p class="lede" style="margin-left:0">Search real projects we've shipped for restaurants, clinics, real estate, agencies and retail brands — every one backed by our full money-back guarantee.</p>
+
       <div class="p-trust">
         <span>Start with a small deposit</span>
         <span>Love it or 100% full refund</span>
@@ -244,428 +232,145 @@
         <span>From ₹10,000 onwards</span>
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="filter-bar" role="tablist" aria-label="Filter portfolio by industry">
-        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects (6)</button>
-        <button class="filter-btn" data-filter="dining" role="tab" aria-selected="false">Restaurants & Cafés</button>
-        <button class="filter-btn" data-filter="health" role="tab" aria-selected="false">Clinics & Doctors</button>
-        <button class="filter-btn" data-filter="realty" role="tab" aria-selected="false">Real Estate & Spaces</button>
-        <button class="filter-btn" data-filter="agency" role="tab" aria-selected="false">Agencies & Services</button>
-        <button class="filter-btn" data-filter="retail" role="tab" aria-selected="false">E-Commerce & Retail</button>
+      <!-- Search -->
+      <div class="p-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="search" id="portfolio-search" placeholder="Search projects, industries, or features..." aria-label="Search portfolio projects">
+      </div>
+
+      <!-- Category chips with counts -->
+      <div class="chips" role="tablist" aria-label="Filter portfolio by industry">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All projects <b>9</b></button>
+        <button class="filter-btn" data-filter="dining" role="tab" aria-selected="false">Restaurants &amp; Cafés <b>1</b></button>
+        <button class="filter-btn" data-filter="health" role="tab" aria-selected="false">Clinics &amp; Doctors <b>1</b></button>
+        <button class="filter-btn" data-filter="realty" role="tab" aria-selected="false">Real Estate <b>1</b></button>
+        <button class="filter-btn" data-filter="agency" role="tab" aria-selected="false">Agencies &amp; Services <b>3</b></button>
+        <button class="filter-btn" data-filter="retail" role="tab" aria-selected="false">E-Commerce &amp; Retail <b>1</b></button>
+        <button class="filter-btn" data-filter="banking" role="tab" aria-selected="false">Banking &amp; Education <b>1</b></button>
+        <button class="filter-btn" data-filter="saas" role="tab" aria-selected="false">SaaS &amp; Software <b>1</b></button>
       </div>
     </div>
   </header>
 
-  <!-- Portfolio Grid Section -->
-  <section style="padding-top:0">
+  <!-- Standouts -->
+  <section id="standouts-sec" style="padding-top:40px">
     <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Standouts</h2>
+          <p>Most impactful launches with measurable results</p>
+        </div>
+      </div>
       <div class="p-grid" id="portfolio-grid">
 
+        <!-- Project 0: EDB Business Lab Showcase -->
+        <article class="p-card" data-category="banking" data-id="edb" data-featured="1">
+          <a class="p-card-hit" href="../edb/" aria-label="View the EDB Business Lab design showcase">
+          <div class="p-screen p-screen--img">
+            <img class="p-thumb" src="../assets/edb-home-thumb.jpg" alt="EDB Business Lab homepage design preview" loading="lazy">
+          </div>
+          <div class="p-body">
+            <h3 class="p-title">EDB Business Lab 2025 Showcase</h3>
+            <div class="p-tagline">Banking Education Platform &amp; Interactive Design Preview</div>
+            <p class="p-desc">A shareable click-through website built from the EDB-2025-V3.1 designs. Visitors open one link and walk through every page — courses, mentor booking, events, partner offers and podcast — exactly as the real site will feel.</p>
+          </div>
+          </a>
+        </article>
+
+        <!-- Project 2: SquadPayroll -->
+        <article class="p-card" data-category="saas" data-id="squadpayroll" data-featured="1">
+          <a class="p-card-hit" href="https://squadpayroll.upsquadconnect.com" target="_blank" rel="noopener" aria-label="Open the SquadPayroll website (opens in new tab)">
+          <div class="p-screen p-screen--img">
+            <img class="p-thumb" src="../assets/squadpayroll-home-thumb.jpg" alt="SquadPayroll homepage preview" loading="lazy">
+          </div>
+          <div class="p-body">
+            <h3 class="p-title">SquadPayroll</h3>
+            <div class="p-tagline">One-Click Payroll, Attendance &amp; HR Software</div>
+            <p class="p-desc">A live SaaS product — local-first attendance plus a monthly payroll module with salary structures, PF/ESI deductions, payslips, a license console and cloud subscriptions with Razorpay billing.</p>
+          </div>
+          </a>
+        </article>
+
+        <!-- Project 3: UpSquad Connect -->
+        <article class="p-card" data-category="agency" data-id="upsquad" data-featured="1">
+          <a class="p-card-hit" href="https://www.upsquadconnect.com" target="_blank" rel="noopener" aria-label="Open the UpSquad website (opens in new tab)">
+          <div class="p-screen p-screen--img">
+            <img class="p-thumb" src="../assets/upsquad-home-thumb.jpg" alt="UpSquad homepage preview" loading="lazy">
+          </div>
+          <div class="p-body">
+            <h3 class="p-title">UpSquad Connect</h3>
+            <div class="p-tagline">Talent Subscription Platform &amp; Company Website</div>
+            <p class="p-desc">The main UpSquad website — three ways to work with vetted squads across content, marketing, tech and more: monthly subscription, one-off assignments, or direct hiring with a replacement guarantee.</p>
+          </div>
+          </a>
+        </article>
+
         <!-- Project 1: Aurora Living -->
-        <article class="p-card" data-category="realty" data-id="aurora">
-          <div class="p-frame">
-            <div class="p-frame-bar">
-              <div class="p-frame-dots"><i></i><i></i><i></i></div>
-              <div class="p-frame-url">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                https://auroraspaces.in
+        <article class="p-card" data-category="realty" data-id="aurora" data-featured="1">
+          <div class="p-screen" style="background:#1b2024">
+            <div class="p-screen-bg" style="background:linear-gradient(135deg, #18222d 0%, #2e3a47 50%, #465566 100%);"></div>
+            <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(14,20,28,.35) 0%, rgba(14,20,28,.88) 100%);"></div>
+            <div class="p-screen-content">
+              <div class="p-screen-top">
+                <div class="p-screen-logo"><span>▲</span> AURORA SPACES</div>
+                <span class="p-screen-tag">Kochi &amp; Bangalore</span>
               </div>
-              <span class="p-frame-badge">Architecture</span>
-            </div>
-            <div class="p-screen" style="background:#1b2024">
-              <div class="p-screen-bg" style="background:linear-gradient(135deg, #18222d 0%, #2e3a47 50%, #465566 100%);"></div>
-              <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(14,20,28,.4) 0%, rgba(14,20,28,.88) 100%);"></div>
-              <div class="p-screen-content">
-                <div class="p-screen-top">
-                  <div class="p-screen-logo"><span>▲</span> AURORA SPACES</div>
-                  <span class="p-screen-tag">Kochi & Bangalore</span>
-                </div>
-                <div class="p-screen-mid">
-                  <div class="p-screen-headline">Modern architecture and bespoke interior spaces.</div>
-                  <div class="p-screen-sub">Residential villas, luxury commercial studios, and restorative living.</div>
-                </div>
-                <div class="p-screen-foot">
-                  <span class="p-screen-btn">Explore Portfolio →</span>
-                  <span class="p-screen-pill">240+ Completed Builds</span>
-                </div>
+              <div>
+                <div class="p-screen-headline">Modern architecture and bespoke interior spaces.</div>
+                <div class="p-screen-sub">Residential villas, luxury commercial studios, and restorative living.</div>
               </div>
             </div>
           </div>
           <div class="p-body">
-            <div class="p-meta">
-              <span class="p-cat">Real Estate & Architecture</span>
-              <span class="p-score">99/100 Mobile Score</span>
-            </div>
-            <h3 class="p-title">Aurora Living & Architectural Studio</h3>
-            <div class="p-tagline">Luxury Interior Design & Sustainable Living Spaces</div>
+            <h3 class="p-title">Aurora Living &amp; Architectural Studio</h3>
+            <div class="p-tagline">Luxury Interior Design &amp; Sustainable Living Spaces</div>
             <p class="p-desc">A visual-first portfolio created to attract high-net-worth homeowners and commercial property developers. Featuring immersive full-bleed imagery, interactive floorplan viewer, and one-touch WhatsApp consultation booking.</p>
-            
-            <div class="p-metrics">
-              <div class="p-metric-item">
-                <b>+185%</b>
-                <span>Client inquiries (60d)</span>
-              </div>
-              <div class="p-metric-item">
-                <b>0.7s</b>
-                <span>Page load speed</span>
-              </div>
-              <div class="p-metric-item">
-                <b>100%</b>
-                <span>SEO Schema ready</span>
-              </div>
-            </div>
-
-            <div class="p-tags">
-              <span class="p-tag">Interactive Gallery</span>
-              <span class="p-tag">WhatsApp Inquiry Sync</span>
-              <span class="p-tag">Next.js Edge</span>
-              <span class="p-tag">Bilingual EN/ML</span>
-            </div>
-
-            <div class="p-actions">
-              <button class="btn btn-wa btn-sm view-modal-btn" data-id="aurora">View Case Study</button>
-              <a class="btn btn-ink btn-sm" data-wa-project="Aurora Living" href="#">Get a site like this →</a>
-            </div>
           </div>
         </article>
 
         <!-- Project 2: The Malabar Coast Bistro -->
-        <article class="p-card" data-category="dining" data-id="malabar">
-          <div class="p-frame">
-            <div class="p-frame-bar">
-              <div class="p-frame-dots"><i></i><i></i><i></i></div>
-              <div class="p-frame-url">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                https://malabarbistro.com
+        <article class="p-card" data-category="dining" data-id="malabar" data-featured="1">
+          <div class="p-screen" style="background:#221b18">
+            <div class="p-screen-bg" style="background:linear-gradient(135deg, #2c1a14 0%, #4a281c 50%, #703c2a 100%);"></div>
+            <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(28,18,14,.3) 0%, rgba(28,18,14,.88) 100%);"></div>
+            <div class="p-screen-content">
+              <div class="p-screen-top">
+                <div class="p-screen-logo"><span>☕</span> MALABAR COAST BISTRO</div>
+                <span class="p-screen-tag">Fort Kochi</span>
               </div>
-              <span class="p-frame-badge">Restaurant</span>
-            </div>
-            <div class="p-screen" style="background:#221b18">
-              <div class="p-screen-bg" style="background:linear-gradient(135deg, #2c1a14 0%, #4a281c 50%, #703c2a 100%);"></div>
-              <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(28,18,14,.35) 0%, rgba(28,18,14,.88) 100%);"></div>
-              <div class="p-screen-content">
-                <div class="p-screen-top">
-                  <div class="p-screen-logo"><span>☕</span> MALABAR COAST BISTRO</div>
-                  <span class="p-screen-tag">Fort Kochi</span>
-                </div>
-                <div class="p-screen-mid">
-                  <div class="p-screen-headline">Coastal soul food & artisanal small-batch coffee.</div>
-                  <div class="p-screen-sub">Locally harvested seafood, traditional Malabar spices, and sunset views.</div>
-                </div>
-                <div class="p-screen-foot">
-                  <span class="p-screen-btn">Reserve a Table</span>
-                  <span class="p-screen-pill">Zero Commission Direct Booking</span>
-                </div>
+              <div>
+                <div class="p-screen-headline">Coastal soul food &amp; artisanal small-batch coffee.</div>
+                <div class="p-screen-sub">Locally harvested seafood, traditional Malabar spices, and sunset views.</div>
               </div>
             </div>
           </div>
           <div class="p-body">
-            <div class="p-meta">
-              <span class="p-cat">Restaurants & Cafés</span>
-              <span class="p-score">3.4x Reservations</span>
-            </div>
             <h3 class="p-title">The Malabar Coast Bistro</h3>
-            <div class="p-tagline">Fine Dining Waterfront Restaurant & Artisan Roasters</div>
+            <div class="p-tagline">Fine Dining Waterfront Restaurant &amp; Artisan Roasters</div>
             <p class="p-desc">Built to convert hungry local diners and tourists into table reservations without paying heavy commission fees to third-party aggregators. Includes digital mobile menu, chef specials highlight, and direct WhatsApp reservation concierge.</p>
-            
-            <div class="p-metrics">
-              <div class="p-metric-item">
-                <b>3.4x</b>
-                <span>Table reservations</span>
-              </div>
-              <div class="p-metric-item">
-                <b>₹0</b>
-                <span>Aggregator fees</span>
-              </div>
-              <div class="p-metric-item">
-                <b>4.9★</b>
-                <span>Google Maps rating</span>
-              </div>
-            </div>
-
-            <div class="p-tags">
-              <span class="p-tag">Digital QR Menu</span>
-              <span class="p-tag">WhatsApp Table Booking</span>
-              <span class="p-tag">Google Business Sync</span>
-              <span class="p-tag">Mobile First</span>
-            </div>
-
-            <div class="p-actions">
-              <button class="btn btn-wa btn-sm view-modal-btn" data-id="malabar">View Case Study</button>
-              <a class="btn btn-ink btn-sm" data-wa-project="The Malabar Coast Bistro" href="#">Get a site like this →</a>
-            </div>
           </div>
         </article>
 
         <!-- Project 3: Dr. Nambiar Dental Clinic -->
-        <article class="p-card" data-category="health" data-id="nambiar">
-          <div class="p-frame">
-            <div class="p-frame-bar">
-              <div class="p-frame-dots"><i></i><i></i><i></i></div>
-              <div class="p-frame-url">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                https://nambiarclinic.com
+        <article class="p-card" data-category="health" data-id="nambiar" data-featured="1">
+          <div class="p-screen" style="background:#0e282a">
+            <div class="p-screen-bg" style="background:linear-gradient(135deg, #092125 0%, #0d383d 50%, #175d65 100%);"></div>
+            <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(9,33,37,.3) 0%, rgba(9,33,37,.88) 100%);"></div>
+            <div class="p-screen-content">
+              <div class="p-screen-top">
+                <div class="p-screen-logo"><span>✦</span> NAMBIAR AESTHETICS</div>
+                <span class="p-screen-tag">Multi-Specialty Care</span>
               </div>
-              <span class="p-frame-badge">Healthcare</span>
-            </div>
-            <div class="p-screen" style="background:#0e282a">
-              <div class="p-screen-bg" style="background:linear-gradient(135deg, #092125 0%, #0d383d 50%, #175d65 100%);"></div>
-              <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(9,33,37,.35) 0%, rgba(9,33,37,.88) 100%);"></div>
-              <div class="p-screen-content">
-                <div class="p-screen-top">
-                  <div class="p-screen-logo"><span>✦</span> NAMBIAR AESTHETICS</div>
-                  <span class="p-screen-tag">Multi-Specialty Care</span>
-                </div>
-                <div class="p-screen-mid">
-                  <div class="p-screen-headline">Gentle, world-class dental & smile design.</div>
-                  <div class="p-screen-sub">Invisalign certified, painless implants, and restorative aesthetic dentistry.</div>
-                </div>
-                <div class="p-screen-foot">
-                  <span class="p-screen-btn">Book Appointment</span>
-                  <span class="p-screen-pill">1,800+ Happy Patients</span>
-                </div>
+              <div>
+                <div class="p-screen-headline">Gentle, world-class dental &amp; smile design.</div>
+                <div class="p-screen-sub">Invisalign certified, painless implants, and restorative aesthetic dentistry.</div>
               </div>
             </div>
           </div>
           <div class="p-body">
-            <div class="p-meta">
-              <span class="p-cat">Clinics & Doctors</span>
-              <span class="p-score">#1 Google Search Rank</span>
-            </div>
-            <h3 class="p-title">Dr. Nambiar Dental & Aesthetics</h3>
-            <div class="p-tagline">Cosmetic Dentistry, Clear Aligners & Implants</div>
+            <h3 class="p-title">Dr. Nambiar Dental &amp; Aesthetics</h3>
+            <div class="p-tagline">Cosmetic Dentistry, Clear Aligners &amp; Implants</div>
             <p class="p-desc">A calming, high-trust healthcare portal engineered to eliminate patient dental anxiety and streamline consultation bookings. Includes before/after treatment transformations, doctor credentials, and an instant 2-step slot picker.</p>
-            
-            <div class="p-metrics">
-              <div class="p-metric-item">
-                <b>+120</b>
-                <span>Monthly new patients</span>
-              </div>
-              <div class="p-metric-item">
-                <b>#1 Rank</b>
-                <span>Local dental searches</span>
-              </div>
-              <div class="p-metric-item">
-                <b>98%</b>
-                <span>Patient show-up rate</span>
-              </div>
-            </div>
-
-            <div class="p-tags">
-              <span class="p-tag">Slot Booking Engine</span>
-              <span class="p-tag">Before/After Slider</span>
-              <span class="p-tag">Local SEO Schema</span>
-              <span class="p-tag">Direct Doctor Call</span>
-            </div>
-
-            <div class="p-actions">
-              <button class="btn btn-wa btn-sm view-modal-btn" data-id="nambiar">View Case Study</button>
-              <a class="btn btn-ink btn-sm" data-wa-project="Dr. Nambiar Dental Clinic" href="#">Get a site like this →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 4: Kavya Botanicals -->
-        <article class="p-card" data-category="retail" data-id="kavya">
-          <div class="p-frame">
-            <div class="p-frame-bar">
-              <div class="p-frame-dots"><i></i><i></i><i></i></div>
-              <div class="p-frame-url">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                https://kavyabotanicals.com
-              </div>
-              <span class="p-frame-badge">E-Commerce</span>
-            </div>
-            <div class="p-screen" style="background:#26241b">
-              <div class="p-screen-bg" style="background:linear-gradient(135deg, #1e261d 0%, #303e2e 50%, #4a5c47 100%);"></div>
-              <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(25,32,24,.35) 0%, rgba(25,32,24,.88) 100%);"></div>
-              <div class="p-screen-content">
-                <div class="p-screen-top">
-                  <div class="p-screen-logo"><span>🌿</span> KAVYA BOTANICALS</div>
-                  <span class="p-screen-tag">100% Ayurvedic</span>
-                </div>
-                <div class="p-screen-mid">
-                  <div class="p-screen-headline">Farm-to-skin cold pressed herbal remedies.</div>
-                  <div class="p-screen-sub">Traditional Kerala herbal oils, wild-harvested herbs, zero preservatives.</div>
-                </div>
-                <div class="p-screen-foot">
-                  <span class="p-screen-btn">Shop Essentials →</span>
-                  <span class="p-screen-pill">Free Shipping Pan-India</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="p-body">
-            <div class="p-meta">
-              <span class="p-cat">E-Commerce & Retail</span>
-              <span class="p-score">+38% Order Value</span>
-            </div>
-            <h3 class="p-title">Kavya Botanicals Herbals</h3>
-            <div class="p-tagline">Artisanal Ayurvedic Skincare & Wellness Formulations</div>
-            <p class="p-desc">Designed to tell an authentic brand heritage story while driving repeat direct-to-consumer sales. Features an interactive skin quiz, transparent ingredient breakdown cards, and swift checkout with UPI, Cards, and WhatsApp ordering.</p>
-            
-            <div class="p-metrics">
-              <div class="p-metric-item">
-                <b>+38%</b>
-                <span>Average order value</span>
-              </div>
-              <div class="p-metric-item">
-                <b>1.2s</b>
-                <span>Checkout speed</span>
-              </div>
-              <div class="p-metric-item">
-                <b>4.8★</b>
-                <span>1,200+ Verified reviews</span>
-              </div>
-            </div>
-
-            <div class="p-tags">
-              <span class="p-tag">UPI & Razorpay Ready</span>
-              <span class="p-tag">WhatsApp 1-Click Order</span>
-              <span class="p-tag">Ingredient Spotlight</span>
-              <span class="p-tag">Speed Optimized</span>
-            </div>
-
-            <div class="p-actions">
-              <button class="btn btn-wa btn-sm view-modal-btn" data-id="kavya">View Case Study</button>
-              <a class="btn btn-ink btn-sm" data-wa-project="Kavya Botanicals" href="#">Get a site like this →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 5: Apex Global Logistics -->
-        <article class="p-card" data-category="agency" data-id="apex">
-          <div class="p-frame">
-            <div class="p-frame-bar">
-              <div class="p-frame-dots"><i></i><i></i><i></i></div>
-              <div class="p-frame-url">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                https://apexlogistics.co
-              </div>
-              <span class="p-frame-badge">B2B Services</span>
-            </div>
-            <div class="p-screen" style="background:#111c2a">
-              <div class="p-screen-bg" style="background:linear-gradient(135deg, #0d1a29 0%, #152d47 50%, #20456d 100%);"></div>
-              <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(13,26,41,.4) 0%, rgba(13,26,41,.88) 100%);"></div>
-              <div class="p-screen-content">
-                <div class="p-screen-top">
-                  <div class="p-screen-logo"><span>🚢</span> APEX LOGISTICS</div>
-                  <span class="p-screen-tag">Global Multimodal</span>
-                </div>
-                <div class="p-screen-mid">
-                  <div class="p-screen-headline">End-to-end maritime cargo and freight forwarding.</div>
-                  <div class="p-screen-sub">Connecting Indian exporters to Middle East, Europe, and Americas with live tracking.</div>
-                </div>
-                <div class="p-screen-foot">
-                  <span class="p-screen-btn">Instant Cargo Quote</span>
-                  <span class="p-screen-pill">ISO 9001:2015 Certified</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="p-body">
-            <div class="p-meta">
-              <span class="p-cat">Agencies & Services</span>
-              <span class="p-score">₹4.2 Cr Inquiries</span>
-            </div>
-            <h3 class="p-title">Apex Global Logistics & Freight</h3>
-            <div class="p-tagline">Multimodal Supply Chain & Container Shipping Solutions</div>
-            <p class="p-desc">A high-credibility corporate website built to win high-ticket B2B shipping contracts. Features an interactive cargo volume calculator, live vessel route schedules, automated quote requests, and instant routing to procurement specialists.</p>
-            
-            <div class="p-metrics">
-              <div class="p-metric-item">
-                <b>₹4.2 Cr+</b>
-                <span>Qualified quotes</span>
-              </div>
-              <div class="p-metric-item">
-                <b>48%</b>
-                <span>Faster RFQ turnaround</span>
-              </div>
-              <div class="p-metric-item">
-                <b>99.9%</b>
-                <span>Uptime reliability</span>
-              </div>
-            </div>
-
-            <div class="p-tags">
-              <span class="p-tag">Instant Quote RFQ</span>
-              <span class="p-tag">Container Route Finder</span>
-              <span class="p-tag">Enterprise CRM Sync</span>
-              <span class="p-tag">Fast CDN Delivery</span>
-            </div>
-
-            <div class="p-actions">
-              <button class="btn btn-wa btn-sm view-modal-btn" data-id="apex">View Case Study</button>
-              <a class="btn btn-ink btn-sm" data-wa-project="Apex Global Logistics" href="#">Get a site like this →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 6: Studio Nine Creative -->
-        <article class="p-card" data-category="agency" data-id="studionine">
-          <div class="p-frame">
-            <div class="p-frame-bar">
-              <div class="p-frame-dots"><i></i><i></i><i></i></div>
-              <div class="p-frame-url">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                https://studionine.agency
-              </div>
-              <span class="p-frame-badge">Creative Agency</span>
-            </div>
-            <div class="p-screen" style="background:#131313">
-              <div class="p-screen-bg" style="background:linear-gradient(135deg, #111111 0%, #1f1f1f 50%, #2f2f2f 100%);"></div>
-              <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(17,17,17,.4) 0%, rgba(17,17,17,.9) 100%);"></div>
-              <div class="p-screen-content">
-                <div class="p-screen-top">
-                  <div class="p-screen-logo"><span>⚡</span> STUDIO NINE</div>
-                  <span class="p-screen-tag">Identity & Digital</span>
-                </div>
-                <div class="p-screen-mid">
-                  <div class="p-screen-headline">We create brands that cannot be ignored.</div>
-                  <div class="p-screen-sub">Brand strategy, commercial film, and digital product experiences.</div>
-                </div>
-                <div class="p-screen-foot">
-                  <span class="p-screen-btn" style="background:#d4f85a;color:#111">Book Discovery Call</span>
-                  <span class="p-screen-pill">Selected Works 2026</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="p-body">
-            <div class="p-meta">
-              <span class="p-cat">Agencies & Services</span>
-              <span class="p-score">85% Call Booking Rate</span>
-            </div>
-            <h3 class="p-title">Studio Nine Creative Studio</h3>
-            <div class="p-tagline">Brand Identity, Commercial Video & Web Design</div>
-            <p class="p-desc">An avant-garde dark-mode agency portfolio designed to command premium project retainers. Packed with smooth micro-interactions, full-screen showreel embeds, client case study breakdowns, and integrated Google Meet scheduling.</p>
-            
-            <div class="p-metrics">
-              <div class="p-metric-item">
-                <b>85%</b>
-                <span>Discovery call conversion</span>
-              </div>
-              <div class="p-metric-item">
-                <b>3x</b>
-                <span>Average client retainer</span>
-              </div>
-              <div class="p-metric-item">
-                <b>Awwwards</b>
-                <span>Honorable Mention</span>
-              </div>
-            </div>
-
-            <div class="p-tags">
-              <span class="p-tag">Dark Mode Aesthetic</span>
-              <span class="p-tag">Video Showreel Player</span>
-              <span class="p-tag">Google Meet Booking</span>
-              <span class="p-tag">Custom Typography</span>
-            </div>
-
-            <div class="p-actions">
-              <button class="btn btn-wa btn-sm view-modal-btn" data-id="studionine">View Case Study</button>
-              <a class="btn btn-ink btn-sm" data-wa-project="Studio Nine Creative" href="#">Get a site like this →</a>
-            </div>
           </div>
         </article>
 
@@ -673,11 +378,99 @@
     </div>
   </section>
 
+  <!-- Recent projects -->
+  <section id="recent-sec" style="padding-top:8px">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>Recent projects</h2>
+          <p>More websites shipped for growing businesses</p>
+        </div>
+      </div>
+      <div class="p-grid" id="portfolio-grid-2">
+
+        <!-- Project 4: Kavya Botanicals -->
+        <article class="p-card" data-category="retail" data-id="kavya">
+          <div class="p-screen" style="background:#26241b">
+            <div class="p-screen-bg" style="background:linear-gradient(135deg, #1e261d 0%, #303e2e 50%, #4a5c47 100%);"></div>
+            <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(25,32,24,.3) 0%, rgba(25,32,24,.88) 100%);"></div>
+            <div class="p-screen-content">
+              <div class="p-screen-top">
+                <div class="p-screen-logo"><span>🌿</span> KAVYA BOTANICALS</div>
+                <span class="p-screen-tag">100% Ayurvedic</span>
+              </div>
+              <div>
+                <div class="p-screen-headline">Farm-to-skin cold pressed herbal remedies.</div>
+                <div class="p-screen-sub">Traditional Kerala herbal oils, wild-harvested herbs, zero preservatives.</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-body">
+            <h3 class="p-title">Kavya Botanicals Herbals</h3>
+            <div class="p-tagline">Artisanal Ayurvedic Skincare &amp; Wellness Formulations</div>
+            <p class="p-desc">Designed to tell an authentic brand heritage story while driving repeat direct-to-consumer sales. Features an interactive skin quiz, transparent ingredient breakdown cards, and swift checkout with UPI, Cards, and WhatsApp ordering.</p>
+          </div>
+        </article>
+
+        <!-- Project 5: Apex Global Logistics -->
+        <article class="p-card" data-category="agency" data-id="apex">
+          <div class="p-screen" style="background:#111c2a">
+            <div class="p-screen-bg" style="background:linear-gradient(135deg, #0d1a29 0%, #152d47 50%, #20456d 100%);"></div>
+            <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(13,26,41,.35) 0%, rgba(13,26,41,.88) 100%);"></div>
+            <div class="p-screen-content">
+              <div class="p-screen-top">
+                <div class="p-screen-logo"><span>🚢</span> APEX LOGISTICS</div>
+                <span class="p-screen-tag">Global Multimodal</span>
+              </div>
+              <div>
+                <div class="p-screen-headline">End-to-end maritime cargo and freight forwarding.</div>
+                <div class="p-screen-sub">Connecting Indian exporters to Middle East, Europe, and Americas with live tracking.</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-body">
+            <h3 class="p-title">Apex Global Logistics &amp; Freight</h3>
+            <div class="p-tagline">Multimodal Supply Chain &amp; Container Shipping Solutions</div>
+            <p class="p-desc">A high-credibility corporate website built to win high-ticket B2B shipping contracts. Features an interactive cargo volume calculator, live vessel route schedules, automated quote requests, and instant routing to procurement specialists.</p>
+          </div>
+        </article>
+
+        <!-- Project 6: Studio Nine Creative -->
+        <article class="p-card" data-category="agency" data-id="studionine">
+          <div class="p-screen" style="background:#131313">
+            <div class="p-screen-bg" style="background:linear-gradient(135deg, #111111 0%, #1f1f1f 50%, #2f2f2f 100%);"></div>
+            <div class="p-screen-overlay" style="background:linear-gradient(180deg, rgba(17,17,17,.35) 0%, rgba(17,17,17,.9) 100%);"></div>
+            <div class="p-screen-content">
+              <div class="p-screen-top">
+                <div class="p-screen-logo"><span>⚡</span> STUDIO NINE</div>
+                <span class="p-screen-tag">Identity &amp; Digital</span>
+              </div>
+              <div>
+                <div class="p-screen-headline">We create brands that cannot be ignored.</div>
+                <div class="p-screen-sub">Brand strategy, commercial film, and digital product experiences.</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-body">
+            <h3 class="p-title">Studio Nine Creative Studio</h3>
+            <div class="p-tagline">Brand Identity, Commercial Video &amp; Web Design</div>
+            <p class="p-desc">An avant-garde dark-mode agency portfolio designed to command premium project retainers. Packed with smooth micro-interactions, full-screen showreel embeds, client case study breakdowns, and integrated Google Meet scheduling.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="p-empty" id="p-empty">
+        No projects match your search. <b>Try a different industry or keyword.</b>
+      </div>
+    </div>
+  </section>
+
   <!-- Risk-Free Guarantee Banner -->
-  <section style="padding:0">
+  <section style="padding-top:8px">
     <div class="wrap">
       <div class="p-guarantee">
-        <span class="eyebrow" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:#fff"><i></i> Risk-free UpSquad Guarantee</span>
+        <span class="eyebrow" style="background:rgba(255,255,255,.06);border-color:var(--line-2);color:var(--ink-2)"><i></i> Risk-free UpSquad Guarantee</span>
         <h2>Love your website, or get a 100% full refund.</h2>
         <p>Every website begins with a small deposit. We research your competitors, write your copy, craft custom designs, and build your site. If you do not love the final website, we refund your full deposit amount. Starting from ₹10,000.</p>
         <div class="cta-row">
@@ -698,17 +491,17 @@
         <h3 id="modal-title">Project Name</h3>
       </div>
       <button class="modal-close" id="modal-close" aria-label="Close case study modal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor"/></svg>
       </button>
     </div>
     <div class="modal-body">
       <div class="modal-section">
-        <h4>The Client & Challenge</h4>
+        <h4>The Client &amp; Challenge</h4>
         <p id="modal-challenge">Description of the problem the client faced before UpSquad rebuilt their website.</p>
       </div>
 
       <div class="modal-section">
-        <h4>Our Strategy & Design Solution</h4>
+        <h4>Our Strategy &amp; Design Solution</h4>
         <p id="modal-solution">How UpSquad researched, restructured, and designed the new digital experience.</p>
       </div>
 
@@ -717,7 +510,7 @@
         <ul class="modal-list" id="modal-deliverables">
           <li>Custom responsive website design</li>
           <li>Conversion-focused copywriting</li>
-          <li>Direct WhatsApp integration & lead capture</li>
+          <li>Direct WhatsApp integration &amp; lead capture</li>
           <li>SEO schema markup and speed optimization</li>
         </ul>
       </div>
@@ -732,7 +525,7 @@
         <span style="font-size:13px;color:var(--muted);display:block">Ready for a similar transformation?</span>
         <strong style="font-size:15px;color:var(--ink)">Full refund guarantee applies</strong>
       </div>
-      <a class="btn btn-ink btn-sm" id="modal-cta-btn" href="#">Get a website like this →</a>
+      <a class="btn btn-accent btn-sm" id="modal-cta-btn" href="#">Get a website like this →</a>
     </div>
   </div>
 </div>
@@ -741,31 +534,33 @@
 <footer class="site-foot" id="footer">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="brand" href="/sites/"><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> Sites <small>by UpSquad</small></a>
+      <a class="brand" href="/sites/"><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#0A0A0A"/></svg></span> Sites <small>by UpSquad</small></a>
       <h3>We charge only if you like the website.</h3>
       <p>Business websites from ₹10,000 onwards — planned with you, built for your customers, risk-free with a full amount refund.</p>
-      <a class="btn btn-ink btn-sm" href="/sites/#consult" id="footer-consult">Book free consultation</a>
+      <a class="btn btn-accent btn-sm" href="/sites/#consult" id="footer-consult">Book free consultation</a>
       <div class="legal">© <span id="yr">2026</span> UpSquad · Built with care in Kerala, India by <a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad</a></div>
     </div>
     <div class="foot-col">
       <h4>Sites</h4>
       <ul>
         <li><a href="/sites/">Sites Home</a></li>
-        <li><a href="/sites/portfolio/">Portfolio & Works</a></li>
+        <li><a href="/sites/portfolio/">Portfolio &amp; Works</a></li>
         <li><a href="/sites/#why">Why Sites</a></li>
         <li><a href="/sites/#included">What's included</a></li>
-        <li><a href="/sites/#pricing">Pricing & hosting</a></li>
+        <li><a href="/sites/#pricing">Pricing &amp; hosting</a></li>
         <li><a href="/sites/#faq">FAQ</a></li>
       </ul>
     </div>
     <div class="foot-col">
       <h4>Industries We Serve</h4>
       <ul>
-        <li><a href="#" data-filter-trigger="dining">Restaurants & Cafés</a></li>
-        <li><a href="#" data-filter-trigger="health">Clinics & Healthcare</a></li>
-        <li><a href="#" data-filter-trigger="realty">Real Estate & Living</a></li>
-        <li><a href="#" data-filter-trigger="retail">E-Commerce & Brands</a></li>
-        <li><a href="#" data-filter-trigger="agency">Agencies & Corporate</a></li>
+        <li><a href="#" data-filter-trigger="dining">Restaurants &amp; Cafés</a></li>
+        <li><a href="#" data-filter-trigger="health">Clinics &amp; Healthcare</a></li>
+        <li><a href="#" data-filter-trigger="realty">Real Estate &amp; Living</a></li>
+        <li><a href="#" data-filter-trigger="retail">E-Commerce &amp; Brands</a></li>
+        <li><a href="#" data-filter-trigger="agency">Agencies &amp; Corporate</a></li>
+        <li><a href="#" data-filter-trigger="banking">Banking &amp; Education</a></li>
+        <li><a href="#" data-filter-trigger="saas">SaaS &amp; Software</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -780,25 +575,37 @@
 </footer>
 
 <script>
-  // Dynamic host detection: adapt internal links for subdomain vs subpath mode
+  // Dynamic host detection: adapt internal links for subdomain vs subpath mode.
+  // Subpath mode only applies when the page is actually served under /sites/;
+  // root-served copies (local dev, subdomain) use root-relative links.
   const isSubdomain = location.hostname.startsWith('sites.') || location.hostname === 'sites.localhost';
-  const basePath = isSubdomain ? '' : '/sites';
+  const onSubpath = !isSubdomain && location.pathname.startsWith('/sites');
+  const rootMode = isSubdomain || !onSubpath;
 
   function fixLinks() {
-    const homeLink = isSubdomain ? '/' : '/sites/';
-    const portfolioLink = isSubdomain ? '/portfolio/' : '/sites/portfolio/';
-    const consultLink = isSubdomain ? '/#consult' : '/sites/#consult';
+    const homeLink = rootMode ? '/' : '/sites/';
+    const portfolioLink = rootMode ? '/portfolio/' : '/sites/portfolio/';
+    const consultLink = rootMode ? '/#consult' : '/sites/#consult';
 
     const brand = document.getElementById('nav-brand'); if (brand) brand.href = homeLink;
     const navHome = document.getElementById('nav-home'); if (navHome) navHome.href = homeLink;
     const navPort = document.getElementById('nav-portfolio'); if (navPort) navPort.href = portfolioLink;
-    const navWhy = document.getElementById('nav-why'); if (navWhy) navWhy.href = isSubdomain ? '/#why' : '/sites/#why';
-    const navInc = document.getElementById('nav-included'); if (navInc) navInc.href = isSubdomain ? '/#included' : '/sites/#included';
-    const navPrc = document.getElementById('nav-pricing'); if (navPrc) navPrc.href = isSubdomain ? '/#pricing' : '/sites/#pricing';
-    const navFaq = document.getElementById('nav-faq'); if (navFaq) navFaq.href = isSubdomain ? '/#faq' : '/sites/#faq';
+    const navWhy = document.getElementById('nav-why'); if (navWhy) navWhy.href = homeLink + '#why';
+    const navInc = document.getElementById('nav-included'); if (navInc) navInc.href = homeLink + '#included';
+    const navPrc = document.getElementById('nav-pricing'); if (navPrc) navPrc.href = homeLink + '#pricing';
+    const navFaq = document.getElementById('nav-faq'); if (navFaq) navFaq.href = homeLink + '#faq';
     const navCons = document.getElementById('nav-consult'); if (navCons) navCons.href = consultLink;
     const guarCons = document.getElementById('guarantee-consult'); if (guarCons) guarCons.href = consultLink;
     const footCons = document.getElementById('footer-consult'); if (footCons) footCons.href = consultLink;
+
+    // Footer nav links (Sites Home, Portfolio & Works, hash anchors)
+    document.querySelectorAll('.foot-col a').forEach(a => {
+      const href = a.getAttribute('href');
+      if (href === '/sites/') a.href = homeLink;
+      else if (href === '/sites/portfolio/') a.href = portfolioLink;
+      else if (href && href.startsWith('/sites/#')) a.href = rootMode ? href.slice('/sites'.length) : href;
+    });
+    const footBrand = document.querySelector('.foot-brand .brand'); if (footBrand) footBrand.href = homeLink;
   }
   fixLinks();
 
@@ -819,9 +626,36 @@
     a.href = waUrl(`Hi UpSquad, I loved your work on "${project}" on the Sites portfolio. Can we discuss a similar website for my business?`);
   });
 
-  // Category Filtering
+  // ---------- Search + category filtering (community directory style) ----------
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.p-card');
+  const searchInput = document.getElementById('portfolio-search');
+  const standoutsSec = document.getElementById('standouts-sec');
+  const recentSec = document.getElementById('recent-sec');
+  const emptyState = document.getElementById('p-empty');
+
+  let activeFilter = 'all';
+
+  function applyFilters() {
+    const q = (searchInput.value || '').trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const catOk = activeFilter === 'all' || card.dataset.category === activeFilter;
+      const textOk = !q || card.textContent.toLowerCase().includes(q);
+      const show = catOk && textOk;
+      card.hidden = !show;
+      if (show) visibleCount++;
+    });
+
+    // Hide a whole section when none of its cards match
+    const standoutsVisible = [...standoutsSec.querySelectorAll('.p-card')].some(c => !c.hidden);
+    const recentVisible = [...recentSec.querySelectorAll('.p-card')].some(c => !c.hidden);
+    standoutsSec.hidden = !standoutsVisible;
+    recentSec.hidden = !recentVisible;
+
+    emptyState.classList.toggle('show', visibleCount === 0);
+  }
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -831,17 +665,15 @@
       });
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
-
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      activeFilter = btn.dataset.filter;
+      applyFilters();
     });
   });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', applyFilters);
+    searchInput.addEventListener('search', applyFilters); // clear (×) on WebKit
+  }
 
   // Footer category trigger links
   document.querySelectorAll('[data-filter-trigger]').forEach(a => {
@@ -851,7 +683,7 @@
       const targetBtn = document.querySelector(`.filter-btn[data-filter="${cat}"]`);
       if (targetBtn) {
         targetBtn.click();
-        document.getElementById('portfolio-grid').scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('.p-hero').scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
@@ -947,6 +779,51 @@
       ],
       quote: '"Our discovery call booking rate is at 85%, and clients come into meetings already convinced of our creative caliber."',
       author: 'Rohan Thomas · Creative Director, Studio Nine'
+    },
+    edb: {
+      title: 'EDB Business Lab 2025 Showcase',
+      badge: 'Banking & Education',
+      challenge: 'The EDB Business Lab designs lived inside Figma behind a login wall, so stakeholders and the public could not open a link, view the full design, or click through pages like a real website.',
+      solution: 'UpSquad exported every page from EDB-2025-V3.1 and built a shareable click-through showcase site — one link that walks visitors through Home, Courses, Mentors, Events, Partner Offers, Podcast and Contact with keyboard, nav and Prev/Next controls.',
+      deliverables: [
+        'Single shareable link — no Figma login needed',
+        'Click-through walkthrough of every EDB page with Prev / Next and keyboard navigation',
+        'Faithful full-page design exports: courses, mentor booking, events, offers, podcast',
+        'Mobile and desktop friendly browsing with fast static hosting',
+        'Ready to present to stakeholders, partners and the public'
+      ],
+      quote: '"Open the link, view the design, click through — the whole platform in one place."',
+      author: 'Sites by UpSquad · EDB showcase'
+    },
+    squadpayroll: {
+      title: 'SquadPayroll',
+      badge: 'SaaS & Software',
+      challenge: 'Small businesses ran attendance in one app (or on paper) and payroll in spreadsheets — statutory deductions, payslips and compliance took days every month and errors were common.',
+      solution: 'UpSquad built SquadPayroll as a live SaaS product: local-first attendance plus a one-click monthly payroll module with salary structures, PF/ESI deductions, instant payslips, a license console and cloud subscriptions billed via Razorpay.',
+      deliverables: [
+        'Marketing landing site plus web app, admin console and employee portal',
+        'One-click monthly payroll with salary structures and statutory deductions',
+        'Offline license server plus cloud subscription tier with Supabase Auth',
+        'Razorpay billing for licenses and recurring subscriptions',
+        'Deployed on own infrastructure with dedicated licensing API'
+      ],
+      quote: '"Run payroll in one click."',
+      author: 'UpSquad · SquadPayroll product team'
+    },
+    upsquad: {
+      title: 'UpSquad Connect',
+      badge: 'Agencies & Services',
+      challenge: 'Brands needed flexible access to vetted talent without the cost and complexity of traditional hiring — across content, marketing, tech, accounts and more.',
+      solution: 'UpSquad designed and built its own company platform around three ways to work: subscribe to a dedicated squad, order one-off assignments, or hire vetted talent directly — with product showcases, waitlist signup and WhatsApp contact.',
+      deliverables: [
+        'Company website with subscriptions, assignments and hiring flows',
+        'Squad and product showcase pages with early-access waitlist',
+        'WhatsApp-first contact and consultation booking',
+        'Sub-brand pages including SheHeal and partner programs',
+        'SEO schema markup and speed optimization'
+      ],
+      quote: '"Subscribing is better than hiring."',
+      author: 'UpSquad · Brand team'
     }
   };
 

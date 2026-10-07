@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDB Business Lab 2025 V3.1 — Click-through Design Showcase — Sites by UpSquad</title>
+<meta name="description" content="Open the link, view the full EDB Business Lab website design, and click through Home, Courses, Mentors, Events, Partner Offers, Podcast and Contact.">
+<style>
+:root{
+  --bg:#E9EEF3; --card:#fff; --ink:#101828; --ink2:#344054; --muted:#667085;
+  --line:rgba(16,24,40,.1); --edb:#1B2AA5; --edb-dark:#101B6B; --accent:#FF7A1A;
+  --navy:#0C1023; --pill:999px; --r:18px;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 16px 48px -16px rgba(16,24,40,.25);
+  --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.topbar{position:sticky;top:0;z-index:60;background:rgba(12,16,35,.94);color:#fff;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
+.topbar-in{max-width:1320px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px}
+.topbar .brand .mark{width:26px;height:26px;border-radius:8px;background:#fff;color:#111;display:grid;place-items:center;font-weight:800}
+.topbar .sub{font-size:12.5px;color:rgba(255,255,255,.7)}
+.topbar .sp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:var(--pill);font-weight:700;font-size:13.5px;border:1px solid transparent;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn-light{background:#fff;color:#111}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.18)}
+.btn-ghost:hover{background:rgba(255,255,255,.18)}
+.btn-edb{background:var(--edb);color:#fff}
+.shell{max-width:1320px;margin:0 auto;padding:22px 20px 60px}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:8px 0 16px}
+.hero h1{margin:6px 0 0;font-size:clamp(28px,4vw,44px);letter-spacing:-.04em;line-height:1.02}
+.hero p{margin:10px 0 0;color:var(--ink2);max-width:680px;font-size:15.5px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--edb);background:#fff;border:1px solid var(--line);border-radius:var(--pill);padding:6px 12px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:#12B76A}
+.count{font-size:12.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+/* EDB browser frame */
+.browser{background:#0f0f12;color:#fff;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.14)}
+.b-bar{display:flex;align-items:center;gap:12px;padding:11px 14px;background:#17171c;border-bottom:1px solid rgba(255,255,255,.09);flex-wrap:wrap}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%}.dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.url{flex:1;min-width:200px;background:#0b0b0e;border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:7px 12px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:#d6d5d0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.url b{color:#7ee2a5;font-weight:600}
+.b-actions{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:999px;padding:8px 13px;font-size:13px;font-weight:700;cursor:pointer}
+.chip:hover{background:rgba(255,255,255,.17)}
+.chip.primary{background:#fff;color:#111;border-color:#fff;text-decoration:none}
+/* Fake EDB site nav inside frame */
+.edb-nav{background:#F2F6FA;color:var(--ink);display:flex;align-items:center;gap:4px;padding:12px 18px;border-bottom:1px solid var(--line);overflow-x:auto}
+.edb-logo{font-weight:800;color:var(--edb);font-size:22px;letter-spacing:-.03em;margin-right:14px;white-space:nowrap}
+.edb-logo small{display:block;font-size:9px;color:var(--edb);font-weight:700;letter-spacing:0}
+.edb-nav button{flex:none;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:#344054;padding:8px 12px;border-radius:999px;cursor:pointer}
+.edb-nav button:hover{background:rgba(27,42,165,.08);color:var(--edb)}
+.edb-nav button.active{background:var(--edb);color:#fff}
+.layout{display:grid;grid-template-columns:250px 1fr;background:#fff;color:var(--ink)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.side{border-right:1px solid var(--line);padding:14px;max-height:78vh;overflow:auto}
+@media(max-width:900px){.side{max-height:none;border-right:0;border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto;padding:12px}}
+.side h4{margin:14px 6px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.side h4:first-child{margin-top:2px}
+@media(max-width:900px){.side h4{display:none}}
+.sbtn{display:flex;width:100%;text-align:left;gap:9px;align-items:center;border:1px solid transparent;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink2);padding:9px 11px;border-radius:11px;cursor:pointer;margin-bottom:2px}
+@media(max-width:900px){.sbtn{flex:none;width:auto;white-space:nowrap;border-color:var(--line);background:#fff}}
+.sbtn .n{flex:none;width:22px;height:22px;border-radius:7px;background:#EEF2FF;color:var(--edb);display:grid;place-items:center;font-size:11px;font-weight:800}
+.sbtn:hover{background:#F2F4FF}
+.sbtn.active{background:var(--edb);color:#fff}
+.sbtn.active .n{background:rgba(255,255,255,.2);color:#fff}
+.stage{padding:16px;min-width:0}
+.stage-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.stage-head h2{margin:0;font-size:20px;letter-spacing:-.02em}
+.stage-head p{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+.imgwrap{border:1px solid var(--line);border-radius:14px;overflow:auto;max-height:76vh;background:#F8FAFC;position:relative}
+@media(max-width:900px){.imgwrap{max-height:70vh}.side{position:sticky;top:57px;z-index:5;background:#fff}}
+.imgwrap img{display:block;width:100%;height:auto}
+.loading{position:absolute;inset:0;display:grid;place-items:center;background:#F8FAFC;color:var(--muted);font-weight:700}
+/* All screens grid */
+.all{margin-top:26px}
+.all h2{font-size:clamp(22px,3vw,32px);letter-spacing:-.03em;margin:0}
+.all p{color:var(--ink2);margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;cursor:pointer;transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card .th{aspect-ratio:16/10;overflow:hidden;background:#F2F4F7;border-bottom:1px solid var(--line)}
+.card .th img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.card .bd{padding:14px 16px}
+.card .bd b{display:block;font-size:15px}
+.card .bd span{font-size:12.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.card .bd p{font-size:13.5px;color:var(--ink2);margin:6px 0 0}
+.foot{margin-top:28px;background:var(--navy);color:#fff;border-radius:22px;padding:34px;box-shadow:var(--shadow)}
+.foot h2{margin:0;font-size:clamp(24px,3vw,36px);letter-spacing:-.03em}
+.foot p{color:#C6C9D5;margin:10px 0 0;max-width:62ch}
+.foot .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:14px}
+kbd{background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;font-size:12px;font-family:inherit}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+<div class="brand"><span class="mark">B</span> EDB 2025 V3.1 · Design preview</div>
+<div class="sub">Showcase by <u>Sites by UpSquad</u> — share this link, no Figma login needed</div>
+<div class="sp"></div>
+<a class="btn btn-ghost" href="../work/">← Our work</a>
+<button class="btn btn-light" id="copy-link">Copy share link</button>
+</div></div>
+
+<div class="shell">
+<div class="hero">
+<div>
+<span class="eyebrow"><i></i> Emirates Development Bank · Business Lab</span>
+<h1>Open the link.<br>View the design. Click through.</h1>
+<p>Full-page exports from <b>EDB-2025-V3.1-UpSquad</b>. Use the EDB nav, the screen list, <kbd>←</kbd><kbd>→</kbd> keys, or Prev / Next to walk through every page like the real site.</p>
+</div>
+<div class="count" id="count"></div>
+</div>
+
+<div class="browser">
+<div class="b-bar">
+<div class="dots"><i></i><i></i><i></i></div>
+<div class="url">https://<b>edb.businesslab.ae</b><span id="url-path"> / home</span></div>
+<div class="b-actions">
+<button class="chip" id="prev-btn">← Prev</button>
+<button class="chip" id="next-btn">Next →</button>
+</div>
+</div>
+<div class="edb-nav" id="edb-nav" aria-label="EDB site navigation"></div>
+<div class="layout">
+<aside class="side" id="side"></aside>
+<div class="stage">
+<div class="stage-head">
+<div><h2 id="s-title">Home</h2><p id="s-desc"></p></div>
+<div class="count" id="s-pos"></div>
+</div>
+<div class="imgwrap">
+<div class="loading" id="loading">Loading screen…</div>
+<img id="stage-img" alt="EDB design screen" fetchpriority="high">
+</div>
+<p class="hint">Tip: this is a full-page image export. Scroll inside the frame to see the whole page. Click EDB nav items at the top of the frame to jump pages.</p>
+</div>
+</div>
+</div>
+
+<div class="all">
+<h2>All screens</h2>
+<p>Click any tile to load it in the viewer above. <span id="all-count"></span></p>
+<div class="grid" id="grid"></div>
+</div>
+
+<div class="foot">
+<h2>Like this? We charge only if you like the website.</h2>
+<p>Business websites from ₹10,000 onwards. Start with a deposit, preview your real design on a link like this one, pay the rest only if you love it — else full amount refund.</p>
+<div class="row">
+<a class="btn btn-light" href="../#consult">Book a free consultation →</a>
+<a class="btn btn-ghost" href="../work/">Back to Our work</a>
+</div>
+</div>
+</div>
+
+<script>
+const S = (id,title,file,group,path,desc)=>({id,title,file:"screens/"+file,group,path,desc});
+const SCREENS = [
+  S("home","Home","Home.png","Main pages","/ home","Hero, About EDB SME, mentors strip, partner offers, courses, accelerator, events, testimonials, contact footer."),
+  S("courses","Courses Listing","Courses Listing Page.png","Courses","/ courses","Marketing, Finance and Startup & Leadership course grids with search + category filter."),
+  S("course-detail","Course Detail — Market Research","Course page.png","Courses","/ courses/market-research","Video module player with Overview / Transcript tabs, downloads, resources and external links."),
+  S("enroll","Enroll Now","Entroll Now page.png","Courses","/ courses/enroll","Course enrollment form and checkout entry."),
+  S("mentors","Mentors","Mentors.png","Mentors","/ mentors","Mentor grid with Book now cards and LinkedIn links."),
+  S("mentor-profile","Mentor Profile","Mentor Profile.png","Mentors","/ mentors/profile","Single mentor detail with expertise, availability and booking CTA."),
+  S("mentor-booking","Mentor Booking","Mentor Booking.png","Mentors","/ mentors/book","Booking flow: pick slot, confirm, WhatsApp / meet handoff."),
+  S("events","Events Listing","Events Listing.png","Events","/ events","Upcoming EDB gatherings, workshops and networking cards."),
+  S("event-detail","Event Detail","Events Detailed.png","Events","/ events/detail","Single event agenda, speakers, venue and registration."),
+  S("offers","Partner Offers","Partner Brand.png","Partner offers","/ partner-offers","Exclusive partner brand collaborations for startups & MSMEs."),
+  S("offer-detail","Offer Detail","Detailed page for offer.png","Partner offers","/ partner-offers/detail","Single offer breakdown with eligibility and redemption steps."),
+  S("offer-form","Offer Form","Offer Form.png","Partner offers","/ partner-offers/apply","Offer application form with contact and business details."),
+  S("podcast","EDB Podcast","Podcast.png","Content","/ podcast","Podcast episodes, hosts and listen / subscribe actions."),
+  S("contact","Contact Us","Contact Us.png","Content","/ contact","Contact form, head-office address, businesslab@edb.gov.ae and 800 27 274."),
+  S("mobile","Mobile view","Mobile.png","Content","/ mobile","Responsive stacked layout reference for small screens."),
+  S("login","Login","Login.png","Auth","/ login","Base login screen."),
+  S("login-1","Login step 1","Login-1.png","Auth","/ login/1","Auth step variant."),
+  S("login-2","Login step 2","Login-2.png","Auth","/ login/2","Auth step variant."),
+  S("login-3","Login step 3","Login-3.png","Auth","/ login/3","Auth step variant."),
+  S("login-cancelled","Login cancelled","Login cancelled.png","Auth","/ login/cancelled","Cancelled state."),
+  S("login-cancelled-1","Login cancelled alt","Login cancelled-1.png","Auth","/ login/cancelled-alt","Cancelled state variant."),
+  S("dashboard","User Dashboard","User Profile/Dashboard.png","User profile","/ profile/dashboard","Member dashboard overview."),
+  S("dashboard-1","Dashboard alt 1","User Profile/Dashboard-1.png","User profile","/ profile/dashboard-1","Dashboard variant."),
+  S("dashboard-2","Dashboard alt 2","User Profile/Dashboard-2.png","User profile","/ profile/dashboard-2","Dashboard variant."),
+  S("g140","Component — Group 140","Group 140.png","Components","/ components/140","Small UI component export."),
+  S("g141","Component — Group 141","Group 141.png","Components","/ components/141","Small UI component export.")
+];
+// EDB top nav mapping (mimics real site IA)
+const NAV = [
+  ["Home","home"],["Courses","courses"],["Mentors","mentors"],["Events","events"],
+  ["Partner Offers","offers"],["EDB Podcast","podcast"],["Contact Us","contact"]
+];
+const $ = id=>document.getElementById(id);
+const img=$("stage-img"), side=$("side"), nav=$("edb-nav"), grid=$("grid");
+let idx=0;
+const enc = p=>p.split("/").map(encodeURIComponent).join("/");
+function renderNav(){
+  nav.innerHTML="";
+  const logo=document.createElement("div"); logo.className="edb-logo"; logo.innerHTML="EDB<small>Emirates Development Bank</small>";
+  nav.appendChild(logo);
+  NAV.forEach(([label,id])=>{
+    const b=document.createElement("button");
+    b.textContent=label;
+    const s=SCREENS.findIndex(x=>x.id===id);
+    if(SCREENS[idx].id===id) b.classList.add("active");
+    b.onclick=()=>show(s);
+    nav.appendChild(b);
+  });
+}
+function renderSide(){
+  side.innerHTML="";
+  let lastGroup="";
+  SCREENS.forEach((s,i)=>{
+    if(s.group!==lastGroup){ lastGroup=s.group; const h=document.createElement("h4"); h.textContent=s.group; side.appendChild(h); }
+    const b=document.createElement("button");
+    b.className="sbtn"+(i===idx?" active":"");
+    b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+s.title+'</span>';
+    b.onclick=()=>{show(i); document.querySelector(".browser").scrollIntoView({behavior:"smooth",block:"start"});};
+    side.appendChild(b);
+  });
+}
+function renderGrid(){
+  grid.innerHTML="";
+  SCREENS.forEach((s,i)=>{
+    const c=document.createElement("article"); c.className="card";
+    c.innerHTML='<div class="th"><img loading="lazy" alt=""></div><div class="bd"><span></span><b></b><p></p></div>';
+    const im=c.querySelector("img"); im.src=enc(s.file); im.alt=s.title;
+    c.querySelector("span").textContent=s.group+" · "+(i+1)+"/"+SCREENS.length;
+    c.querySelector("b").textContent=s.title;
+    c.querySelector("p").textContent=s.desc||"";
+    c.onclick=()=>{show(i); window.scrollTo({top:0,behavior:"smooth"}); document.querySelector(".browser").scrollIntoView({behavior:"smooth"});};
+    grid.appendChild(c);
+  });
+  $("all-count").textContent="— "+SCREENS.length+" screens.";
+}
+function show(i){
+  idx=(i+SCREENS.length)%SCREENS.length;
+  const s=SCREENS[idx];
+  $("loading").style.display="grid";
+  img.onload=()=>{$("loading").style.display="none";};
+  img.onerror=()=>{$("loading").textContent="Image missing: "+s.file;};
+  img.src=enc(s.file); img.alt=s.title+" — EDB design screen";
+  $("s-title").textContent=s.title;
+  $("s-desc").textContent=s.desc||"";
+  $("url-path").textContent=" "+s.path;
+  $("s-pos").textContent=(idx+1)+" / "+SCREENS.length;
+  renderNav(); renderSide();
+  const u=new URL(location.href); u.searchParams.set("screen",s.id);
+  history.replaceState(null,"",u.toString());
+  // preload neighbours
+  [1,-1].forEach(o=>{const n=SCREENS[(idx+o+SCREENS.length)%SCREENS.length]; const p=new Image(); p.src=enc(n.file);});
+}
+$("prev-btn").onclick=()=>show(idx-1);
+$("next-btn").onclick=()=>show(idx+1);
+addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") show(idx+1);
+  if(e.key==="ArrowLeft") show(idx-1);
+});
+$("copy-link").onclick=async e=>{
+  const b=e.currentTarget;
+  try{await navigator.clipboard.writeText(location.href); b.textContent="Link copied ✓";}
+  catch{prompt("Copy this link:",location.href);}
+  setTimeout(()=>b.textContent="Copy share link",1800);
+};
+(function init(){
+  $("count").textContent=SCREENS.length+" screens";
+  const q=new URLSearchParams(location.search).get("screen");
+  const at=SCREENS.findIndex(s=>s.id===q);
+  renderGrid(); show(at>=0?at:0);
+})();
+</script>
+</body>
+</html>
