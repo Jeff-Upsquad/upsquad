@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hushnet — A network that can't see you</title>
+<meta name="description" content="Hushnet is a split-trust network for remote work. Nameless accounts, sealed traffic, verified exits.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141412'/%3E%3Cpath d='M20 44V20h5.5v9.2c1.8-2.2 4.4-3.5 7.5-3.5 5.2 0 8.5 3.6 8.5 9v9.3h-5.5v-8.6c0-2.6-1.3-4.3-3.8-4.3-2.3 0-4 1.6-4.5 3.8v9.1z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBFBF9; --card:#FFFFFF; --tint:#F2F3EF;
+  --ink:#141412; --muted:#61615C; --faint:#9A9A94;
+  --line:rgba(20,20,18,.1); --line2:rgba(20,20,18,.18);
+  --accent:#2547FF; --accent-soft:#EBEFFE; --accent-ink:#1A33C4;
+  --r:16px; --pill:999px;
+  --shadow:0 1px 2px rgba(20,20,18,.05),0 16px 40px -24px rgba(20,20,18,.18);
+  --font:"Inter Tight",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --serif:"Newsreader",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+::selection{background:var(--ink);color:#fff}
+.wrap{width:min(1080px,calc(100% - 48px));margin-inline:auto}
+.wrap-n{width:min(760px,calc(100% - 48px));margin-inline:auto}
+section{padding:88px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+@media(max-width:720px){section{padding:64px 0}}
+.kicker{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:20px;height:1px;background:var(--faint)}
+h1,h2{margin:0;letter-spacing:-.035em;line-height:1.02;font-weight:600}
+h1{font-size:clamp(40px,5.6vw,68px);text-wrap:balance}
+h2{font-size:clamp(28px,3.6vw,44px);text-wrap:balance}
+.lede{color:var(--muted);font-size:clamp(16px,1.4vw,18.5px);max-width:620px}
+.center{text-align:center}.center .lede{margin:16px auto 0}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-ink)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-quiet{background:var(--card);border-color:var(--line2);color:var(--ink)}
+.btn-quiet:hover{background:var(--tint)}
+.btn-sm{padding:9px 16px;font-size:14px;border-radius:9px}
+/* top note */
+.topnote{font-family:var(--mono);font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);background:var(--card)}
+.topnote .wrap{display:flex;justify-content:space-between;gap:12px;padding-top:9px;padding-bottom:9px}
+.topnote a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,251,249,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:16px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+.nav-links{display:flex;gap:2px;margin-inline:auto}
+.nav-links a{padding:8px 13px;border-radius:8px;font-size:14px;color:#3E3E3A}
+.nav-links a:hover{background:var(--tint);color:var(--ink)}
+.nav-cta{display:flex;gap:8px;margin-left:auto}
+.burger{display:none;border:1px solid var(--line2);background:#fff;border-radius:9px;width:40px;height:40px}
+@media(max-width:940px){.nav-links{display:none}.burger{display:block}.nav-cta .hide-m{display:none}}
+.mobile-menu{display:none;border-top:1px solid var(--line);padding:8px 20px 16px;background:var(--bg)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:11px 4px;font-weight:500;border-bottom:1px solid var(--line)}
+/* hero calm centered */
+.hero{padding:72px 0 40px;text-align:center;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(72% 60% at 50% 20%,#000 40%,transparent 78%);-webkit-mask-image:radial-gradient(72% 60% at 50% 20%,#000 40%,transparent 78%)}
+.hero-inner{background:var(--bg);mask:none;-webkit-mask:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line2);border-radius:var(--pill);padding:6px 14px 6px 7px;font-size:13px;color:#3E3E3A}
+.badge b{background:var(--tint);border:1px solid var(--line);border-radius:var(--pill);padding:3px 9px;font-family:var(--mono);font-size:11px;font-weight:500}
+.hero h1{margin-top:22px}
+.hero h1 .hl{color:var(--accent-ink)}
+.hero-sub{margin:18px auto 0;max-width:600px}
+.cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.meta{margin-top:18px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.diagram{margin:40px auto 0;max-width:880px;background:var(--card);border:1px solid var(--line2);border-radius:var(--r);box-shadow:var(--shadow);text-align:left;overflow:hidden}
+.diagram-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.toggle{display:flex;border:1px solid var(--line2);border-radius:8px;padding:2px;gap:2px}
+.toggle button{border:0;background:transparent;padding:7px 13px;border-radius:6px;font-size:13px;font-weight:600;color:var(--muted)}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.diagram-body{padding:20px;display:grid;gap:10px}
+.flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.node{flex:1;min-width:150px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px}
+.node b{display:block;font-size:13px}.node span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.node.sealed{border-color:var(--accent);background:var(--accent-soft)}
+.arrow{align-self:center;color:var(--faint);font-weight:600}
+.see{font-family:var(--mono);font-size:12.5px;background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:14px 16px;line-height:1.8}
+.see .ok{color:#0E7A3E}.see .bad{color:#A33A1F}
+/* content blocks */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+@media(max-width:820px){.grid3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card .n{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.06em}
+.card h3{margin:10px 0 8px;font-size:18px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--muted);font-size:14.5px}
+.cmp{margin-top:32px;background:var(--card);border:1px solid var(--line2);border-radius:var(--r);overflow:hidden}
+.cmp-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:700px;font-size:14px}
+th,td{padding:16px 18px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--tint)}
+td:first-child{font-weight:600;width:24%}
+td.hi{background:var(--accent-soft)}
+.how2{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:32px}
+@media(max-width:860px){.how2{grid-template-columns:1fr}}
+.code{font-family:var(--mono);font-size:12.5px;background:var(--ink);color:#D9D9D2;border-radius:12px;padding:16px;line-height:1.7;overflow-x:auto}
+.verify{background:var(--accent-soft);border:1px solid #C9D4FB;border-radius:var(--r);padding:26px}
+.verify ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px}
+.perks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+@media(max-width:940px){.perks{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.perks{grid-template-columns:1fr}}
+.perk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.perk h3{margin:0 0 6px;font-size:15px}.perk p{margin:0;font-size:13.5px;color:var(--muted)}
+.cover{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-top:26px}
+.search{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.search input{flex:1;min-width:220px;padding:12px 16px;border-radius:10px;border:1px solid var(--line2);font:inherit;background:var(--bg)}
+.cities{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;font-size:14px}
+@media(max-width:860px){.cities{grid-template-columns:1fr 1fr}}
+.city{padding:10px 13px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.city b{display:block;font-size:13.5px}.city span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.bill{display:inline-flex;border:1px solid var(--line2);border-radius:10px;padding:3px;gap:3px;margin-top:20px;background:var(--card)}
+.bill button{border:0;background:transparent;padding:9px 18px;border-radius:7px;font-weight:600;font-size:14px;color:var(--muted)}
+.bill button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;text-align:left}
+@media(max-width:780px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:28px}
+.plan.feat{border-color:var(--ink);box-shadow:var(--shadow)}
+.plan .p{font-size:42px;font-weight:600;letter-spacing:-.04em;margin:10px 0 2px}
+.plan ul{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:9px;font-size:14px;color:#333}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.tabs button{border:1px solid var(--line2);background:#fff;border-radius:9px;padding:9px 16px;font-weight:600;font-size:14px}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab-panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:12px;font-size:14.5px;color:#3A3A36}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;align-items:start}
+@media(max-width:820px){.faq{grid-template-columns:1fr}}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 0;font-weight:600;font-size:15px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";width:28px;height:28px;flex:none;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;color:var(--muted)}
+details[open] summary::after{content:"–";background:var(--ink);color:#fff}
+details p{margin:0 0 16px;color:var(--muted);font-size:14px}
+.founder{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,4vw,40px);display:grid;gap:14px}
+.founder blockquote{margin:0;font-size:clamp(19px,2.2vw,25px);letter-spacing:-.02em;line-height:1.4;font-weight:500}
+.final{margin-top:28px;background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:clamp(32px,5vw,56px);text-align:center;box-shadow:var(--shadow)}
+footer{border-top:1px solid var(--line);margin-top:40px}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;padding:48px 0 28px}
+@media(max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+.small{font-size:13px;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:12px}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="topnote"><div class="wrap"><span id="blocked">12,408 requests hushed today · no trackers on this page</span><span>Split-trust relay · <a href="#pricing">Plans from $9</a></span></div></div>
+<nav class="nav" aria-label="Main"><div class="wrap nav-in">
+<a class="brand" href="#top"><span class="mark"><svg width="15" height="15" viewBox="0 0 64 64"><path d="M20 44V20h5.5v9.2c1.8-2.2 4.4-3.5 7.5-3.5 5.2 0 8.5 3.6 8.5 9v9.3h-5.5v-8.6c0-2.6-1.3-4.3-3.8-4.3-2.3 0-4 1.6-4.5 3.8v9.1z" fill="#fff"/></svg></span> hushnet</a>
+<div class="nav-links"><a href="#principles">Principles</a><a href="#how">Protocol</a><a href="#coverage">Coverage</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+<div class="nav-cta"><a class="btn btn-quiet btn-sm hide-m" href="#devices">Log in</a><a class="btn btn-dark btn-sm" href="#pricing">Get Hushnet</a><button class="burger" id="burger" aria-expanded="false" aria-controls="mmenu" aria-label="Menu">☰</button></div>
+</div><div class="mobile-menu" id="mmenu"><a href="#principles">Principles</a><a href="#how">Protocol</a><a href="#coverage">Coverage</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav>
+
+<header class="hero" id="top"><div class="wrap hero-inner">
+<span class="badge"><b>01 — SPLIT-TRUST</b> Independent exits in 40+ countries</span>
+<h1>A network that <span class="hl">can’t see you.</span></h1>
+<p class="lede hero-sub">Hushnet separates identity from activity across two independent hops. No single party holds enough to profile you — by architecture, not by promise.</p>
+<div class="cta-row"><a class="btn btn-primary" href="#pricing">Get started</a><a class="btn btn-quiet" href="#how">Read the protocol</a></div>
+<div class="meta">Nameless accounts · Sealed traffic · Verified exits · 5 devices</div>
+<div class="diagram">
+<div class="diagram-top"><span id="see-title">DEMO — WHAT THE LOCAL NETWORK SEES</span><div class="toggle" role="group" aria-label="Protection"><button id="t-off" aria-pressed="true">Exposed</button><button id="t-on" aria-pressed="false">Via Hushnet</button></div></div>
+<div class="diagram-body">
+<div class="flow" aria-hidden="true"><div class="node"><b>You</b><span>random ID H-48102</span></div><span class="arrow">→</span><div class="node"><b>Hush relay</b><span>knows who · not what</span></div><span class="arrow">→</span><div class="node sealed"><b>Solo exit</b><span>knows what · not who</span></div><span class="arrow">→</span><div class="node"><b>Site</b><span>sees exit only</span></div></div>
+<div class="see" id="see-lines">local-view: maya.laptop [192.168.1.42] — <span class="bad">exposed</span><br>invoice-app.com at 09:41 — <span class="bad">visible</span><br>call metadata — <span class="bad">visible</span><br><span id="demo-note">Anyone nearby can build a profile.</span></div>
+</div></div>
+</div></header>
+
+<section id="principles"><div class="wrap">
+<div class="rv"><span class="kicker">01 — Principles</span><h2 style="margin-top:12px">Nothing to leak, nothing to sell.</h2><p class="lede">Three constraints shape every decision.</p></div>
+<div class="grid3">
+<div class="card rv"><div class="n">01</div><h3>Blind by architecture</h3><p>Traffic is sealed for the exit before it reaches us. Seizure or subpoena yields no content.</p></div>
+<div class="card rv"><div class="n">02</div><h3>Nameless by default</h3><p>Accounts are random numbers. No email, no name, no phone required to begin.</p></div>
+<div class="card rv"><div class="n">03</div><h3>Forgetful by policy</h3><p>Connecting addresses are never stored. Payments are kept separate from usage.</p></div>
+</div></div></section>
+
+<section id="compare"><div class="wrap-n">
+<div class="rv center"><span class="kicker" style="justify-content:center">02 — Comparison</span><h2 style="margin-top:12px">Same network, different exposure.</h2></div>
+<div class="cmp rv"><div class="cmp-scroll"><table>
+<thead><tr><th></th><th>Open Wi-Fi</th><th>Typical app</th><th>Hushnet</th></tr></thead>
+<tbody>
+<tr><td>Sees destinations</td><td>Network + ISP</td><td>The provider</td><td class="hi">Neither hop alone</td></tr>
+<tr><td>Links you to history</td><td>—</td><td>Email + billing</td><td class="hi">Random number only</td></tr>
+<tr><td>On strict networks</td><td>Throttled</td><td>Often blocked</td><td class="hi">Resembles ordinary web traffic</td></tr>
+<tr><td>Verification</td><td>—</td><td>Trust us</td><td class="hi">Check exit keys yourself</td></tr>
+</tbody></table></div></div>
+</div></section>
+
+<section id="how"><div class="wrap">
+<div class="rv"><span class="kicker">03 — Protocol</span><h2 style="margin-top:12px">Two hops. Neither knows enough.</h2><p class="lede">You encrypt to the exit. We carry what we cannot open. The exit delivers without knowing whose it is.</p></div>
+<div class="how2">
+<div class="card rv"><span class="mono">FLOW</span><div class="code" style="margin-top:12px">you ─▶ hush-relay ─▶ solo-exit ─▶ site<br># relay: sees WHO, never WHAT<br># exit: sees WHAT, never WHO</div>
+<p class="small" style="margin-top:12px">Relays run by us. Exits run by independent partners with published keys. Both would need to collude — and still lack the link.</p></div>
+<div class="verify rv"><span class="mono">VERIFY, DON'T TRUST</span><h3 style="margin:10px 0">Check the exit key.</h3><p class="small" style="margin:0">The app shows the exit public key under Location. Compare it to the partner directory. Open-source clients; reproducible builds in progress.</p>
+<ul><li>— Sandboxed apps, no kernel access</li><li>— Kill-switch and tracker block included</li><li>— WireGuard configs for routers</li></ul>
+<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-dark btn-sm" href="#devices">Supported devices</a><a class="btn btn-quiet btn-sm" href="#faq">Technical FAQ</a></div></div>
+</div>
+<div class="perks">
+<div class="perk rv"><h3>Steady on strict networks</h3><p>Blends with modern web traffic; retries with padding when filtered.</p></div>
+<div class="perk rv"><h3>Fast for calls</h3><p>Datagram transport avoids tunnel-in-tunnel stalls.</p></div>
+<div class="perk rv"><h3>Quiet by default</h3><p>Ads, trackers and malware domains blocked at the exit.</p></div>
+<div class="perk rv"><h3>Team pools</h3><p>Shared slots without staff emails. 5 live connections.</p></div>
+</div></div></section>
+
+<section id="coverage"><div class="wrap-n">
+<div class="rv"><span class="kicker">04 — Coverage</span><h2 style="margin-top:12px">Exits where you work.</h2><p class="lede">Relays near you for speed; exits chosen for independence.</p></div>
+<div class="cover rv"><div class="search"><input id="q" type="search" placeholder="Filter — Lisbon, Tokyo, Toronto…" aria-label="Filter cities"><span class="small" id="count">16 hubs</span></div><div class="cities" id="cities"></div></div>
+</div></section>
+
+<section id="pricing"><div class="wrap-n" style="text-align:center">
+<div class="rv"><span class="kicker" style="justify-content:center">05 — Pricing</span><h2 style="margin-top:12px">One flat price.</h2><p class="lede" style="margin-inline:auto">No data to monetize, so nothing to upsell.</p>
+<div class="bill" role="group" aria-label="Billing"><button id="b-m" aria-pressed="true">Monthly</button><button id="b-y" aria-pressed="false">Yearly −20%</button></div></div>
+<div class="plans">
+<div class="plan rv"><span class="mono">SOLO</span><div class="p" id="p-solo">$9<span style="font-size:15px;color:var(--muted)">/mo</span></div><p class="small">5 live devices. Unlimited sign-ins.</p><ul><li>— Split-trust relay, 40+ countries</li><li>— Tracker and ad blocking</li><li>— Stealth mode</li><li>— Anonymous top-up</li></ul><div style="margin-top:16px"><a class="btn btn-dark" style="width:100%" href="#faq">Get Solo</a></div></div>
+<div class="plan feat rv"><span class="mono">TEAMS</span><div class="p" id="p-team">$14<span style="font-size:15px;color:var(--muted)">/mo</span></div><p class="small">Shared pool for field crews. No staff emails.</p><ul><li>— Everything in Solo</li><li>— Admin pool + seats</li><li>— Travel credit</li><li>— Priority support</li></ul><div style="margin-top:16px"><a class="btn btn-primary" style="width:100%" href="#faq">Get Teams</a></div></div>
+</div><p class="small rv" style="margin-top:14px">Card, Lightning, cash-by-mail. 30-day return. Students + nonprofits half price.</p>
+</div></section>
+
+<section id="devices"><div class="wrap-n">
+<div class="rv"><span class="kicker">06 — Devices</span><h2 style="margin-top:12px">One account, everything you carry.</h2></div>
+<div class="tabs rv" role="tablist" aria-label="Platforms"><button role="tab" aria-selected="true" data-t="mac">macOS</button><button role="tab" aria-selected="false" data-t="ios">iOS</button><button role="tab" aria-selected="false" data-t="and">Android</button><button role="tab" aria-selected="false" data-t="win">Windows</button><button role="tab" aria-selected="false" data-t="lin">Linux</button><button role="tab" aria-selected="false" data-t="rou">Router</button></div>
+<div class="tab-panel rv" id="panel" role="tabpanel" tabindex="0"></div>
+</div></section>
+
+<section id="faq"><div class="wrap-n">
+<div class="rv center"><span class="kicker" style="justify-content:center">07 — FAQ</span><h2 style="margin-top:12px">Plain answers.</h2></div>
+<div class="faq rv">
+<details open><summary>What can you see?</summary><p>Account number and connecting address while connected. Never destinations or content; connecting addresses are not stored.</p></details>
+<details><summary>How is multihop different?</summary><p>Most multihop runs both hops. Our exits are independent, so one operator alone cannot link you.</p></details>
+<details><summary>Will it work on filtered networks?</summary><p>Usually. Traffic resembles ordinary web transport and is harder to fingerprint. Stealth padding helps further.</p></details>
+<details><summary>How many devices?</summary><p>Five simultaneous. Sign in anywhere; only active connections count.</p></details>
+<details><summary>Router support?</summary><p>Yes via WireGuard configs. You keep split-trust, without stealth camouflage.</p></details>
+<details><summary>Anonymous payment?</summary><p>Lightning or cash-by-mail credited to your number. Card stays with the processor, not tied to usage.</p></details>
+</div>
+<div class="founder rv"><span class="kicker">Field note</span><blockquote>“I filed from lobbies where the login tracked more than my deadline. I wanted something a fixer could use <span class="serif">without an email — or a tutorial.”</span></blockquote><p class="small">— Maya, network engineer. Reachable at maya@hushnet.example. Fictional demo; no photo, no tracking.</p></div>
+</div></section>
+
+<section id="start"><div class="wrap-n"><div class="final rv">
+<span class="kicker" style="justify-content:center">Begin</span>
+<h2 style="margin-top:12px">Leave no trace on the local network.</h2>
+<p class="lede" style="margin:14px auto 0">A number, a connection, back to work. Two minutes.</p>
+<div class="cta-row"><a class="btn btn-primary" href="#pricing">Get Hushnet</a><a class="btn btn-quiet" href="#how">How it works</a></div>
+<p class="small" style="margin-top:14px">30-day return · Open source · No email required</p>
+</div></div></section>
+
+<footer><div class="wrap foot">
+<div><a class="brand" href="#top"><span class="mark"><svg width="15" height="15" viewBox="0 0 64 64"><path d="M20 44V20h5.5v9.2c1.8-2.2 4.4-3.5 7.5-3.5 5.2 0 8.5 3.6 8.5 9v9.3h-5.5v-8.6c0-2.6-1.3-4.3-3.8-4.3-2.3 0-4 1.6-4.5 3.8v9.1z" fill="#fff"/></svg></span> hushnet</a>
+<p class="small" style="max-width:320px">Split-trust network for remote work. Fictional demo inspired by privacy design.</p><p class="mono" style="color:var(--faint)">© 2026 HUSH LABS — NO TRACKERS</p></div>
+<div><p class="mono">PRODUCT</p><p class="small"><a href="#principles">Principles</a><br><a href="#how">Protocol</a><br><a href="#pricing">Pricing</a></p></div>
+<div><p class="mono">RESOURCES</p><p class="small"><a href="#coverage">Coverage</a><br><a href="#devices">Devices</a><br><a href="#faq">FAQ</a></p></div>
+<div><p class="mono">CONTACT</p><p class="small"><a href="#faq">Support</a><br><a href="#faq">Source</a><br><a href="#faq">Access requests</a></p></div>
+</div></footer>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const b=$('#burger'),m=$('#mmenu');b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);});
+const off=$('#t-off'),on=$('#t-on'),lines=$('#see-lines'),note=$('#demo-note');
+function setD(p){off.setAttribute('aria-pressed',!p);on.setAttribute('aria-pressed',p);
+lines.innerHTML=p?'hush-relay sees: account H-48102 — <span class="ok">only this</span><br>destination / content — <span class="ok">sealed</span><br>local network sees: one ordinary stream — <span class="ok">opaque</span>':'local-view: maya.laptop [192.168.1.42] — <span class="bad">exposed</span><br>invoice-app.com at 09:41 — <span class="bad">visible</span><br>call metadata — <span class="bad">visible</span>';}
+off.addEventListener('click',()=>setD(false));on.addEventListener('click',()=>setD(true));
+let n=12408;setInterval(()=>{n+=3;$('#blocked').textContent=n.toLocaleString()+' requests hushed today · no trackers on this page';},4000);
+const hubs=[["Lisbon","EXIT · PT"],["Madrid","EXIT · ES"],["Paris","EXIT · FR"],["Frankfurt","RELAY · DE"],["Amsterdam","EXIT · NL"],["London","RELAY · UK"],["New York","EXIT · US"],["Chicago","RELAY · US"],["Toronto","EXIT · CA"],["Mexico City","EXIT · MX"],["São Paulo","EXIT · BR"],["Tokyo","EXIT · JP"],["Singapore","RELAY · SG"],["Sydney","EXIT · AU"],["Nairobi","EXIT · KE"],["Johannesburg","RELAY · ZA"]];
+const cc=$('#cities'),qq=$('#q'),cnt=$('#count');
+function render(f=''){const l=hubs.filter(([c,r])=>(c+r).toLowerCase().includes(f.toLowerCase()));cc.innerHTML=l.map(([c,r])=>'<div class="city"><b>'+c+'</b><span>'+r+'</span></div>').join('');cnt.textContent=l.length+' hubs';}
+render();qq.addEventListener('input',e=>render(e.target.value));
+const bm=$('#b-m'),by=$('#b-y'),ps=$('#p-solo'),pt=$('#p-team');
+function bill(y){bm.setAttribute('aria-pressed',!y);by.setAttribute('aria-pressed',y);ps.innerHTML=y?'$86<span style="font-size:15px;color:var(--muted)">/yr</span>':'$9<span style="font-size:15px;color:var(--muted)">/mo</span>';pt.innerHTML=y?'$134<span style="font-size:15px;color:var(--muted)">/yr</span>':'$14<span style="font-size:15px;color:var(--muted)">/mo</span>';}
+bm.addEventListener('click',()=>bill(false));by.addEventListener('click',()=>bill(true));
+const data={mac:'<b>macOS</b> — sandboxed extension, no kernel access. Sign in with your number, verify the exit key under Location.',ios:'<b>iOS</b> — App Store build. Allow the VPN profile, enable Blend-in for campuses.',and:'<b>Android</b> — Play Store or APK. Enable Always-on and block without Hushnet.',win:'<b>Windows</b> — x64 and ARM64 installers. Enable kill-switch.',lin:'<b>Linux</b> — deb/rpm. hush login H-48102, hush connect.',rou:'<b>Router</b> — WireGuard config from dashboard. One config = one slot.'};
+const panel=$('#panel');function tab(k){$$('.tabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',x.dataset.t===k));panel.innerHTML=data[k];}
+$$('.tabs [role=tab]').forEach(x=>x.addEventListener('click',()=>tab(x.dataset.t)));tab('mac');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});$$('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

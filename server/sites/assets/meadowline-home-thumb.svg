@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Meadowline Studio homepage preview">
+  <rect width="1200" height="800" fill="#F7F2EB"/>
+  <!-- browser bar -->
+  <rect x="60" y="48" width="1080" height="92" rx="46" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".14" stroke-width="2"/>
+  <circle cx="130" cy="94" r="11" fill="#E0603F"/><circle cx="160" cy="94" r="11" fill="#E9B64C"/><circle cx="190" cy="94" r="11" fill="#4A7A5C"/>
+  <rect x="230" y="70" width="620" height="48" rx="24" fill="#F3ECE0"/>
+  <circle cx="270" cy="94" r="10" fill="#4A7A5C"/>
+  <rect x="292" y="86" width="280" height="16" rx="8" fill="#96908A" opacity=".7"/>
+  <rect x="880" y="70" width="200" height="48" rx="24" fill="#1E1F1B"/>
+  <rect x="912" y="86" width="136" height="16" rx="8" fill="#FFFDF9"/>
+  <!-- headline bars -->
+  <circle cx="130" cy="230" r="9" fill="#4A7A5C"/>
+  <rect x="152" y="221" width="300" height="18" rx="9" fill="#96908A" opacity=".8"/>
+  <rect x="110" y="270" width="430" height="52" rx="14" fill="#1E1F1B"/>
+  <rect x="110" y="336" width="380" height="52" rx="14" fill="#1E1F1B"/>
+  <rect x="110" y="404" width="270" height="52" rx="14" fill="#1E1F1B" opacity=".25"/>
+  <rect x="110" y="490" width="400" height="18" rx="9" fill="#4D4A43" opacity=".45"/>
+  <rect x="110" y="518" width="340" height="18" rx="9" fill="#4D4A43" opacity=".35"/>
+  <!-- CTA pills -->
+  <rect x="110" y="566" width="220" height="56" rx="28" fill="#4A7A5C"/>
+  <rect x="150" y="587" width="140" height="15" rx="7.5" fill="#fff"/>
+  <rect x="346" y="566" width="200" height="56" rx="28" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".25" stroke-width="2"/>
+  <rect x="380" y="587" width="132" height="15" rx="7.5" fill="#1E1F1B" opacity=".6"/>
+  <!-- jam label card -->
+  <g transform="rotate(-4 830 420)">
+    <rect x="660" y="220" width="340" height="400" rx="28" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".2" stroke-width="2"/>
+    <rect x="688" y="248" width="284" height="180" rx="16" fill="#8E3B5C"/>
+    <rect x="706" y="266" width="248" height="144" rx="10" fill="none" stroke="#F7F2EB" stroke-width="2" stroke-dasharray="7 6"/>
+    <circle cx="830" cy="322" r="30" fill="#5E2540"/>
+    <circle cx="814" cy="313" r="10" fill="#A64E74"/><circle cx="846" cy="313" r="10" fill="#A64E74"/><circle cx="830" cy="332" r="11" fill="#C06E92"/>
+    <text x="830" y="398" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="28" fill="#F7F2EB">bramble jam</text>
+    <text x="830" y="478" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#1E1F1B">Bramble &amp; Bay</text>
+    <text x="830" y="512" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#96908A">jam · label + lid seal</text>
+    <rect x="730" y="540" width="200" height="40" rx="20" fill="#1E1F1B"/>
+    <rect x="772" y="554" width="116" height="13" rx="6.5" fill="#FFFDF9"/>
+  </g>
+  <!-- honey card peeking -->
+  <g transform="rotate(3 300 700)">
+    <rect x="120" y="640" width="300" height="120" rx="24" fill="#2E4A37"/>
+    <path d="M270 656l12 22 24 4-17 17 4 24-23-12-23 12 4-24-17-17 24-4z" fill="#E9B64C"/>
+    <text x="215" y="712" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="26" fill="#F7F2EB">wildflower honey</text>
+  </g>
+  <!-- marquee strip -->
+  <rect x="0" y="700" width="1200" height="100" fill="#FFFDF9" opacity=".85"/>
+  <rect x="60" y="730" width="220" height="42" rx="21" fill="#4A7A5C"/>
+  <rect x="296" y="730" width="200" height="42" rx="21" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".2" stroke-width="2"/>
+  <rect x="512" y="730" width="170" height="42" rx="21" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".2" stroke-width="2"/>
+  <rect x="698" y="730" width="210" height="42" rx="21" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".2" stroke-width="2"/>
+  <rect x="924" y="730" width="190" height="42" rx="21" fill="#FFFDF9" stroke="#1E1F1B" stroke-opacity=".2" stroke-width="2"/>
+</svg>
