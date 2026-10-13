@@ -23,6 +23,14 @@ export const LANDING_PAGE_FALLBACKS = {
     defaultLanguageCode: 'en',
     languages: [],
   },
+  'partners': {
+    slug: 'partners',
+    heroTitle: 'UpSquad Partner Program',
+    heroDescription:
+      'One partner profile — three different ways to earn with UpSquad. Pick the one that matches how much time you want to give.',
+    defaultLanguageCode: 'en',
+    languages: [],
+  },
 }
 
 export function getFallback(slug) {

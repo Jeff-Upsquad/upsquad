@@ -39,7 +39,7 @@ export function scrollToWorkMode(modeId) {
   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
 }
 
-export default function WorkModeNav({ onSelect }) {
+export default function WorkModeNav({ onSelect, blurbs }) {
   const [active, setActive] = useState('subscription')
   const clickLock = useRef(false)
 
@@ -122,7 +122,7 @@ export default function WorkModeNav({ onSelect }) {
                       isActive ? 'text-text-secondary' : 'text-text-muted'
                     }`}
                   >
-                    {m.blurb}
+                    {blurbs?.[m.id] || m.blurb}
                   </span>
                 </button>
               )

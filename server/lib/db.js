@@ -165,6 +165,13 @@ function seed() {
       langs: [{ code: 'en' }],
     },
     {
+      slug: 'partner-program-general',
+      heroTitle: 'UpSquad Partner Program — For freelancers of every role',
+      heroDescription: 'Partner with UpSquad and focus only on what you do best — we handle the sales, marketing, client support, and payments while you work with assigned clients.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
+    {
       slug: 'customer-general',
       heroTitle: 'Every squad your brand needs — on subscription.',
       heroDescription: 'Design, video, finance, marketing, and tech. Subscribe to a dedicated squad, order fixed-fee assignments, or hire vetted talent in-house.',

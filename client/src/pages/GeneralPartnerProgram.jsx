@@ -12,7 +12,8 @@ import { usePartnerSignupUrl } from '../lib/usePartnerSignupUrl'
 import { partnerWaLink } from '../lib/partnerWhatsapp'
 import WhatsAppIcon from '../components/WhatsAppIcon'
 
-const LP_SLUG = 'partner-program'
+const LP_SLUG = 'partner-program-general'
+const LP_FALLBACK_SLUG = 'general'
 const CTA_SLUG = 'general'
 
 const TABS = [
@@ -101,7 +102,13 @@ export default function PartnerProgram() {
 
   useEffect(() => {
     fetch(`/api/v1/landing-pages/${LP_SLUG}`)
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (r.ok) return r.json()
+        if (r.status === 404 && LP_FALLBACK_SLUG) {
+          return fetch(`/api/v1/landing-pages/${LP_FALLBACK_SLUG}`).then((r2) => (r2.ok ? r2.json() : null))
+        }
+        return null
+      })
       .then((d) => {
         if (!d) return
         setLanguages(d.languages || [])
@@ -237,7 +244,9 @@ export default function PartnerProgram() {
         />
       </section>
 
-      {tab === 'partner' && <ServicesDirectory partner signupUrl={signupUrl} />}
+      {/* Services directory stays mounted across Partner/Jobs tabs so the
+          section above the selector never shifts when switching tabs. */}
+      <ServicesDirectory partner signupUrl={signupUrl} />
 
       {/* ── Top-level selector: card style ────────────── */}
       <section ref={tabsRef} className="bg-white border-y border-[rgba(0,0,0,0.08)]">
