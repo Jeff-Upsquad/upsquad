@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
 import HeroMedia from '../components/landing/HeroMedia'
+import ServicesDirectory from '../components/landing/ServicesDirectory'
 import LanguageGate from '../components/landing/LanguageGate'
 import PartnerProgramTab from '../components/general-partner/PartnerProgramTab'
 import FreelanceTab from '../components/general-partner/FreelanceTab'
@@ -235,6 +236,8 @@ export default function PartnerProgram() {
           onDismiss={() => setGateOpen(false)}
         />
       </section>
+
+      {tab === 'partner' && <ServicesDirectory partner signupUrl={signupUrl} />}
 
       {/* ── Top-level selector: card style ────────────── */}
       <section ref={tabsRef} className="bg-white border-y border-[rgba(0,0,0,0.08)]">
