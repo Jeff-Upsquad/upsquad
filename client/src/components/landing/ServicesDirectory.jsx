@@ -11,6 +11,18 @@ const PARTNER_ROUTES = {
   '/customers/accountant-subscription': '/partner-program/accountant/',
 }
 
+// Partner-program (/partner-program/general/) availability per squad:
+// 'open' → every role shows "Open →" linking to signup (or squad partner page)
+// 'waitlist' → every role shows "waitlist" text.
+const PARTNER_SQUAD_MODE = {
+  'content-creation': 'open',
+  'marketing': 'open',
+  'accounts-finance': 'open',
+  'tech': 'waitlist',
+  'legal': 'waitlist',
+  'hiring-hr': 'waitlist',
+}
+
 export default function ServicesDirectory({ partner = false, signupUrl = SQUADHIRE_SIGNUP.talent }) {
   return (
     <section id="services" className="scroll-mt-24 py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary border-t border-black/[0.06]">
@@ -54,21 +66,53 @@ export default function ServicesDirectory({ partner = false, signupUrl = SQUADHI
                       Squad Talents &amp; Roles
                     </span>
                     <ul className="space-y-1.5">
-                      {squad.products.map((p) => (
-                        <li key={p.name} className="text-xs flex items-center justify-between text-text-primary">
-                          <span className="flex items-center gap-1.5">
-                            <span>{p.emoji}</span>
-                            <span>{p.name}</span>
-                          </span>
-                          {p.href ? (
-                            <Link href={partner ? PARTNER_ROUTES[p.href] || signupUrl : p.href} className="text-[11px] font-semibold text-emerald-600 hover:underline">
-                              {partner ? 'Explore' : 'Live'} &rarr;
-                            </Link>
-                          ) : (
-                            <span className="text-[10px] font-mono text-text-muted">{p.status}</span>
-                          )}
-                        </li>
-                      ))}
+                      {squad.products.map((p) => {
+                        if (partner) {
+                          const mode = PARTNER_SQUAD_MODE[squad.id]
+                          if (mode === 'open') {
+                            return (
+                              <li key={p.name} className="text-xs flex items-center justify-between text-text-primary">
+                                <span className="flex items-center gap-1.5">
+                                  <span>{p.emoji}</span>
+                                  <span>{p.name}</span>
+                                </span>
+                                <PartnerSignupLink
+                                  href={PARTNER_ROUTES[p.href] || signupUrl}
+                                  className="text-[11px] font-semibold text-emerald-600 hover:underline"
+                                >
+                                  Open &rarr;
+                                </PartnerSignupLink>
+                              </li>
+                            )
+                          }
+                          if (mode === 'waitlist') {
+                            return (
+                              <li key={p.name} className="text-xs flex items-center justify-between text-text-primary">
+                                <span className="flex items-center gap-1.5">
+                                  <span>{p.emoji}</span>
+                                  <span>{p.name}</span>
+                                </span>
+                                <span className="text-[10px] font-mono text-text-muted">waitlist</span>
+                              </li>
+                            )
+                          }
+                        }
+                        return (
+                          <li key={p.name} className="text-xs flex items-center justify-between text-text-primary">
+                            <span className="flex items-center gap-1.5">
+                              <span>{p.emoji}</span>
+                              <span>{p.name}</span>
+                            </span>
+                            {p.href ? (
+                              <Link href={p.href} className="text-[11px] font-semibold text-emerald-600 hover:underline">
+                                Live &rarr;
+                              </Link>
+                            ) : (
+                              <span className="text-[10px] font-mono text-text-muted">{p.status}</span>
+                            )}
+                          </li>
+                        )
+                      })}
                     </ul>
                   </div>
                 </div>
