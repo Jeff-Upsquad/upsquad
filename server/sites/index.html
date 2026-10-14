@@ -3,395 +3,593 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sites by UpSquad — Business websites, two ways to pay</title>
-<meta name="description" content="Business websites from ₹10,000. Choose a full deposit with a full refund guarantee, or non-refundable milestone payments: 30% advance, 40% at first draft, 30% at final delivery.">
-<meta property="og:title" content="Sites by UpSquad — Two ways to pay">
-<meta property="og:description" content="Business websites from ₹10,000. Full deposit with a refund guarantee, or non-refundable 30% / 40% / 30% milestone payments.">
+<title>Sites by UpSquad — We charge only if you like the website</title>
+<meta name="description" content="We build websites for businesses. You pay the full amount as a deposit and we start work. If you do not like the final website, we refund the full amount. Starting from ₹10,000 onwards.">
+<meta property="og:title" content="Sites by UpSquad — Love it or full refund">
+<meta property="og:description" content="Business websites, risk-free. Full amount as deposit. Don’t like the final website? Full amount refund. From ₹10,000.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23121212'/%3E%3Cpath d='M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#F5F3EE; --bg-soft:#EDEAE3; --card:#FFFFFF; --card-2:#F7F6F2;
-  --ink:#111110; --ink-2:#3E3E3B; --muted:#71716C; --faint:#A5A5A0;
-  --line:rgba(17,17,16,.09); --line-2:rgba(17,17,16,.16);
-  --accent:#FFEF5E; --accent-deep:#EAB308; --lime:#D9FF4B;
-  --ok:#0E8A4A; --ok-bg:#E3F4E9; --warn:#B23B1E;
-  --dark:#121210; --dark-2:#1C1C19; --dark-line:rgba(255,255,255,.1); --dark-muted:#A8A8A1;
-  --r:24px; --r-sm:16px; --pill:999px;
-  --shadow:0 1px 2px rgba(17,17,16,.05),0 16px 48px -16px rgba(17,17,16,.18);
-  --shadow-lg:0 2px 6px rgba(17,17,16,.06),0 48px 100px -32px rgba(17,17,16,.32);
-  --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-  --serif:"Instrument Serif",Georgia,serif;
-  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;scroll-padding-top:96px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6;background-image:var(--grain)}
-a{color:inherit;text-decoration:none}
-img,svg{display:block;max-width:100%}
-button{font:inherit;color:inherit;cursor:pointer}
-::selection{background:var(--ink);color:#fff}
-.wrap{width:min(1160px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
-.wrap-n{width:min(780px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
-section{padding:96px 0}
-@media(max-width:720px){section{padding:64px 0}}
-.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
-.kicker::before{content:"";width:24px;height:2px;background:var(--ink);border-radius:2px;display:inline-block}
-h1,h2{margin:0;letter-spacing:-.045em;line-height:.98;font-weight:800}
-h1{font-size:clamp(44px,7vw,88px)}
-h2{font-size:clamp(32px,4.6vw,58px)}
-h3{margin:0;font-size:20px;letter-spacing:-.02em;line-height:1.2;font-weight:800}
-.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;font-style:italic}
-.lede{font-size:clamp(16.5px,1.6vw,20px);color:var(--ink-2);line-height:1.6}
-.center{text-align:center}
-.center .lede{margin:20px auto 0;max-width:640px}
-.pill{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.8);border:1px solid var(--line-2);border-radius:var(--pill);padding:8px 16px 8px 10px;backdrop-filter:blur(10px);box-shadow:0 6px 20px -8px rgba(0,0,0,.12)}
-.pill .dot{width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:13px;flex:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:16px 28px;border-radius:var(--pill);font-weight:800;font-size:15.5px;line-height:1;border:1px solid transparent;transition:transform .18s,box-shadow .18s,background .18s;white-space:nowrap}
-.btn:active{transform:translateY(1px) scale(.99)}
-.btn-ink{background:var(--ink);color:#fff;box-shadow:0 14px 30px -12px rgba(17,17,16,.5)}
-.btn-ink:hover{background:#000;transform:translateY(-2px);box-shadow:0 20px 40px -12px rgba(17,17,16,.5)}
-.btn-light{background:#fff;color:var(--ink);border-color:var(--line-2);box-shadow:0 8px 20px -10px rgba(0,0,0,.15)}
-.btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.btn-lime{background:var(--lime);color:#111;border-color:rgba(0,0,0,.1)}
-.btn-lime:hover{transform:translateY(-2px);filter:brightness(1.03)}
-.btn-sm{padding:11px 18px;font-size:14px}
-.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
-/* NAV */
-.nav{position:fixed;top:12px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
-.nav-pill{pointer-events:auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.86);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);padding:7px 7px 7px 14px;box-shadow:var(--shadow);max-width:calc(100vw - 24px)}
-.nav.scrolled .nav-pill{box-shadow:var(--shadow-lg)}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;padding-right:8px;white-space:nowrap}
-.brand .mark{width:30px;height:30px;border-radius:9px;background:var(--ink);display:grid;place-items:center;flex:none}
-.brand small{font-weight:700;color:var(--muted);font-size:12px}
-.nav-links{display:flex;gap:2px;background:var(--card-2);border:1px solid var(--line);border-radius:var(--pill);padding:3px}
-.nav-links a{padding:7px 13px;border-radius:var(--pill);font-size:13.5px;font-weight:700;color:var(--ink-2)}
-.nav-links a:hover{background:#fff;color:var(--ink)}
-@media(max-width:900px){.nav-links{display:none}}
-.nav-cta{flex:none}
-/* HERO */
-.hero{position:relative;padding:148px 0 40px;overflow:hidden;background:
-  radial-gradient(700px 380px at 15% 10%,#FFF8C9 0%,transparent 60%),
-  radial-gradient(800px 420px at 85% 18%,#DCF3FF 0%,transparent 62%),
-  radial-gradient(600px 400px at 50% 0%,#fff 0%,transparent 70%),
-  linear-gradient(180deg,#FBFAF6 0%,var(--bg) 100%)}
-.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(70% 55% at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(70% 55% at 50% 30%,#000 30%,transparent 75%);opacity:.55;pointer-events:none}
-.hero h1{margin-top:22px;text-wrap:balance}
-.hero h1 .hl{position:relative;white-space:nowrap}
-.hero h1 .hl svg{position:absolute;left:-2%;right:-2%;bottom:-.12em;width:104%;height:.42em;z-index:-1}
-.hero-sub{margin:22px auto 0;max-width:620px}
-.social-proof{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
-.avatars{display:flex}
-.avatars span{width:34px;height:34px;border-radius:50%;border:2.5px solid #fff;margin-left:-10px;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.avatars span:first-child{margin-left:0}
-.stars{font-size:14px;font-weight:700;text-align:left;line-height:1.3}
-.stars small{display:block;font-weight:600;color:var(--muted)}
-/* browser mock */
-.stage{position:relative;margin-top:52px}
-.browser{position:relative;max-width:980px;margin:0 auto;background:#0F0F10;color:#fff;border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 2px 6px rgba(0,0,0,.12),0 60px 120px -30px rgba(0,0,0,.4)}
-.b-top{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.09);background:#17171A;font-size:12.5px;flex-wrap:wrap}
-.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%}
-.dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
-.url{background:#0B0B0D;border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:6px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#CFCFC9;flex:1;min-width:180px}
-.url b{color:#7EE2A5}
-.live-badge{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:rgba(126,226,165,.13);color:#7EE2A5;padding:7px 12px;border-radius:var(--pill);white-space:nowrap}
-.live-badge i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
-@keyframes pulse{50%{opacity:.35}}
-.siteprev{background:#FBFAF8;color:#141414;text-align:left}
-.sp-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;border-bottom:1px solid rgba(0,0,0,.07)}
-.sp-logo{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px}
-.sp-logo i{width:22px;height:22px;border-radius:7px;background:#141414;color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px}
-.sp-links{display:flex;gap:18px;font-size:12.5px;font-weight:600;color:#5b5b58}
-.sp-cta{font-size:12px;font-weight:800;background:#141414;color:#fff;border-radius:999px;padding:9px 16px}
-.sp-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;padding:28px 24px 24px}
-.sp-kicker{font-size:10px;font-weight:800;letter-spacing:.14em;color:#888}
-.sp-h{font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:10px}
-.sp-sub{font-size:13.5px;color:#555;margin-top:10px;max-width:340px}
-.sp-btns{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-.sp-btn{font-size:12.5px;font-weight:800;border-radius:999px;padding:11px 18px;background:#141414;color:#fff}
-.sp-btn.ghost{background:#fff;border:1px solid rgba(0,0,0,.15)}
-.sp-ticks{display:flex;gap:16px;margin-top:18px;font-size:11.5px;color:#666;font-weight:700}
-.sp-img{position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#DCE8F5,#AEC7E6);min-height:280px}
-.sp-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sp-stats{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-radius:16px;padding:14px 16px;display:grid;gap:10px;min-width:158px;box-shadow:0 16px 34px -12px rgba(0,0,0,.35)}
-.sp-stats b{font-size:19px;letter-spacing:-.02em}
-.sp-stats span{font-size:10.5px;color:#777;display:block;font-weight:600}
-.hero-below{display:flex;justify-content:center;margin-top:22px}
-.float-card{position:absolute;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid var(--line-2);border-radius:18px;box-shadow:var(--shadow-lg);padding:14px 16px;font-size:13px;font-weight:700;display:flex;gap:10px;align-items:center;z-index:2}
-.float-card small{display:block;font-weight:600;color:var(--muted);font-size:12px}
-.float-1{left:max(8px,calc(50% - 620px));top:120px;transform:rotate(-4deg)}
-.float-2{right:max(8px,calc(50% - 620px));bottom:120px;transform:rotate(3deg)}
-.float-ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;color:#fff;font-size:16px}
-@media(max-width:1100px){.float-card{display:none}}
-@media(max-width:720px){.sp-hero{grid-template-columns:1fr}.sp-links{display:none}.hero{padding-top:120px}}
-.rise{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes rise{to{opacity:1;transform:none}}
-.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.24s}.d4{animation-delay:.36s}.d5{animation-delay:.48s}
-/* marquee */
-.marquee{border-block:1px solid var(--line);background:rgba(255,255,255,.6);padding:16px 0;overflow:hidden;position:relative;z-index:1}
-.marquee-track{display:flex;gap:10px;width:max-content;animation:scroll 28s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes scroll{to{transform:translateX(-50%)}}
-.m-chip{font-size:13.5px;font-weight:800;padding:10px 18px;border-radius:var(--pill);background:#fff;border:1px solid var(--line-2);white-space:nowrap;color:var(--ink-2)}
-.m-chip.hot{background:var(--ink);color:#fff;border-color:var(--ink)}
-/* comparison */
-.cmp{margin-top:48px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-.cmp-scroll{overflow-x:auto}
-.cmp table{width:100%;border-collapse:collapse;min-width:680px;font-size:14.5px}
-.cmp th,.cmp td{padding:20px 22px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-.cmp tr:last-child td{border-bottom:0}
-.cmp thead th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--card-2)}
-.cmp td:first-child{font-weight:800;width:23%}
-.cmp td:not(:first-child){color:var(--ink-2)}
-.cmp td.you{background:#111110;color:#EDEDEB!important;position:relative}
-.cmp td.you::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime)}
-.cmp td.you b{color:var(--lime)}
-.you-head{background:#111110!important;color:#fff!important}
-/* grid cards */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
-.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.card::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--lime),var(--accent));opacity:0;transition:opacity .25s}
-.card:hover::after{opacity:1}
-.card .ic{width:48px;height:48px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;margin-bottom:18px}
-.card .ic svg{width:22px;height:22px}
-.card p{margin:8px 0 0;color:var(--ink-2);font-size:15px}
-.card .inc{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-2);font-size:13px;color:var(--muted)}
-.card .inc b{color:var(--ink)}
-/* dark process */
-.eng{background:var(--dark);color:#fff;border-radius:32px;padding:clamp(36px,5vw,72px) clamp(24px,5vw,64px);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
-.eng::before{content:"";position:absolute;width:700px;height:700px;right:-280px;top:-280px;border-radius:50%;background:radial-gradient(closest-side,rgba(217,255,75,.14),transparent 70%)}
-.eng::after{content:"";position:absolute;width:500px;height:500px;left:-200px;bottom:-250px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,239,94,.1),transparent 70%)}
-.eng h2{color:#fff;position:relative}
-.eng .lede{color:#C6C6BF;margin:16px 0 0;max-width:560px;position:relative}
-.eng .kicker{color:#E8E8E2;position:relative}.eng .kicker::before{background:var(--lime)}
-.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px;position:relative;counter-reset:st}
-@media(max-width:980px){.chain{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.chain{grid-template-columns:1fr 1fr}}
-.st{background:rgba(255,255,255,.05);border:1px solid var(--dark-line);border-radius:18px;padding:20px 16px;counter-increment:st;transition:background .2s,transform .2s;position:relative}
-.st:hover{background:rgba(255,255,255,.09);transform:translateY(-3px)}
-.st::before{content:"0" counter(st);font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--lime)}
-.st b{display:block;margin-top:12px;font-size:15px}
-.st span{display:block;margin-top:6px;font-size:12.5px;color:var(--dark-muted);line-height:1.5}
-.eng-quote{margin-top:32px;padding:28px;border:1px solid var(--dark-line);border-radius:20px;background:rgba(255,255,255,.04);display:grid;grid-template-columns:1.2fr 1fr;gap:28px;position:relative}
-@media(max-width:760px){.eng-quote{grid-template-columns:1fr}}
-.eng-quote p{margin:0;font-size:clamp(19px,2vw,24px);letter-spacing:-.02em;line-height:1.35;font-weight:700}
-.eng-quote ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:14px;color:#D8D8D2}
-.eng-quote li{display:flex;gap:10px}.eng-quote li::before{content:"✓";color:var(--lime);font-weight:800;flex:none}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:20px;counter-reset:s}
-@media(max-width:1000px){.steps{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.steps{grid-template-columns:1fr}}
-.step{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;counter-increment:s;box-shadow:var(--shadow)}
-.step::before{content:counter(s,decimal-leading-zero);font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--muted);border:1px solid var(--line-2);border-radius:var(--pill);padding:5px 11px;display:inline-block}
-.step h3{margin-top:16px;font-size:18px}
-.step p{margin:8px 0 0;font-size:14px;color:var(--ink-2)}
-/* pricing */
-.plan-card{margin:48px auto 0;max-width:960px;background:var(--card);border:1px solid var(--line);border-radius:32px;box-shadow:var(--shadow-lg);padding:clamp(26px,4vw,44px);position:relative;overflow:hidden}
-.plan-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#111 0%,var(--lime) 50%,var(--accent) 100%)}
-.plan-top{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:14.5px}
-.plan-top .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
-.price{text-align:center;margin-top:24px}
-.price .first{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.price .big{font-size:clamp(64px,10vw,96px);font-weight:800;letter-spacing:-.06em;line-height:1;margin-top:4px}
-.price .big sup{font-size:.4em;color:var(--ink-2)}
-.price .then{margin-top:10px;color:var(--ink-2);font-size:15.5px}
-.payment-options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-.payment-option{background:var(--card-2);border:1px solid var(--line-2);border-radius:22px;padding:24px;min-width:0}
-.payment-option.refundable{background:linear-gradient(180deg,#FFFBE0,#FFF8BB)}
-.payment-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.payment-option h3{margin-top:10px;font-size:21px}
-.payment-option p{font-size:14px;color:var(--ink-2);margin:12px 0 0}
-.payment-terms{display:inline-block;margin-top:14px;padding:6px 10px;border-radius:var(--pill);font-size:12px;font-weight:800;background:var(--ok-bg);color:var(--ok)}
-.payment-terms.no-refund{background:var(--bg-soft);color:var(--ink-2)}
-.payment-schedule{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:16px}
-.payment-schedule li{display:flex;gap:12px;align-items:flex-start}
-.payment-percent{flex:none;min-width:52px;font-size:23px;font-weight:800;letter-spacing:-.04em;line-height:1.2}
-.payment-schedule b{display:block;font-size:14px}
-.payment-schedule small{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-top:4px}
-@media(max-width:700px){.payment-options{grid-template-columns:1fr}}
-.spec{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:14.5px}
-@media(max-width:480px){.spec{grid-template-columns:1fr}}
-.spec div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
-.spec span{color:var(--muted)}.spec b{text-align:right}
-.inc-list{list-style:none;margin:24px 0 0;padding:24px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:11px 18px;font-size:14.5px;font-weight:600}
-@media(max-width:560px){.inc-list{grid-template-columns:1fr}}
-.inc-list li{display:flex;gap:10px;align-items:flex-start}
-.inc-list li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;margin-top:1px;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/11px no-repeat}
-.plan-cta{display:flex;gap:10px;margin-top:28px}
-.plan-cta .btn{flex:1}
-@media(max-width:480px){.plan-cta{flex-direction:column}}
-.plan-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
-.host-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
-@media(max-width:600px){.host-grid{grid-template-columns:1fr}}
-.host{background:var(--card-2);border:1px solid var(--line);border-radius:20px;padding:22px}
-.host.hot{background:var(--ink);color:#fff;border-color:var(--ink)}
-.host h4{margin:0;font-size:16px}
-.host p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2)}
-.host.hot p{color:#C9C8C2}
-.host .pr{font-size:24px;font-weight:800;margin-top:12px;letter-spacing:-.02em}
-.host .pr small{font-size:13px;font-weight:600}
-/* promise */
-.promise{max-width:880px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:32px;padding:clamp(32px,5vw,60px);box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden}
-.promise::before{content:"“";position:absolute;left:24px;top:-40px;font-size:240px;line-height:1;color:var(--bg-soft);font-weight:800;font-family:var(--serif)}
-.promise blockquote{margin:0;position:relative;font-size:clamp(24px,3.2vw,36px);font-weight:800;letter-spacing:-.035em;line-height:1.15;text-wrap:balance}
-.promise blockquote mark{background:linear-gradient(transparent 62%,var(--accent) 62%,var(--accent) 96%,transparent 96%);padding:0 .1em}
-.promise .own{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px;text-align:left;position:relative}
-@media(max-width:560px){.promise .own{grid-template-columns:1fr}}
-.promise .own div{background:var(--card-2);border:1px solid var(--line);border-radius:18px;padding:20px;font-size:14.5px;color:var(--ink-2)}
-.promise .own b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-/* faq */
-.faq{margin-top:40px;display:grid;gap:12px}
-details{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:0 24px;box-shadow:var(--shadow);transition:box-shadow .2s}
-details[open]{background:#fff;box-shadow:var(--shadow-lg)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:800;font-size:16.5px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;font-size:18px;font-weight:400;transition:transform .25s,background .25s}
-details[open] summary::after{transform:rotate(45deg);background:var(--ink);color:#fff;border-color:var(--ink)}
-details p{margin:0 0 24px;color:var(--ink-2);font-size:15.5px}
-/* consult */
-.consult-grid{background:var(--dark);color:#fff;border-radius:32px;box-shadow:var(--shadow-lg);display:grid;grid-template-columns:.95fr 1.05fr;overflow:hidden;position:relative}
-.consult-grid::before{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-260px;border-radius:50%;background:radial-gradient(closest-side,rgba(217,255,75,.12),transparent 70%)}
-.consult-copy{padding:clamp(30px,5vw,56px);position:relative}
-.consult-copy h2{color:#fff}
-.consult-copy p{color:#C6C6BF;font-size:16px}
-.consult-copy ul{margin:24px 0 0;padding:0;list-style:none;display:grid;gap:12px;font-size:14.5px}
-.consult-copy li{display:flex;gap:10px;align-items:flex-start}
-.consult-copy li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:rgba(217,255,75,.15);color:var(--lime);display:grid;place-items:center;font-size:13px;font-weight:800}
-.consult-form{background:var(--card);color:var(--ink);padding:clamp(24px,4vw,36px);position:relative}
-@media(max-width:860px){.consult-grid{grid-template-columns:1fr}}
-/* footer */
-.site-foot{margin-top:48px;background:var(--bg);border-top:1px solid var(--line);position:relative;overflow:hidden}
-.foot-grid{display:grid;grid-template-columns:1.7fr repeat(4,1fr);gap:32px 28px;padding:72px 0 40px;position:relative;z-index:2}
-@media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-brand{grid-column:1/-1}}
-@media(max-width:560px){.foot-grid{grid-template-columns:1fr 1fr;padding:52px 0 32px}}
-.foot-brand h3{margin-top:20px;font-size:26px;letter-spacing:-.03em;max-width:360px}
-.foot-brand p{margin:12px 0 0;font-size:14.5px;color:var(--ink-2);max-width:380px}
-.foot-brand .legal{margin-top:24px;font-size:12.5px;color:var(--muted)}
-.foot-col h4{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.foot-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.foot-col a{font-size:14.5px;font-weight:600;color:var(--ink-2)}
-.foot-col a:hover{color:var(--ink)}
-.scene{position:relative;height:clamp(300px,42vw,560px);margin-top:-40px}
-.scene-clip{position:absolute;inset:0;overflow:hidden}
-.scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
-.scene-fade-top{position:absolute;left:0;right:0;top:0;height:60%;background:linear-gradient(180deg,var(--bg),transparent);z-index:2}
-.scene-fade-bottom{position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,transparent,var(--bg));z-index:2}
-.wordmark{position:absolute;left:0;right:0;bottom:-.08em;z-index:3;display:flex;justify-content:center;overflow:hidden}
-.wordmark span{font-weight:800;letter-spacing:-.06em;line-height:.78;color:#fff;mix-blend-mode:overlay;opacity:.9;white-space:nowrap;font-size:100px;text-shadow:0 2px 40px rgba(0,0,0,.2)}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.is-in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv,.rise{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}}
+  :root{
+    --bg:#ECEAE5;--bg-2:#E4E1DB;--card:#FBFAF8;--card-2:#F4F2EE;
+    --ink:#121212;--ink-2:#3A3A38;--muted:#6E6D69;--line:rgba(18,18,18,.09);--line-2:rgba(18,18,18,.16);
+    --accent:#FFFF99;--accent-ink:#0A0A0A;--wa:#1FB85A;--ok:#0E8A4A;--warn:#B23B1E;
+    --dark:#161615;--dark-2:#232322;--dark-line:rgba(255,255,255,.09);--dark-muted:#9C9B96;
+    --r:22px;--r-sm:14px;--pill:999px;
+    --shadow:0 1px 2px rgba(18,18,18,.04),0 12px 40px -12px rgba(18,18,18,.16);
+    --shadow-lg:0 2px 4px rgba(18,18,18,.05),0 40px 80px -30px rgba(18,18,18,.28);
+    --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:var(--grain)}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  button{font:inherit;color:inherit;cursor:pointer}
+  ::selection{background:var(--ink);color:#fff}
+
+  .wrap{width:min(1120px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
+  .wrap-n{width:min(760px,calc(100% - 40px));margin-inline:auto;position:relative;z-index:1}
+  section{padding:88px 0}
+  @media (max-width:720px){section{padding:64px 0}}
+
+  h1,h2,h3{margin:0;letter-spacing:-.035em;line-height:1.02;font-weight:800}
+  h1{font-size:clamp(42px,6.6vw,80px)}
+  h2{font-size:clamp(34px,4.6vw,60px);letter-spacing:-.04em}
+  h3{font-size:clamp(20px,2vw,24px);letter-spacing:-.025em;line-height:1.15}
+  .lede{font-size:clamp(17px,1.6vw,21px);color:var(--ink-2);max-width:640px;margin:22px auto 0;line-height:1.5}
+  .center{text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:var(--pill);padding:7px 14px 7px 9px}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(14,138,74,.14)}
+  .muted{color:var(--muted)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;border-radius:var(--pill);font-weight:700;font-size:15.5px;line-height:1;border:1px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;white-space:nowrap}
+  .btn:active{transform:translateY(1px) scale(.99)}
+  .btn-ink{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(18,18,18,.5)}
+  .btn-ink:hover{background:#000;transform:translateY(-1px)}
+  .btn-wa{background:var(--card);color:var(--ink);border-color:var(--line-2)}
+  .btn-wa:hover{background:#fff;transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn-wa svg{width:20px;height:20px}
+  .btn-sm{padding:11px 18px;font-size:14px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .trust{margin-top:22px;font-size:13.5px;color:var(--muted);display:flex;gap:6px 18px;justify-content:center;flex-wrap:wrap}
+  .trust span::before{content:"✓";color:var(--ok);font-weight:800;margin-right:6px}
+
+  .nav{position:fixed;top:14px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
+  .nav-pill{pointer-events:auto;display:flex;align-items:center;gap:6px;background:rgba(251,250,248,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);padding:7px 7px 7px 12px;box-shadow:var(--shadow);transition:box-shadow .3s}
+  .nav.scrolled .nav-pill{box-shadow:var(--shadow-lg)}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:-.02em;padding-right:10px;white-space:nowrap;flex:none}
+  .brand .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+  .brand .mark svg{width:16px;height:16px}
+  .brand small{font-weight:600;color:var(--muted);font-size:12px;margin-left:2px}
+  .nav-links{display:flex;gap:2px}
+  .nav-links a{padding:8px 12px;border-radius:var(--pill);font-size:14px;font-weight:600;color:var(--ink-2);transition:background .15s,color .15s}
+  .nav-links a:hover{background:rgba(18,18,18,.06);color:var(--ink)}
+  @media (max-width:820px){.nav-links{display:none}.brand{padding-right:4px}}
+  .nav-cta .short{display:none}
+  @media (max-width:520px){
+    .nav{padding:0 10px}
+    .nav-pill{gap:4px;padding:6px 6px 6px 10px;max-width:calc(100vw - 20px)}
+    .brand{font-size:15px;gap:7px}
+    .brand small{font-size:11px}
+    .nav-cta{padding:11px 14px;font-size:13px;flex:none}
+    .nav-cta .full{display:none}
+    .nav-cta .short{display:inline}
+    .hero .eyebrow{font-size:12px;white-space:normal;text-align:center}
+  }
+
+  .hero{position:relative;padding:150px 0 110px;overflow:hidden;isolation:isolate;color:#fff;
+    background:linear-gradient(180deg,#0A1450 0px,#10309F 240px,#1E5FCC 520px,#4C9CE8 720px,#8CCBF7 900px,#BDE3FA 1100px,#DDF0FA 100%)}
+  .hero-scene{position:absolute;left:0;right:0;top:420px;bottom:0;z-index:-1;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 120px,#000 440px);mask-image:linear-gradient(180deg,transparent 0,transparent 120px,#000 440px)}
+  .hero-scene video,.hero-scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+  .hero-glow{position:absolute;left:50%;top:700px;width:1400px;height:520px;transform:translateX(-50%);z-index:-1;pointer-events:none;
+    background:radial-gradient(50% 55% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.5;background-image:var(--grain)}
+  .hero-fade{position:absolute;left:0;right:0;bottom:0;height:170px;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,rgba(236,234,229,0),rgba(236,234,229,.85) 60%,var(--bg))}
+  .hero .wrap-n{width:min(1000px,calc(100% - 40px))}
+  .hero h1{margin-top:22px;text-shadow:0 2px 24px rgba(6,20,80,.25)}
+  .hero h1 .line{display:block}
+  .hero h1 em{font-style:normal;color:rgba(255,255,255,.66)}
+  .hero .hl{color:var(--accent);background:none;padding:0;text-shadow:0 2px 24px rgba(6,20,80,.35);white-space:normal}
+  .hero .eyebrow{color:#fff;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .hero .eyebrow i{background:#8FF0B4;box-shadow:0 0 0 4px rgba(143,240,180,.22)}
+  .hero .lede{color:rgba(255,255,255,.86)}
+  .hero .lede strong{color:#fff}
+  .hero .btn-ink{background:#fff;color:var(--ink);box-shadow:0 14px 34px -12px rgba(6,20,80,.55)}
+  .hero .btn-ink:hover{background:#f4f2ee}
+  .hero .btn-wa{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .hero .btn-wa:hover{background:rgba(255,255,255,.22);box-shadow:none}
+  .hero .trust{color:rgba(255,255,255,.92);text-shadow:0 1px 12px rgba(6,20,80,.35)}
+  .hero .trust span::before{color:#8FF0B4}
+  .hl{white-space:nowrap;color:var(--ink);background:linear-gradient(transparent 68%,var(--accent) 68%,var(--accent) 94%,transparent 94%);padding:0 .06em;border-radius:2px}
+  .rise{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.3s}.d4{animation-delay:.42s}.d5{animation-delay:.55s}
+  @media (max-width:720px){.hero{padding:120px 0 90px}.hero-scene{top:380px}.hero-glow{width:900px;top:640px}}
+
+  .stage{position:relative;padding:44px 0 0}
+  .instance{position:relative;z-index:1;margin:0 auto;max-width:960px;background:#101012;color:#fff;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 2px 4px rgba(6,20,80,.08),0 50px 90px -30px rgba(6,20,80,.45);
+    -webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 170px),transparent 100%);mask-image:linear-gradient(180deg,#000 calc(100% - 170px),transparent 100%)}
+  .inst-top{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;padding:14px 18px;border-bottom:1px solid var(--dark-line);font-size:12.5px;color:var(--dark-muted);flex-wrap:wrap}
+  .dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#3a3a39}
+  .dots i:nth-child(1){background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+  .url{background:#0f0f0e;border:1px solid var(--dark-line);border-radius:8px;padding:5px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#d6d5d0}
+  .url b{color:#7ee2a5;font-weight:600}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:var(--pill);background:rgba(126,226,165,.12);color:#7ee2a5;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .badge i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
+  @keyframes pulse{50%{opacity:.35}}
+
+  /* website preview inside the laptop frame */
+  .siteprev{background:#FBFAF8;color:#141414;padding:0;text-align:left}
+  .sp-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 22px;border-bottom:1px solid rgba(18,18,18,.07)}
+  .sp-logo{font-weight:800;letter-spacing:-.02em;font-size:15px;display:flex;align-items:center;gap:8px}
+  .sp-logo i{width:20px;height:20px;border-radius:6px;background:#141414;color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px}
+  .sp-links{display:flex;gap:16px;font-size:12px;font-weight:600;color:#555}
+  .sp-cta{font-size:12px;font-weight:700;background:#141414;color:#fff;border-radius:999px;padding:8px 14px}
+  .sp-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;padding:26px 22px 22px;align-items:stretch}
+  .sp-kicker{font-size:10px;font-weight:800;letter-spacing:.12em;color:#888}
+  .sp-h{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin-top:8px}
+  .sp-sub{font-size:13px;color:#555;margin-top:10px;max-width:340px}
+  .sp-btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .sp-btn{font-size:12.5px;font-weight:700;border-radius:999px;padding:10px 16px;background:#141414;color:#fff}
+  .sp-btn.ghost{background:#fff;color:#141414;border:1px solid rgba(18,18,18,.16)}
+  .sp-feats{display:flex;gap:16px;margin-top:18px;font-size:11px;color:#666;font-weight:600}
+  .sp-feats span::before{content:"⌂ ";opacity:.6}
+  .sp-img{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#dfe9f5,#b9cfe8);min-height:260px}
+  .sp-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .sp-stats{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:14px;padding:14px 16px;display:grid;gap:8px;min-width:150px;box-shadow:0 12px 30px -12px rgba(0,0,0,.3)}
+  .sp-stats b{font-size:18px;letter-spacing:-.02em}
+  .sp-stats span{font-size:10.5px;color:#777;display:block}
+  @media (max-width:720px){.sp-hero{grid-template-columns:1fr}.sp-links{display:none}.sp-img{min-height:220px}.sp-stats{min-width:0;padding:10px 12px}.sp-stats b{font-size:15px}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:30px;max-width:900px;margin-inline:auto}
+  .chip{font-size:13.5px;font-weight:700;padding:9px 15px;border-radius:var(--pill);background:var(--card);border:1px solid var(--line);color:var(--ink-2);transition:transform .15s,box-shadow .15s}
+  .chip:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .chip.soon{color:var(--muted);border-style:dashed}
+
+  .cmp{margin-top:44px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+  .cmp-scroll{overflow-x:auto;scrollbar-width:thin}
+  .cmp table{width:100%;border-collapse:collapse;min-width:640px;font-size:14px}
+  .cmp th,.cmp td{padding:18px 20px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp thead th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--card-2)}
+  .cmp td:first-child{font-weight:700;color:var(--ink);width:24%}
+  .cmp td:not(:first-child){color:var(--ink-2)}
+  .cmp .you{background:var(--ink);color:#fff !important;position:relative}
+  .cmp td.you::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+  .cmp td.you b{color:var(--accent)}
+  @media (max-width:720px){
+    .cmp table{min-width:600px;font-size:13px}
+    .cmp th,.cmp td{padding:12px}
+    .cmp td:first-child{width:26%}
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .card .ic{width:44px;height:44px;border-radius:13px;background:var(--ink);color:#fff;display:grid;place-items:center;margin-bottom:18px}
+  .card .ic svg{width:22px;height:22px}
+  .card h3{margin-bottom:8px}
+  .card p{margin:0;color:var(--ink-2);font-size:15px}
+  .card .inc{margin-top:14px;font-size:13px;color:var(--muted)}
+  .card .inc b{color:var(--ink-2);font-weight:700}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;background:var(--card-2);padding:1px 5px;border-radius:5px}
+
+  .eng{background:var(--dark);color:#fff;border-radius:32px;padding:clamp(40px,6vw,80px) clamp(24px,5vw,72px);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .eng::after{content:"";position:absolute;width:640px;height:640px;right:-260px;top:-260px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,153,.12),transparent 70%);pointer-events:none}
+  .eng h2{color:#fff}
+  .eng .lede{color:#c9c8c2;margin-left:0}
+  .eng .eyebrow{background:rgba(255,255,255,.06);border-color:var(--dark-line);color:#e8e7e2}
+  .chain{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:44px;counter-reset:st;position:relative}
+  @media (max-width:980px){.chain{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:560px){.chain{grid-template-columns:1fr 1fr}}
+  .st{background:var(--dark-2);border:1px solid var(--dark-line);border-radius:16px;padding:16px 14px;counter-increment:st}
+  .st::before{content:"0" counter(st);font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--accent)}
+  .st b{display:block;margin-top:10px;font-size:15px;letter-spacing:-.01em}
+  .st span{display:block;margin-top:4px;font-size:12.5px;color:var(--dark-muted);line-height:1.4}
+  .eng-quote{margin-top:40px;padding-top:28px;border-top:1px solid var(--dark-line);display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start;position:relative}
+  @media (max-width:760px){.eng-quote{grid-template-columns:1fr}}
+  .eng-quote p{margin:0;font-size:clamp(18px,2vw,22px);letter-spacing:-.02em;line-height:1.35;font-weight:600}
+  .eng-quote ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px;color:#d6d5d0}
+  .eng-quote li::before{content:"—";color:var(--accent);margin-right:8px}
+
+  .plans-head .lede{max-width:560px}
+  .plan-card{margin:44px auto 0;max-width:920px;background:var(--card);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow-lg);padding:clamp(22px,4vw,40px);position:relative}
+  .plan-card .top{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:15px;text-align:center}
+  .plan-card .top .mark{flex:none;width:26px;height:26px;border-radius:7px;background:var(--ink);display:grid;place-items:center}
+  .plan-card .top .mark svg{width:14px;height:14px}
+  .price{margin-top:26px;text-align:center}
+  .price .first{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .price .big{font-size:clamp(56px,9vw,84px);font-weight:800;letter-spacing:-.05em;line-height:1;margin-top:6px}
+  .price .big sup{font-size:.42em;vertical-align:top;margin-top:.35em;display:inline-block;letter-spacing:-.02em;color:var(--ink-2)}
+  .price .then{margin-top:12px;font-size:16px;color:var(--ink-2)}
+  .offer{margin-top:22px;background:var(--accent);color:var(--accent-ink);border:1px solid rgba(0,0,0,.2);border-radius:16px;padding:14px 16px;font-size:14px}
+  .offer .row{display:flex;justify-content:space-between;gap:12px;font-weight:700}
+  .offer .bar{height:6px;background:rgba(0,0,0,.12);border-radius:99px;margin-top:10px;overflow:hidden}
+  .offer .bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:99px;animation:fill 1.4s .3s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes fill{to{width:var(--w)}}
+  .offer .sub{font-size:12.5px;color:rgba(10,10,10,.7);margin-top:6px}
+  .payment-options{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  @media (max-width:700px){.payment-options{grid-template-columns:1fr}}
+  .payment-option{background:var(--card-2);border:1px solid var(--line-2);border-radius:18px;padding:20px;min-width:0}
+  .payment-option.refundable{background:var(--accent);color:var(--accent-ink);border-color:rgba(0,0,0,.2)}
+  .payment-label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .payment-option.refundable .payment-label{color:rgba(10,10,10,.6)}
+  .payment-option h3{margin:8px 0 0;font-size:20px;letter-spacing:-.02em}
+  .payment-terms{display:inline-block;margin-top:10px;padding:5px 10px;border-radius:var(--pill);font-size:12px;font-weight:800;background:rgba(14,138,74,.12);color:var(--ok)}
+  .payment-terms.no-refund{background:rgba(18,18,18,.07);color:var(--ink-2)}
+  .payment-schedule{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+  .payment-schedule li{display:flex;gap:12px;align-items:flex-start}
+  .payment-percent{flex:none;min-width:50px;font-size:22px;font-weight:800;letter-spacing:-.04em;line-height:1.2}
+  .payment-schedule b{display:block;font-size:14px}
+  .payment-schedule small{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-top:3px}
+  .payment-option p{margin:12px 0 0;font-size:13.5px;color:var(--ink-2)}
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:14.5px}
+  @media (max-width:480px){.spec{grid-template-columns:1fr}}
+  .spec div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+  .spec span{color:var(--muted);flex:none}.spec b{text-align:right;font-weight:700}
+  .inc-list{list-style:none;margin:22px 0 0;padding:22px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:14.5px}
+  @media (max-width:560px){.inc-list{grid-template-columns:1fr}}
+  .inc-list li{display:flex;gap:10px;align-items:flex-start}
+  .inc-list li::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/11px no-repeat}
+  .plan-cta{display:flex;gap:10px;margin-top:28px}
+  .plan-cta .btn{flex:1}
+  @media (max-width:480px){.plan-cta{flex-direction:column}}
+  .plan-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+  .plans-foot{max-width:720px;margin:20px auto 0;text-align:center;font-size:14px;color:var(--muted)}
+  .plans-foot a{font-weight:700;color:var(--ink);text-decoration:underline}
+  .host-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  @media (max-width:600px){.host-grid{grid-template-columns:1fr}}
+  .host{background:var(--card-2);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .host.hot{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .host.hot span{color:#c9c8c2}
+  .host h4{margin:0 0 6px;font-size:16px;letter-spacing:-.02em}
+  .host p{margin:0;font-size:13.5px;color:var(--ink-2)}
+  .host.hot p{color:#c9c8c2}
+  .host .pr{font-size:22px;font-weight:800;letter-spacing:-.03em;margin-top:10px}
+  .host .pr small{font-size:13px;font-weight:600}
+
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:44px;counter-reset:s}
+  @media (max-width:1000px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;counter-increment:s;box-shadow:var(--shadow)}
+  .step::before{content:counter(s,decimal-leading-zero);display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--muted);border:1px solid var(--line-2);border-radius:var(--pill);padding:4px 10px}
+  .step h3{margin-top:16px;font-size:19px}
+  .step p{margin:8px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+  .promise{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:clamp(28px,5vw,56px);box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden}
+  .promise::before{content:"“";position:absolute;left:24px;top:-30px;font-size:220px;line-height:1;color:var(--bg-2);font-weight:800;pointer-events:none}
+  .promise blockquote{margin:0;position:relative;font-size:clamp(22px,3vw,34px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
+  .promise .own{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;text-align:left;position:relative}
+  @media (max-width:560px){.promise .own{grid-template-columns:1fr}}
+  .promise .own div{background:var(--card-2);border-radius:16px;padding:18px 20px;font-size:14.5px}
+  .promise .own b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+
+  .faq{margin-top:40px;display:grid;gap:10px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:0 22px;box-shadow:var(--shadow);transition:background .2s}
+  details[open]{background:#fff}
+  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center/14px no-repeat;transition:transform .25s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{margin:0 0 22px;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+
+  .wl{background:var(--dark);color:#fff;border-radius:32px;box-shadow:var(--shadow-lg);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;width:100%;max-width:100%;box-sizing:border-box}
+  .wl::before{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-260px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,153,.13),transparent 70%);pointer-events:none}
+  .wl-copy{padding:clamp(28px,5vw,56px);position:relative;min-width:0;max-width:100%;box-sizing:border-box}
+  .wl-copy h2{color:#fff}
+  .wl-copy p{color:#c9c8c2;font-size:16px;margin:16px 0 0}
+  .wl-copy ul{margin:24px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:14.5px;color:#e8e7e2}
+  .wl-copy li{display:flex;gap:10px}.wl-copy li::before{content:"→";color:var(--accent);font-weight:800}
+  .wl-form{background:var(--card);color:var(--ink);padding:clamp(24px,4vw,40px);position:relative;min-width:0;max-width:100%;box-sizing:border-box}
+  .f{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+  .f > div{min-width:0;max-width:100%}
+  .f2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+  .f2 > div{min-width:0;max-width:100%}
+  label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-2);margin-bottom:6px}
+  .in{width:100%;max-width:100%;min-width:0;border:1px solid var(--line-2);background:#fff;border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none;box-sizing:border-box}
+  .in:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(18,18,18,.08)}
+  textarea.in{min-height:84px;resize:vertical}
+  select.in{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 12px center/16px no-repeat;padding-right:38px}
+  .phone-input-wrap{display:flex;align-items:stretch;width:100%;max-width:100%;min-width:0;border:1px solid var(--line-2);background:#fff;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s;box-sizing:border-box}
+  .phone-input-wrap:hover{border-color:rgba(18,18,18,.28)}
+  .phone-input-wrap:focus-within{border-color:var(--ink);box-shadow:0 0 0 4px rgba(18,18,18,.08)}
+  .phone-cc-wrap{position:relative;flex:none;display:flex;align-items:stretch;border-right:1px solid var(--line-2);background:var(--card-2);transition:background .15s;cursor:pointer}
+  .phone-cc-wrap:hover{background:#edeae4}
+  .phone-cc-badge{display:flex;align-items:center;gap:5px;padding:0 10px 0 12px;pointer-events:none;user-select:none;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
+  .phone-cc-flag{font-size:16px;line-height:1}
+  .phone-cc-code{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .phone-cc-chev{width:10px;height:10px;color:var(--muted);stroke-width:2.5;margin-left:1px}
+  .phone-cc-select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;z-index:2;border:0;margin:0;padding:0;-webkit-appearance:none;appearance:none}
+  .phone-num-in{flex:1 1 0%;min-width:0;width:100%;border:none;outline:none;background:transparent;padding:12px 12px;font:inherit;font-size:15px;font-weight:600;color:var(--ink);box-sizing:border-box}
+  .phone-num-in::placeholder{color:var(--muted);font-weight:400}
+  .phone-num-in:focus{outline:none;box-shadow:none}
+  .dd{position:relative;width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+  .dd-btn{width:100%;max-width:100%;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line-2);background:#fff;border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;font-weight:600;color:var(--ink);text-align:left;outline:none;transition:border-color .15s,box-shadow .15s;box-sizing:border-box}
+  .dd-btn:hover{border-color:rgba(18,18,18,.28)}
+  .dd-btn:focus-visible,.dd.open .dd-btn{border-color:var(--ink);box-shadow:0 0 0 4px rgba(18,18,18,.08)}
+  .dd-btn .chev{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:transform .2s,background .2s}
+  .dd-btn .chev svg{width:14px;height:14px}
+  .dd.open .dd-btn .chev{transform:rotate(180deg);background:var(--ink);border-color:var(--ink)}
+  .dd.open .dd-btn .chev svg path{stroke:#fff}
+  .dd-list{margin:0;padding:2px;list-style:none}
+  .dd-btn span:first-child{display:block;flex:1 1 0%;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dd-placeholder{color:var(--muted);font-weight:500}
+  .f .btn{width:100%;max-width:100%;min-width:0;margin-top:4px;box-sizing:border-box}
+  .f-note{font-size:12.5px;color:var(--muted);text-align:center}
+
+  @media (max-width:860px){
+    .wl{grid-template-columns:1fr;border-radius:24px}
+    .wl-copy{padding:36px 22px}
+    .wl-form{padding:26px 18px;border-radius:0 0 24px 24px}
+  }
+  @media (max-width:640px){
+    .f2{grid-template-columns:minmax(0,1fr)}
+  }
+  @media (max-width:540px){
+    .wrap{width:calc(100% - 20px);margin-inline:auto}
+    .wrap-n{width:calc(100% - 20px);margin-inline:auto}
+    section{padding:54px 0}
+    .wl{border-radius:20px}
+    .wl-copy{padding:26px 16px}
+    .wl-copy h2{font-size:28px}
+    .wl-form{padding:20px 14px;border-radius:0 0 20px 20px}
+    .f2{grid-template-columns:minmax(0,1fr);gap:12px}
+    .f{gap:12px}
+    .in{font-size:16px;padding:11px 12px}
+    .slots-head{flex-direction:column;align-items:stretch;gap:10px}
+    .slots-mode-toggle{width:100%}
+    .mode-toggle-btn{font-size:11.5px;padding:7px 5px}
+  }
+
+  @keyframes ddpop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+  @keyframes ddfade{from{opacity:0}to{opacity:1}}
+  .dd-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+  .dd-backdrop{position:absolute;inset:0;background:rgba(18,18,18,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:ddfade .18s ease}
+  .dd-panel{position:relative;width:min(480px,100%);max-height:min(80vh,540px);display:flex;flex-direction:column;background:#fff;border:1px solid var(--line-2);border-radius:20px;box-shadow:var(--shadow-lg);padding:8px;overflow:hidden;animation:ddpop .2s cubic-bezier(.2,.7,.2,1)}
+  .dd-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 8px;font-weight:800;font-size:15px;letter-spacing:-.01em}
+  .dd-x{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line-2);background:var(--card);display:grid;place-items:center}
+  .dd-x:hover{background:var(--card-2)}
+  .dd-x svg{width:14px;height:14px}
+  .dd-panel .dd-list{overflow:auto}
+  .dd-opt{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:12px;border:0;border-radius:10px;background:transparent;font:inherit;font-size:15px;font-weight:600;line-height:1.35;color:var(--ink);text-align:left;cursor:pointer;transition:background .13s}
+  .dd-opt:hover{background:var(--card-2)}
+  .dd-opt.focus{background:var(--card-2)}
+  .dd-opt[aria-selected="true"]{background:var(--card-2)}
+  .dd-check{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;background:#fff;transition:background .15s,border-color .15s}
+  .dd-check svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:opacity .15s,transform .15s}
+  .dd-opt[aria-selected="true"] .dd-check{background:var(--ink);border-color:var(--ink)}
+  .dd-opt[aria-selected="true"] .dd-check svg{opacity:1;transform:none}
+  .msg{border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.5}
+  .msg.err{background:#fbeae6;border:1px solid #f0c3b8;color:var(--warn)}
+  .msg a{font-weight:700;text-decoration:underline}
+  .done{text-align:center;padding:20px 0}
+  .done .tick{width:64px;height:64px;border-radius:50%;background:var(--ink);margin:0 auto 18px;display:grid;place-items:center}
+  .done .tick svg{width:30px;height:30px}
+  .done h3{font-size:24px}.done p{color:var(--ink-2);margin:10px 0 22px}
+
+  /* Multi-step consultation booking flow */
+  .wl-steps{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:12px;font-weight:700}
+  .wl-step-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:var(--pill);background:var(--card-2);color:var(--muted);transition:all .18s ease}
+  .wl-step-pill.active{background:var(--ink);color:#fff}
+  .wl-step-num{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.2);font-size:10.5px}
+  .wl-step-pill:not(.active) .wl-step-num{background:var(--line-2);color:var(--ink-2)}
+  .wl-step-sep{color:var(--line-2);font-size:13px}
+
+  .slots-step{display:flex;flex-direction:column;gap:16px;animation:ddfade .2s ease;min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+  .slots-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line-2);padding-bottom:12px;min-width:0;width:100%;box-sizing:border-box}
+  .slots-back{display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:var(--ink-2);font:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:4px 0;transition:color .15s}
+  .slots-back:hover{color:var(--ink)}
+  .slots-mode-toggle{display:flex;align-items:center;background:var(--card-2);border:1px solid var(--line-2);border-radius:var(--pill);padding:3px;gap:2px;box-sizing:border-box;max-width:100%}
+  .mode-toggle-btn{flex:1;min-width:0;display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;border-radius:var(--pill);border:none;background:transparent;font:inherit;font-size:12px;font-weight:700;color:var(--ink-2);cursor:pointer;transition:all .15s ease}
+  .mode-toggle-btn svg{flex:none}
+  .mode-toggle-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mode-toggle-btn:hover:not(.active){color:var(--ink);background:rgba(0,0,0,.05)}
+  .mode-toggle-btn.active{background:var(--ink);color:#fff;box-shadow:0 2px 8px -2px rgba(18,18,18,.35)}
+  @media (max-width:540px){
+    .slots-head{flex-direction:column;align-items:stretch;gap:10px}
+    .slots-mode-toggle{width:100%}
+    .mode-toggle-btn{font-size:11.5px;padding:7px 5px}
+  }
+
+  .date-chips-wrap{position:relative;min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+  .date-chips-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:12px;font-weight:700;color:var(--ink-2)}
+  .date-chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+  .date-chips::-webkit-scrollbar{display:none}
+  .date-chip{flex:none;min-width:66px;padding:9px 7px;border-radius:14px;border:1px solid var(--line-2);background:#fff;text-align:center;cursor:pointer;transition:all .15s ease;display:flex;flex-direction:column;gap:2px}
+  .date-chip:hover{border-color:rgba(18,18,18,.35);transform:translateY(-1px)}
+  .date-chip.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 6px 16px -4px rgba(18,18,18,.35)}
+  .date-chip-day{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.7}
+  .date-chip-num{font-size:17px;font-weight:800;line-height:1.15}
+  .date-chip-sub{font-size:10px;font-weight:600;opacity:.8}
+  .date-chip.active .date-chip-day,.date-chip.active .date-chip-sub{opacity:.9}
+
+  .time-slots-section{margin-top:2px;min-width:0;width:100%;max-width:100%;box-sizing:border-box}
+  .time-slots-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+  .time-slots-head span{font-size:12px;font-weight:700;color:var(--ink-2)}
+  .time-slots-tz{font-size:11px;color:var(--muted);font-weight:600}
+  .tz-btn{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--line-2);border-radius:var(--pill);padding:4px 9px;font:inherit;font-size:11px;font-weight:700;color:var(--ink-2);cursor:pointer;transition:all .15s ease}
+  .tz-btn:hover{background:var(--card-2);border-color:rgba(18,18,18,.35);color:var(--ink)}
+  .tz-search{width:100%;padding:9px 12px;border:1px solid var(--line-2);border-radius:12px;font:inherit;font-size:13px;outline:none;transition:border-color .15s;box-sizing:border-box}
+  .tz-search:focus{border-color:var(--ink)}
+  .time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:7px;max-height:230px;overflow-y:auto;padding:2px;min-width:0;width:100%;box-sizing:border-box}
+  .time-slot{padding:9px 4px;border-radius:12px;border:1px solid var(--line-2);background:#fff;font:inherit;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;text-align:center;transition:all .15s ease;white-space:nowrap}
+  .time-slot:hover{border-color:rgba(18,18,18,.35);transform:translateY(-1px)}
+  .time-slot.active{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 4px 14px -3px rgba(18,18,18,.4)}
+  .slots-loading{padding:26px 10px;text-align:center;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:10px}
+  .slots-loading-spin{width:16px;height:16px;border:2px solid var(--line-2);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .slots-empty{padding:20px 14px;border-radius:14px;background:#fff;border:1px dashed var(--line-2);text-align:center;font-size:13px;color:var(--ink-2);line-height:1.5}
+  @keyframes slotShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+  .time-slots-section.warn-shake{animation:slotShake .4s ease}
+  .time-slots-section.warn-shake .time-slots-head span:first-child{color:var(--warn);transition:color .2s}
+
+  .done-card{background:#fff;border:1px solid var(--line-2);border-radius:18px;padding:16px;margin:16px 0;text-align:left;display:grid;gap:10px;box-shadow:0 6px 20px -8px rgba(18,18,18,.08)}
+  .done-row{display:flex;align-items:center;gap:10px;font-size:13.5px}
+  .done-icon{flex:none;width:32px;height:32px;border-radius:10px;background:var(--card-2);display:grid;place-items:center;font-size:14px}
+  .done-detail b{display:block;font-size:13.5px;color:var(--ink);font-weight:700}
+  .done-detail span{font-size:11.5px;color:var(--muted)}
+  .meet-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 20px;border-radius:var(--pill);background:#1a73e8;color:#fff;font-weight:700;font-size:14px;text-decoration:none;transition:background .15s}
+  .meet-btn:hover{background:#1557b0}
+
+  .site-foot{position:relative;margin-top:40px;overflow:hidden;background:var(--bg)}
+  .foot-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:32px 28px;padding:72px 0 56px}
+  @media (max-width:980px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-brand{grid-column:1/-1}}
+  @media (max-width:560px){.foot-grid{grid-template-columns:1fr 1fr;padding:56px 0 40px}}
+  .foot-brand .brand{font-size:16px}
+  .foot-brand h3{margin-top:22px;font-size:26px;letter-spacing:-.035em;line-height:1.05;max-width:360px}
+  .foot-brand p{margin:14px 0 0;font-size:14.5px;color:var(--ink-2);max-width:380px}
+  .foot-brand .btn{margin-top:22px}
+  .foot-brand .legal{margin-top:26px;font-size:12.5px;color:var(--muted)}
+  .foot-brand .legal a{font-weight:700;color:var(--ink-2)}
+  .foot-col h4{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .foot-col a{font-size:14.5px;font-weight:600;color:var(--ink-2);transition:color .15s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-col a i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);margin-right:8px;vertical-align:middle}
+
+  .scene{position:relative;z-index:1;height:clamp(380px,50vw,680px);margin-top:-120px;pointer-events:none}
+  @media (max-width:560px){.scene{margin-top:-60px}}
+  .scene-clip{position:absolute;inset:0;overflow:hidden}
+  .scene-zoom{position:absolute;inset:-4% -4% 0;transform-origin:50% 70%;animation:kb 36s cubic-bezier(.45,.05,.55,.95) infinite alternate;will-change:transform}
+  @keyframes kb{from{transform:scale(1.06) translate(2.5%,1.2%)}to{transform:scale(1.2) translate(-3%,-2.2%)}}
+  .scene .sky{position:absolute;inset:0;background:
+    radial-gradient(60% 70% at 18% 72%,rgba(255,236,190,.55),transparent 70%),
+    linear-gradient(180deg,var(--bg) 0%,#e9e6dc 45%,#dfe0d0 100%)}
+  .layer{will-change:transform}
+  .photo{position:absolute;inset:-6% 0 0}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 100%}
+  .scene-fade-bottom{position:absolute;left:0;right:0;bottom:0;height:54%;background:linear-gradient(180deg,rgba(236,234,229,0) 0%,rgba(236,234,229,.55) 45%,var(--bg) 100%);z-index:3}
+  .wordmark{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;overflow:hidden;pointer-events:none}
+  .wordmark span{display:block;font-weight:700;letter-spacing:-.055em;line-height:.76;margin-bottom:-.1em;color:var(--bg);white-space:nowrap;font-size:100px;transform:translateZ(0)}
+  .mist{position:absolute;left:-20%;right:-20%;height:22%;filter:blur(26px);opacity:.28;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.85) 20%,rgba(255,255,255,.35) 45%,rgba(255,255,255,.9) 70%,transparent)}
+  .mist-1{bottom:34%;animation:drift 38s linear infinite}
+  .mist-2{bottom:14%;height:16%;opacity:.2;animation:drift 52s linear infinite reverse}
+  @keyframes drift{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+  .scene-fade-top{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,var(--bg) 0%,rgba(236,234,229,.8) 30%,transparent 100%);z-index:3}
+  .scene-grain{position:absolute;inset:0;z-index:3;opacity:.22;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv,.rise{opacity:1;transform:none;animation:none;transition:none}.offer .bar i{animation:none;width:var(--w)}}
 </style>
 <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
+
 <div class="nav" id="nav">
   <div class="nav-pill">
     <a class="brand" href="#top" aria-label="Sites home">
-      <span class="mark"><svg width="16" height="16" viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span>
+      <span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span>
       Sites <small>by UpSquad</small>
     </a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#why">Why us</a>
-      <a href="#included">Included</a>
-      <a href="#process">Process</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
       <a href="/sites/portfolio/" id="nav-portfolio-link">Portfolio</a>
+      <a href="#pricing">Pricing</a>
     </nav>
-    <a class="btn btn-ink btn-sm nav-cta" href="#consult">Book free consultation</a>
+    <a class="btn btn-ink btn-sm" href="#consult">Book free consultation</a>
   </div>
 </div>
 
 <header class="hero" id="top">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="wrap-n center">
-    <span class="pill rise d1"><span class="dot">✓</span> Two ways to pay &nbsp;·&nbsp; From ₹10,000</span>
-    <h1 class="rise d2">A website you’ll <span class="serif">love.</span><span style="display:block"><span class="hl">Pay your way.<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 Q 60 4 100 12 T 198 8" fill="none" stroke="#FFEF5E" stroke-width="9" stroke-linecap="round"/></svg></span></span></h1>
-    <p class="lede hero-sub rise d3">We design + build your business website — copy, images &amp; hosting handled. Choose a full deposit with a refund guarantee, or pay in milestones: 30% / 40% / 30%, with no refund.</p>
+  <div class="hero-scene" aria-hidden="true">
+    <img src="assets/hero-scene.jpg" alt="" width="1024" height="656" decoding="async" fetchpriority="high">
+    <video id="hero-video" src="assets/hero-scene.mp4" poster="assets/hero-scene.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap-n center hero-copy">
+    <span class="eyebrow rise d1"><i></i> Built for businesses that need a website</span>
+    <h1 class="rise d2">
+      <span class="line">We charge only</span>
+      <span class="line"><span class="hl">if you like the website.</span></span>
+      <span class="line">Else full amount refund.</span>
+    </h1>
+    <p class="lede rise d3">We build websites for businesses. You pay the full amount as a deposit and we start work. If you do not like the final website, we refund the full amount.<br><br>Starting from <strong>₹10,000</strong> onwards</p>
     <div class="cta-row rise d4">
-      <a class="btn btn-ink" data-wa="hero" href="#" target="_blank" rel="noopener">Chat on WhatsApp →</a>
-      <a class="btn btn-light" href="#consult">Book free consultation</a>
+      <a class="btn btn-ink" data-wa="hero" href="#" target="_blank" rel="noopener">Contact us on WhatsApp →</a>
+      <a class="btn btn-wa" href="#consult">Book free consultation</a>
     </div>
-    <div class="social-proof rise d5">
-      <div class="avatars" aria-hidden="true">
-        <span style="background:#1B2AA5">ED</span><span style="background:#0E8A4A">SP</span><span style="background:#B23B1E">MC</span><span style="background:#111">+9</span>
-      </div>
-      <div class="stars">★★★★★ 4.9 / 5 from business owners<small>Websites for cafés, clinics, realtors, SaaS &amp; more</small></div>
+    <div class="trust rise d5">
+      <span>Full amount as deposit</span>
+      <span>Full amount refund</span>
+      <span>Business websites</span>
     </div>
   </div>
 
-  <div class="stage wrap">
-    <div class="float-card float-1"><span class="float-ic" style="background:#0E8A4A">✓</span><div>Two payment options<small>Full deposit or milestones</small></div></div>
-    <div class="float-card float-2"><span class="float-ic" style="background:#1B2AA5">◐</span><div>Live in 7–10 days<small>Copy + visuals included</small></div></div>
-    <div class="browser rise d5" aria-label="Example business website we built">
-      <div class="b-top">
-        <div class="dots"><i></i><i></i><i></i></div>
-        <div class="url">https://<b>yourbusiness.com</b></div>
-        <span class="live-badge"><i></i> Modern · Responsive · SEO-ready</span>
-      </div>
-      <div class="siteprev">
-        <div class="sp-nav">
-          <div class="sp-logo"><i>▲</i> Aurora</div>
-          <div class="sp-links"><span>Home</span><span>About</span><span>Services</span><span>Portfolio</span><span>Contact</span></div>
-          <div class="sp-cta">Get a Quote</div>
+  <div class="stage">
+    <div class="wrap">
+      <div class="instance rise d5" aria-label="Example business website we built">
+        <div class="inst-top">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="url">https://<b>yourbusiness.com</b></div>
+          <span class="badge"><i></i> Modern · Responsive · SEO-ready</span>
         </div>
-        <div class="sp-hero">
-          <div>
-            <div class="sp-kicker">BUILD A BRIGHTER TOMORROW</div>
-            <div class="sp-h">Modern spaces for a better life.</div>
-            <div class="sp-sub">We design and build beautiful, functional spaces for homes and businesses. Copy, photos &amp; booking built-in.</div>
-            <div class="sp-btns"><div class="sp-btn">Our Work →</div><div class="sp-btn ghost">Get a Quote</div></div>
-            <div class="sp-ticks"><span>✓ Residential</span><span>✓ Commercial</span><span>✓ Interiors</span></div>
+        <div class="siteprev">
+          <div class="sp-nav">
+            <div class="sp-logo"><i>▲</i> Aurora</div>
+            <div class="sp-links"><span>Home</span><span>About</span><span>Services</span><span>Portfolio</span><span>Contact</span></div>
+            <div class="sp-cta">Get a Quote</div>
           </div>
-          <div class="sp-img">
-            <img src="assets/hero-scene.jpg" alt="" loading="eager" fetchpriority="high">
-            <div class="sp-stats">
-              <div><b>200+</b><span>Projects completed</span></div>
-              <div><b>98%</b><span>Client satisfaction</span></div>
-              <div><b>10+</b><span>Years of experience</span></div>
+          <div class="sp-hero">
+            <div>
+              <div class="sp-kicker">BUILD A BRIGHTER TOMORROW</div>
+              <div class="sp-h">Modern spaces for a better life.</div>
+              <div class="sp-sub">We design and build beautiful, functional spaces for homes and businesses.</div>
+              <div class="sp-btns"><div class="sp-btn">Our Work →</div><div class="sp-btn ghost">Get a Quote</div></div>
+              <div class="sp-feats"><span>Residential</span><span>Commercial</span><span>Interior Design</span></div>
+            </div>
+            <div class="sp-img">
+              <img src="assets/hero-scene.jpg" alt="" loading="lazy">
+              <div class="sp-stats">
+                <div><b>200+</b><span>Projects completed</span></div>
+                <div><b>98%</b><span>Client satisfaction</span></div>
+                <div><b>10+</b><span>Years of experience</span></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="hero-below rise d5">
-      <a class="btn btn-light btn-sm" id="hero-portfolio-link" href="/sites/portfolio/">Browse previous designs &amp; case studies →</a>
+      <div class="center rise d5" style="margin-top:24px;position:relative;z-index:2">
+        <a class="btn btn-wa btn-sm" id="hero-portfolio-link" href="/sites/portfolio/">Browse all previous website designs & case studies →</a>
+      </div>
     </div>
   </div>
+  <div class="hero-fade" aria-hidden="true"></div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marquee-track">
-    <span class="m-chip hot">✓ Two ways to pay</span><span class="m-chip">Restaurants &amp; Cafés</span><span class="m-chip">Clinics &amp; Doctors</span><span class="m-chip">Salons &amp; Spas</span><span class="m-chip">Real Estate</span><span class="m-chip">Schools &amp; Coaching</span><span class="m-chip">Traders &amp; Shops</span><span class="m-chip">Hotels &amp; Homestays</span><span class="m-chip">Services &amp; Agencies</span><span class="m-chip">Manufacturers</span><span class="m-chip">Startups</span><span class="m-chip">Portfolios</span>
-  </div>
-</div>
-
-<section id="why" style="padding-bottom:0">
+<section id="why">
   <div class="wrap center rv">
-    <span class="kicker">01 — Why Sites</span>
-    <h2 style="margin-top:14px">Your business, online.<br><span class="serif" style="font-size:1.08em">With a choice of payments.</span></h2>
-    <p class="lede">We plan, write, design and build. Choose a full deposit with a refund guarantee, or split payments across project milestones with no refund.</p>
+    <h2>Your business, online.<br>Without the risk.</h2>
+    <p class="lede">Pay the full amount as a deposit, we design and build your website. If you're not happy with the final result, we'll refund your full amount. No risk. Just a better website for your business.</p>
+    <div class="chips">
+      <span class="chip">Restaurants & Cafés</span><span class="chip">Clinics & Doctors</span><span class="chip">Salons & Spas</span><span class="chip">Real Estate</span><span class="chip">Schools & Coaching</span><span class="chip">Traders & Shops</span><span class="chip">Hotels & Homestays</span><span class="chip">Services & Agencies</span><span class="chip">Manufacturers</span><span class="chip">Startups</span><span class="chip">Portfolios</span><span class="chip soon">+ any business</span>
+    </div>
   </div>
+
   <div class="wrap rv">
     <div class="cmp">
       <div class="cmp-scroll">
         <table>
-          <thead><tr><th></th><th>Typical freelancer / agency</th><th>DIY builders</th><th class="you-head">Sites by UpSquad ✓</th></tr></thead>
+          <thead><tr><th></th><th>Typical freelancer / agency</th><th>DIY builders</th><th class="you">Sites by UpSquad</th></tr></thead>
           <tbody>
-            <tr><td>Upfront risk</td><td>Pay 50–100% upfront, hope for the best</td><td>Weeks of your own time</td><td class="you"><b>Choose how you pay.</b> Full refundable deposit, or 30% advance with milestone payments.</td></tr>
-            <tr><td>If you don't like it</td><td>Money stuck, awkward follow-ups</td><td>You start over</td><td class="you"><b>Full-deposit option:</b> full refund if you don't love it. <b>Milestone option:</b> no refund.</td></tr>
-            <tr><td>Content</td><td>"Send us the text and photos"</td><td>You write everything</td><td class="you"><b>We write the copy,</b> source images &amp; icons</td></tr>
-            <tr><td>Planning</td><td>Often skipped — straight to "design"</td><td>Template lottery</td><td class="you"><b>Mood board + page plan</b> before we build</td></tr>
-            <tr><td>After delivery</td><td>Extra charge for every change</td><td>You're on your own</td><td class="you"><b>Change round included,</b> then clean handover</td></tr>
-            <tr><td>Hosting</td><td>"Figure it out yourself"</td><td>Locked into their platform</td><td class="you"><b>We set up hosting,</b> or ₹3,000/yr on our VPS</td></tr>
+            <tr><td>Upfront risk</td><td>Pay 50–100% upfront, hope for the best</td><td>Weeks of your own time</td><td class="you"><b>Full amount as deposit.</b> 100% refundable if you don't love it.</td></tr>
+            <tr><td>If you don't like it</td><td>Money stuck, awkward follow-ups</td><td>You start over</td><td class="you"><b>Full amount refund.</b> No questions, no drama.</td></tr>
+            <tr><td>Content</td><td>"Send us the text and photos"</td><td>You write everything</td><td class="you"><b>We write the copy,</b> source images & icons for you</td></tr>
+            <tr><td>Planning</td><td>Often skipped — straight to "design"</td><td>Template lottery</td><td class="you"><b>Mood board + section & page plan</b> before we build</td></tr>
+            <tr><td>After delivery</td><td>Extra charge for every change</td><td>You're on your own</td><td class="you"><b>Delivery + change round</b> included, then handover</td></tr>
+            <tr><td>Hosting</td><td>"Figure it out yourself"</td><td>Locked into their platform</td><td class="you"><b>We set up your hosting,</b> or ₹3,000/yr on our shared VPS</td></tr>
           </tbody>
         </table>
       </div>
@@ -402,92 +600,94 @@ details p{margin:0 0 24px;color:var(--ink-2);font-size:15.5px}
 <section id="included">
   <div class="wrap">
     <div class="center rv">
-      <span class="kicker" style="justify-content:center">02 — What's included</span>
-      <h2 style="margin-top:14px">One price. Everything done.</h2>
-      <p class="lede">Design, build, words and visuals — you don't arrange anything separately.</p>
+      <h2>What's included in development.</h2>
+      <p class="lede">One price covers design, build, words and visuals — so you don't have to arrange anything separately.</p>
     </div>
     <div class="grid">
       <div class="card rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <h3>Design + development</h3><p>Modern, on-brand website — planned sections and pages, built to work everywhere.</p>
-        <div class="inc"><b>Includes:</b> Custom design · Responsive build · WhatsApp / Maps setup</div>
+        <h3>Design + development</h3><p>Modern, on-brand website — planned sections and pages, designed around your business and built to work everywhere.</p>
+        <div class="inc"><b>Includes:</b> Custom design, Responsive build, Contact / WhatsApp / Maps setup.</div>
       </div>
       <div class="card rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
-        <h3>Copywriting</h3><p>We write headlines, services, about and contact in language your customers understand.</p>
-        <div class="inc"><b>Includes:</b> Page copy · Headlines · Calls-to-action. You just approve.</div>
+        <h3>Copywriting</h3><p>We write the website text for you — headlines, services, about, contact — in clear language your customers understand.</p>
+        <div class="inc"><b>Includes:</b> Page copy, Headlines, Calls-to-action. You just approve.</div>
       </div>
       <div class="card rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="3"/><path d="M8 21h8"/></svg></div>
-        <h3>Images, icons &amp; visuals</h3><p>We source and place stock images, icons and graphics so it looks finished on day one.</p>
-        <div class="inc"><b>Note:</b> Free assets included. <b>Paid stock</b> you purchase if needed.</div>
+        <h3>Images, icons & visuals</h3><p>We source and place stock images, icons and graphics so the site looks finished on day one.</p>
+        <div class="inc"><b>Note:</b> Free assets included. <b>Paid stock / premium content</b> is purchased by you if needed.</div>
       </div>
       <div class="card rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
-        <h3>Responsive &amp; fast</h3><p>Perfect on mobile, tablet and desktop. Lightweight pages that load in under a second.</p>
-        <div class="inc"><b>Includes:</b> Mobile-first layout · Speed basics · Click-to-chat</div>
+        <h3>Responsive & fast</h3><p>Looks perfect on mobile, tablet and desktop. Lightweight pages that load quickly.</p>
+        <div class="inc"><b>Includes:</b> Mobile-first layout, Speed basics, WhatsApp click-to-chat.</div>
       </div>
       <div class="card rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Secure &amp; SEO-ready</h3><p>Proper structure, titles and descriptions so Google finds you, plus secure best practices.</p>
-        <div class="inc"><b>Includes:</b> SEO basics · SSL-ready · Analytics-ready</div>
+        <h3>Secure & SEO-ready</h3><p>Built for growth — proper structure, titles and descriptions so Google can find you, plus secure best practices.</p>
+        <div class="inc"><b>Includes:</b> SEO basics, SSL-ready, Analytics-ready.</div>
       </div>
       <div class="card rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 10.5l7-3.5M8.5 13.5l7 3.5"/></svg></div>
-        <h3>Delivery, changes &amp; handover</h3><p>We deliver, do a round of changes with you, then hand everything over cleanly.</p>
-        <div class="inc"><b>Includes:</b> Change round · Handover · Hosting setup help</div>
+        <h3>Delivery, changes & handover</h3><p>We deliver the finished site, do a round of changes with you, then hand everything over.</p>
+        <div class="inc"><b>Includes:</b> Change round, Handover, Hosting setup help.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="process" style="padding-top:0">
+<section id="process">
   <div class="wrap">
     <div class="eng rv">
-      <span class="kicker">03 — The process · simple &amp; transparent</span>
-      <h2 style="margin-top:16px;max-width:720px">Five steps. Clear milestones.</h2>
-      <p class="lede">You approve the plan before we build. Choose your payment option upfront: a full refundable deposit, or non-refundable milestone payments of 30% / 40% / 30%.</p>
+      <span class="eyebrow"><i></i> The process · simple & transparent</span>
+      <h2 style="margin-top:20px;max-width:760px">Five steps. Zero risk.</h2>
+      <p class="lede">Start with a free consultation. Pay the full amount as a deposit only when you're ready. We plan, build, deliver — and you decide.</p>
       <div class="chain">
-        <div class="st"><b>Consultation + payment choice</b><span>Free call. Start with a full refundable deposit or a 30% non-refundable advance.</span></div>
-        <div class="st"><b>Planning session</b><span>Mood board + section &amp; page plan agreed upfront.</span></div>
-        <div class="st"><b>First website draft</b><span>Design + build, copy and visuals. Milestone 1: 40% due when the first draft is delivered.</span></div>
-        <div class="st"><b>Changes + refinements</b><span>Review the draft. We complete the changes, enhancements and bug fixes.</span></div>
-        <div class="st"><b>Go live + final delivery</b><span>Live on your server or our shared server. Final 30% due on the milestone plan; no refund. Full-deposit plan keeps its refund guarantee.</span></div>
+        <div class="st"><b>Free consultation + deposit</b><span>Book a free call. If it fits, pay the full amount as a refundable deposit to start.</span></div>
+        <div class="st"><b>Planning session</b><span>Mood board, plus section & page plan for your website.</span></div>
+        <div class="st"><b>Development</b><span>Design + build, with copywriting, images & icons included.</span></div>
+        <div class="st"><b>Delivery + changes</b><span>We deliver the site and refine it with you.</span></div>
+        <div class="st"><b>Love it or refund</b><span>Like it — it's yours. Don't — full amount refund.</span></div>
       </div>
       <div class="eng-quote">
-        <p>No surprises. No jargon. Just a website your customers understand.</p>
+        <p>You approve the plan before we build. Your full payment is a deposit — if you don't approve the final website, it all comes back.</p>
         <ul>
           <li>Mood board so you see the look before we build</li>
-          <li>Sections &amp; pages agreed upfront</li>
+          <li>Sections & pages agreed upfront — no surprises</li>
           <li>Copy, images and icons handled by us</li>
-          <li>Refund guarantee with the full-deposit option only</li>
+          <li>Full refund if you don't like the final website</li>
         </ul>
       </div>
     </div>
+
     <div class="steps">
-      <div class="step rv"><h3>Book free call</h3><p>Tell us about your business on WhatsApp. Free, no obligation.</p></div>
-      <div class="step rv"><h3>Plan together</h3><p>Mood board + every section and page mapped.</p></div>
-      <div class="step rv"><h3>We build it</h3><p>Design, copy, images and visuals — all done for you.</p></div>
-      <div class="step rv"><h3>Review &amp; refine</h3><p>See the real site, ask for changes.</p></div>
-      <div class="step rv"><h3>Go live &amp; handover</h3><p>We launch on your server or our shared server. The milestone plan’s final 30% is due at final delivery.</p></div>
+      <div class="step rv"><h3>Book free consultation</h3><p>Tell us about your business on WhatsApp. Free call, no obligation — then the full amount as a refundable deposit to start.</p></div>
+      <div class="step rv"><h3>Planning session</h3><p>We set up a mood board and plan every section and page together.</p></div>
+      <div class="step rv"><h3>We build it</h3><p>Development + copywriting + images, icons and visuals. Paid content, if needed, you purchase.</p></div>
+      <div class="step rv"><h3>Delivery & changes</h3><p>See the finished website, ask for changes, and we refine it.</p></div>
+      <div class="step rv"><h3>Love it or refund</h3><p>Happy? It's yours. Not happy? Full amount refund.</p></div>
     </div>
   </div>
 </section>
 
-<section id="pricing" style="padding-top:0">
+<section id="pricing">
   <div class="wrap">
-    <div class="center rv">
-      <span class="kicker" style="justify-content:center">04 — Pricing</span>
-      <h2 style="margin-top:14px">Starting from ₹10,000.</h2>
-      <p class="lede">Same website service. Choose the payment option that suits you.</p>
+    <div class="center plans-head rv">
+      <h2>Websites starting from ₹10,000.</h2>
+      <p class="lede">Same website service, two ways to pay. Choose a full refundable deposit or non-refundable milestone payments.</p>
     </div>
+
     <div class="plan-card rv">
-      <div class="plan-top"><span class="mark"><svg width="14" height="14" viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> Sites by UpSquad · business websites</div>
+      <div class="top"><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> Sites by UpSquad · business websites</div>
+
       <div class="price">
         <div class="first">Websites starting from</div>
         <div class="big"><sup>₹</sup>10,000</div>
         <div class="then">onwards · final quote after free consultation</div>
       </div>
+
       <div class="payment-options" aria-label="Payment options">
         <article class="payment-option refundable" aria-labelledby="full-deposit-title">
           <span class="payment-label">Option 1</span>
@@ -496,7 +696,7 @@ details p{margin:0 0 24px;color:var(--ink-2);font-size:15.5px}
           <ol class="payment-schedule">
             <li><span class="payment-percent">100%</span><div><b>Deposit to start</b><small>Pay the full quoted amount upfront. We plan and build your website, complete the change round and deliver.</small></div></li>
           </ol>
-          <p>Don’t love the final website? Tell us within 7 days of delivery and get a full refund.</p>
+          <p>Don't love the final website? Tell us within 7 days of delivery and get a full refund.</p>
         </article>
         <article class="payment-option" aria-labelledby="milestone-title">
           <span class="payment-label">Option 2</span>
@@ -504,149 +704,305 @@ details p{margin:0 0 24px;color:var(--ink-2);font-size:15.5px}
           <span class="payment-terms no-refund">No refund · all payments non-refundable</span>
           <ol class="payment-schedule">
             <li><span class="payment-percent">30%</span><div><b>Advance to start</b><small>Pay 30% of the quoted amount to begin the project.</small></div></li>
-            <li><span class="payment-percent">40%</span><div><b>Milestone 1 · first draft</b><small>Due when we deliver the first draft of your website. We then complete the changes, enhancements and bug fixes.</small></div></li>
-            <li><span class="payment-percent">30%</span><div><b>Final delivery · website live</b><small>The balance is due after changes, enhancements and bug fixes are complete and the website is live on your server or our shared server.</small></div></li>
+            <li><span class="payment-percent">40%</span><div><b>Milestone 1 · first draft</b><small>Due when we deliver the first draft. We then complete the changes, enhancements and bug fixes.</small></div></li>
+            <li><span class="payment-percent">30%</span><div><b>Final delivery · website live</b><small>Due once changes are complete and the website is live on your server or our shared server.</small></div></li>
           </ol>
           <p>The full refund guarantee does not apply to this option.</p>
         </article>
       </div>
+
       <div class="spec">
         <div><span>Step 1</span><b>Free consultation</b></div>
         <div><span>Payment</span><b>Full deposit or milestones</b></div>
         <div><span>Included</span><b>Design + build + copy + visuals</b></div>
         <div><span>Paid content</span><b>Purchased by you, if needed</b></div>
-        <div><span>Delivery</span><b>Changes + go live + handover</b></div>
+        <div><span>Delivery</span><b>Finished site + change round</b></div>
         <div><span>Refund</span><b>Full-deposit option only</b></div>
       </div>
+
       <ul class="inc-list">
         <li>Planning session with mood board</li>
-        <li>Sections &amp; pages planned upfront</li>
+        <li>Sections & pages planned upfront</li>
         <li>Copywriting for the website</li>
-        <li>Images, icons &amp; visuals sourced</li>
-        <li>Responsive, secure &amp; SEO-ready</li>
+        <li>Images, icons & visuals sourced</li>
+        <li>Responsive, secure & SEO-ready</li>
         <li>Delivery + changes included</li>
         <li>Your choice of two payment options</li>
-        <li>Hosting setup + clean handover</li>
+        <li>Full refund with the full-deposit option</li>
       </ul>
+
       <div class="plan-cta">
         <a class="btn btn-ink" href="#consult">Book free consultation</a>
-        <a class="btn btn-light" data-wa="plan" href="#" target="_blank" rel="noopener">WhatsApp us</a>
+        <a class="btn btn-wa" data-wa="plan" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#1FB85A"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5L9.7 8.4c-.2-.5-.4-.4-.6-.4z"/></svg>
+          WhatsApp
+        </a>
       </div>
-      <div class="plan-note">Final price depends on pages &amp; requirements — confirmed after consultation. No hidden charges.</div>
+      <div class="plan-note">Final price depends on pages & requirements — confirmed after the free consultation. No hidden charges.</div>
+
       <div class="host-grid">
         <div class="host">
           <h4>Your own hosting</h4>
-          <p>On your server or hosting account? We'll help set it up.</p>
+          <p>Want it on your own server or hosting account? We'll help you set it up.</p>
           <div class="pr">Free <small>setup help</small></div>
         </div>
         <div class="host hot">
-          <h4>Our shared VPS ⚡</h4>
-          <p>Zero hassle — we host &amp; maintain it for you.</p>
+          <h4>Our shared VPS</h4>
+          <p>Prefer zero hassle? We host it on our shared VPS for you.</p>
           <div class="pr">₹3,000 <small>/ year</small></div>
         </div>
       </div>
     </div>
-    <p class="center" style="max-width:720px;margin:22px auto 0;color:var(--muted);font-size:14px">Paid stock photos or premium plugins? <b style="color:var(--ink)">Purchased by you</b> if needed — always flagged upfront. <a data-wa="enterprise" href="#" style="font-weight:800;color:var(--ink);text-decoration:underline" target="_blank" rel="noopener">Talk to us on WhatsApp.</a></p>
+    <p class="plans-foot">Need paid stock photos, premium fonts or licensed plugins? Those are <b>purchased by you</b> if needed — we'll always tell you before anything costs extra. Questions? <a data-wa="enterprise" href="#" target="_blank" rel="noopener">Talk to us on WhatsApp.</a></p>
   </div>
 </section>
 
-<section id="promise" style="padding-top:0">
+<section id="promise">
   <div class="wrap">
     <div class="promise rv">
-      <blockquote>Your website, built with care. <mark>Your choice of payments.</mark></blockquote>
+      <blockquote>Like the website, and it's yours. Don't like it, and we refund the full amount.</blockquote>
       <div class="own">
-        <div><b>You get</b>A finished, modern business website — planned with you, written for your customers, visuals in place — plus a change round and handover with hosting help.</div>
-        <div><b>You choose how to pay</b>Pay the full amount as a deposit with a full refund guarantee, or pay 30% advance, 40% at the first draft and 30% at final delivery. Milestone payments are non-refundable.</div>
+        <div><b>You get</b>A finished, modern business website — planned with you, written for your customers, with visuals in place — plus a change round and handover with hosting help.</div>
+        <div><b>We take the risk</b>After a free consultation, you pay the full amount as a deposit and we start. If you don't love the final website, the full amount comes back.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="faq" style="padding-top:0">
+<section id="faq">
   <div class="wrap-n">
-    <div class="center rv"><span class="kicker" style="justify-content:center">05 — FAQ</span><h2 style="margin-top:14px">Questions, answered.</h2></div>
+    <div class="center rv"><h2>Questions, answered.</h2></div>
     <div class="faq rv">
-      <details><summary>How does the process work?</summary><p>Book a free consultation and choose your payment option. We agree on a mood board and page plan, build the first draft, complete the changes, enhancements and bug fixes, then make your website live on your server or our shared server. The full-deposit option includes a refund guarantee; milestone payments do not.</p></details>
-      <details><summary>What is included in development?</summary><p>Design + build, copywriting, plus images, icons and visuals we source. Paid stock or premium licenses, if needed, you purchase separately — flagged upfront.</p></details>
-      <details><summary>What are my payment options?</summary><p>Websites start from ₹10,000, with the final quote confirmed after your free consultation. Option 1: pay the full quoted amount as a deposit, with a full refund guarantee if you don’t love the final website. Option 2: pay a 30% advance, 40% at milestone 1 (the first website draft), and the remaining 30% at final delivery. All payments under option 2 are non-refundable.</p></details>
-      <details><summary>What counts as milestone 1 and final delivery?</summary><p>Milestone 1 is delivery of the first draft of your website; the 40% payment is due then. After that, we complete the changes, enhancements and bug fixes. Final delivery is complete when those are finished and the website is live on your server or our shared server; the remaining 30% is due then.</p></details>
-      <details><summary>Can I get a refund with milestone payments?</summary><p>No. The milestone payment option is non-refundable, including the 30% advance, the 40% first-draft payment and the final 30%. The full refund guarantee applies only to the full amount deposit option.</p></details>
-      <details><summary>How does the full refund work?</summary><p>With the full amount deposit option, if you don’t like the final website after delivery and changes, tell us within 7 days of delivery and we refund the full amount. No lengthy process. This guarantee does not apply to the milestone payment option.</p></details>
-      <details><summary>What happens in the planning session?</summary><p>Mood board for look &amp; feel, plus every section and page planned with you — no surprises later.</p></details>
-      <details><summary>Where will my website be hosted?</summary><p>Your choice — your own hosting with our free setup help, or our shared VPS at ₹3,000/year.</p></details>
-      <details><summary>Do I own the website?</summary><p>Yes. Once you approve the final site it's handed over to you. Domain + any paid licenses stay in your name.</p></details>
-      <details><summary>What businesses is this for?</summary><p>Any business — shops, cafés, clinics, salons, real estate, schools, services, startups. Unsure? Book a free call and we'll tell you honestly.</p></details>
+      <details><summary>How does the process work?</summary><p>First, book a free consultation. If you're ready, pay the full amount as a deposit. Then we do a planning session (mood board + section and page plan), build the website (development), deliver it with a round of changes — and if you like it, it's yours. If not, full amount refund.</p></details>
+      <details><summary>What is included in development?</summary><p>Development includes the actual design and build, plus copywriting for the website, plus images, icons and visuals we source for you. If your site needs paid stock or premium licensed content, you purchase that separately — we'll flag it upfront.</p></details>
+      <details><summary>How much is the deposit?</summary><p>Websites start from ₹10,000 onwards. The deposit is the full quoted amount, confirmed after the free consultation based on your pages and requirements. If you don't like the final website, we refund all of it.</p></details>
+      <details><summary>How does the full refund work?</summary><p>Simple: if you don't like the final website after delivery and changes, tell us within 7 days of delivery and we refund the full amount you paid. No lengthy process, no hard feelings.</p></details>
+      <details><summary>What happens in the planning session?</summary><p>We set up a mood board so you can see the look and feel before we build, and we plan every section and page of the website with you — so there are no surprises later.</p></details>
+      <details><summary>Where will my website be hosted?</summary><p>Your choice. If you want your own hosting or server, we'll help you set it up. Or you can host on our shared VPS for ₹3,000 per year — zero hassle.</p></details>
+      <details><summary>Do I own the website?</summary><p>Yes. Once you approve the final website, it is handed over to you with hosting of your choice. Domain and any paid licenses you purchased remain in your name.</p></details>
+      <details><summary>What kind of businesses is this for?</summary><p>Any business that needs a website — shops, cafés, clinics, salons, real estate, schools, services, startups and more. If you're unsure, book the free consultation and we'll tell you honestly if it's a fit.</p></details>
     </div>
   </div>
 </section>
 
-<section id="consult" style="padding-top:0">
+<section id="consult">
   <div class="wrap rv">
-    <div class="consult-grid">
-      <div class="consult-copy">
-        <span class="kicker">06 — Free consultation</span>
-        <h2 style="margin-top:14px">Let's talk about your website.</h2>
-        <p>Pick a time that suits you. 15 minutes, no pressure — we'll tell you honestly if we're a fit, what it'd cost, and how fast we can ship.</p>
-        <ul>
-          <li>Free 15-min call — no obligation</li>
-          <li>Honest quote after the call</li>
-          <li>Choose your payment option after the call</li>
-        </ul>
-        <div style="display:flex;gap:10px;margin-top:26px;flex-wrap:wrap">
-          <a class="btn btn-lime btn-sm" data-wa="waitlist" href="#" target="_blank" rel="noopener">WhatsApp instead →</a>
-        </div>
-      </div>
-      <div class="consult-form">
-        <script src="https://crm-api.squadhub.in/booking/engine.js" defer></script>
-        <squad-booking compact slug="faee252d53ebe8448484c0018c86ab2d" site="sites-by-upsquad" api-base="https://crm-api.squadhub.in">
-          <p>Loading booking options… <a href="https://crm.squadhub.in/book/faee252d53ebe8448484c0018c86ab2d?site=sites-by-upsquad">Open booking page</a></p>
-        </squad-booking>
-      </div>
-    </div>
+<!-- Load this from CRM once; future booking changes require only a CRM deployment. -->
+<script src="https://crm-api.squadhub.in/booking/engine.js" defer></script>
+<squad-booking
+  slug="faee252d53ebe8448484c0018c86ab2d"
+  site="sites-by-upsquad"
+  api-base="https://crm-api.squadhub.in">
+  <p>Loading booking options… <a href="https://crm.squadhub.in/book/faee252d53ebe8448484c0018c86ab2d?site=sites-by-upsquad">Open booking page</a></p>
+</squad-booking>
+
   </div>
 </section>
 
 <footer class="site-foot" id="footer">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <a class="brand" href="#top"><span class="mark"><svg width="16" height="16" viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> Sites <small>by UpSquad</small></a>
-      <h3>Your website. Two ways to pay.</h3>
-      <p>Business websites from ₹10,000 — planned with you, built for your customers. Full deposit with a refund guarantee, or non-refundable milestone payments.</p>
-      <a class="btn btn-ink btn-sm" href="#consult" style="margin-top:20px">Book free consultation</a>
-      <div class="legal">© <span id="yr"></span> UpSquad · Built with care in Kerala, India by <a href="https://www.upsquadconnect.com" target="_blank" rel="noopener" style="font-weight:700">UpSquad</a></div>
+      <a class="brand" href="#top"><span class="mark"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h16a8 8 0 0 1 0 16H18zM18 34h18a8 8 0 0 1 0 16H18z" fill="#fff"/></svg></span> Sites <small>by UpSquad</small></a>
+      <h3>We charge only if you like the website.</h3>
+      <p>Business websites from ₹10,000 onwards — planned with you, built for your customers, risk-free with a full amount refund.</p>
+    <a class="btn btn-ink btn-sm nav-cta" href="#consult"><span class="full">Book free consultation</span><span class="short">Free consultation</span></a>
+      <div class="legal">© <span id="yr"></span> UpSquad · Built with care in Kerala, India by <a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad</a></div>
     </div>
-    <div class="foot-col"><h4>Sites</h4><ul><li><a href="#why">Why Sites</a></li><li><a id="foot-portfolio-link" href="/sites/portfolio/">Portfolio &amp; Works</a></li><li><a href="#included">What's included</a></li><li><a href="#process">Process</a></li></ul></div>
-    <div class="foot-col"><h4>More</h4><ul><li><a href="#pricing">Pricing &amp; hosting</a></li><li><a href="#faq">FAQ</a></li><li><a href="#consult">Free consultation</a></li></ul></div>
-    <div class="foot-col"><h4>Included</h4><ul><li><a href="#included">Design &amp; build</a></li><li><a href="#included">Copywriting</a></li><li><a href="#included">Images &amp; icons</a></li><li><a href="#included">SEO-ready</a></li></ul></div>
-    <div class="foot-col"><h4>Get in touch</h4><ul><li><a data-wa="footer" href="#" target="_blank" rel="noopener">WhatsApp us</a></li><li><a href="#consult">Book free consultation</a></li><li><a data-wa="enterprise" href="#" target="_blank" rel="noopener">Questions?</a></li></ul></div>
+    <div class="foot-col">
+      <h4>Sites</h4>
+      <ul>
+        <li><a href="#why">Why Sites</a></li>
+        <li><a id="foot-portfolio-link" href="/sites/portfolio/">Portfolio & Works</a></li>
+        <li><a href="#included">What's included</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#pricing">Pricing & hosting</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Included</h4>
+      <ul>
+        <li><a href="#included"><i></i>Design & build</a></li>
+        <li><a href="#included"><i></i>Copywriting</a></li>
+        <li><a href="#included"><i></i>Images & icons</a></li>
+        <li><a href="#included"><i></i>Responsive</a></li>
+        <li><a href="#included"><i></i>SEO-ready</a></li>
+        <li><a href="#included"><i></i>Delivery + changes</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>More from UpSquad</h4>
+      <ul>
+        <li><a href="https://www.upsquadconnect.com" target="_blank" rel="noopener">UpSquad Connect</a></li>
+        <li><a href="https://www.upsquadconnect.com/customers/designers-and-video-editors/" target="_blank" rel="noopener">Designers & editors</a></li>
+        <li><a href="https://www.upsquadconnect.com/customers/accountant-subscription/" target="_blank" rel="noopener">Accountant subscription</a></li>
+        <li><a href="https://www.upsquadconnect.com/partner-program/designer-and-video-editor/" target="_blank" rel="noopener">Partner program</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a data-wa="footer" href="#" target="_blank" rel="noopener">WhatsApp us</a></li>
+        <li><a href="#consult">Book free consultation</a></li>
+        <li><a data-wa="enterprise" href="#" target="_blank" rel="noopener">Questions & partnerships</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="scene" aria-hidden="true">
+
+  <div class="scene" aria-hidden="true" id="scene">
     <div class="scene-clip">
-      <img src="assets/footer-scene.jpg" alt="" loading="lazy" decoding="async">
-      <div class="scene-fade-top"></div><div class="scene-fade-bottom"></div>
+      <div class="sky"></div>
+      <div class="scene-zoom">
+        <div class="layer photo" data-depth="0.18">
+          <picture>
+            <source media="(max-width: 700px)" srcset="assets/footer-scene-m.jpg">
+            <img src="assets/footer-scene.jpg" alt="" width="1916" height="821" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="mist mist-1"></div>
+        <div class="mist mist-2"></div>
+      </div>
+      <div class="scene-fade-top"></div>
+      <div class="scene-fade-bottom"></div>
+      <div class="scene-grain"></div>
       <div class="wordmark"><span id="wordmark">SITES</span></div>
     </div>
   </div>
 </footer>
 
 <script>
-const WHATSAPP_NUMBER='919995266385';
-const WA_TEXT={hero:()=>`Hi UpSquad, I want a website for my business (Sites by UpSquad). Can we talk?`,plan:()=>`Hi UpSquad, I'm interested in a business website (starting ₹10,000). I'd like a free consultation.`,enterprise:()=>`Hi UpSquad, I have a question about Sites by UpSquad (websites from ₹10,000).`,waitlist:()=>`Hi UpSquad, I'd like to book a free consultation for a business website.`,footer:()=>`Hi UpSquad, I want to know more about Sites by UpSquad.`};
-const waUrl=t=>`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t)}`;
-document.querySelectorAll('[data-wa]').forEach(a=>{const f=WA_TEXT[a.dataset.wa];if(f)a.href=waUrl(f());});
-const isSitesSubdomain=location.hostname.startsWith('sites.')||location.hostname==='sites.localhost';
-const portfolioUrl=isSitesSubdomain?'/portfolio/':'/sites/portfolio/';
-['nav-portfolio-link','hero-portfolio-link','foot-portfolio-link'].forEach(id=>{const el=document.getElementById(id);if(el)el.href=portfolioUrl;});
-// marquee duplicate for seamless loop
-const mt=document.getElementById('marquee-track');if(mt)mt.innerHTML+=mt.innerHTML;
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('is-in');io.unobserve(x.target);}}),{rootMargin:'0px 0px -8% 0px',threshold:.08});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-if(location.hash){const h=document.querySelector(location.hash);if(h){h.classList.add('is-in');h.querySelectorAll('.rv').forEach(e=>e.classList.add('is-in'));}}
-setTimeout(()=>{document.querySelectorAll('.rv:not(.is-in)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<(innerHeight||800)*1.5)el.classList.add('is-in');});},400);
-(()=>{const s=document.querySelector('.cmp-scroll');if(!s)return;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let done=false;const g=new IntersectionObserver(es=>{es.forEach(x=>{if(!x.isIntersecting||done)return;done=true;g.disconnect();const max=s.scrollWidth-s.clientWidth;if(max<=8)return;if(reduce){s.scrollLeft=max;return;}const dur=900;let t0=-1;const step=t=>{if(t0<0)t0=t;const p=Math.min(1,(t-t0)/dur);s.scrollLeft=max*(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);};setTimeout(()=>requestAnimationFrame(step),600);});},{threshold:.45});g.observe(s);})();
-const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>24),{passive:true});
-document.getElementById('yr').textContent=new Date().getFullYear();
-const wm=document.getElementById('wordmark');const fit=()=>{if(!wm)return;const t=Math.min(1160,innerWidth-40);wm.style.fontSize='100px';const w=wm.getBoundingClientRect().width||1;wm.style.fontSize=(100*t/w)+'px';};if(wm){fit();addEventListener('resize',fit,{passive:true});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);}
+  const WHATSAPP_NUMBER = '919995266385';
+  const WA_TEXT = {
+    hero:     () => `Hi UpSquad, I want a website for my business (Sites by UpSquad). Can we talk?`,
+    plan:     () => `Hi UpSquad, I'm interested in a business website (starting ₹10,000). I'd like a free consultation.`,
+    enterprise: () => `Hi UpSquad, I have a question about Sites by UpSquad (websites from ₹10,000).`,
+    waitlist: () => `Hi UpSquad, I'd like to book a free consultation for a business website.`,
+    footer:   () => `Hi UpSquad, I want to know more about Sites by UpSquad.`,
+  };
+  const waUrl = text => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  function refreshWa() {
+    document.querySelectorAll('[data-wa]').forEach(a => { const f = WA_TEXT[a.dataset.wa]; if (f) a.href = waUrl(f()); });
+  }
+  refreshWa();
+
+  // Dynamic portfolio link resolution (subdomain vs path)
+  const isSitesSubdomain = location.hostname.startsWith('sites.') || location.hostname === 'sites.localhost';
+  const portfolioUrl = isSitesSubdomain ? '/portfolio/' : '/sites/portfolio/';
+  ['nav-portfolio-link', 'hero-portfolio-link', 'foot-portfolio-link'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = portfolioUrl;
+  });
+
+  // Reveal animations (.rv)
+  const io = new IntersectionObserver((es) => es.forEach(x => {
+    if (x.isIntersecting) {
+      x.target.classList.add('is-in');
+      io.unobserve(x.target);
+    }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Immediate visibility fallback for hash navigation (e.g. #consult) or initial load
+  if (location.hash) {
+    const hashEl = document.querySelector(location.hash);
+    if (hashEl) {
+      hashEl.classList.add('is-in');
+      hashEl.querySelectorAll('.rv').forEach(el => el.classList.add('is-in'));
+    }
+  }
+  // Safety timeout: ensure visible content is never stuck at opacity:0
+  setTimeout(() => {
+    document.querySelectorAll('.rv:not(.is-in)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < (window.innerHeight || 800) * 1.5) {
+        el.classList.add('is-in');
+      }
+    });
+  }, 350);
+
+  // Comparison table auto-glide — on phones the right columns sit
+  // off-screen, so when the table scrolls into view, glide it left once
+  // to reveal the Sites column. Runs once; honors reduced motion.
+  (() => {
+    const scroller = document.querySelector('.cmp-scroll');
+    if (!scroller) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let done = false;
+    const glide = new IntersectionObserver((es) => {
+      es.forEach(x => {
+        if (!x.isIntersecting || done) return;
+        done = true;
+        glide.disconnect();
+        const max = scroller.scrollWidth - scroller.clientWidth;
+        if (max <= 8) return;
+        if (reduce) { scroller.scrollLeft = max; return; }
+        const dur = 900;
+        let t0 = -1;
+        const step = (t) => {
+          if (t0 < 0) t0 = t;
+          const p = Math.min(1, (t - t0) / dur);
+          scroller.scrollLeft = max * (1 - Math.pow(1 - p, 3));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        setTimeout(() => requestAnimationFrame(step), 600);
+      });
+    }, { threshold: 0.45 });
+    glide.observe(scroller);
+  })();
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 24), { passive: true });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const heroVideo = document.getElementById('hero-video');
+  const heroScene = heroVideo ? heroVideo.parentElement : null;
+  const heroCopy = document.querySelector('.hero-copy');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroVideo && heroScene && heroCopy) {
+    if (reduceMotion) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
+    else {
+      heroVideo.play().catch(() => {});
+      heroVideo.loop = true;
+      let heroTick = false;
+      const heroUpdate = () => {
+        const y = Math.min(scrollY, innerHeight * 1.5);
+        heroScene.style.transform = `translateY(${y * 0.22}px)`;
+        heroCopy.style.transform = `translateY(${y * -0.12}px)`;
+        heroCopy.style.opacity = Math.max(0, 1 - y / (innerHeight * 0.9));
+        heroTick = false;
+      };
+      addEventListener('scroll', () => { if (!heroTick) { requestAnimationFrame(heroUpdate); heroTick = true; } }, { passive: true });
+      heroUpdate();
+    }
+  }
+
+  const scene = document.getElementById('scene');
+  const wm = document.getElementById('wordmark');
+  const fitWordmark = () => {
+    if (!wm) return;
+    const target = Math.min(1120, innerWidth - 40);
+    wm.style.fontSize = '100px';
+    const w = wm.getBoundingClientRect().width || 1;
+    wm.style.fontSize = (100 * target / w) + 'px';
+  };
+  if (wm) {
+    fitWordmark(); addEventListener('resize', fitWordmark, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
+  }
+  if (scene) {
+    const layers = scene.querySelectorAll('.layer');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && layers.length) {
+      let ticking = false;
+      const update = () => {
+        const r = scene.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height)));
+        layers.forEach(l => { l.style.transform = `translateY(${(1 - p) * 90 * l.dataset.depth}px)`; });
+        ticking = false;
+      };
+      addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+      update();
+    }
+  }
 </script>
 </body>
 </html>
