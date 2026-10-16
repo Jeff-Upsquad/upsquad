@@ -14,7 +14,7 @@ const PARTNER_ROUTES = {
 // Partner-program (/partner-program/general/) availability per squad:
 // 'open' → every role shows "Open →" linking to signup (or squad partner page)
 // 'waitlist' → every role shows "waitlist" text.
-const PARTNER_SQUAD_MODE = {
+export const PARTNER_SQUAD_MODE = {
   'content-creation': 'open',
   'marketing': 'open',
   'accounts-finance': 'open',

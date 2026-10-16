@@ -1,0 +1,150 @@
+/* Scoped styles for the /platform landing page. Everything hangs off .pl-root
+   so it never leaks into the rest of the site. Dark-only by design. */
+/* Light is the default (matches the rest of the site); `.dark` on <html>
+   — set by the nav toggle via the site-wide `upsquad-theme` key — flips it. */
+.pl-root {
+  --pl-bg: #fbfbf8;
+  --pl-panel: #ffffff;
+  --pl-card: #ffffff;
+  --pl-soft: rgba(10, 10, 20, 0.025);
+  --pl-soft-2: rgba(10, 10, 20, 0.055);
+  --pl-line: rgba(10, 10, 20, 0.08);
+  --pl-line-strong: rgba(10, 10, 20, 0.16);
+  --pl-text: #0b0b10;
+  --pl-dim: #5b5b66;
+  --pl-faint: #9a9aa5;
+  --pl-human: #ffff99;        /* fills — brand accent = people */
+  --pl-agent: #8fe3ff;        /* fills — ice blue = AI agents */
+  --pl-human-ink: #8a7600;    /* text/lines that must read on the background */
+  --pl-agent-ink: #0a7fae;
+  --pl-h: 214 186 0;          /* rgb channels for tints */
+  --pl-a: 20 160 214;
+  --pl-live: #13a35a;
+  --pl-glass: rgba(255, 255, 255, 0.7);
+  --pl-shadow: 0 1px 2px rgba(10,10,20,.04), 0 12px 32px -12px rgba(10,10,20,.12);
+  --pl-grain: 0.035;
+  color-scheme: light;
+  background: var(--pl-bg);
+  color: var(--pl-text);
+  font-family: var(--pl-body), system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .4s ease, color .4s ease;
+}
+.dark .pl-root {
+  --pl-bg: #07070a;
+  --pl-panel: #0e0e13;
+  --pl-card: #15151c;
+  --pl-soft: rgba(255, 255, 255, 0.025);
+  --pl-soft-2: rgba(255, 255, 255, 0.06);
+  --pl-line: rgba(255, 255, 255, 0.08);
+  --pl-line-strong: rgba(255, 255, 255, 0.16);
+  --pl-text: #f2f2f0;
+  --pl-dim: #9a9aa3;
+  --pl-faint: #5d5d66;
+  --pl-human-ink: #ffff99;
+  --pl-agent-ink: #8fe3ff;
+  --pl-h: 255 255 153;
+  --pl-a: 143 227 255;
+  --pl-live: #5ef2a0;
+  --pl-glass: rgba(18, 18, 24, 0.55);
+  --pl-shadow: 0 10px 40px -10px rgba(0,0,0,.6);
+  --pl-grain: 0.06;
+  color-scheme: dark;
+}
+/* Undo the site-wide heading colour/font so headings follow this page's tokens */
+.pl-root :is(h1, h2, h3, h4, h5, h6) { color: inherit; font-family: var(--pl-display), sans-serif; }
+.pl-root ::selection { background: var(--pl-human); color: #000; }
+
+.pl-display { font-family: var(--pl-display), sans-serif; letter-spacing: -0.04em; }
+.pl-root .pl-display.font-semibold { font-weight: 650; }
+.pl-hand { font-family: var(--pl-hand), cursive; font-style: normal; letter-spacing: -0.02em; font-weight: 500; }
+.pl-mono { font-family: var(--pl-mono), monospace; letter-spacing: 0; }
+
+.pl-text-human { color: var(--pl-human-ink); }
+.pl-text-agent { color: var(--pl-agent-ink); }
+.pl-dim { color: var(--pl-dim); }
+.pl-faint { color: var(--pl-faint); }
+
+.pl-gradient-text {
+  background: linear-gradient(100deg, var(--pl-human-ink) 10%, var(--pl-text) 50%, var(--pl-agent-ink) 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pl-shimmer 8s ease-in-out infinite alternate;
+}
+@keyframes pl-shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+/* Film grain + grid backdrop */
+.pl-grain {
+  pointer-events: none;
+  position: fixed; inset: 0; z-index: 60; opacity: var(--pl-grain); mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.pl-grid {
+  background-image:
+    linear-gradient(var(--pl-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pl-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+/* Glass + panels */
+.pl-glass {
+  background: var(--pl-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--pl-line);
+}
+.pl-panel { background: var(--pl-panel); border: 1px solid var(--pl-line); box-shadow: var(--pl-shadow); }
+
+/* Cursor spotlight — set --mx / --my from JS */
+.pl-spot { position: relative; isolation: isolate; }
+.pl-spot::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--spot, var(--pl-soft-2)), transparent 60%);
+  opacity: 0; transition: opacity .4s ease;
+}
+.pl-spot:hover::before { opacity: 1; }
+.pl-spot::after {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; z-index: -2; padding: 1px;
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), var(--spot-edge, var(--pl-line-strong)), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .4s ease;
+}
+.pl-spot:hover::after { opacity: 1; }
+
+/* Orbit */
+.pl-orbit { animation: pl-spin var(--dur, 60s) linear infinite; }
+.pl-orbit-rev { animation: pl-spin var(--dur, 60s) linear infinite reverse; }
+@keyframes pl-spin { to { transform: rotate(360deg); } }
+
+/* Marquee */
+.pl-marquee { mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.pl-marquee-track { animation: pl-marquee 40s linear infinite; }
+.pl-marquee:hover .pl-marquee-track { animation-play-state: paused; }
+@keyframes pl-marquee { to { transform: translateX(-50%); } }
+
+/* Pulsing live dot */
+.pl-pulse { position: relative; }
+.pl-pulse::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 999px; border: 1px solid currentColor;
+  animation: pl-ping 1.8s cubic-bezier(0, 0, .2, 1) infinite;
+}
+@keyframes pl-ping { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.8); opacity: 0; } }
+
+/* Flowing dashed connector lines */
+.pl-flow { stroke-dasharray: 4 8; animation: pl-dash 1.4s linear infinite; }
+@keyframes pl-dash { to { stroke-dashoffset: -24; } }
+
+/* Typing caret */
+.pl-caret::after { content: '▍'; margin-left: 2px; animation: pl-blink 1s steps(1) infinite; color: var(--pl-agent-ink); }
+@keyframes pl-blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-root *, .pl-root *::before, .pl-root *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; }
+}
