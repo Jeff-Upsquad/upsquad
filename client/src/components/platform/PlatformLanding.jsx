@@ -662,13 +662,13 @@ function RoleMarquee() {
 
 // Bot availability as of Oct 2026 — update here when a bot changes stage.
 const BOTS = [
-  { name: 'Sales bot', status: 'live' },
-  { name: 'Customer support bot', status: 'live' },
-  { name: 'Social media manager bot', status: 'live' },
-  { name: 'Ad specialist bot', status: 'live', note: 'Meta Ads now · more ad platforms soon' },
-  { name: 'Accountant bot', status: 'live' },
-  { name: 'Designer bot', status: 'beta' },
-  { name: 'Video editor bot', status: 'beta' },
+  { name: 'Sales bot', status: 'live', desc: 'Replies to new enquiries, qualifies leads and books follow-ups in Squad CRM.' },
+  { name: 'Customer support bot', status: 'live', desc: 'Answers customer questions instantly and hands tricky cases to your team.' },
+  { name: 'Social media manager bot', status: 'live', desc: 'Plans, writes and schedules posts across your accounts in SMM Studio.' },
+  { name: 'Ad specialist bot', status: 'live', desc: 'Sets up, monitors and tunes your ad campaigns.', note: 'Meta Ads now · more ad platforms soon' },
+  { name: 'Accountant bot', status: 'live', desc: 'Categorises transactions, matches invoices and drafts reports in Squad Books.' },
+  { name: 'Designer bot', status: 'beta', desc: 'Turns a brief into on-brand creatives and resizes them for every placement.' },
+  { name: 'Video editor bot', status: 'beta', desc: 'Cuts raw footage into captioned clips ready to post.' },
 ]
 
 const STATUS_STYLE = {
@@ -806,14 +806,15 @@ function BotAvailability() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.15 + i * 0.06, duration: 0.5, ease }}
-          className="flex items-center justify-between gap-3 rounded-2xl border px-4 py-3"
+          className="flex items-start justify-between gap-3 rounded-2xl border px-4 py-3"
           style={{ borderColor: 'var(--pl-line)', background: 'var(--pl-soft)' }}
         >
-          <span className="flex min-w-0 items-center gap-3">
+          <span className="flex min-w-0 items-start gap-3">
             <Avatar who="a" label={<Icon name="bot" className="h-3.5 w-3.5" />} size="w-7 h-7" />
             <span className="min-w-0">
               <span className="block text-[15px] font-medium">{b.name}</span>
-              {b.note && <span className="pl-mono block text-[10px] uppercase tracking-wider pl-faint">{b.note}</span>}
+              <span className="mt-0.5 block text-[13px] leading-snug pl-dim">{b.desc}</span>
+              {b.note && <span className="pl-mono mt-1 block text-[10px] uppercase tracking-wider pl-faint">{b.note}</span>}
             </span>
           </span>
           <StatusPill status={b.status} />
