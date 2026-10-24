@@ -4,14 +4,14 @@ const title = 'UpSquad — Superpowered humans. Humans and AI, working together.
 const description =
   'upsquad builds systems and software that give every person on your team super powers. Hire vetted people through SquadHire, deploy AI agents through SquadBots, and run them together in SquadHub.'
 
-// openGraph/twitter replace the root layout's objects wholesale, which also drops
-// the file-based share image, so the shared fields and app/opengraph-image are
-// repeated here.
+// openGraph/twitter replace the root layout's objects wholesale (and drop the
+// file-based share image), so the shared fields are repeated here. The homepage
+// uses its own share image, app/og/home.png/route.jsx.
 const image = {
-  url: '/opengraph-image',
+  url: '/og/home.png',
   width: 1200,
   height: 630,
-  alt: 'UpSquad — The All-in-One Talent Subscription for Modern Brands',
+  alt: title,
 }
 
 export const metadata = {
