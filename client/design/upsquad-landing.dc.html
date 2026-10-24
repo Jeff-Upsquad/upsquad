@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&amp;family=Inter:wght@400;500;600&amp;family=Sometype+Mono:wght@400;500&amp;family=Shantell+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#fbfbf8;color:#0b0b10;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.65}
+a{color:#0b0b10;text-decoration:none}
+a:hover{color:#0a7fae}
+*{box-sizing:border-box}
+::selection{background:#ffff99;color:#000}
+@keyframes pl-spin{to{transform:rotate(360deg)}}
+@keyframes pl-spin-rev{to{transform:rotate(-360deg)}}
+@keyframes pl-marquee{to{transform:translateX(-50%)}}
+@keyframes pl-ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
+@keyframes pl-dash{to{stroke-dashoffset:-24}}
+@keyframes pl-shimmer{from{background-position:0% 50%}to{background-position:100% 50%}}
+@keyframes pl-in{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pl-rise{from{opacity:0;transform:translateY(110%) rotate(4deg)}to{opacity:1;transform:none}}
+@keyframes pl-fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pl-role{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:none}}
+@keyframes pl-glow{0%,100%{box-shadow:0 0 0 0 rgba(214,186,0,.0),0 0 60px -10px rgba(20,160,214,.25)}50%{box-shadow:0 0 0 10px rgba(214,186,0,.12),0 0 90px -6px rgba(20,160,214,.4)}}
+@keyframes logoDrop{0%{opacity:0;transform:translateY(-150px) rotate(-200deg)}55%{opacity:1;transform:translateY(10px) rotate(14deg)}72%{transform:translateY(-5px) rotate(-7deg)}86%{transform:translateY(2px) rotate(3deg)}100%{opacity:1;transform:none}}
+@keyframes signSway{0%{transform:rotate(-2.2deg)}19%{transform:rotate(-.9deg)}38%{transform:rotate(-2.8deg)}50%{transform:rotate(2.3deg)}72%{transform:rotate(.9deg)}100%{transform:rotate(-2.2deg)}}
+@keyframes pl-orbit{from{transform:rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a)))}to{transform:rotate(calc(var(--a) + 360deg * var(--d))) translateX(var(--r)) rotate(calc(-1 * var(--a) - 360deg * var(--d)))}}
+@keyframes pl-dash{to{stroke-dashoffset:-12}}
+@keyframes pl-bar{from{width:0%}to{width:100%}}
+@media (max-width:760px){[data-m-hide]{display:none!important}[data-m-pad]{padding-left:20px!important;padding-right:20px!important}[data-m-app]{grid-template-columns:minmax(0,1fr)!important}[data-m-app]>div:first-child{display:none!important}[data-m-w]{width:auto!important}[data-m-agent]{left:50%!important}}
+@media (max-width:860px){[data-m-static]{position:static!important}}
+@media (max-width:420px){[data-m-agent]{left:44%!important}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001s!important;animation-iteration-count:1!important}}
+</style>
+</helmet>
+
+<div style="position:relative;background:#fbfbf8;color:#0b0b10;overflow-x:clip;min-height:100vh">
+
+<!-- NAV (home navbar, hanging signboard) -->
+<nav data-m-pad="" style="position:sticky;top:0;z-index:50;background:rgba(251,251,248,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 32px">
+  <div style="max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px">
+    <a href="#top" aria-label="upsquad home" style="position:relative;display:inline-block;align-self:flex-start">
+      <span style="display:block;animation:logoDrop 1.25s cubic-bezier(.3,.85,.4,1) .6s both">
+        <span style="position:relative;display:block;padding-top:20px;transform-origin:50% -8px;animation:signSway 9s cubic-bezier(.45,0,.55,1) 1.9s infinite backwards">
+          <svg aria-hidden="true" style="position:absolute;left:0;right:0;top:-8px;height:28px;width:100%;overflow:visible;pointer-events:none"><line x1="50%" y1="0" x2="14%" y2="100%" stroke="rgba(10,10,10,0.42)" stroke-width="1.4" stroke-linecap="round"></line><line x1="50%" y1="0" x2="86%" y2="100%" stroke="rgba(10,10,10,0.42)" stroke-width="1.4" stroke-linecap="round"></line></svg>
+          <span style="display:inline-flex;align-items:baseline;gap:4px;background:#0A0A0A;color:#fff;border:2px solid #fff;border-radius:12px;padding:8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;line-height:1;letter-spacing:-.02em;box-shadow:0 8px 18px -6px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.1)">upsquad<span aria-hidden="true" style="height:6px;width:6px;border-radius:999px;background:#FFFF99;box-shadow:0 0 8px rgba(255,255,153,.75)"></span></span>
+        </span>
+      </span>
+    </a>
+    <div data-m-hide="" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+      <a href="#idea" style="font-size:14px;color:#525252">The idea</a>
+      <a href="#categories" style="font-size:14px;color:#525252">The Squads</a>
+      <a href="#ways-to-work" style="font-size:14px;color:#525252">How it Works</a>
+      <a href="#squadhub" style="font-size:14px;color:#525252">SquadHub</a>
+      <a href="#models" style="font-size:14px;color:#525252">Models</a>
+      <a href="#together" style="font-size:14px;color:#525252">Apps</a>
+      <a href="#contact" style="font-size:14px;color:#525252">Contact</a>
+    </div>
+    <a href="https://wa.me/919995266385?text=I%20want%20to%20know%20more%20about%20upsquad" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;background:#0A0A0A;color:#fff;font-size:14px;font-weight:500;padding:8px 20px;border-radius:999px;box-shadow:0 2px 12px rgba(0,0,0,.14);white-space:nowrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top" data-screen-label="Hero" style="position:relative;overflow:hidden;padding:96px 24px 0">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,20,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,20,.08) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 75%)"></div>
+  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center">
+    <a href="#idea" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:4px 16px 4px 4px;font-size:13px;color:#5b5b66;background:rgba(255,255,255,.7);border:1px solid rgba(10,10,20,.08);backdrop-filter:blur(16px);margin-bottom:32px;animation:pl-fade .7s cubic-bezier(.22,1,.36,1) both">
+      <span style="border-radius:999px;padding:2px 10px;font-size:11px;font-weight:600;color:#000;background:#ffff99">New</span>
+      For startups, small businesses and large companies
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+    <h1 style="margin:0 auto;max-width:1000px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(44px,8vw,96px);line-height:.98;letter-spacing:-.04em;color:#0b0b10">
+      <span style="display:inline-block;overflow:hidden;padding-bottom:.08em;vertical-align:top"><span style="display:inline-block;animation:pl-rise .9s cubic-bezier(.22,1,.36,1) .05s both">Superpowered</span></span>
+      <span style="display:inline-block;overflow:hidden;padding-bottom:.08em;vertical-align:top"><span style="display:inline-block;animation:pl-rise .9s cubic-bezier(.22,1,.36,1) .14s both">humans.</span></span>
+      <br>
+      <span style="display:inline-block;overflow:hidden;padding-bottom:.08em;vertical-align:top;font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;font-size:.78em;line-height:1.18"><span style="display:inline-block;padding-right:8px;animation:pl-rise .9s cubic-bezier(.22,1,.36,1) .4s both;background:linear-gradient(100deg,#8a7600 10%,#0b0b10 50%,#0a7fae 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent">{{ heroLine }}</span></span>
+    </h1>
+    <p style="margin:32px auto 0;max-width:680px;font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:#5b5b66;text-wrap:pretty;animation:pl-fade .8s cubic-bezier(.22,1,.36,1) .9s both">
+      We don’t use AI to replace your people. upsquad builds systems and software that give every person on your team super powers. Your
+      <span style="position:relative;display:inline-flex;height:1.6em;overflow:hidden;vertical-align:bottom"><span key="{{ roleKey }}" style="display:inline-block;white-space:nowrap;font-weight:500;color:#0b0b10;animation:pl-role .5s cubic-bezier(.22,1,.36,1) both">{{ role }}</span></span>
+      stays in charge, with AI working at their side.
+    </p>
+    <div style="margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;animation:pl-fade .8s cubic-bezier(.22,1,.36,1) 1.05s both">
+      <a href="#ways-to-work" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:14px 24px;font-size:15px;font-weight:500;color:#000;background:#ffff99;box-shadow:0 10px 24px -12px rgba(138,118,0,.6)">Build your squad <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="#idea" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:14px 24px;font-size:15px;font-weight:500;color:#0b0b10;background:rgba(255,255,255,.7);border:1px solid rgba(10,10,20,.08);backdrop-filter:blur(16px)">See how it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+
+  <!-- Orbit: one human at the center, AI and teammates in orbit -->
+  <div ref="{{ orbitRef }}" style="position:relative;z-index:2;margin:24px auto 0;width:100%;max-width:760px;aspect-ratio:1/1">
+    <div style="position:absolute;left:50%;top:50%;width:740px;height:740px;transform:translate(-50%,-50%) scale({{ orbitScale }})">
+      <div style="position:absolute;inset:18%;border-radius:999px;filter:blur(48px);background:radial-gradient(circle,rgba(214,186,0,.18),rgba(20,160,214,.14) 50%,transparent 70%)"></div>
+      <div style="position:absolute;inset:0;z-index:3">
+        <div style="position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:999px;border:1px dashed rgba(10,10,20,.16)"></div>
+        <sc-for list="{{ orbitInner }}" as="o" hint-placeholder-count="4">
+          <div style="position:absolute;left:50%;top:50%;--a:{{ o.a }};--r:150px;--d:1;animation:pl-orbit 48s linear infinite">
+            <div>
+              <div style="transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;white-space:nowrap;border-radius:999px;padding:6px 12px 6px 6px;font-size:12px;background:rgba(255,255,255,.85);border:1px solid rgba(10,10,20,.08);backdrop-filter:blur(16px)">
+                <span style="display:flex"><span style="width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:#ffff99;border-radius:999px;color:#000;box-shadow:0 0 0 2px #fff">{{ personIcon }}</span><span style="width:24px;height:24px;margin-left:-6px;display:inline-flex;align-items:center;justify-content:center;background:#8fe3ff;border-radius:30%;color:#000;box-shadow:0 0 0 2px #fff">{{ botIcon }}</span></span>{{ o.label }}
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="position:absolute;inset:0;z-index:3">
+        <div style="position:absolute;left:50%;top:50%;width:580px;height:580px;margin:-290px 0 0 -290px;border-radius:999px;border:1px dashed rgba(10,10,20,.16)"></div>
+        <sc-for list="{{ orbitOuter }}" as="o" hint-placeholder-count="6">
+          <div style="position:absolute;left:50%;top:50%;--a:{{ o.a }};--r:290px;--d:-1;animation:pl-orbit 80s linear infinite">
+            <div>
+              <div style="transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;white-space:nowrap;border-radius:999px;padding:6px 12px 6px 6px;font-size:12px;background:rgba(255,255,255,.78);border:1px solid rgba(10,10,20,.08);backdrop-filter:blur(16px)">
+                <span style="width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background:#ffff99;border-radius:999px;color:#000;box-shadow:0 0 0 3px rgba(214,186,0,.12)">{{ personIcon }}</span>{{ o.label }}
+                <span style="font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:#0a7fae;background:rgba(20,160,214,.08);border:1px solid rgba(20,160,214,.2);border-radius:999px;padding:1px 6px">+ AI</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="position:absolute;left:50%;top:50%;z-index:2;width:172px;height:172px;margin:-86px 0 0 -86px;border-radius:36px;padding:1.5px;background:conic-gradient(from 0deg,#ffff99,#8fe3ff,#ffff99,#8fe3ff,#ffff99);animation:pl-glow 4s ease-in-out infinite">
+        <div style="width:100%;height:100%;border-radius:34.5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;background:rgba(255,255,255,.94);backdrop-filter:blur(16px)">
+          <span style="position:relative;width:48px;height:48px;border-radius:15px;background:#0b0b10;color:#fbfbf8;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -10px rgba(10,10,20,.5)">{{ hubIcon }}<span style="position:absolute;right:-4px;top:-4px;width:12px;height:12px;border-radius:999px;background:#13a35a;border:2px solid #fff"></span></span>
+          <div>
+            <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;line-height:1.1;letter-spacing:-.03em;color:#0b0b10">Your business</div>
+            <div style="margin-top:3px;font-size:12px;color:#5b5b66">Superpowered by AI + humans</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px 3px 4px;background:rgba(10,10,20,.04);border:1px solid rgba(10,10,20,.08)">
+            <span style="display:flex">
+              <span style="width:18px;height:18px;border-radius:999px;background:#ffff99;box-shadow:0 0 0 2px #fff"></span>
+              <span style="width:18px;height:18px;margin-left:-5px;border-radius:30%;background:#8fe3ff;box-shadow:0 0 0 2px #fff"></span>
+              <span style="width:18px;height:18px;margin-left:-5px;border-radius:999px;background:#ffff99;box-shadow:0 0 0 2px #fff"></span>
+              <span style="width:18px;height:18px;margin-left:-5px;border-radius:30%;background:#8fe3ff;box-shadow:0 0 0 2px #fff"></span>
+            </span>
+            <span style="font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:#0b0b10">Team + AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE MARQUEE -->
+<sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;border-top:1px solid rgba(10,10,20,.08);border-bottom:1px solid rgba(10,10,20,.08);padding:20px 0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+  <div style="display:flex;width:max-content;gap:12px;animation:pl-marquee 40s linear infinite">
+    <sc-for list="{{ marquee }}" as="r" hint-placeholder-count="20">
+      <div style="display:flex;align-items:center;gap:12px;white-space:nowrap;border-radius:999px;border:1px solid rgba(10,10,20,.08);padding:8px 16px;font-family:'Sometype Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#5b5b66">
+        <span style="display:flex"><span style="width:10px;height:10px;border-radius:999px;background:#ffff99;box-shadow:0 0 0 1px rgba(138,118,0,.25)"></span><span style="width:10px;height:10px;border-radius:30%;background:#8fe3ff;margin-left:-4px"></span></span>{{ r }}
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<!-- THE IDEA: motion explainer -->
+<section id="idea" data-screen-label="The idea" style="position:relative;padding:clamp(80px,10vw,144px) 24px">
+  <div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:center">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#5b5b66"><span style="height:1px;width:24px;background:rgba(10,10,20,.16)"></span>The idea</div>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(36px,5vw,60px);line-height:1.02;letter-spacing:-.04em;text-wrap:balance">AI that works <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;color:#8a7600">for your team,</span> <span style="color:#5b5b66">not instead of it.</span></h2>
+      <p style="margin:24px 0 0;max-width:500px;font-size:18px;line-height:1.65;color:#5b5b66;text-wrap:pretty">Most AI is sold to business owners as a way to cut people. We think that’s the wrong goal. upsquad pairs each person on your team with AI: it takes the repetitive load, they keep the judgement and the final call, and you get finished work faster.</p>
+      <div style="margin-top:36px;display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ stages }}" as="s" hint-placeholder-count="3">
+          <button onClick="{{ s.pick }}" style="all:unset;cursor:pointer;position:relative;overflow:hidden;display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-radius:18px;border:1px solid {{ s.border }};background:{{ s.bg }};transition:background .4s,border-color .4s">
+            <span style="font-family:'Shantell Sans',cursive;font-size:22px;line-height:1;color:{{ s.numColor }};transition:color .4s;padding-top:2px">{{ s.n }}</span>
+            <span style="display:block">
+              <span style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:17px;letter-spacing:-.02em">{{ s.title }}</span>
+              <span style="display:block;margin-top:2px;font-size:14px;line-height:1.55;color:#5b5b66">{{ s.text }}</span>
+            </span>
+            <sc-if value="{{ s.on }}" hint-placeholder-val="{{ false }}"><span key="{{ s.barKey }}" style="position:absolute;left:0;bottom:0;height:2px;background:linear-gradient(90deg,#ffff99,#8fe3ff);animation:pl-bar {{ stageSecs }}s linear both"></span></sc-if>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid rgba(10,10,20,.08);box-shadow:0 1px 2px rgba(10,10,20,.04),0 12px 32px -12px rgba(10,10,20,.12);border-radius:24px;overflow:hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(10,10,20,.08)">
+        <div style="display:flex;align-items:center;gap:12px"><span style="display:flex;gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:rgba(10,10,20,.16)"></span><span style="width:10px;height:10px;border-radius:999px;background:rgba(10,10,20,.16)"></span><span style="width:10px;height:10px;border-radius:999px;background:rgba(10,10,20,.16)"></span></span><span style="font-family:'Sometype Mono',monospace;font-size:12px;color:#5b5b66">your-business / {{ deskSlug }}</span></div>
+        <span style="font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#13a35a;display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:999px;background:#13a35a"></span>live</span>
+      </div>
+      <!-- diagram -->
+      <div style="position:relative;height:300px;background-image:radial-gradient(circle,rgba(10,10,20,.07) 1px,transparent 1px);background-size:16px 16px">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;opacity:{{ agentOpacity }};transition:opacity .6s">
+          <path d="M26 50 C45 50 52 20 70 20" fill="none" stroke="#0a7fae" stroke-opacity=".55" stroke-width="1.5" vector-effect="non-scaling-stroke" style="stroke-dasharray:4 8;animation:pl-dash 1.4s linear infinite"></path>
+          <path d="M26 50 L70 50" fill="none" stroke="#0a7fae" stroke-opacity=".55" stroke-width="1.5" vector-effect="non-scaling-stroke" style="stroke-dasharray:4 8;animation:pl-dash 1.4s linear infinite"></path>
+          <path d="M26 50 C45 50 52 80 70 80" fill="none" stroke="#0a7fae" stroke-opacity=".55" stroke-width="1.5" vector-effect="non-scaling-stroke" style="stroke-dasharray:4 8;animation:pl-dash 1.4s linear infinite"></path>
+        </svg>
+        <div style="position:absolute;left:22%;top:50%;transform:translate(-50%,-50%) scale({{ humanScale }});transition:transform .7s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;align-items:center;gap:10px">
+          <span style="width:76px;height:76px;border-radius:999px;background:#ffff99;color:#000;display:flex;align-items:center;justify-content:center;box-shadow:{{ humanGlow }};transition:box-shadow .7s">{{ personIconLg }}</span>
+          <span key="{{ deskKey }}" style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:15px;letter-spacing:-.02em;animation:pl-in .45s cubic-bezier(.22,1,.36,1) both">{{ deskName }}</span>
+          <span style="font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:#8a7600;background:rgba(214,186,0,.08);border:1px solid rgba(214,186,0,.2);border-radius:999px;padding:2px 8px;white-space:nowrap">{{ humanTag }}</span>
+        </div>
+        <sc-for list="{{ agents }}" as="a" hint-placeholder-count="3">
+          <div data-m-agent="" style="position:absolute;left:70%;top:{{ a.top }};transform:translate(-10%,-50%) translateX({{ a.x }});opacity:{{ agentOpacity }};transition:opacity .5s {{ a.delay }},transform .7s cubic-bezier(.22,1,.36,1) {{ a.delay }};display:flex;align-items:center;gap:8px;white-space:nowrap;border-radius:999px;padding:6px 12px 6px 6px;font-size:12px;background:#fff;border:1px solid rgba(20,160,214,.25);box-shadow:0 6px 18px -10px rgba(20,160,214,.5)">
+            <span style="width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:#8fe3ff;border-radius:30%;color:#000">{{ botIcon }}</span>{{ a.label }}
+          </div>
+        </sc-for>
+      </div>
+      <!-- tasks -->
+      <div style="border-top:1px solid rgba(10,10,20,.08);padding:16px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;padding:0 4px 4px;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#9a9aa5"><span>Today’s work</span><span>{{ stageLabel }}</span></div>
+        <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:14px;border:1px solid {{ t.border }};background:rgba(10,10,20,.025);padding:10px 12px;transition:border-color .5s">
+            <span style="font-size:14px;font-weight:500">{{ t.title }}</span>
+            <span key="{{ t.key }}" style="font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:{{ t.color }};background:{{ t.bg }};border-radius:999px;padding:3px 8px;white-space:nowrap;animation:pl-in .45s cubic-bezier(.22,1,.36,1) {{ t.delay }} both">{{ t.status }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIX SQUADS -->
+<section id="categories" data-screen-label="Squads" data-m-pad="" style="padding:clamp(60px,9vw,120px) 32px;background:#F1F1F3">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="margin-bottom:48px;max-width:672px">
+      <span style="display:inline-block;width:32px;height:3px;border-radius:999px;background:#0A0A0A;margin-bottom:12px"></span>
+      <p style="margin:0 0 12px;font-family:'Sometype Mono',monospace;font-size:11px;font-weight:500;color:#A3A3A3;text-transform:uppercase;letter-spacing:.18em">Subscriptions</p>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,40px);font-weight:800;color:#0A0A0A;letter-spacing:-.025em;line-height:1.05">Six squads. One subscription.</h2>
+      <p style="margin:12px 0 0;font-size:16px;color:#525252">Discover the squads that help you stay organized, consistent, and scale your brand effortlessly.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:20px;align-items:start">
+      <div style="border-radius:28px;border:1px solid rgba(0,0,0,.06);padding:8px;background:#fff;box-shadow:0 18px 50px -28px rgba(0,0,0,.22)">
+        <div style="height:100%;box-sizing:border-box;border-radius:20px;background:#fff;padding:clamp(20px,3vw,32px)">
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+            <div style="width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#FFFF99;color:#0A0A0A">{{ humanIcon }}</div>
+            <span style="flex:none;white-space:nowrap;font-family:'Sometype Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8a7a00">Humans</span>
+          </div>
+          <h3 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,4vw,44px);font-weight:800;color:#0A0A0A;letter-spacing:-.035em;line-height:1">SquadHire</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#525252;text-wrap:pretty">Hire real, vetted people from our squads — full-time, part-time or by the task. They can bring in their own freelancers as the work grows.</p>
+        </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ squads }}" as="sq" hint-placeholder-count="6">
+            <sc-if value="{{ sq.dark }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ sq.open }}" style-hover="transform:translateY(-2px)" style="cursor:pointer;transition:transform .2s;display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-radius:18px;background:#0A0A0A;border:1px solid #1C1C1F;box-shadow:0 20px 40px -24px rgba(0,0,0,.55)">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:44px;height:44px;flex:none;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff">{{ sq.icon }}</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:-.01em">{{ sq.name }}</div>
+                </div>
+                <span style="flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:4px 10px 4px 8px"><span style="width:6px;height:6px;border-radius:999px;background:#FFFF99"></span>Live</span><span style="flex:none;width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#fff;color:#0A0A0A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;padding-left:0"><sc-for list="{{ sq.tags }}" as="tg" hint-placeholder-count="4"><span style="white-space:nowrap;font-size:12px;padding:4px 10px;border-radius:999px;color:rgba(255,255,255,.8);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1)">{{ tg }}</span></sc-for></div>
+            </div>
+            </sc-if>
+            <sc-if value="{{ sq.light }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ sq.open }}" style-hover="transform:translateY(-2px)" style="cursor:pointer;transition:transform .2s;display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-radius:18px;background:#F4F4F6;border:1px solid rgba(0,0,0,.05)">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:44px;height:44px;flex:none;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F6F6F7,#E7E7EA);border:1px solid rgba(0,0,0,.06);color:#0A0A0A;box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 6px 14px -6px rgba(0,0,0,.18)">{{ sq.icon }}</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#0A0A0A;letter-spacing:-.01em">{{ sq.name }}</div>
+                </div>
+                <span style="flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#15803d;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:999px;padding:4px 10px 4px 8px"><span style="width:6px;height:6px;border-radius:999px;background:#22c55e"></span>{{ sq.badge }}</span><span style="flex:none;width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#0A0A0A;color:#fff"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;padding-left:0"><sc-for list="{{ sq.tags }}" as="tg" hint-placeholder-count="4"><span style="white-space:nowrap;font-size:12px;padding:4px 10px;border-radius:999px;color:#525252;background:#fff;border:1px solid rgba(0,0,0,.06)">{{ tg }}</span></sc-for></div>
+            </div>
+            </sc-if>
+          </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="border-radius:28px;border:1px solid rgba(0,0,0,.06);padding:8px;background:#fff;box-shadow:0 18px 50px -28px rgba(0,0,0,.22)">
+        <div style="height:100%;box-sizing:border-box;border-radius:20px;background:#fff;padding:clamp(20px,3vw,32px)">
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+            <div style="width:64px;height:64px;border-radius:18px;transform:rotate(-6deg);display:flex;align-items:center;justify-content:center;background:#8fe3ff;color:#0A0A0A">{{ botIcon }}</div>
+            <span style="flex:none;white-space:nowrap;font-family:'Sometype Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#0e7fa8">AI agents</span>
+          </div>
+          <h3 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,4vw,44px);font-weight:800;color:#0A0A0A;letter-spacing:-.035em;line-height:1">SquadBots</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#525252;text-wrap:pretty">Deploy AI employees trained for a role. They log in to the same apps, work around the clock, and can spin up sub-agents for bigger jobs.</p>
+        </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ bots }}" as="b" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:18px;background:#F4F4F6;border:1px solid rgba(0,0,0,.05)">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:44px;height:44px;flex:none;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#8fe3ff;border:1px solid rgba(0,0,0,.06);color:#0A0A0A;box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 6px 14px -6px rgba(0,0,0,.18)">{{ b.icon }}</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#0A0A0A;letter-spacing:-.01em">{{ b.name }}</div>
+                  <div style="font-size:14px;line-height:1.5;color:#525252">{{ b.description }}</div>
+                </div>
+                <span style="flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:{{ b.sFg }};background:{{ b.sBg }};border:1px solid {{ b.sBd }};border-radius:999px;padding:4px 10px 4px 8px"><span style="width:6px;height:6px;border-radius:999px;background:{{ b.sDot }}"></span>{{ b.sLabel }}</span>
+              </div>
+              <sc-if value="{{ b.note }}" hint-placeholder-val="{{ false }}"><div style="padding-left:58px;font-family:'Sometype Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#737373">{{ b.note }}</div></sc-if>
+            </div>
+          </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;z-index:100;display:flex;justify-content:flex-end;padding:16px">
+  <div onClick="{{ closeDrawer }}" style="position:absolute;inset:0;background:rgba(10,10,10,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)"></div>
+  <div style="position:relative;width:100%;max-width:560px;height:100%;display:flex;flex-direction:column;background:#fff;border-radius:28px;box-shadow:0 40px 90px -30px rgba(0,0,0,.45);overflow:hidden">
+    <div style="display:flex;align-items:center;gap:14px;padding:20px 24px;border-bottom:1px solid rgba(0,0,0,.06)">
+      <div style="width:44px;height:44px;flex:none;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F6F6F7,#E7E7EA);border:1px solid rgba(0,0,0,.06);color:#0A0A0A">{{ drawer.icon }}</div>
+      <div style="flex:1;min-width:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#0A0A0A;letter-spacing:-.01em">{{ drawer.name }}</div>
+      <button onClick="{{ closeDrawer }}" aria-label="Close" style="all:unset;cursor:pointer;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#525252" style-hover="background:rgba(0,0,0,.05)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ drawer.roles }}" as="r" hint-placeholder-count="5">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:18px;background:#F7F7F8;border:1px solid {{ r.border }}">
+          <div style="width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(0,0,0,.06);color:#0A0A0A">{{ drawer.smallIcon }}</div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#0A0A0A">{{ r.name }}</span>
+            <sc-if value="{{ r.desc }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;line-height:1.55;color:#737373;text-wrap:pretty">{{ r.desc }}</span></sc-if>
+          </div>
+          <a href="{{ r.href }}" target="_blank" rel="noopener noreferrer" style="flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:999px;padding:6px 12px;color:{{ r.fg }};background:{{ r.bg }};border:1px solid {{ r.bd }}"><sc-if value="{{ r.dot }}" hint-placeholder-val="{{ false }}"><span style="width:6px;height:6px;border-radius:999px;background:{{ r.dotColor }}"></span></sc-if>{{ r.status }}</a>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:16px 24px 24px;border-top:1px solid rgba(0,0,0,.06)">
+      <a href="{{ drawer.href }}" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#0A0A0A;color:#fff;border-radius:999px;padding:16px 24px;font-size:16px;font-weight:600">Connect with us on WhatsApp</a>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- WAYS TO WORK (from home, unchanged concept) -->
+<section id="ways-to-work" data-screen-label="Ways to work" data-m-pad="" style="padding:clamp(60px,9vw,120px) 32px;background:#0A0A0A">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="max-width:672px;margin-bottom:48px">
+      <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:16px"><span style="height:1px;width:32px;border-radius:999px;background:#FFFF99"></span><span style="font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.55)">Ways to work</span></div>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.025em;line-height:1.05">Three ways to work with us.</h2>
+      <p style="margin:12px 0 0;font-size:16px;color:rgba(255,255,255,.6);line-height:1.65">Subscription is how most brands work with upsquad — the best value, and the least to manage. Prefer something lighter? Order a one-off assignment, or hire vetted talent directly. Same squads, three ways in.</p>
+    </div>
+    <div style="border-radius:28px;background:#fff;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 90px -30px rgba(0,0,0,.7);padding:clamp(28px,4vw,40px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px;align-items:start">
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px">
+            <div style="display:inline-flex;align-items:center;gap:10px">
+              <span style="width:44px;height:44px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F6F6F7,#E7E7EA);border:1px solid rgba(0,0,0,.06);color:#0A0A0A;box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 4px 10px -4px rgba(0,0,0,.15)"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg></span>
+              <span style="font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#A3A3A3">01 · Subscription</span>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#0A0A0A;border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:4px 10px 4px 8px"><span style="width:6px;height:6px;border-radius:999px;background:#FFFF99;box-shadow:0 0 0 1px rgba(0,0,0,.2)"></span>Recommended</span>
+          </div>
+          <h3 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;font-weight:800;color:#0A0A0A;letter-spacing:-.02em;line-height:1.15">Subscribe to a squad</h3>
+          <p style="margin:12px 0 0;font-size:16px;color:#525252;line-height:1.65;max-width:576px">Instead of hiring, training, and managing talent one by one, subscribe to a dedicated squad that handles your work end to end. One plan covers content, marketing, tech, accounts, and more — for a flat monthly price.</p>
+          <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:12px">
+            <a href="#categories" style="display:inline-flex;align-items:center;gap:8px;background:#0A0A0A;color:#fff;border-radius:999px;border:1px solid #0A0A0A;padding:14px 28px;font-size:14px;font-weight:600;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)">Explore the squads <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            <a href="#categories" style="display:inline-flex;align-items:center;background:#fff;color:#0A0A0A;border-radius:999px;border:1px solid rgba(0,0,0,.12);padding:14px 28px;font-size:14px;font-weight:600;box-shadow:0 2px 10px rgba(0,0,0,.04)">View products</a>
+          </div>
+        </div>
+        <div style="border-left:1px solid rgba(0,0,0,.07);padding-left:clamp(0px,3vw,48px)">
+          <p style="margin:0 0 16px;font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#A3A3A3">What every subscription includes</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ subPoints }}" as="p" hint-placeholder-count="4">
+              <div style="display:flex;align-items:flex-start;gap:12px"><span style="margin-top:2px;width:20px;height:20px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#FFFF99;border:1px solid rgba(0,0,0,.2);color:#0A0A0A"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></span><span style="font-size:14px;color:#525252;line-height:1.4">{{ p }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px;margin-top:20px">
+      <sc-for list="{{ alternatives }}" as="alt" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;border-radius:24px;background:#141414;border:1px solid rgba(255,255,255,.08);padding:28px;transition:transform .3s,border-color .3s" style-hover="transform:translateY(-4px);border-color:rgba(255,255,255,.2)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+            <span style="width:44px;height:44px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;box-shadow:inset 0 1px 1px rgba(255,255,255,.18)">{{ alt.icon }}</span>
+            <span style="font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.45)">{{ alt.step }} · {{ alt.name }}</span>
+          </div>
+          <h3 style="margin:0 0 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em">{{ alt.title }}</h3>
+          <p style="margin:0 0 20px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.65">{{ alt.description }}</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+            <sc-for list="{{ alt.points }}" as="pt" hint-placeholder-count="2">
+              <div style="display:flex;align-items:flex-start;gap:10px"><span style="margin-top:2px;width:20px;height:20px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></span><span style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.4">{{ pt }}</span></div>
+            </sc-for>
+          </div>
+          <a href="{{ alt.href }}" target="_blank" rel="noopener noreferrer" style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;color:#0A0A0A;border-radius:999px;padding:6px 6px 6px 24px;font-size:14px;font-weight:600">
+            <span>{{ alt.cta }}</span>
+            <span style="width:36px;height:36px;border-radius:999px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </a>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- SQUADHUB -->
+<section id="squadhub" data-screen-label="SquadHub" data-m-pad="" style="position:relative;padding:clamp(80px,10vw,144px) 24px">
+  <div style="position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,10,20,.16),transparent)"></div>
+  <div style="max-width:1152px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:48px;align-items:center">
+      <div>
+        <div style="white-space:nowrap;display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#5b5b66"><span style="height:1px;width:24px;background:rgba(10,10,20,.16)"></span>SquadHub</div>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(36px,5vw,60px);line-height:1.02;letter-spacing:-.04em;color:#0b0b10;text-wrap:balance">One workspace where <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;color:#8a7a00">people</span> and <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;color:#0e7fa8">agents</span> share the work.</h2>
+        <p style="margin:24px 0 0;font-size:18px;line-height:1.65;color:#5b5b66;text-wrap:pretty;max-width:520px">Whoever you hired — human, agent, or both — lands in SquadHub. Tasks, files, approvals and hand-offs live in one place, so an agent can draft and a person can sign off without anything falling through the cracks.</p>
+      </div>
+      <div style="position:relative;width:100%;aspect-ratio:720/360">
+        <svg viewBox="0 0 720 360" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><path d="M360 70 C360 120 180 110 180 170" fill="none" stroke="#8a7a00" stroke-width="1.5"></path><path d="M360 70 C360 120 180 110 180 170" fill="none" stroke="#8a7a00" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 8" style="animation:pl-dash 1.2s linear infinite"></path><path d="M360 70 C360 120 540 110 540 170" fill="none" stroke="#0e7fa8" stroke-width="1.5"></path><path d="M360 70 C360 120 540 110 540 170" fill="none" stroke="#0e7fa8" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 8" style="animation:pl-dash 1.2s linear infinite"></path><path d="M180 200 C180 260 360 250 360 300" fill="none" stroke="#8a7a00" stroke-width="1.5"></path><path d="M180 200 C180 260 360 250 360 300" fill="none" stroke="#8a7a00" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 8" style="animation:pl-dash 1.2s linear infinite"></path><path d="M540 200 C540 260 360 250 360 300" fill="none" stroke="#0e7fa8" stroke-width="1.5"></path><path d="M540 200 C540 260 360 250 360 300" fill="none" stroke="#0e7fa8" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 8" style="animation:pl-dash 1.2s linear infinite"></path></svg>
+        <div style="position:absolute;left:50%;top:2.7777777777777777%;min-width:27.7778%;transform:translateX(-50%);white-space:nowrap;height:16.666666666666668%;box-sizing:border-box;border-radius:16px;background:#fff;border:1.5px solid rgba(10,10,20,.16);display:flex;align-items:center;justify-content:center;gap:10px;padding:0 10px;color:#0b0b10"><span style="flex:none;display:flex">{{ hubIcons.spark }}</span><div style="text-align:left;line-height:1.15;min-width:0"><div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(11px,1.4vw,15px);font-weight:650;color:#0b0b10;white-space:nowrap">Your business</div><div style="font-family:'Sometype Mono',monospace;font-size:clamp(7px,.9vw,9.5px);text-transform:uppercase;letter-spacing:.08em;color:#5b5b66;white-space:nowrap">needs work done</div></div></div>
+        <div style="position:absolute;left:25%;top:43.05555555555556%;min-width:27.7778%;transform:translateX(-50%);white-space:nowrap;height:16.666666666666668%;box-sizing:border-box;border-radius:16px;background:#fff;border:1.5px solid #8a7a00;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 10px;color:#8a7a00"><span style="flex:none;display:flex">{{ hubIcons.person }}</span><div style="text-align:left;line-height:1.15;min-width:0"><div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(11px,1.4vw,15px);font-weight:650;color:#0b0b10;white-space:nowrap">SquadHire</div><div style="font-family:'Sometype Mono',monospace;font-size:clamp(7px,.9vw,9.5px);text-transform:uppercase;letter-spacing:.08em;color:#5b5b66;white-space:nowrap">hire humans</div></div></div>
+        <div style="position:absolute;left:75%;top:43.05555555555556%;min-width:27.7778%;transform:translateX(-50%);white-space:nowrap;height:16.666666666666668%;box-sizing:border-box;border-radius:16px;background:#fff;border:1.5px solid #0e7fa8;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 10px;color:#0e7fa8"><span style="flex:none;display:flex">{{ hubIcons.bot }}</span><div style="text-align:left;line-height:1.15;min-width:0"><div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(11px,1.4vw,15px);font-weight:650;color:#0b0b10;white-space:nowrap">SquadBots</div><div style="font-family:'Sometype Mono',monospace;font-size:clamp(7px,.9vw,9.5px);text-transform:uppercase;letter-spacing:.08em;color:#5b5b66;white-space:nowrap">deploy agents</div></div></div>
+        <div style="position:absolute;left:50%;top:80%;min-width:30.5556%;transform:translateX(-50%);white-space:nowrap;height:16.666666666666668%;box-sizing:border-box;border-radius:16px;background:#fff;border:1.5px solid #0b0b10;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 10px;color:#0b0b10"><span style="flex:none;display:flex">{{ hubIcons.hub }}</span><div style="text-align:left;line-height:1.15;min-width:0"><div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(11px,1.4vw,15px);font-weight:650;color:#0b0b10;white-space:nowrap">SquadHub</div><div style="font-family:'Sometype Mono',monospace;font-size:clamp(7px,.9vw,9.5px);text-transform:uppercase;letter-spacing:.08em;color:#5b5b66;white-space:nowrap">they work together</div></div></div>
+      </div>
+    </div>
+    <div style="margin-top:64px;border-radius:24px;background:#fff;border:1px solid rgba(10,10,20,.08);box-shadow:0 20px 60px -30px rgba(0,0,0,.22);overflow:hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(10,10,20,.08)">
+        <div style="flex:1;min-width:0;display:flex;align-items:center;gap:12px"><div style="flex:none;display:flex;gap:6px"><span style="width:10px;height:10px;border-radius:999px;background:rgba(10,10,20,.16)"></span><span style="width:10px;height:10px;border-radius:999px;background:rgba(10,10,20,.16)"></span><span style="width:10px;height:10px;border-radius:999px;background:rgba(10,10,20,.16)"></span></div><span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Sometype Mono',monospace;font-size:12px;color:#5b5b66">squadhub / acme-co / board</span></div>
+        <span style="display:flex;align-items:center;gap:8px;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#16a34a"><span style="width:6px;height:6px;border-radius:999px;background:#22c55e"></span>live</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;padding:16px">
+        <sc-for list="{{ board }}" as="col" hint-placeholder-count="4">
+          <div style="min-height:260px;border-radius:16px;background:rgba(10,10,20,.035);padding:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px;margin-bottom:10px;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8a94"><span style="white-space:nowrap">{{ col.name }}</span><span>{{ col.count }}</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ col.cards }}" as="c" hint-placeholder-count="1">
+                <div key="{{ c.id }}" style="border-radius:12px;background:#fff;border:1px solid {{ col.cardBd }};padding:12px;animation:pl-fade .45s cubic-bezier(.22,1,.36,1) both">
+                  <div style="font-size:13px;font-weight:500;line-height:1.35;color:#0b0b10">{{ c.title }}</div>
+                  <div style="margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:#8a8a94">{{ c.app }}</span><span style="flex:none;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-family:'Sometype Mono',monospace;font-size:8.5px;font-weight:500;color:#000;background:{{ c.avBg }};border-radius:{{ c.avR }};box-shadow:0 0 0 3px {{ c.avRing }}">{{ c.av }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="margin:96px 0 40px;max-width:768px">
+      <div style="white-space:nowrap;display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#5b5b66"><span style="height:1px;width:24px;background:rgba(10,10,20,.16)"></span>Your squad can grow itself</div>
+      <h3 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-.035em;color:#0b0b10;text-wrap:balance">Humans and agents can hire <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em">their own</span> help.</h3>
+      <p style="margin:20px 0 0;font-size:18px;line-height:1.6;color:#5b5b66;text-wrap:pretty">A designer can bring in freelancers. An accountant bot can spin up sub-agents. Everyone they add works inside the same SquadHub — so you always see who's doing what.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px">
+      <sc-for list="{{ growers }}" as="g" hint-placeholder-count="2">
+        <div style="border-radius:24px;background:#fff;border:1px solid rgba(10,10,20,.08);box-shadow:0 20px 60px -30px rgba(0,0,0,.22);overflow:hidden;padding:24px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="flex:none;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;font-family:'Sometype Mono',monospace;font-size:12px;font-weight:500;color:#000;background:{{ g.avBg }};border-radius:{{ g.avR }};box-shadow:0 0 0 3px {{ g.avRing }}">{{ g.av }}</span>
+            <div><div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:650;color:#0b0b10">{{ g.name }}</div><div style="font-size:12px;color:#5b5b66">{{ g.role }}</div></div>
+          </div>
+          <div style="position:relative;margin:8px 0 0 20px;border-left:1px dashed rgba(10,10,20,.22);padding:12px 0 2px 28px">
+            <div style="margin-bottom:12px;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8a94">{{ g.verb }}</div>
+            <sc-for list="{{ g.subs }}" as="k" hint-placeholder-count="2">
+              <div style="position:relative;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:12px;border:1px solid rgba(10,10,20,.08);background:rgba(10,10,20,.035);padding:10px 12px">
+                <span style="position:absolute;left:-28px;top:50%;width:28px;border-top:1px dashed rgba(10,10,20,.22)"></span>
+                <span style="display:flex;align-items:center;gap:10px;font-size:14px;color:#0b0b10"><span style="flex:none;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-family:'Sometype Mono',monospace;font-size:9px;font-weight:500;color:#000;background:{{ k.avBg }};border-radius:{{ k.avR }};box-shadow:0 0 0 3px {{ k.avRing }}">{{ k.av }}</span>{{ k.name }}</span>
+                <span style="flex:none;display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 8px;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:{{ k.ink }};background:{{ k.tagBg }};border:1px solid {{ k.tagBd }}">{{ k.tagIcon }}{{ k.tag }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- BRING YOUR OWN AI -->
+<section id="models" data-screen-label="Bring your own AI" data-m-pad="" style="position:relative;padding:clamp(80px,10vw,144px) 24px">
+  <div style="position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,10,20,.16),transparent)"></div>
+  <div style="max-width:1152px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px;align-items:start">
+    <div data-m-static="" style="position:sticky;top:112px;min-width:0">
+      <div style="white-space:nowrap;display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#5b5b66"><span style="height:1px;width:24px;background:rgba(10,10,20,.16)"></span>Bring your own AI</div>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(36px,5vw,60px);line-height:1.02;letter-spacing:-.04em;color:#0b0b10;text-wrap:balance">Your bots. <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;color:#0e7fa8">Your models.</span></h2>
+      <p style="margin:24px 0 0;font-size:18px;line-height:1.65;color:#5b5b66;text-wrap:pretty;max-width:448px">SquadBots don't lock you in to one AI. Connect the providers you trust — OpenAI, Anthropic, Google, DeepSeek or GLM — then give each bot the model you think is best, or run the whole squad on one.</p>
+      <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ modelPoints }}" as="pt" hint-placeholder-count="3">
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#0b0b10"><span style="flex:none;margin-top:2px;width:20px;height:20px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(20,160,214,.14);color:#0e7fa8"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span style="flex:1;min-width:0;line-height:1.5">{{ pt }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="min-width:0">
+      <div style="border-radius:24px;background:#fff;border:1px solid rgba(10,10,20,.08);box-shadow:0 20px 60px -30px rgba(0,0,0,.22);overflow:hidden">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(10,10,20,.08)">
+          <span style="flex:1 1 160px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Sometype Mono',monospace;font-size:12px;color:#5b5b66">squadbots / settings / models</span>
+          <div style="flex:none;display:inline-flex;border-radius:999px;padding:4px;background:rgba(10,10,20,.055)">
+            <button onClick="{{ setMix }}" style="all:unset;cursor:pointer;white-space:nowrap;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:500;background:{{ mixBg }};color:{{ mixFg }};transition:background .25s,color .25s">Mix per bot</button>
+            <button onClick="{{ setOne }}" style="all:unset;cursor:pointer;white-space:nowrap;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:500;background:{{ oneBg }};color:{{ oneFg }};transition:background .25s,color .25s">One for all</button>
+          </div>
+        </div>
+        <sc-if value="{{ oneMode }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid rgba(10,10,20,.08);animation:pl-fade .35s both">
+            <span style="margin-right:4px;font-size:14px;color:#5b5b66">Run every bot on</span>
+            <sc-for list="{{ oneOpts }}" as="op" hint-placeholder-count="5">
+              <button onClick="{{ op.pick }}" style="all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:500;color:#0b0b10;border:1px solid {{ op.bd }}"><span style="width:8px;height:8px;border-radius:999px;background:{{ op.color }}"></span>{{ op.name }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-for list="{{ modelRows }}" as="mr" hint-placeholder-count="6">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(10,10,20,.08)">
+            <span style="display:flex;align-items:center;gap:12px">
+              <span style="flex:none;width:28px;height:28px;border-radius:30%;display:flex;align-items:center;justify-content:center;background:#8fe3ff;color:#000;box-shadow:0 0 0 3px rgba(20,160,214,.12)">{{ mr.icon }}</span>
+              <span style="font-size:14px;font-weight:500;color:#0b0b10;white-space:nowrap">{{ mr.name }}</span>
+              <span style="font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8a94;white-space:nowrap">→ {{ mr.current }}</span>
+            </span>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <sc-for list="{{ mr.opts }}" as="op" hint-placeholder-count="5">
+                <button onClick="{{ op.pick }}" style="all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:{{ op.weight }};color:{{ op.fg }};background:{{ op.bg }};border:1px solid {{ op.bd }};transition:background .25s,border-color .25s"><span style="width:6px;height:6px;border-radius:999px;background:{{ op.color }}"></span>{{ op.name }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:12px 0 0;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8a8a94">Interactive preview — try switching providers</p>
+    </div>
+  </div>
+</section>
+
+<!-- HUMANS + AI, TOGETHER (apps explorer) -->
+<section id="together" data-screen-label="Humans + AI" style="position:relative;padding:clamp(80px,10vw,144px) 24px">
+  <div style="position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10,10,20,.16),transparent)"></div>
+  <div style="max-width:1152px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px">
+      <div style="max-width:640px">
+        <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;font-family:'Sometype Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#5b5b66"><span style="height:1px;width:24px;background:rgba(10,10,20,.16)"></span>Humans + AI</div>
+        <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(36px,5vw,60px);line-height:1.02;letter-spacing:-.04em;text-wrap:balance">Every person on your team. <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;color:#5b5b66">Each with AI at their side.</span></h2>
+        <p style="margin:20px 0 0;font-size:18px;color:#5b5b66;text-wrap:pretty">Your accountant, designer, video editor, sales rep and HR lead each get an upsquad app built for their job. Switch between the person alone, AI alone, and the two together, and see how the work changes.</p>
+      </div>
+      <div role="tablist" style="display:inline-flex;border-radius:999px;padding:4px;background:rgba(255,255,255,.7);border:1px solid rgba(10,10,20,.08)">
+        <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
+          <button onClick="{{ m.pick }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;border-radius:999px;padding:8px 16px;font-size:14px;color:{{ m.color }};background:{{ m.bg }};transition:background .3s,color .3s">{{ m.icon }}{{ m.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1 1 300px;max-width:360px;min-width:0">
+        <sc-for list="{{ apps }}" as="a" hint-placeholder-count="6">
+          <button onClick="{{ a.pick }}" style="all:unset;cursor:pointer;position:relative;overflow:hidden;border-radius:16px;border:1px solid {{ a.border }};background:{{ a.bg }};padding:16px;transition:background .3s">
+            <span style="display:flex;align-items:center;gap:12px">
+              <span style="width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:{{ a.iconBg }};color:{{ a.iconColor }};transition:background .3s">{{ a.icon }}</span>
+              <span style="flex:1;display:block"><span style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;letter-spacing:-.02em">{{ a.name }}</span><span style="display:block;font-size:12px;color:#5b5b66">{{ a.role }}</span></span>
+              <span style="font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;border-radius:999px;padding:2px 8px;color:{{ a.statusColor }};background:{{ a.statusBg }}">{{ a.status }}</span>
+            </span>
+            <sc-if value="{{ a.on }}" hint-placeholder-val="{{ false }}"><span style="display:block;padding-top:12px;font-size:13px;line-height:1.6;color:#5b5b66">{{ a.blurb }}</span></sc-if>
+            <sc-if value="{{ a.bar }}" hint-placeholder-val="{{ false }}"><span key="{{ a.barKey }}" style="position:absolute;left:0;bottom:0;height:2px;background:linear-gradient(90deg,#ffff99,#8fe3ff);animation:pl-bar 6s linear both"></span></sc-if>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="flex:999 1 420px;min-width:0;background:#fff;border:1px solid rgba(10,10,20,.08);box-shadow:0 1px 2px rgba(10,10,20,.04),0 12px 32px -12px rgba(10,10,20,.12);border-radius:24px;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(10,10,20,.08)">
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:28px;height:28px;border-radius:8px;background:#0b0b10;color:#fbfbf8;display:flex;align-items:center;justify-content:center">{{ app.icon }}</span><span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;letter-spacing:-.02em">{{ app.name }}</span></div>
+          <span style="font-family:'Sometype Mono',monospace;font-size:11px;color:#5b5b66;background:rgba(10,10,20,.055);border-radius:999px;padding:4px 12px">{{ app.url }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px minmax(0,1fr);min-height:360px" data-m-app="">
+          <div style="border-right:1px solid rgba(10,10,20,.08);padding:12px">
+            <sc-for list="{{ app.navItems }}" as="n" hint-placeholder-count="3">
+              <div style="margin-bottom:4px;border-radius:8px;padding:8px 12px;font-size:13px;color:{{ n.color }};background:{{ n.bg }}">{{ n.label }}</div>
+            </sc-for>
+            <div style="margin-top:24px;padding:0 12px;font-family:'Sometype Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:#9a9aa5">On this desk</div>
+            <div style="margin-top:8px;padding:0 12px;display:flex;gap:6px">
+              <sc-if value="{{ showHumanAv }}" hint-placeholder-val="{{ true }}"><span style="width:28px;height:28px;border-radius:999px;background:#ffff99;color:#000;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(214,186,0,.12)">{{ personIcon }}</span></sc-if>
+              <sc-if value="{{ showAgentAv }}" hint-placeholder-val="{{ true }}"><span style="width:28px;height:28px;border-radius:30%;background:#8fe3ff;color:#000;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(20,160,214,.12)">{{ botIcon }}</span></sc-if>
+            </div>
+          </div>
+          <div style="padding:20px">
+            <div style="margin-bottom:16px;display:flex;align-items:center;gap:8px;font-family:'Sometype Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#9a9aa5"><span style="width:6px;height:6px;border-radius:999px;background:#13a35a"></span>Activity · {{ modeLabel }}</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ feed }}" as="f" hint-placeholder-count="3">
+                <div style="display:flex;gap:12px;border-radius:16px;border:1px solid {{ f.border }};background:rgba(10,10,20,.025);padding:14px;animation:pl-in .45s cubic-bezier(.22,1,.36,1) both">
+                  <span style="width:32px;height:32px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;color:#000;background:{{ f.avBg }};border-radius:{{ f.avRadius }};box-shadow:0 0 0 3px {{ f.avRing }}">{{ f.icon }}</span>
+                  <div style="min-width:0;flex:1">
+                    <div style="font-size:12px;color:#5b5b66">{{ f.name }}</div>
+                    <div style="margin-top:2px;font-size:14px;line-height:1.4">{{ f.text }}</div>
+                  </div>
+                  <span style="font-family:'Sometype Mono',monospace;font-size:10px;color:#9a9aa5;white-space:nowrap">just now</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW A SUBSCRIPTION WORKS -->
+<section id="how-it-works" data-screen-label="How it works" data-m-pad="" style="padding:clamp(60px,9vw,120px) 32px;background:#FAFAFA">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="margin-bottom:48px">
+      <span style="display:inline-block;width:32px;height:3px;border-radius:999px;background:#0A0A0A;margin-bottom:12px"></span>
+      <p style="margin:0 0 12px;font-family:'Sometype Mono',monospace;font-size:11px;font-weight:500;color:#A3A3A3;text-transform:uppercase;letter-spacing:.18em">Subscription · How it works</p>
+      <h2 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,40px);font-weight:800;color:#0A0A0A;letter-spacing:-.025em;line-height:1.05">How a subscription works</h2>
+      <p style="margin:12px 0 0;font-size:16px;color:#525252">Three steps to a dedicated squad — everything you need, nothing you don’t.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+        <div style="background:#fff;border-radius:24px;padding:28px;border:1px solid rgba(0,0,0,.05);box-shadow:0 18px 50px -28px rgba(0,0,0,.22);transition:transform .3s,box-shadow .3s" style-hover="transform:translateY(-6px);box-shadow:0 26px 60px -26px rgba(0,0,0,.28)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+            <div style="width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#F5F5F6,#E7E7EA);border:1px solid rgba(0,0,0,.06);color:#0A0A0A;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 4px 10px -4px rgba(0,0,0,.15)">{{ st.icon }}</div>
+            <span style="font-family:'Sometype Mono',monospace;font-size:40px;font-weight:700;line-height:1;color:rgba(0,0,0,.06);letter-spacing:-.02em">{{ st.n }}</span>
+          </div>
+          <h3 style="margin:0 0 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:700;color:#0A0A0A;letter-spacing:-.01em">{{ st.title }}</h3>
+          <p style="margin:0;font-size:14px;color:#525252;line-height:1.65">{{ st.description }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section data-screen-label="About" data-m-pad="" style="padding:clamp(60px,9vw,120px) 32px;background:#fff">
+  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),max-content));gap:40px;align-items:start">
+    <div data-m-w="" style="padding-top:4px;width:200px"><span style="display:inline-block;width:32px;height:3px;border-radius:999px;background:#0A0A0A;margin-bottom:12px"></span><span style="display:block;font-family:'Sometype Mono',monospace;font-size:11px;font-weight:500;color:#A3A3A3;text-transform:uppercase;letter-spacing:.18em">About Us</span></div>
+    <div style="max-width:672px">
+      <p style="margin:0 0 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(24px,3vw,28px);font-weight:800;color:#0A0A0A;line-height:1.25;letter-spacing:-.02em">The future of work is humans and AI, together.</p>
+      <p style="margin:0 0 16px;font-size:16px;color:#525252;line-height:1.65">upsquad is a new way for businesses to get work done — without the cost and complexity of traditional hiring, and without handing your business over to machines. We build the systems and software that give every person on your squad super powers.</p>
+      <p style="margin:0 0 16px;font-size:16px;color:#525252;line-height:1.65">It works three ways. <b style="color:#0A0A0A;font-weight:600">Subscribe</b> to a dedicated squad that handles your work end to end, month after month. <b style="color:#0A0A0A;font-weight:600">Order a one-off assignment</b> when you just need a single thing done. Or <b style="color:#0A0A0A;font-weight:600">hire vetted talent</b> directly, backed by a replacement guarantee.</p>
+      <p style="margin:0;font-size:16px;color:#525252;line-height:1.65">Subscription is where most brands start — the best value, and the least to manage. Whichever way you choose, you get skilled professionals across content, marketing, tech, accounts, and more, exactly when you need them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="contact" style="position:relative;padding:96px 24px;background:#fbfbf8">
+  <div style="position:relative;max-width:1152px;margin:0 auto;overflow:hidden;border-radius:36px;border:1px solid rgba(10,10,20,.16);padding:clamp(72px,9vw,112px) 24px;text-align:center">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(10,10,20,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(10,10,20,.08) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 75%)"></div>
+    <div style="position:absolute;left:-160px;top:50%;width:420px;height:420px;transform:translateY(-50%);border-radius:999px;filter:blur(110px);background:rgba(214,186,0,.18)"></div>
+    <div style="position:absolute;right:-160px;top:50%;width:420px;height:420px;transform:translateY(-50%);border-radius:999px;filter:blur(110px);background:rgba(20,160,214,.2)"></div>
+    <div style="position:relative">
+      <h2 style="margin:0 auto;max-width:800px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:650;font-size:clamp(44px,6.5vw,76px);line-height:.98;letter-spacing:-.04em;text-wrap:balance">Your team, <span style="font-family:'Shantell Sans',cursive;font-weight:500;letter-spacing:-.02em;background:linear-gradient(100deg,#8a7600 10%,#0b0b10 50%,#0a7fae 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pl-shimmer 8s ease-in-out infinite alternate">with super powers.</span></h2>
+      <p style="margin:24px auto 0;max-width:560px;font-size:18px;color:#5b5b66">Startup, small business or large company: tell us the roles you need. We’ll build the squad, and the AI that works beside each person in it.</p>
+      <div style="margin-top:40px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px">
+        <a href="https://wa.me/919995266385?text=I%20want%20to%20know%20more%20about%20upsquad" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:14px 24px;font-size:15px;font-weight:500;color:#000;background:#ffff99">Connect on WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="mailto:hello@upsquadconnect.com" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:14px 24px;font-size:15px;font-weight:500;color:#0b0b10;background:rgba(255,255,255,.7);border:1px solid rgba(10,10,20,.08)">Talk to us <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (home) -->
+<footer style="background:#fff;border-top:1px solid rgba(0,0,0,.07);color:#525252;padding:64px 32px 32px">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:32px;margin-bottom:48px">
+      <div style="grid-column:span 2;min-width:0">
+        <div style="margin-bottom:16px"><span style="display:inline-flex;align-items:baseline;gap:4px;background:#0A0A0A;color:#fff;border:2px solid #fff;border-radius:12px;padding:8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;line-height:1;letter-spacing:-.02em;box-shadow:0 6px 16px -4px rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.1)">upsquad<span style="height:6px;width:6px;border-radius:999px;background:#FFFF99;box-shadow:0 0 8px rgba(255,255,153,.7)"></span></span></div>
+        <p style="margin:0 0 20px;font-size:14px;line-height:1.65;max-width:320px">Superpowered humans. Systems and software that put AI to work beside your people.</p>
+        <a href="mailto:hello@upsquadconnect.com" style="display:block;font-size:14px;color:#525252;margin-bottom:16px">hello@upsquadconnect.com</a>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="4">
+        <div>
+          <h4 style="margin:0 0 12px;font-family:'Sometype Mono',monospace;font-size:11px;font-weight:500;color:#A3A3A3;text-transform:uppercase;letter-spacing:.16em">{{ col.heading }}</h4>
+          <div style="display:flex;flex-direction:column;gap:8px"><sc-for list="{{ col.items }}" as="it" hint-placeholder-count="4"><a href="{{ it.href }}" style="font-size:14px;color:#525252">{{ it.name }}</a></sc-for></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding-top:24px;border-top:1px solid rgba(0,0,0,.07);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px">
+      <p style="margin:0;font-size:12px;color:#A3A3A3">© 2026, D-var Dynamics Technologies Pvt Ltd. All rights reserved.</p>
+      <p style="margin:0;font-size:12px;color:#A3A3A3">Humans and AI, working together.</p>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroLine&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Humans and AI, working together.&quot;,&quot;AI that gives people super powers.&quot;,&quot;Not replaced. Superpowered.&quot;],&quot;default&quot;:&quot;Humans and AI, working together.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showMarquee&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const ICONS = {
+  spark: '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/>',
+  person: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/>',
+  bot: '<rect x="4.5" y="8" width="15" height="11" rx="3.5"/><path d="M12 4.5V8M9 13h.01M15 13h.01M9.5 16.2h5"/><circle cx="12" cy="4" r="1"/>',
+  hub: '<circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="5" cy="18" r="1.8"/><circle cx="19" cy="18" r="1.8"/><path d="M6.5 7.2 9.6 10M17.5 7.2 14.4 10M6.5 16.8l3.1-2.8M17.5 16.8l-3.1-2.8"/>',
+  book: '<path d="M5 4.5h9.5A3.5 3.5 0 0 1 18 8v11.5H8.5A3.5 3.5 0 0 1 5 16V4.5Z"/><path d="M5 16a3.5 3.5 0 0 1 3.5-3.5H18M9 8h5"/>',
+  megaphone: '<path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z"/><path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a7.5 7.5 0 0 1 0 11"/>',
+  palette: '<path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.9 1.5-1.9-.3-1.1.4-2.1 1.6-2.1H17a3.5 3.5 0 0 0 3.5-3.5c0-5.2-3.8-9.5-8.5-9.5Z"/><circle cx="8" cy="11" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/>',
+  film: '<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M3.5 9h17M3.5 15h17M8 5v4M8 15v4M16 5v4M16 15v4"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  chat: '<path d="M4.5 6.5A2.5 2.5 0 0 1 7 4h10a2.5 2.5 0 0 1 2.5 2.5v7A2.5 2.5 0 0 1 17 16h-6l-4.5 4v-4H7a2.5 2.5 0 0 1-2.5-2.5v-7Z"/><path d="M8.5 9h7M8.5 12h4"/>',
+  assign: '<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/>',
+  hire: '<circle cx="9" cy="8" r="3.25"/><path d="M3.5 20a5.5 5.5 0 0111 0M17 8h4.5M19.25 5.75v4.5"/>',
+  clip: '<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>',
+  team: '<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>',
+  trend: '<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>',
+  content: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/>',
+  marketing: '<path d="M4 9v6h3l9 4V5L7 9H4z"/><path d="M18.5 9.5a3.5 3.5 0 010 5"/>',
+  tech: '<path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"/>',
+  finance: '<path d="M3 21h18"/><path d="M6 21v-7M12 21V8M18 21v-4"/><path d="M5 10l5-4 4 3 5-5"/>',
+  legal: '<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-2.5 5.5a2.75 2.75 0 005 0L5 7zM19 7l-2.5 5.5a2.75 2.75 0 005 0L19 7z"/>',
+};
+const ic = (name, size = 20, sw = 1.6) => React.createElement('svg', { viewBox: '0 0 24 24', width: size, height: size, fill: 'none', stroke: 'currentColor', strokeWidth: sw, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true, dangerouslySetInnerHTML: { __html: ICONS[name] } });
+
+const ROLES = ['Accountant', 'Social media manager', 'Ads specialist', 'Graphic designer', 'Video editor', 'HR & payroll', 'Sales rep', 'Content writer', 'Bookkeeper', 'Community manager'];
+const CYCLE = ['accountant', 'designer', 'video editor', 'sales rep', 'HR manager', 'social manager'];
+const INNER = ['Accountant', 'Designer', 'Video editor', 'Sales rep'];
+const OUTER = ['Social manager', 'HR lead', 'Bookkeeper', 'Content writer', 'Ads specialist', 'Support rep'];
+
+const STAGES = [
+  { n: '01', title: 'Your team member leads', text: 'Your accountant, designer or video editor sets the brief and the standard. The work starts with a person.', label: 'stage 1 · they lead', tag: 'Sets the brief' },
+  { n: '02', title: 'AI does the heavy lifting', text: 'AI picks up the drafting, sorting, matching and rendering, around the clock.', label: 'stage 2 · ai amplifies', tag: 'Directing AI' },
+  { n: '03', title: 'They sign off, you get results', text: 'Your team member reviews and approves. You get finished work, faster, with a person accountable for it.', label: 'stage 3 · delivered', tag: 'Final call' },
+];
+const DESKS = [
+  { name: 'Your accountant', slug: 'accounts', agents: ['Categorises', 'Matches invoices', 'Drafts reports'], tasks: ['Monthly P&L', 'Vendor bill check', 'GST summary'] },
+  { name: 'Your designer', slug: 'design', agents: ['Variations', 'Resizes', 'Applies brand kit'], tasks: ['Diwali campaign visuals', 'Banner set, every size', 'Brand kit refresh'] },
+  { name: 'Your video editor', slug: 'video', agents: ['Finds hooks', 'Rough cuts', 'Captions & renders'], tasks: ['Founder interview reel', 'Five short clips', '9:16 and 1:1 exports'] },
+];
+const AGENT_TOPS = ['20%', '50%', '80%'];
+const TASK_STATES = [
+  { status: 'On their desk', color: '#8a7600', bg: 'rgba(214,186,0,.1)', border: 'rgba(10,10,20,.08)' },
+  { status: 'Drafted by AI', color: '#0a7fae', bg: 'rgba(20,160,214,.1)', border: 'rgba(20,160,214,.25)' },
+  { status: 'Approved · sent to you', color: '#13a35a', bg: 'rgba(19,163,90,.1)', border: 'rgba(19,163,90,.3)' },
+];
+
+const APPS = [
+  { id: 'books', name: 'Squad Books', role: 'Accounting', status: 'Live', icon: 'book', url: 'books.squadhub.in', nav: ['Ledger', 'Invoices', 'Reports'],
+    blurb: 'Ledgers, invoices, reconciliation and reports — the accounting desk your accountant works from, with AI at their side.',
+    feed: {
+      human: [['h', 'Priya · Accountant', 'Reviewed vendor bills and flagged a duplicate'], ['h', 'Priya · Accountant', 'Closed the books for last month'], ['h', 'Priya · Accountant', 'Shared the P&L with the founder']],
+      agent: [['a', 'Ledger · Accountant AI', 'Categorised every new bank transaction'], ['a', 'Ledger · Accountant AI', 'Matched open invoices to incoming payments'], ['a', 'Ledger · Accountant AI', 'Drafted the monthly P&L']],
+      both: [['a', 'Ledger · Accountant AI', 'Drafted the monthly P&L and reconciliation'], ['h', 'Priya · Accountant', 'Approved the draft, adjusted two entries'], ['a', 'Ledger · Accountant AI', 'Filed the final report to the owner']] } },
+  { id: 'smm', name: 'SMM Studio', role: 'Social media', status: 'Live', icon: 'megaphone', url: 'smm.squadhub.in', nav: ['Calendar', 'Posts', 'Ads'],
+    blurb: 'Plan, create, schedule and publish across every account — with ad management on the way.',
+    feed: {
+      human: [['h', 'Arjun · Social manager', 'Planned next week’s content calendar'], ['h', 'Arjun · Social manager', 'Replied to comments on the launch reel'], ['h', 'Arjun · Social manager', 'Scheduled 6 posts across Instagram & LinkedIn']],
+      agent: [['a', 'Pulse · Social AI', 'Wrote captions and hashtags for 6 posts'], ['a', 'Pulse · Social AI', 'Picked best posting times per channel'], ['a', 'Pulse · Social AI', 'Published on schedule and logged results']],
+      both: [['a', 'Pulse · Social AI', 'Drafted a week of posts from the brand brief'], ['h', 'Arjun · Social manager', 'Tweaked tone on two captions, approved the rest'], ['a', 'Pulse · Social AI', 'Scheduled everything and is watching replies']] } },
+  { id: 'creative', name: 'Creative Studio', role: 'Design', status: 'Building', icon: 'palette', url: 'creative.squadhub.in', nav: ['Briefs', 'Canvas', 'Approvals'],
+    blurb: 'Briefs, design requests, versions and approvals in one board — your designer sets the direction, AI expands it.',
+    feed: {
+      human: [['h', 'Maya · Designer', 'Picked up the festive campaign brief'], ['h', 'Maya · Designer', 'Uploaded 3 key-visual directions'], ['h', 'Maya · Designer', 'Delivered final files in every size']],
+      agent: [['a', 'Canvas · Design AI', 'Generated 12 banner variations from the brief'], ['a', 'Canvas · Design AI', 'Resized the set for every placement'], ['a', 'Canvas · Design AI', 'Applied brand fonts and colours automatically']],
+      both: [['h', 'Maya · Designer', 'Set the art direction and hero visual'], ['a', 'Canvas · Design AI', 'Expanded it into 24 on-brand variations'], ['h', 'Maya · Designer', 'Picked the winners and sent for approval']] } },
+  { id: 'video', name: 'Video Studio', role: 'Video editing', status: 'Building', icon: 'film', url: 'video.squadhub.in', nav: ['Timeline', 'Captions', 'Exports'],
+    blurb: 'A real video editor in the browser — cuts, captions and exports, with AI doing the rough work.',
+    feed: {
+      human: [['h', 'Rahul · Video editor', 'Cut the founder interview to 60 seconds'], ['h', 'Rahul · Video editor', 'Colour-graded and added music'], ['h', 'Rahul · Video editor', 'Exported reels in 9:16 and 1:1']],
+      agent: [['a', 'Reel · Editor AI', 'Transcribed footage and found the best hooks'], ['a', 'Reel · Editor AI', 'Auto-cut 5 short clips with captions'], ['a', 'Reel · Editor AI', 'Rendered every aspect ratio']],
+      both: [['a', 'Reel · Editor AI', 'Rough-cut 5 clips and burned in captions'], ['h', 'Rahul · Video editor', 'Polished pacing and transitions on the top 2'], ['a', 'Reel · Editor AI', 'Rendered and handed off to SMM Studio']] } },
+  { id: 'payroll', name: 'Squad Payroll', role: 'Attendance & payroll', status: 'Live', icon: 'clock', url: 'squadpayroll.upsquadconnect.com', nav: ['Attendance', 'Leave', 'Payruns'],
+    blurb: 'Attendance, leave and salary runs — your HR person stays in control while AI prepares the numbers.',
+    feed: {
+      human: [['h', 'Neha · HR', 'Approved leave requests for the week'], ['h', 'Neha · HR', 'Checked attendance exceptions'], ['h', 'Neha · HR', 'Ran payroll and sent payslips']],
+      agent: [['a', 'Roster · HR AI', 'Compiled attendance from every check-in'], ['a', 'Roster · HR AI', 'Calculated salaries, overtime and deductions'], ['a', 'Roster · HR AI', 'Generated payslips for review']],
+      both: [['a', 'Roster · HR AI', 'Prepared the payrun with every adjustment'], ['h', 'Neha · HR', 'Reviewed the two edge cases, approved the run'], ['a', 'Roster · HR AI', 'Sent payslips to the whole team']] } },
+  { id: 'crm', name: 'Squad CRM', role: 'Sales', status: 'Live', icon: 'chat', url: 'crm.squadhub.in', nav: ['Inbox', 'Pipeline', 'Follow-ups'],
+    blurb: 'Every conversation that comes into the business, in one inbox and pipeline — AI answers fast, your rep closes.',
+    feed: {
+      human: [['h', 'Kiran · Sales rep', 'Called three warm leads from WhatsApp'], ['h', 'Kiran · Sales rep', 'Moved a deal to proposal stage'], ['h', 'Kiran · Sales rep', 'Logged notes and next steps']],
+      agent: [['a', 'Closer · Sales AI', 'Answered new enquiries within seconds'], ['a', 'Closer · Sales AI', 'Qualified leads and tagged intent'], ['a', 'Closer · Sales AI', 'Scheduled follow-ups automatically']],
+      both: [['a', 'Closer · Sales AI', 'Replied instantly and qualified the lead'], ['h', 'Kiran · Sales rep', 'Took over the hot lead on a call'], ['a', 'Closer · Sales AI', 'Logged the call and set the follow-up']] } },
+];
+const MODES = [{ id: 'human', label: 'Human', icon: 'person' }, { id: 'agent', label: 'AI', icon: 'bot' }, { id: 'both', label: 'Together', icon: 'hub' }];
+
+const WA = (n) => 'https://wa.me/919995266385?text=' + encodeURIComponent(n);
+const ROLES_BY_SQUAD = {"Content Creation":[["Creative Director","Oversees creative vision and brand direction across all content.","soon"],["Copy / Content Writers","Creates compelling copy and content that speaks to your audience.","soon"],["Designers","Crafts visual assets, graphics, and brand identities that stand out.","live"],["Editors","Polishes and refines video and written content to perfection.","live"],["Social Media Managers","Manages and grows your brand's presence across social platforms.","soon"],["Videographers & Photographers","Captures high-quality visual content that tells your brand story.","wait"],["AI Video & Image Creator","","soon"]]};
+const BOTS = [
+        { name: 'Sales bot', status: 'wait', desc: 'Replies to new enquiries, qualifies leads and books follow-ups in Squad CRM.' },
+        { name: 'Customer support bot', status: 'wait', desc: 'Answers customer questions instantly and hands tricky cases to your team.' },
+        { name: 'SMM bot', status: 'beta', desc: 'Plans, writes and schedules posts across your accounts in SMM Studio.' },
+        { name: 'Ad specialist bot', status: 'beta', desc: 'Sets up, monitors and tunes your ad campaigns.', note: 'Meta ads now · more ad platforms soon' },
+        { name: 'Content bot', status: 'beta', desc: 'Writes captions, scripts and blog drafts in your brand voice.' },
+        { name: 'Accountant bot', desc: 'Keeps your books up to date and flags anything that needs a human eye.' },
+      ];
+const SQUADS = [
+  { name: 'Content Creation', icon: 'content', dark: true, tags: ['Graphic Designers', 'Video Editors', 'Creative Leads', 'Social Media Managers', 'Copywriters'], description: 'End-to-end content for your brand across design, video and social.' },
+  { name: 'Marketing', icon: 'marketing', badge: 'Beta', tags: ['Ad Specialists', 'Digital Marketers', 'Offline Marketers', 'PR Experts'], description: 'Growth-focused marketing across digital, offline and PR.' },
+  { name: 'Tech', icon: 'tech', badge: 'Pilot Run', tags: ['Web Development', 'App Building', 'Automation', 'Software Solutions'], description: 'Websites, apps and automation built to scale with you.' },
+  { name: 'Accounts & Finance', icon: 'finance', badge: 'Beta', tags: ['Bookkeeping', 'Payroll', 'Tax Planning', 'Financial Reporting', 'Fractional CFO'], description: 'Your financial back office, fully managed.' },
+  { name: 'Legal', icon: 'legal', badge: 'Launching Soon', tags: ['Contract Drafting', 'IP Protection', 'Compliance', 'Business Formation'], description: 'Legal support without the hourly rates.' },
+  { name: 'Hiring & HR', icon: 'hire', badge: 'Launching Soon', tags: ['Recruiting', 'Team Building', 'HR Processes', 'Onboarding'], description: 'Hiring and HR for growing teams.' },
+];
+
+class Component extends DCLogic {
+  state = { modelMode: 'mix', oneModel: 'Anthropic', botModels: {}, boardCards: [{ id: 't1', title: 'Monthly P&L', app: 'Squad Books', who: 'a', av: 'LG' }, { id: 't2', title: 'Diwali campaign visuals', app: 'Creative Studio', who: 'h', av: 'MY' }, { id: 't3', title: 'Reply to new leads', app: 'Squad CRM', who: 'a', av: 'CL' }, { id: 't4', title: 'Week 42 content calendar', app: 'SMM Studio', who: 'h', av: 'AR' }, { id: 't5', title: 'Founder interview reel', app: 'Video Studio', who: 'a', av: 'RL' }, { id: 't6', title: 'October payrun', app: 'Squad Payroll', who: 'h', av: 'NH' }].map((c, i) => ({ ...c, col: i % 4 })), boardTick: 0, drawerSq: null, openSq: 'Content Creation', deskI: 0, roleI: 0, stage: 0, stageKey: 0, appI: 0, appKey: 0, touched: false, mode: 'both', feedN: 0, orbitScale: 1 };
+  orbitRef = React.createRef();
+
+  componentDidMount() {
+    this.tb = setInterval(() => this.setState(s => { const a = s.boardCards.slice(), i = s.boardTick % a.length; a[i] = { ...a[i], col: (a[i].col + 1) % 4 }; return { boardCards: a, boardTick: s.boardTick + 1 }; }), 1600);
+    const anim = this.props.autoplay ?? true;
+    this.t1 = setInterval(() => this.setState(s => ({ roleI: (s.roleI + 1) % CYCLE.length })), 2200);
+    if (anim) this.startStage();
+    this.startApps();
+    this.runFeed();
+    const fit = () => { const el = this.orbitRef.current; if (el) this.setState({ orbitScale: Math.min(1, el.clientWidth / 760) }); };
+    fit();
+    this.ro = new ResizeObserver(fit);
+    if (this.orbitRef.current) this.ro.observe(this.orbitRef.current);
+  }
+  componentWillUnmount() { clearInterval(this.tb); clearInterval(this.t1); clearInterval(this.t2); clearTimeout(this.t3); clearInterval(this.t4); this.ro && this.ro.disconnect(); }
+  stageSecs() { return 3.8; }
+  startStage() {
+    clearInterval(this.t2);
+    this.t2 = setInterval(() => this.setState(s => { const next = (s.stage + 1) % 3; return { stage: next, stageKey: s.stageKey + 1, deskI: next === 0 ? (s.deskI + 1) % DESKS.length : s.deskI }; }), this.stageSecs() * 1000);
+  }
+  startApps() {
+    clearTimeout(this.t3);
+    if (this.state.touched) return;
+    this.t3 = setTimeout(() => { this.setState(s => ({ appI: (s.appI + 1) % APPS.length, appKey: s.appKey + 1 }), () => { this.runFeed(); this.startApps(); }); }, 6000);
+  }
+  runFeed() {
+    clearInterval(this.t4);
+    this.setState({ feedN: 0 });
+    let n = 0;
+    this.t4 = setInterval(() => { n += 1; this.setState({ feedN: n }); if (n >= 3) clearInterval(this.t4); }, 550);
+  }
+
+  renderVals() {
+    const { stage, appI, mode, feedN } = this.state;
+    const tf = (i, len) => ((360 / len) * i) + 'deg';
+    const app = APPS[appI];
+    const feed = app.feed[mode].slice(0, feedN).map(([who, name, text]) => {
+      const h = who === 'h';
+      return { name, text, icon: ic(h ? 'person' : 'bot', 16), avBg: h ? '#ffff99' : '#8fe3ff', avRadius: h ? '999px' : '30%', avRing: h ? 'rgba(214,186,0,.12)' : 'rgba(20,160,214,.12)', border: h ? 'rgba(214,186,0,.25)' : 'rgba(20,160,214,.25)' };
+    });
+    const showMarquee = this.props.showMarquee ?? true;
+    return {
+      heroLine: this.props.heroLine ?? 'Humans and AI, working together.',
+      showMarquee,
+      role: CYCLE[this.state.roleI], roleKey: 'r' + this.state.roleI,
+      orbitRef: this.orbitRef, orbitScale: this.state.orbitScale,
+      orbitInner: INNER.map((label, i) => ({ label, a: tf(i, INNER.length) })),
+      orbitOuter: OUTER.map((label, i) => ({ label, a: tf(i, OUTER.length) })),
+      botIcon: ic('bot', 14), personIcon: ic('person', 14), personIconLg: ic('person', 28),
+      marquee: [...ROLES, ...ROLES],
+      stageSecs: this.stageSecs(),
+      stages: STAGES.map((s, i) => ({ ...s, on: i === stage, barKey: 'b' + this.state.stageKey,
+        bg: i === stage ? '#fff' : 'transparent', border: i === stage ? 'rgba(10,10,20,.16)' : 'rgba(10,10,20,.08)', numColor: i === stage ? (i === 1 ? '#0a7fae' : '#8a7600') : '#9a9aa5',
+        pick: () => { this.setState(st => ({ stage: i, stageKey: st.stageKey + 1 })); this.startStage(); } })),
+      stageLabel: STAGES[stage].label,
+      humanTag: STAGES[stage].tag,
+      humanScale: stage === 2 ? 1.1 : 1,
+      humanGlow: stage === 0 ? '0 0 0 4px rgba(214,186,0,.15)' : stage === 1 ? '0 0 0 6px rgba(214,186,0,.15),0 0 0 14px rgba(20,160,214,.12)' : '0 0 0 8px rgba(214,186,0,.2),0 0 0 18px rgba(20,160,214,.14),0 0 60px rgba(20,160,214,.35)',
+      agentOpacity: stage >= 1 ? 1 : 0,
+      deskName: DESKS[this.state.deskI].name, deskSlug: DESKS[this.state.deskI].slug, deskKey: 'd' + this.state.deskI,
+      hubIconLg: ic('hub', 28), hubIcon: ic('hub', 24),
+      agents: DESKS[this.state.deskI].agents.map((label, i) => ({ label, top: AGENT_TOPS[i], x: stage >= 1 ? '0px' : '40px', delay: (i * 0.12) + 's' })),
+      tasks: DESKS[this.state.deskI].tasks.map((title, i) => { const st = TASK_STATES[stage]; return { title, ...st, key: 't' + this.state.stageKey + i, delay: (i * 0.15) + 's' }; }),
+      modes: MODES.map(m => {
+        const on = m.id === mode;
+        return { label: m.label, icon: ic(m.icon, 16), color: on ? '#000' : '#5b5b66',
+          bg: on ? (m.id === 'human' ? '#ffff99' : m.id === 'agent' ? '#8fe3ff' : 'linear-gradient(90deg,#ffff99,#8fe3ff)') : 'transparent',
+          pick: () => { this.setState({ mode: m.id, touched: true }, () => this.runFeed()); clearTimeout(this.t3); } };
+      }),
+      modeLabel: MODES.find(m => m.id === mode).label,
+      apps: APPS.map((a, i) => {
+        const on = i === appI;
+        return { name: a.name, role: a.role, blurb: a.blurb, status: a.status, on, bar: on && !this.state.touched, barKey: 'a' + this.state.appKey,
+          icon: ic(a.icon, 18), bg: on ? 'rgba(10,10,20,.055)' : 'transparent', border: on ? 'rgba(10,10,20,.16)' : 'rgba(10,10,20,.08)',
+          iconBg: on ? '#0b0b10' : 'rgba(10,10,20,.055)', iconColor: on ? '#fbfbf8' : '#0b0b10',
+          statusColor: a.status === 'Live' ? '#13a35a' : '#5b5b66', statusBg: a.status === 'Live' ? 'rgba(19,163,90,.08)' : 'rgba(10,10,20,.055)',
+          pick: () => { this.setState({ appI: i, touched: true }, () => this.runFeed()); clearTimeout(this.t3); } };
+      }),
+      app: { name: app.name, url: app.url, icon: ic(app.icon, 16), navItems: app.nav.map((label, i) => ({ label, color: i === 0 ? '#0b0b10' : '#5b5b66', bg: i === 0 ? 'rgba(10,10,20,.055)' : 'transparent' })) },
+      showHumanAv: mode !== 'agent', showAgentAv: mode !== 'human',
+      feed,
+      subPoints: ['A dedicated, vetted squad + a Squad Manager for overall oversight and support', 'Flat monthly pricing — name the budget that works for you', 'Send unlimited requests; get steady, on-brand work every week', 'No contracts — pause or cancel anytime'],
+      alternatives: [
+        { step: '02', name: 'Assignments', title: 'Order a one-off assignment', description: 'Just one thing that needs doing? Send a brief and get a flat fee with a fixed delivery date. Pay only for that piece of work — nothing recurring.', points: ['Fixed fee, fixed deadline', 'Revisions until you sign off'], cta: 'Send a brief', href: WA("Hi upsquad, I'd like a quote for a one-time assignment."), icon: ic('assign') },
+        { step: '03', name: 'Hiring', title: 'Hire vetted talent in-house', description: 'Want someone on your own payroll? We shortlist vetted candidates matched to your brief. You interview, select, and onboard — backed by a replacement guarantee.', points: ['Curated shortlist matched to your brief', 'Replacement guarantee'], cta: 'Explore hiring', href: WA('Hi upsquad, I want to hire vetted talent in-house.'), icon: ic('hire') },
+      ],
+      steps: [
+        { n: '01', title: 'Subscribe to a plan', description: 'Choose the subscription that fits your brand\'s needs. No contracts, no lock-ins — pause or cancel anytime.', icon: ic('clip') },
+        { n: '02', title: 'Meet your squad', description: 'We assemble the right experts from the right squad for your brand — vetted professionals, ready to get to work.', icon: ic('team') },
+        { n: '03', title: 'Scale your brand', description: 'Stay consistent, save time, and focus on what matters — growing your business. Your squad handles the rest.', icon: ic('trend') },
+      ],
+      humanIcon: ic('person', 28, 1.6), botIcon: ic('bot', 28, 1.6),
+      hubIcons: { spark: ic('spark', 18, 1.6), person: ic('person', 18, 1.6), bot: ic('bot', 18, 1.6), hub: ic('hub', 18, 1.6) },
+      ...(() => { const HU = { avBg: '#FFFF99', avR: '999px', avRing: 'rgba(214,186,0,.12)' }, AG = { avBg: '#8fe3ff', avR: '30%', avRing: 'rgba(20,160,214,.12)' }, W = (w) => w === 'h' ? HU : AG;
+        const cards = this.state.boardCards;
+        const board = ['Queued', 'In progress', 'Review', 'Done'].map((name, ci) => { const cs = cards.filter(c => c.col === ci).map(c => ({ ...c, ...W(c.who) })); return { name, count: cs.length, cards: cs, cardBd: ci === 3 ? 'rgba(34,197,94,.3)' : 'rgba(10,10,20,.08)' }; });
+        const tag = (w) => w === 'h' ? { tag: 'Human', ink: '#8a7a00', tagBg: 'rgba(214,186,0,.08)', tagBd: 'rgba(214,186,0,.2)', tagIcon: ic('person', 12, 1.6) } : { tag: 'Agent', ink: '#0e7fa8', tagBg: 'rgba(20,160,214,.08)', tagBd: 'rgba(20,160,214,.2)', tagIcon: ic('bot', 12, 1.6) };
+        const growers = [
+          { lead: { who: 'h', av: 'MY', name: 'Maya', role: 'Designer · hired via SquadHire' }, subs: [{ who: 'h', av: 'F1', name: 'Freelance illustrator' }, { who: 'a', av: 'CV', name: 'Canvas · resize bot' }], verb: 'brought in' },
+          { lead: { who: 'a', av: 'LG', name: 'Ledger', role: 'Accountant bot · via SquadBots' }, subs: [{ who: 'a', av: 'RC', name: 'Reconciler sub-agent' }, { who: 'h', av: 'CA', name: 'Freelance CA for sign-off' }], verb: 'spun up' },
+        ].map(g => ({ ...g.lead, ...W(g.lead.who), verb: g.verb, subs: g.subs.map(k => ({ ...k, ...W(k.who), ...tag(k.who) })) }));
+        return { board, growers }; })(),
+      hubIcons: { spark: ic('spark', 20, 1.6), person: ic('person', 20, 1.6), bot: ic('bot', 20, 1.6), hub: ic('hub', 20, 1.6) },
+      modelPoints: ['Pick a provider per bot, or one for all', 'Switch providers whenever you like', 'The control stays fully with you'],
+      ...(() => { const { modelMode, oneModel, botModels } = this.state, mix = modelMode === 'mix';
+        const P = { OpenAI: '#10a37f', Anthropic: '#d97757', Google: '#4285f4', DeepSeek: '#4d6bfe', GLM: '#7c5cff' };
+        return { oneMode: !mix, mixBg: mix ? '#0b0b10' : 'transparent', mixFg: mix ? '#fbfbf8' : '#5b5b66', oneBg: mix ? 'transparent' : '#0b0b10', oneFg: mix ? '#5b5b66' : '#fbfbf8',
+          setMix: () => this.setState({ modelMode: 'mix' }), setOne: () => this.setState({ modelMode: 'one' }),
+          oneOpts: Object.keys(P).map(p => ({ name: p, color: P[p], bd: p === oneModel ? '#0b0b10' : 'rgba(10,10,20,.08)', pick: () => this.setState({ oneModel: p }) })),
+          modelRows: BOTS.map((b, i) => { const name = b.name, cur = mix ? (botModels[name] || Object.keys(P)[i % 5]) : oneModel;
+            return { name, icon: ic('bot', 14, 1.6), current: cur, opts: Object.keys(P).map(p => { const on = p === cur;
+              return { name: p, color: P[p], weight: on ? 500 : 400, fg: on ? '#0b0b10' : '#5b5b66', bg: on ? P[p] + '1f' : 'transparent', bd: on ? P[p] : 'transparent',
+                pick: () => mix ? this.setState(s => ({ botModels: { ...s.botModels, [name]: p } })) : this.setState({ oneModel: p }) }; }) }; }) }; })(),
+      drawerOpen: !!this.state.drawerSq,
+      closeDrawer: () => this.setState({ drawerSq: null }),
+      drawer: (() => { const s = SQUADS.find(x => x.name === this.state.drawerSq); if (!s) return { roles: [] };
+        const def = 'live';
+        const list = ROLES_BY_SQUAD[s.name] || s.tags.map(t => [t, '', def]);
+        const st = { live: ['Live', '#0A0A0A', '#E9E9EC', 'rgba(0,0,0,.12)', true, '#0A0A0A'], wait: ['Join Waiting List', '#fff', '#0A0A0A', '#0A0A0A', true, '#FFFF99'], soon: ['Coming Soon', '#A3A3A3', '#fff', 'rgba(0,0,0,.08)', false, ''] };
+        return { name: s.name, icon: ic(s.icon, 22, 1.5), smallIcon: ic(s.icon, 18, 1.5), href: WA('I want to know more about the ' + s.name + ' squad'),
+          roles: list.map(([name, desc, k]) => { const v = st[k]; return { name, desc: desc || false, status: v[0], fg: v[1], bg: v[2], bd: v[3], dot: v[4], dotColor: v[5], border: k === 'wait' ? 'rgba(0,0,0,.35)' : 'rgba(0,0,0,.06)', href: WA('I want to know more about ' + name + ' in the ' + s.name + ' squad') }; }) }; })(),
+      squads: SQUADS.map(s => ({ ...s, open: () => this.setState({ drawerSq: s.name }), icon: ic(s.icon, 20, 1.5), light: !s.dark, soon: !s.interactive, interactive: !!s.interactive, badge: 'Live', tags: ROLES_BY_SQUAD[s.name] ? ROLES_BY_SQUAD[s.name].map(r => r[0]) : s.tags, href: WA('I want to know more about the ' + s.name + ' squad') })),
+      bots: BOTS.map(b => { const st = { beta: ['Beta', '#525252', 'rgba(0,0,0,.04)', 'rgba(0,0,0,.08)', '#A3A3A3'], wait: ['Waiting list', '#fff', '#0A0A0A', '#0A0A0A', '#FFFF99'], live: ['Live', '#15803d', 'rgba(34,197,94,.1)', 'rgba(34,197,94,.2)', '#22c55e'] }[b.status || 'live']; return { ...b, sLabel: st[0], sFg: st[1], sBg: st[2], sBd: st[3], sDot: st[4], description: b.desc, note: b.note || false, icon: ic('bot', 20, 1.5), href: WA('I want to deploy the ' + b.name) }; }),
+      squadGroups: [
+        { label: 'Available now', pill: 'Live', pillColor: '#15803d', pillBg: 'rgba(34,197,94,.1)', dot: '#22c55e', names: ['Content Creation'] },
+        { label: 'Join the waitlist', pill: 'Beta', pillColor: '#525252', pillBg: 'rgba(0,0,0,.05)', dot: '#A3A3A3', names: ['Marketing', 'Accounts & Finance'] },
+        { label: 'Launching soon', pill: 'Soon', pillColor: '#525252', pillBg: 'rgba(0,0,0,.05)', dot: '#D4D4D4', names: ['Tech', 'Legal', 'Hiring & HR'] },
+      ].map(g => ({ ...g, rows: g.names.map(n => {
+        const sq = SQUADS.find(x => x.name === n), open = this.state.openSq === n;
+        return { ...sq, icon: ic(sq.icon, 18, 1.6), open, rot: open ? '45deg' : '0deg', count: sq.tags.length + ' roles', interactive: !!sq.interactive,
+          href: WA('I want to know more about the ' + n + ' squad'),
+          bg: open ? '#FFFDE6' : '#F7F7F8', border: open ? 'rgba(214,186,0,.45)' : 'rgba(0,0,0,.06)',
+          toggle: () => this.setState(s => ({ openSq: s.openSq === n ? null : n })) };
+      }) })),
+      footerCols: [
+        { heading: 'Platform', items: [{ name: 'The idea', href: '#idea' }, { name: 'Humans + AI', href: '#together' }, { name: 'How it Works', href: '#how-it-works' }, { name: 'Subscriptions', href: '#categories' }] },
+        { heading: 'Squads', items: [{ name: 'Content Squad', href: '#categories' }, { name: 'Marketing Squad', href: '#categories' }, { name: 'Tech Squad', href: '#categories' }, { name: 'Legal Squad', href: '#categories' }] },
+        { heading: 'Company', items: [{ name: 'About', href: '#' }, { name: 'Careers', href: '#' }, { name: 'Contact', href: '#contact' }] },
+        { heading: 'Legal', items: [{ name: 'Privacy Policy', href: '#' }, { name: 'Terms of Service', href: '#' }, { name: 'Cookie Policy', href: '#' }] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
