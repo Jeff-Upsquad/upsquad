@@ -488,8 +488,9 @@ export default function PartnerProgramTab({ onSwitchTab, signupUrl = SQUADHIRE_S
                   Don&apos;t fit neatly into a tier? You can also opt in for a custom pricing plan tailored to your unique skill set and availability. We&apos;ll work together to find the right fit.
                 </p>
               </div>
+              {/* TEMP (2026-10-26): WhatsApp rerouted to sales line; revert to 919995266342 later. */}
               <a
-                href="https://wa.me/919995266342?text=I%20want%20to%20discuss%20a%20custom%20partner%20plan"
+                href="https://wa.me/919995266385?text=I%20want%20to%20discuss%20a%20custom%20partner%20plan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 text-sm font-medium text-text-primary border border-[rgba(0,0,0,0.08)] hover:border-gray-300 bg-white hover:bg-surface-secondary px-4 py-2 rounded-lg transition-all"

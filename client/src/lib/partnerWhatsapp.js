@@ -1,7 +1,9 @@
 // SquadHire's WhatsApp Business number — inbound messages land in SquadHire CRM,
 // which routes brand-new contacts to a candidates pipeline by matching the first
 // message against crm_pipeline_keyword_rules.
-export const SQUADHIRE_WA_NUMBER = '919995266342'
+// TEMP (2026-10-26): all WhatsApp redirects rerouted to the sales line for now.
+// Revert to the SquadHire Business line '919995266342' when switching back.
+export const SQUADHIRE_WA_NUMBER = '919995266385'
 export const SALES_WA_NUMBER = '919995266385'
 
 // Each message carries a distinctive role phrase that a keyword rule in
