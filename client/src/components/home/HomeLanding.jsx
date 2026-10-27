@@ -6,6 +6,7 @@
 // holds the design's data and behaviour, and passes render values to it as `v`.
 import React from 'react'
 import HomeMarkup from './HomeMarkup'
+import { SQUADHIRE_SIGNUP } from '../../lib/signup'
 import './home.css'
 
 const ICONS = {
@@ -159,6 +160,7 @@ export default class HomeLanding extends React.Component {
     const showMarquee = this.props.showMarquee ?? true;
     return {
       heroLine: this.props.heroLine ?? 'Humans and AI, working together.',
+      signupHref: SQUADHIRE_SIGNUP.business,
       showMarquee,
       role: CYCLE[this.state.roleI], roleKey: 'r' + this.state.roleI,
       orbitRef: this.orbitRef, orbitScale: this.state.orbitScale,
