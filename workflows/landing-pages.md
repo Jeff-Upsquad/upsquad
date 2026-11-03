@@ -32,6 +32,7 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 | `partner-program` | Talent (Creatives) | `PartnerProgram.jsx` | `/partner-program/designer-and-video-editor/` |
 | `partnerprogram-accountant` / `partner-program-accountant` | Talent (Accountants) | `AccountantPartnerProgram.jsx` | `/partner-program/accountant/` |
 | `partner-program-sales` / `sales` | Talent (Sales) | `SalesPartnerProgram.jsx` | `/partner-program/sales/` |
+| `partner-program-social-media-creators` / `social-media-creators` | Talent (Social Media Creators) | `SocialMediaCreatorProgram.jsx` | `/partner-program/social-media-creators/` |
 | `partner-program-general` / `general` | Talent (General) | `GeneralPartnerProgram.jsx` | `/partner-program/general/` |
 | `partner-program-agency` / `agency` | Agencies | `AgencyPartnerProgram.jsx` | `/partner-program/agency/` |
 
@@ -56,3 +57,11 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
      2. Push to `origin/main`
      3. Run `bash tools/deploy.sh`
      4. Provide a Test Handoff summary per `workflows/test-handoff.md`.
+
+## Social Media Creator Page
+
+- Canonical page: `/partner-program/social-media-creators/`; API/admin slug: `partner-program-social-media-creators`.
+- Edit the hero title, description, and per-language videos in the existing landing page admin. The page is seeded on server startup without overwriting existing edits.
+- Only languages with a video URL appear in the player language picker. Until videos are configured, the page shows a non-interactive introduction placeholder.
+- Signup uses the dedicated SquadHire creator form at `https://squadhire.upsquadconnect.com/signup/social-media-creators`, through the `social-media-creators` partner CTA mapping.
+- Brand Promotion Video and Creative Brand Promotion Video are available now. Channel Sponsor and Content Creator are marked coming soon.

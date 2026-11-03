@@ -126,6 +126,13 @@ function seed() {
 
   const pages = [
     {
+      slug: 'partner-program-social-media-creators',
+      heroTitle: 'Your content. Your voice. Your next brand collaboration.',
+      heroDescription: 'Connect with brands that fit your profile. Your dedicated Squad Manager handles the conversations, briefs, and payments — so you can focus on creating.',
+      defaultLanguageCode: 'en',
+      langs: [{ code: 'en' }],
+    },
+    {
       slug: 'get-started',
       heroTitle: 'Designers and video editors on subscription.',
       heroDescription: 'Get unlimited design and video-editing work from a dedicated squad. Flat monthly pricing. Cancel anytime.',
@@ -535,6 +542,11 @@ db.exec(`
 `)
 
 const seedPartnerCtas = [
+  {
+    slug: 'social-media-creators',
+    title: 'Social media creator partner program',
+    publicPath: '/partner-program/social-media-creators/',
+  },
   {
     slug: 'accountant',
     title: 'Accountant partner program',

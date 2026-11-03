@@ -4,6 +4,7 @@ import { SQUADHIRE_SIGNUP } from './signup'
 
 const TIMEOUT_MS = 5000
 const ROLE_SIGNUP_URLS = {
+  'social-media-creators': 'https://squadhire.upsquadconnect.com/signup/social-media-creators',
   accountant: 'https://squadhire.upsquadconnect.com/apply/accountant',
   'designer-and-video-editor': 'https://squadhire.upsquadconnect.com/apply/creative',
   sales: 'https://squadhire.upsquadconnect.com/apply/sales',

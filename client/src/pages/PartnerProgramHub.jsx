@@ -30,6 +30,14 @@ const NAV_BLURBS = {
 /* ── Data: partner tracks ──────────────────────────────── */
 const tracks = [
   {
+    id: 'social-media-creators',
+    emoji: '🎬',
+    name: 'Social Media Creators',
+    desc: 'Collaborate with brands on promotion videos, with a dedicated Squad Manager and guaranteed payments.',
+    href: '/partner-program/social-media-creators/',
+    waSlug: 'general',
+  },
+  {
     id: 'creative',
     emoji: '🎨',
     name: 'Designers & Video Editors',
