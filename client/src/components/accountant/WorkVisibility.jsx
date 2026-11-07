@@ -47,7 +47,7 @@ const features = [
 
 export default function WorkVisibility() {
   return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
+    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white">
       <div className="max-w-[1160px] mx-auto">
         <ScrollReveal>
           <div className="inline-flex items-center gap-2.5 mb-4">
@@ -80,7 +80,7 @@ export default function WorkVisibility() {
         </div>
 
         <ScrollReveal delay={0.1}>
-          <p className="mt-8 text-sm text-text-secondary bg-white border border-[rgba(0,0,0,0.08)] rounded-xl px-5 py-4 max-w-3xl leading-relaxed">
+          <p className="mt-8 text-sm text-text-secondary bg-surface-secondary border border-[rgba(0,0,0,0.08)] rounded-xl px-5 py-4 max-w-3xl leading-relaxed">
             These reports and the actual effort behind them are also what determines whether your subscription
             price ever needs to be revised — <span className="font-semibold text-text-primary">transparent in both directions.</span>
           </p>

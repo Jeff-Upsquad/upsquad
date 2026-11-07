@@ -141,13 +141,23 @@ function seed() {
     },
     {
       slug: 'accountant-subscription',
-      heroTitle: 'Your business accounting, on a fixed monthly payment.',
-      heroDescription: 'A dedicated UpSquad accountant manages your day-to-day books, monthly reports, GST, and payroll — backed by two secondary accountants and a Squad Manager. Plans start from ₹5,000/month.',
+      heroTitle: 'Accountants on subscription.',
+      heroDescription: 'Keep your books clean and your business compliant — without building a finance team from scratch. Subscribe to a dedicated accounting squad, or hire vetted accountants directly.',
       defaultLanguageCode: 'en',
       // Only seed languages that the base seed guarantees exist. On a DB whose
       // `languages` table is missing a code (e.g. `hi` was removed via admin),
       // referencing it here trips the FK constraint and crashes boot. Extra
       // languages are added per-page in /admin, not seeded.
+      langs: [{ code: 'en' }],
+    },
+    {
+      slug: 'accountant-subscription-explainer',
+      heroTitle: 'Your business accounting, on a fixed monthly payment.',
+      heroDescription: 'A dedicated UpSquad accountant manages your day-to-day books, monthly reports, GST, and payroll — backed by two secondary accountants and a Squad Manager. Plans start from ₹5,000/month.',
+      defaultLanguageCode: 'en',
+      // Same FK note as above; extra languages are added per-page in /admin.
+      // Until per-language videos are uploaded under this slug, the explainer
+      // page client-side falls back to the accountant-subscription videos.
       langs: [{ code: 'en' }],
     },
     {

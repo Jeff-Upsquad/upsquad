@@ -1,6 +1,6 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
-import { accountantBenefits, subscriptionIncluded, subscriptionAddons } from '../../data/accountant'
+import { accountantBenefits } from '../../data/accountant'
 import { BenefitIcon } from '../pricing/icons'
 import IncludedHighlights from '../pricing/IncludedHighlights'
 import WhatYouCanRequest from './WhatYouCanRequest'
@@ -66,58 +66,7 @@ export default function SubscriptionDetails() {
             </div>
           </ScrollReveal>
 
-          {/* Explainer script §2 — what the plan covers by default + add-ons */}
-          <div className="mt-12 grid lg:grid-cols-[1.4fr_1fr] gap-6">
-            <ScrollReveal>
-              <div className="bg-white rounded-2xl border border-[rgba(0,0,0,0.08)] shadow-sm p-6 sm:p-7 h-full">
-                <h3 className="font-heading text-lg font-bold text-text-primary mb-1">
-                  Your plan covers
-                </h3>
-                <p className="text-sm text-text-secondary mb-5">
-                  All of this is included in your subscription by default.
-                </p>
-                <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3.5">
-                  {subscriptionIncluded.map((item) => (
-                    <li key={item.title} className="flex items-start gap-2.5">
-                      <svg className="w-4 h-4 mt-0.5 shrink-0 text-brand-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <div>
-                        <p className="text-sm font-semibold text-text-primary">{item.title}</p>
-                        <p className="text-xs text-text-secondary mt-0.5 leading-relaxed">{item.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <div className="bg-white rounded-2xl border border-dashed border-[rgba(0,0,0,0.15)] p-6 sm:p-7 h-full">
-                <h3 className="font-heading text-lg font-bold text-text-primary mb-1">
-                  Optional add-ons
-                </h3>
-                <p className="text-sm text-text-secondary mb-5">
-                  Attach them if your business needs them.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {subscriptionAddons.map((addon) => (
-                    <span
-                      key={addon.title}
-                      title={addon.desc}
-                      className="text-xs font-semibold text-text-primary bg-brand-purple/10 border border-brand-purple/20 rounded-full px-3 py-1.5"
-                    >
-                      + {addon.title}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-xs text-text-muted mt-5 leading-relaxed">
-                  One subscription covers your business&rsquo;s full accounting requirements.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          <div className="mt-14">
+          <div className="mt-12">
             <h3 className="font-heading text-lg font-bold text-text-primary mb-5">How it works</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {steps.map((step, i) => (

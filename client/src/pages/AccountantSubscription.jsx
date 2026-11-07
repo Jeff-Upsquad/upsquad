@@ -2,17 +2,10 @@
 import { useEffect, useState } from 'react'
 import AccountantHero from '../components/accountant/AccountantHero'
 import SubscriptionDetails from '../components/accountant/SubscriptionDetails'
-import PricingGuarantee from '../components/accountant/PricingGuarantee'
-import WorkVisibility from '../components/accountant/WorkVisibility'
-import SquadHubSection from '../components/accountant/SquadHubSection'
-import AccountantTeamSection from '../components/accountant/AccountantTeamSection'
-import SoftwareAndAi from '../components/accountant/SoftwareAndAi'
-import GetStartedCta from '../components/accountant/GetStartedCta'
 import AssignmentOptions from '../components/accountant/AssignmentOptions'
 import HiringOptions from '../components/accountant/HiringOptions'
 import WorkModeNav, { scrollToWorkMode } from '../components/landing/WorkModeNav'
 import WorkModeOverview from '../components/landing/WorkModeOverview'
-import { getFallback } from '../data/landingPageFallbacks'
 import { fetchLandingPage } from '../lib/landingPageApi'
 import { useLandingScrollReset } from '../lib/useLandingScrollReset'
 
@@ -23,12 +16,7 @@ const LANDING_SLUG = 'accountant-subscription'
 
 export default function AccountantSubscription() {
   useLandingScrollReset()
-  const fallback = getFallback(LANDING_SLUG) || {
-    slug: LANDING_SLUG,
-    defaultLanguageCode: 'en',
-    languages: [],
-  }
-  const [content, setContent] = useState(fallback)
+  const [content, setContent] = useState({ languages: [], defaultLanguageCode: 'en' })
 
   useEffect(() => {
     let alive = true
@@ -45,8 +33,6 @@ export default function AccountantSubscription() {
     <>
       <AccountantHero
         slug={LANDING_SLUG}
-        heroTitle={content.heroTitle}
-        heroDescription={content.heroDescription}
         languages={content.languages}
         defaultLanguageCode={content.defaultLanguageCode}
         onSelectTab={goToSection}
@@ -58,15 +44,6 @@ export default function AccountantSubscription() {
 
       {/* Full-length sections stacked so visitors can read everything */}
       <SubscriptionDetails />
-
-      {/* The subscription story in depth (explainer script §3–§10) */}
-      <PricingGuarantee />
-      <WorkVisibility />
-      <SquadHubSection />
-      <AccountantTeamSection />
-      <SoftwareAndAi />
-      <GetStartedCta />
-
       <AssignmentOptions />
       <HiringOptions />
     </>

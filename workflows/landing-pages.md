@@ -28,6 +28,7 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 |---|---|---|---|
 | `get-started` | Customers | `LandingPage.jsx` | `/customers/designers-and-video-editors/` |
 | `accountant-subscription` | Customers | `AccountantSubscription.jsx` | `/customers/accountant-subscription/` |
+| `accountant-subscription-explainer` | Customers (Accountant explainer) | `AccountantSubscriptionExplainer.jsx` | `/customers/accountant-subscription-explainer/` |
 | `customer-general` / `customers` | Customers (All Services) | `CustomerLandingPage.jsx` | `/customers/` |
 | `partner-program` | Talent (Creatives) | `PartnerProgram.jsx` | `/partner-program/designer-and-video-editor/` |
 | `partnerprogram-accountant` / `partner-program-accountant` | Talent (Accountants) | `AccountantPartnerProgram.jsx` | `/partner-program/accountant/` |
@@ -57,6 +58,11 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
      2. Push to `origin/main`
      3. Run `bash tools/deploy.sh`
      4. Provide a Test Handoff summary per `workflows/test-handoff.md`.
+
+## Accountant Subscription Explainer Page
+
+- Canonical page: `/customers/accountant-subscription-explainer/`; API/admin slug: `accountant-subscription-explainer`. Presents the accountant-subscription explainer script section by section; the main `/customers/accountant-subscription/` page is separate and unaffected.
+- Hero copy and per-language videos are edited under this slug in the admin. Until videos are uploaded under this slug, the page reuses the `accountant-subscription` slug's per-language videos client-side, so the hero player works on day one.
 
 ## Social Media Creator Page
 
