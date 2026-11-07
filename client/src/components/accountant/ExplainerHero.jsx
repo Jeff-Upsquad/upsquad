@@ -24,10 +24,15 @@ const FALLBACK_DESCRIPTION =
 
 export default function ExplainerHero({
   slug = 'accountant-subscription-explainer',
+  badge = 'Accountant Subscription',
   heroTitle,
   heroDescription,
   languages,
   defaultLanguageCode,
+  waHref,
+  footnote = 'Flat monthly pricing · Pause or cancel anytime',
+  // Optional: shown instead of the player when no language has a video.
+  noVideoContent,
 }) {
   const {
     selected,
@@ -57,7 +62,7 @@ export default function ExplainerHero({
           <ScrollReveal>
             <div className="inline-flex items-center gap-1.5 text-xs font-medium text-text-primary bg-white border border-black/80 px-3 py-1.5 rounded-full mb-6 shadow-brutal-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-              Accountant Subscription &middot; Explained
+              {badge} &middot; Explained
             </div>
           </ScrollReveal>
 
@@ -82,7 +87,7 @@ export default function ExplainerHero({
             <div className="mt-7 flex flex-wrap items-center gap-3">
               {/* The page's single CTA: WhatsApp to the business line. */}
               <a
-                href={explainerWaLink()}
+                href={waHref || explainerWaLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gradient inline-flex items-center gap-2 font-semibold text-sm px-7 py-3.5"
@@ -92,7 +97,7 @@ export default function ExplainerHero({
               </a>
             </div>
             <p className="mt-4 text-xs text-text-muted">
-              Flat monthly pricing &middot; Pause or cancel anytime
+              {footnote}
             </p>
 
             {hasLangChooser && (
@@ -114,12 +119,16 @@ export default function ExplainerHero({
         {/* Right: video */}
         <ScrollReveal delay={0.2}>
           <div className="w-full">
-            <HeroMedia
-              videoUrl={selected?.videoUrl}
-              previewUrl={previewUrl}
-              autoPlay={pendingPlay}
-              onRequestGate={requestPlay}
-            />
+            {noVideoContent && !previewUrl ? (
+              noVideoContent
+            ) : (
+              <HeroMedia
+                videoUrl={selected?.videoUrl}
+                previewUrl={previewUrl}
+                autoPlay={pendingPlay}
+                onRequestGate={requestPlay}
+              />
+            )}
           </div>
         </ScrollReveal>
       </div>

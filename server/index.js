@@ -117,6 +117,7 @@ const LP_REDIRECTS = {
   'get-started': '/customers/designers-and-video-editors/',
   'accountant-subscription': '/customers/accountant-subscription/',
   'accountant-subscription-explainer': '/customers/accountant-subscription-explainer/',
+  'designer-editor-subscription-explainer': '/customers/designer-editor-subscription-explainer/',
   'partner-program': '/partner-program/designer-and-video-editor/',
   'partnerprogram-accountant': '/partner-program/accountant/',
   'partner-program-accountant': '/partner-program/accountant/',

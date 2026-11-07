@@ -5,7 +5,7 @@ import { explainerWaLink } from './ExplainerHero'
 
 // Explainer script §10 — getting started, as the closing band of the
 // subscription story. The page's single CTA is WhatsApp to the business line.
-const steps = [
+const defaultSteps = [
   {
     number: '01',
     title: 'Explore the plans',
@@ -26,7 +26,12 @@ const steps = [
   },
 ]
 
-export default function GetStartedCta() {
+export default function GetStartedCta({
+  heading = 'A more organized, transparent, and flexible way to manage your business accounting.',
+  subheading = 'Get started with UpSquad Accountant Subscription today.',
+  steps = defaultSteps,
+  waHref,
+}) {
   return (
     <section className="py-16 lg:py-20 px-5 sm:px-8 bg-[#0A0A0A] text-white">
       <div className="max-w-[1160px] mx-auto">
@@ -38,10 +43,10 @@ export default function GetStartedCta() {
             </span>
           </div>
           <h2 className="font-heading text-3xl md:text-4xl font-extrabold tracking-[-0.025em] max-w-3xl">
-            A more organized, transparent, and flexible way to manage your business accounting.
+            {heading}
           </h2>
           <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-2xl">
-            Get started with UpSquad Accountant Subscription today.
+            {subheading}
           </p>
         </ScrollReveal>
 
@@ -63,7 +68,7 @@ export default function GetStartedCta() {
           <div className="mt-12">
             {/* The page's single CTA: WhatsApp to the business line. */}
             <a
-              href={explainerWaLink()}
+              href={waHref || explainerWaLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 btn-gradient font-semibold text-sm px-7 py-3.5"

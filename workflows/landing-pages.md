@@ -29,6 +29,7 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 | `get-started` | Customers | `LandingPage.jsx` | `/customers/designers-and-video-editors/` |
 | `accountant-subscription` | Customers | `AccountantSubscription.jsx` | `/customers/accountant-subscription/` |
 | `accountant-subscription-explainer` | Customers (Accountant explainer) | `AccountantSubscriptionExplainer.jsx` | `/customers/accountant-subscription-explainer/` |
+| `designer-editor-subscription-explainer` | Customers (Creative explainer) | `DesignerEditorSubscriptionExplainer.jsx` | `/customers/designer-editor-subscription-explainer/` |
 | `customer-general` / `customers` | Customers (All Services) | `CustomerLandingPage.jsx` | `/customers/` |
 | `partner-program` | Talent (Creatives) | `PartnerProgram.jsx` | `/partner-program/designer-and-video-editor/` |
 | `partnerprogram-accountant` / `partner-program-accountant` | Talent (Accountants) | `AccountantPartnerProgram.jsx` | `/partner-program/accountant/` |
@@ -63,6 +64,12 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 
 - Canonical page: `/customers/accountant-subscription-explainer/`; API/admin slug: `accountant-subscription-explainer`. Presents the accountant-subscription explainer script section by section; the main `/customers/accountant-subscription/` page is separate and unaffected.
 - Hero copy and per-language videos are edited under this slug in the admin. Until videos are uploaded under this slug, the page reuses the `accountant-subscription` slug's per-language videos client-side, so the hero player works on day one.
+
+## Designer & Video Editor Subscription Explainer Page
+
+- Canonical page: `/customers/designer-editor-subscription-explainer/`; API/admin slug: `designer-editor-subscription-explainer`. Presents the fixed-plans subscription explainer script section by section; it is separate from the availability-plans page at `/customers/designers-and-video-editors/`.
+- Hero copy and per-language videos are edited under this slug in the admin. There is deliberately no video fallback: until a video is uploaded under this slug, the hero shows the SquadHub process summary card instead of a player. Plan names and prices come from the explainer script (`client/src/data/designerEditorExplainer.js`), not from the availability plans in `data/pricing.js`.
+- The page's single CTA is WhatsApp to the business line, prefilled message tagged `(Fixed Plans)`.
 
 ## Social Media Creator Page
 

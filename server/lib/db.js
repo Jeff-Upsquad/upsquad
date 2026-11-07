@@ -161,6 +161,14 @@ function seed() {
       langs: [{ code: 'en' }],
     },
     {
+      slug: 'designer-editor-subscription-explainer',
+      heroTitle: 'Your design and video work, on a simple monthly subscription.',
+      heroDescription: 'Get a graphic designer, a video editor, or both through one monthly plan. Submit unlimited work requests, ask for unlimited revisions, and manage everything in SquadHub.',
+      defaultLanguageCode: 'en',
+      // Same FK note as above; extra languages are added per-page in /admin.
+      langs: [{ code: 'en' }],
+    },
+    {
       slug: 'partner-program',
       heroTitle: 'UpSquad Partner Program',
       heroDescription: 'Are you a freelance designer or video editor? Partner with UpSquad and focus only on what you do best — we handle the sales, marketing, client support, and payments.',
