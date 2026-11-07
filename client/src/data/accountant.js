@@ -37,6 +37,37 @@ export const accountantBenefits = [
   { icon: 'zero-downtime', title: 'Zero Downtime', desc: 'Even if your accountant is on leave, you will get a backup.', note: 'Available at Rs 1,000 per month additional cost.' },
 ]
 
+// What every accountant subscription covers by default (explainer script §2).
+export const subscriptionIncluded = [
+  { title: 'Day-to-day accounting', desc: 'Your books are kept current — entries, ledgers, and reconciliations handled as work happens.' },
+  { title: 'Monthly accounting reports', desc: 'A clear summary of where your business stands, delivered every month.' },
+  { title: 'GST filing', desc: 'GST returns prepared and filed before every deadline.' },
+  { title: 'Staff attendance management', desc: 'Your team\u2019s attendance tracked through the included Attendance & Payroll software.' },
+  { title: 'Payroll calculation', desc: 'Salaries calculated accurately every month, ready to pay.' },
+]
+
+// Optional add-ons a business can attach to its subscription (script §2).
+export const subscriptionAddons = [
+  { title: 'ESI & PF filing', desc: 'Statutory ESI and EPF filings for eligible teams.' },
+  { title: 'TDS filing', desc: 'Quarterly TDS returns prepared and filed on time.' },
+  { title: 'Annual filing', desc: 'Year-end statutory filings and submissions.' },
+  { title: 'Income tax filing', desc: 'ITR preparation and filing for the business.' },
+]
+
+// Accounting platforms our accountants can work with (script §8). The only
+// requirement: the software must support secure remote access.
+export const softwarePlatforms = [
+  'TallyPrime',
+  'Zoho Books',
+  'QuickBooks',
+  'Vyapar',
+  'BUSY',
+  'Marg ERP',
+  'Odoo',
+  'ERPNext',
+  'Your own customized software',
+]
+
 export const bookkeepingServices = [
   { icon: 'presentations', title: 'Monthly bookkeeping', desc: 'Day-to-day books kept current — invoices, expenses, and ledgers reconciled every month.' },
   { icon: 'print', title: 'Bank reconciliation', desc: 'Statements matched to the books so you always know what is actually in the account.' },

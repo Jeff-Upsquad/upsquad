@@ -4,13 +4,19 @@ import HeroMedia from '../landing/HeroMedia'
 import LanguageGate from '../landing/LanguageGate'
 import { useLanguageGate } from '../../lib/useLanguageGate'
 
-// Hero for the accountant landing page. The explainer video is admin-managed:
-// content comes from the "accountant-subscription" landing page (admin +
-// /api/v1/landing-pages/accountant-subscription), same multi-language gate the
-// designers/editors hero uses — so videos are uploaded in the admin, not
-// hardcoded here.
+// Hero for the accountant landing page. The explainer video and hero copy are
+// admin-managed: content comes from the "accountant-subscription" landing page
+// (admin + /api/v1/landing-pages/accountant-subscription), same multi-language
+// gate the designers/editors hero uses — so videos and copy are edited in the
+// admin, not hardcoded here. The props fall back to the explainer-script copy.
+const FALLBACK_TITLE = 'Your business accounting, on a fixed monthly payment.'
+const FALLBACK_DESCRIPTION =
+  'A dedicated UpSquad accountant manages your day-to-day books, monthly reports, GST, and payroll — backed by two secondary accountants and a Squad Manager. Plans start from ₹5,000/month.'
+
 export default function AccountantHero({
   slug = 'accountant-subscription',
+  heroTitle,
+  heroDescription,
   languages,
   defaultLanguageCode,
   onSelectTab,
@@ -28,6 +34,13 @@ export default function AccountantHero({
 
   const previewUrl = selected?.videoUrl || (languages || []).find((l) => l.videoUrl)?.videoUrl
 
+  // Accent-highlight the words before " on …" so the marker sits behind
+  // "Your business accounting" but not "on a fixed monthly payment."
+  const title = heroTitle || FALLBACK_TITLE
+  const titleMatch = title.match(/^(.*?)(\s+on\s+.*)$/i)
+  const titleHead = titleMatch ? titleMatch[1] : title
+  const titleTail = titleMatch ? titleMatch[2] : ''
+
   return (
     <section className="pt-24 md:pt-28 pb-12 md:pb-16 bg-white">
       <div className="max-w-[1160px] mx-auto px-5 sm:px-8 grid md:grid-cols-2 gap-10 lg:gap-12 items-center w-full">
@@ -36,7 +49,7 @@ export default function AccountantHero({
           <ScrollReveal>
             <div className="inline-flex items-center gap-1.5 text-xs font-medium text-text-primary bg-white border border-black/80 px-3 py-1.5 rounded-full mb-6 shadow-brutal-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-              New &middot; Subscribe or hire
+              New &middot; Plans from ₹5,000/month
             </div>
           </ScrollReveal>
 
@@ -49,9 +62,9 @@ export default function AccountantHero({
                     'linear-gradient(transparent 66%, #FFFF99 66%, #FFFF99 92%, transparent 92%)',
                 }}
               >
-                Accountants
-              </span>{' '}
-              on subscription.
+                {titleHead}
+              </span>
+              {titleTail}
               <br />
               <span className="italic font-bold">Or hire one in-house.</span>
             </h1>
@@ -59,10 +72,7 @@ export default function AccountantHero({
 
           <ScrollReveal delay={0.2}>
             <p className="mt-5 text-base md:text-lg text-text-secondary leading-relaxed max-w-xl">
-              Keep your books clean and your business compliant — without building a finance
-              team from scratch. Subscribe to a dedicated accounting squad that handles
-              bookkeeping, GST, payroll, and reporting every month, or have us shortlist vetted
-              accountants you can hire directly, backed by a replacement guarantee.
+              {heroDescription || FALLBACK_DESCRIPTION}
             </p>
           </ScrollReveal>
 

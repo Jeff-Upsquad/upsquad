@@ -7,6 +7,14 @@ export const LANDING_PAGE_FALLBACKS = {
     defaultLanguageCode: 'en',
     languages: [],
   },
+  'accountant-subscription': {
+    slug: 'accountant-subscription',
+    heroTitle: 'Your business accounting, on a fixed monthly payment.',
+    heroDescription:
+      'A dedicated UpSquad accountant manages your day-to-day books, monthly reports, GST, and payroll — backed by two secondary accountants and a Squad Manager. Plans start from ₹5,000/month.',
+    defaultLanguageCode: 'en',
+    languages: [],
+  },
   'customer-general': {
     slug: 'customer-general',
     heroTitle: 'Every squad your brand needs — on subscription.',
