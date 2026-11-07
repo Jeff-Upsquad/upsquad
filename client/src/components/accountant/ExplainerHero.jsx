@@ -2,8 +2,15 @@
 import ScrollReveal from '../ScrollReveal'
 import HeroMedia from '../landing/HeroMedia'
 import LanguageGate from '../landing/LanguageGate'
-import SignupCta from '../SignupCta'
+import WhatsAppIcon from '../WhatsAppIcon'
 import { useLanguageGate } from '../../lib/useLanguageGate'
+
+// SquadHire Business line — the single CTA destination for this page.
+const WA_NUMBER = '919995266342'
+export const explainerWaLink = () =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
+    "Hi UpSquad, I'm interested in the Accountant Subscription."
+  )}`
 
 // Hero for the standalone accountant-subscription explainer page. The
 // explainer video and hero copy are admin-managed under the
@@ -73,16 +80,15 @@ export default function ExplainerHero({
 
           <ScrollReveal delay={0.3}>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <SignupCta className="btn-gradient font-semibold text-sm px-7 py-3.5">
-                Get started &rarr;
-              </SignupCta>
-              {/* The plans grid lives on the main accountant page; this page
-                  intentionally has no plans section of its own. */}
+              {/* The page's single CTA: WhatsApp to the business line. */}
               <a
-                href="/customers/accountant-subscription/#subscription-plans"
-                className="btn-secondary font-medium text-sm px-6 py-3.5"
+                href={explainerWaLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gradient inline-flex items-center gap-2 font-semibold text-sm px-7 py-3.5"
               >
-                See plans
+                <WhatsAppIcon className="w-4 h-4" />
+                Chat on WhatsApp
               </a>
             </div>
             <p className="mt-4 text-xs text-text-muted">

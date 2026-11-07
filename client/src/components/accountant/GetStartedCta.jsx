@@ -1,31 +1,16 @@
 "use client"
 import ScrollReveal from '../ScrollReveal'
-import SignupCta from '../SignupCta'
 import WhatsAppIcon from '../WhatsAppIcon'
-
-const WA_NUMBER = '919995266385'
-const waLink = () =>
-  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-    'Hi UpSquad, I have a question about the Accountant Subscription plans.'
-  )}`
+import { explainerWaLink } from './ExplainerHero'
 
 // Explainer script §10 — getting started, as the closing band of the
-// subscription story.
+// subscription story. The page's single CTA is WhatsApp to the business line.
 const steps = [
   {
     number: '01',
     title: 'Explore the plans',
     description:
       'Look through the available subscription plans and select the one that suits your business requirements.',
-    // The plans grid lives on the main accountant page; this page has none.
-    action: (
-      <a
-        href="/customers/accountant-subscription/#subscription-plans"
-        className="text-xs font-semibold text-[#FFFF99] underline underline-offset-4 hover:text-white transition-colors"
-      >
-        See plans &rarr;
-      </a>
-    ),
   },
   {
     number: '02',
@@ -38,17 +23,6 @@ const steps = [
     title: 'Questions? Talk to us',
     description:
       'Not sure which plan fits? Our team will help you understand your requirements and choose a suitable plan.',
-    action: (
-      <a
-        href={waLink()}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FFFF99] underline underline-offset-4 hover:text-white transition-colors"
-      >
-        <WhatsAppIcon className="w-3.5 h-3.5" />
-        Message us &rarr;
-      </a>
-    ),
   },
 ]
 
@@ -80,25 +54,22 @@ export default function GetStartedCta() {
                 </span>
                 <h4 className="font-heading text-base font-semibold text-white mt-4 mb-1.5">{step.title}</h4>
                 <p className="text-sm text-white/65 leading-relaxed">{step.description}</p>
-                {step.action && <div className="mt-3">{step.action}</div>}
               </div>
             </ScrollReveal>
           ))}
         </div>
 
         <ScrollReveal delay={0.15}>
-          <div className="mt-12 flex flex-wrap items-center gap-4">
-            <SignupCta className="btn-gradient font-semibold text-sm px-7 py-3.5">
-              Get started &rarr;
-            </SignupCta>
+          <div className="mt-12">
+            {/* The page's single CTA: WhatsApp to the business line. */}
             <a
-              href={waLink()}
+              href={explainerWaLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/25 rounded-lg px-6 py-3.5 hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 btn-gradient font-semibold text-sm px-7 py-3.5"
             >
               <WhatsAppIcon className="w-4 h-4" />
-              Talk to our team
+              Chat on WhatsApp
             </a>
           </div>
         </ScrollReveal>
