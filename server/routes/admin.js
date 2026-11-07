@@ -18,6 +18,11 @@ const __dirname = path.dirname(__filename)
 const UPLOADS_DIR = path.resolve(__dirname, '..', 'uploads')
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true })
 
+// Admin-uploaded explainer videos are large MP4s; 1 GB covers full-length
+// 1080p exports. Oversize/unsupported files are rejected by the error
+// middleware under the /uploads route with a message the edit page shows.
+const MAX_UPLOAD_BYTES = 1024 * 1024 * 1024
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: (_req, _file, cb) => cb(null, UPLOADS_DIR),
@@ -27,7 +32,7 @@ const upload = multer({
       cb(null, `${Date.now()}-${random}${ext}`)
     },
   }),
-  limits: { fileSize: 200 * 1024 * 1024 },
+  limits: { fileSize: MAX_UPLOAD_BYTES },
   fileFilter: (_req, file, cb) => {
     const ok = /^(video|audio|image)\//.test(file.mimetype)
     cb(ok ? null : new Error('Unsupported file type'), ok)
@@ -204,6 +209,15 @@ router.post('/landing-pages/:slug/delete', (req, res) => {
 router.post('/uploads', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' })
   res.json({ url: `/uploads/${req.file.filename}` })
+})
+
+// Multer rejections (oversize / wrong type) otherwise surface as a raw 500
+// HTML page; translate them into JSON the edit page shows next to the input.
+router.use('/uploads', (err, _req, res, _next) => {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(413).json({ error: `File is larger than ${MAX_UPLOAD_BYTES / (1024 * 1024 * 1024)} GB` })
+  }
+  res.status(400).json({ error: err.message || 'Upload failed' })
 })
 
 function parseLanguagesFromBody(body) {

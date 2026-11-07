@@ -142,7 +142,11 @@
       const fd = new FormData()
       fd.append('file', file)
       const res = await fetch('/admin/uploads', { method: 'POST', body: fd })
-      if (!res.ok) throw new Error('Upload failed (' + res.status + ')')
+      if (!res.ok) {
+        let msg = 'Upload failed (' + res.status + ')'
+        try { msg = (await res.json()).error || msg } catch {}
+        throw new Error(msg)
+      }
       const { url } = await res.json()
       urlInput.value = url
       status.textContent = 'Uploaded ✓'

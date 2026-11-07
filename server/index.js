@@ -178,7 +178,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`UpSquad server running on http://localhost:${PORT}`)
   console.log(`Admin:  http://localhost:${PORT}/admin/login`)
 })
+
+// Admin media uploads go up to 1 GB; on a slow uplink that can outlast Node's
+// default 5-minute requestTimeout, which would abort the upload mid-transfer.
+server.requestTimeout = 20 * 60 * 1000
