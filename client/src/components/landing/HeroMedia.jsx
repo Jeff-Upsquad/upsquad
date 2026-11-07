@@ -7,6 +7,18 @@ function isEmbedUrl(url) {
   return /(?:youtube\.com|youtu\.be|vimeo\.com|loom\.com|clips\.squadhub\.in)/i.test(url)
 }
 
+// The SquadClips embed player renders a plain <video controls> — it ignores an
+// autoplay query param and exposes no postMessage API, so a cross-origin
+// wrapper can never start it programmatically. The only way one click starts
+// a SquadClips video is the click landing on the player's own play button.
+function isSquadClips(url) {
+  try {
+    return new URL(url).hostname.includes('clips.squadhub.in')
+  } catch {
+    return false
+  }
+}
+
 function youtubeId(url) {
   try {
     const u = new URL(url)
@@ -101,7 +113,7 @@ function supportsCustomSpeed(url) {
   return /(?:youtube\.com|youtu\.be|vimeo\.com)/i.test(url)
 }
 
-export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPlay = false }) {
+export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPlay = false, needsGate = false }) {
   const videoRef = useRef(null)
   const iframeRef = useRef(null)
   const [playing, setPlaying] = useState(false)
@@ -111,6 +123,12 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
   const poster = getPosterUrl(source)
   const embed = isEmbedUrl(source)
   const showSpeed = supportsCustomSpeed(videoUrl || source)
+  // Single-video SquadClips embed: no language picker stands between the
+  // visitor and the video, and the player cannot be remote-started, so mount
+  // it fully interactive and let its own play button be the play button.
+  // Otherwise our overlay swallows the click, swaps in an autoplay iframe the
+  // player ignores, and strands the viewer on a paused video.
+  const liveEmbed = embed && !needsGate && isSquadClips(source)
 
   const startPlayback = (url) => {
     if (!url) return
@@ -211,7 +229,7 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
   return (
     <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#0A0A0A]">
       {embed ? (
-        poster ? (
+        poster && !liveEmbed ? (
           <img
             src={poster}
             alt=""
@@ -222,7 +240,7 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
             src={toEmbed(videoUrl || source, false)}
             title="Hero video preview"
             allow="picture-in-picture"
-            className="absolute inset-0 w-full h-full border-0 pointer-events-none"
+            className={`absolute inset-0 w-full h-full border-0${liveEmbed ? '' : ' pointer-events-none'}`}
           />
         )
       ) : (
@@ -244,7 +262,7 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
         />
       )}
 
-      {!playing && (
+      {!playing && !liveEmbed && (
         <button
           type="button"
           onClick={handlePlayClick}

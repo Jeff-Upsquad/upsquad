@@ -50,6 +50,7 @@ export default function LandingHero({ slug, heroTitle, heroDescription, language
             previewUrl={previewUrl}
             autoPlay={pendingPlay}
             onRequestGate={requestPlay}
+            needsGate={(languages || []).length > 1}
           />
           {/* Audio player hidden for now. Re-enable by restoring the import
               above and uncommenting the <AudioPlayer /> below. */}

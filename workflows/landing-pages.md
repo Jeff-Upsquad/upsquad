@@ -49,7 +49,9 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
    - Squad Clips share URLs are iframe players, not direct MP4s.
    - `HeroMedia` normalizes both `/share/<id>` and `/embed/<id>` to `/embed/<id>`.
    - Because Squad Clips does not have a static unauthenticated poster CDN URL, `HeroMedia` mounts the iframe in preview mode (`autoplay=false`, `pointer-events-none`) so the player's native thumbnail renders rather than an empty black box.
-   - The custom Play button and `onRequestGate` overlay sit on top with `pointer-events-auto`, so clicking Play checks the multi-language gate before starting playback.
+   - The Squad Clips player ignores `autoplay` query params and exposes no player API, so the wrapper can never remote-start it — a click only starts the video when it lands on the player's own play button.
+   - Single-video pages (`needsGate={false}`): `HeroMedia` mounts the embed fully interactive with no overlay, so one click on the player's own play button starts playback.
+   - Multi-language pages (`needsGate={true}`): the custom Play button and `onRequestGate` overlay sit on top with `pointer-events-auto`, so clicking Play checks the language gate first; after a language is picked the embed mounts interactive (paused — Squad Clips cannot autoplay) and the visitor starts it with the player's own button.
 3. **Admin "Preview" Links**:
    - In `server/index.js`, `LP_REDIRECTS` intercepts `/lp/:slug` and 301-redirects to the canonical public URL. Any new landing page slug must be registered in `LP_REDIRECTS` so the admin "Preview" link never falls through to the homepage.
 4. **Deploying Changes**:

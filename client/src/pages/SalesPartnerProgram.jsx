@@ -230,7 +230,7 @@ export default function SalesPartnerProgram() {
             </div>
           </div>
           <div className="w-full">
-            <HeroMedia videoUrl={selected?.videoUrl} autoPlay={pendingPlay} onRequestGate={requestPlay} />
+            <HeroMedia videoUrl={selected?.videoUrl} autoPlay={pendingPlay} onRequestGate={requestPlay} needsGate={(languages || []).length > 1} />
           </div>
         </div>
 

@@ -114,6 +114,7 @@ export default function CreativeHero({
               previewUrl={previewUrl}
               autoPlay={pendingPlay}
               onRequestGate={requestPlay}
+              needsGate={(languages || []).length > 1}
             />
           </div>
         </ScrollReveal>

@@ -166,6 +166,7 @@ export default function SocialMediaCreatorProgram() {
                   previewUrl={languages[0]?.videoUrl}
                   onRequestGate={requestPlay}
                   autoPlay={pendingPlay}
+                  needsGate={languages.length > 1}
                 />
               ) : (
                 <div className="aspect-video min-h-[240px] rounded-xl bg-[#141414] text-white flex flex-col items-center justify-center p-5 sm:p-8 text-center">

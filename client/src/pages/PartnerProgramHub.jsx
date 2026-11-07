@@ -281,6 +281,7 @@ export default function PartnerProgramHub() {
               previewUrl={previewUrl}
               autoPlay={pendingPlay}
               onRequestGate={requestPlay}
+              needsGate={(content.languages || []).length > 1}
             />
           </ScrollReveal>
         </div>

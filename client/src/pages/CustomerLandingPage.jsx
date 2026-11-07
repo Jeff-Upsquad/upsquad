@@ -282,6 +282,7 @@ export default function CustomerLandingPage() {
                 previewUrl={previewUrl}
                 autoPlay={pendingPlay}
                 onRequestGate={requestPlay}
+                needsGate={(content.languages || []).length > 1}
                 className="w-full aspect-video rounded-2xl shadow-[0_20px_50px_-20px_rgba(0,0,0,0.25)] border border-black/10 overflow-hidden bg-black"
               />
               <p className="text-center text-xs text-text-muted mt-3">

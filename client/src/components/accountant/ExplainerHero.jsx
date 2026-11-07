@@ -127,6 +127,7 @@ export default function ExplainerHero({
                 previewUrl={previewUrl}
                 autoPlay={pendingPlay}
                 onRequestGate={requestPlay}
+                needsGate={(languages || []).length > 1}
               />
             )}
           </div>
