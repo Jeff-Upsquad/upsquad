@@ -18,11 +18,13 @@ import {
 import { fetchLandingPage } from '../lib/landingPageApi'
 import { useLandingScrollReset } from '../lib/useLandingScrollReset'
 
-// Hero copy and per-language videos are admin-managed under this slug. There is
-// deliberately no video fallback: the get-started videos pitch the availability
-// plans, which differ from the fixed plans on this page. Until a video is
-// uploaded, the hero shows the process summary below.
+// Hero copy and per-language videos are admin-managed under this slug. The
+// per-language explainer videos already live under the get-started slug
+// (/customers/designers-and-video-editors/); until videos are uploaded under
+// this page's own slug, they are reused so the hero player works on day one.
+// If neither slug has videos, the hero shows the process summary below.
 const LANDING_SLUG = 'designer-editor-subscription-explainer'
+const VIDEO_FALLBACK_SLUG = 'get-started'
 
 function ProcessSummary() {
   return (
@@ -49,8 +51,25 @@ export default function DesignerEditorSubscriptionExplainer() {
 
   useEffect(() => {
     let alive = true
-    fetchLandingPage(LANDING_SLUG).then((data) => {
-      if (alive && data) setContent({ ...fallback, ...data })
+    fetchLandingPage(LANDING_SLUG).then(async (data) => {
+      if (!alive) return
+      const adoptFallbackVideos = async () => {
+        const videoFallback = await fetchLandingPage(VIDEO_FALLBACK_SLUG)
+        if (!alive || !videoFallback) return
+        setContent((prev) => ({
+          ...prev,
+          languages: videoFallback.languages || [],
+          defaultLanguageCode: videoFallback.defaultLanguageCode || prev.defaultLanguageCode,
+        }))
+      }
+      if (!data) {
+        // Slug not seeded yet (fresh DB) — fall back to the shared videos.
+        await adoptFallbackVideos()
+        return
+      }
+      setContent((prev) => ({ ...prev, ...data }))
+      const hasVideos = (data.languages || []).some((l) => l.videoUrl)
+      if (!hasVideos) await adoptFallbackVideos()
     })
     return () => { alive = false }
     // eslint-disable-next-line react-hooks/exhaustive-deps
