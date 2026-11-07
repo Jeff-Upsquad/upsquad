@@ -2,7 +2,6 @@
 import ScrollReveal from '../ScrollReveal'
 import SignupCta from '../SignupCta'
 import WhatsAppIcon from '../WhatsAppIcon'
-import { scrollToSection } from '../../lib/useLandingScrollReset'
 
 const WA_NUMBER = '919995266385'
 const waLink = () =>
@@ -18,14 +17,14 @@ const steps = [
     title: 'Explore the plans',
     description:
       'Look through the available subscription plans and select the one that suits your business requirements.',
+    // The plans grid lives on the main accountant page; this page has none.
     action: (
-      <button
-        type="button"
-        onClick={() => scrollToSection('subscription-plans')}
+      <a
+        href="/customers/accountant-subscription/#subscription-plans"
         className="text-xs font-semibold text-[#FFFF99] underline underline-offset-4 hover:text-white transition-colors"
       >
         See plans &rarr;
-      </button>
+      </a>
     ),
   },
   {

@@ -4,7 +4,6 @@ import HeroMedia from '../landing/HeroMedia'
 import LanguageGate from '../landing/LanguageGate'
 import SignupCta from '../SignupCta'
 import { useLanguageGate } from '../../lib/useLanguageGate'
-import { scrollToSection } from '../../lib/useLandingScrollReset'
 
 // Hero for the standalone accountant-subscription explainer page. The
 // explainer video and hero copy are admin-managed under the
@@ -57,15 +56,9 @@ export default function ExplainerHero({
 
           <ScrollReveal delay={0.1}>
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-[-0.03em] text-text-primary">
-              <span
-                className="bg-no-repeat box-decoration-clone"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(transparent 66%, #FFFF99 66%, #FFFF99 92%, transparent 92%)',
-                }}
-              >
-                {titleHead}
-              </span>
+              {/* .hero-highlight is dark-mode aware (see index.css): solid
+                  #FFFF99 makes near-white dark-mode ink unreadable. */}
+              <span className="hero-highlight box-decoration-clone">{titleHead}</span>
               {titleTail}
               <br />
               <span className="italic font-bold">Plans from &#8377;5,000/month.</span>
@@ -83,13 +76,14 @@ export default function ExplainerHero({
               <SignupCta className="btn-gradient font-semibold text-sm px-7 py-3.5">
                 Get started &rarr;
               </SignupCta>
-              <button
-                type="button"
-                onClick={() => scrollToSection('subscription-plans')}
+              {/* The plans grid lives on the main accountant page; this page
+                  intentionally has no plans section of its own. */}
+              <a
+                href="/customers/accountant-subscription/#subscription-plans"
                 className="btn-secondary font-medium text-sm px-6 py-3.5"
               >
                 See plans
-              </button>
+              </a>
             </div>
             <p className="mt-4 text-xs text-text-muted">
               Flat monthly pricing &middot; Pause or cancel anytime

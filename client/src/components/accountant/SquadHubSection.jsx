@@ -19,7 +19,7 @@ const platforms = [
 
 export default function SquadHubSection() {
   return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
+    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white">
       <div className="max-w-[1160px] mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
         {/* Left: copy + platform availability */}
         <ScrollReveal>

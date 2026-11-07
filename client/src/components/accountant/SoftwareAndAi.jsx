@@ -5,7 +5,7 @@ import { softwarePlatforms } from '../../data/accountant'
 // Explainer script §8 + §9 — free software, your own software, and the AI Accountant.
 export default function SoftwareAndAi() {
   return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
+    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white">
       <div className="max-w-[1160px] mx-auto">
         {/* §8 — software compatibility */}
         <ScrollReveal>
@@ -38,7 +38,7 @@ export default function SoftwareAndAi() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.15}>
-            <div className="mt-6 flex items-start gap-3 text-sm text-text-secondary bg-white rounded-xl border border-[rgba(0,0,0,0.08)] px-5 py-4 max-w-3xl leading-relaxed">
+            <div className="mt-6 flex items-start gap-3 text-sm text-text-secondary bg-surface-secondary rounded-xl px-5 py-4 max-w-3xl leading-relaxed">
             <svg className="w-4 h-4 mt-0.5 shrink-0 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>

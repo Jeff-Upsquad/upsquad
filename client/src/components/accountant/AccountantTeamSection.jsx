@@ -50,7 +50,7 @@ const roles = [
 
 export default function AccountantTeamSection() {
   return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white">
+    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
       <div className="max-w-[1160px] mx-auto">
         {/* §6 — the working model */}
         <ScrollReveal>

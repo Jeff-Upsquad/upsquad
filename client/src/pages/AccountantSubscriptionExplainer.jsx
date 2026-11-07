@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import ExplainerHero from '../components/accountant/ExplainerHero'
 import IncludedAndAddons from '../components/accountant/IncludedAndAddons'
-import PlansSection from '../components/creative/PlansSection'
 import PricingGuarantee from '../components/accountant/PricingGuarantee'
 import WorkVisibility from '../components/accountant/WorkVisibility'
 import SquadHubSection from '../components/accountant/SquadHubSection'
@@ -61,9 +60,9 @@ export default function AccountantSubscriptionExplainer() {
         defaultLanguageCode={content.defaultLanguageCode}
       />
 
-      {/* Explainer script §2–§10, in order */}
+      {/* Explainer script §2–§10, in order. No plans grid on this page —
+          "See plans" links to the main accountant page's plans section. */}
       <IncludedAndAddons />
-      <PlansSection variant="accountant" />
       <PricingGuarantee />
       <WorkVisibility />
       <SquadHubSection />
