@@ -9,7 +9,7 @@ import { useLanguageGate } from '../../lib/useLanguageGate'
 const WA_NUMBER = '919995266342'
 export const explainerWaLink = () =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-    "Hi UpSquad, I'm interested in the Accountant Subscription."
+    "Hi UpSquad, I'm interested in the Accountant Subscription. (Fixed Plans)"
   )}`
 
 // Hero for the standalone accountant-subscription explainer page. The
