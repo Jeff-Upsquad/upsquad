@@ -8,15 +8,15 @@ import { explainerWaLink } from './ExplainerHero'
 const defaultSteps = [
   {
     number: '01',
-    title: 'Explore the plans',
+    title: 'Check availability',
     description:
-      'Look through the available subscription plans and select the one that suits your business requirements.',
+      'Ask about the current UpSquad Select enrollment window and choose a plan that suits your business requirements.',
   },
   {
     number: '02',
-    title: 'Subscribe & pay online',
+    title: 'Activate your subscription',
     description:
-      'Purchase your subscription directly through the website and complete your payment online — no paperwork chase.',
+      'Our team will guide you through subscription activation and payment when enrollment is available.',
   },
   {
     number: '03',
@@ -28,7 +28,7 @@ const defaultSteps = [
 
 export default function GetStartedCta({
   heading = 'A more organized, transparent, and flexible way to manage your business accounting.',
-  subheading = 'Get started with UpSquad Accountant Subscription today.',
+  subheading = 'Explore UpSquad Select for accountants. Chat with us about plans, pricing, and the next enrollment opening.',
   steps = defaultSteps,
   waHref,
 }) {

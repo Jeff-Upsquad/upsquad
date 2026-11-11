@@ -9,7 +9,7 @@ import { useLanguageGate } from '../../lib/useLanguageGate'
 const WA_NUMBER = '919995266342'
 export const explainerWaLink = () =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-    "Hi UpSquad, I'm interested in the Accountant Subscription. (Fixed Plans)"
+    "Hi UpSquad, I'm interested in UpSquad Select for Accountants. Please share the available plans and enrollment details."
   )}`
 
 // Hero for the standalone accountant-subscription explainer page. The
@@ -24,7 +24,7 @@ const FALLBACK_DESCRIPTION =
 
 export default function ExplainerHero({
   slug = 'accountant-subscription-explainer',
-  badge = 'Accountant Subscription',
+  badge = 'Accountants',
   heroTitle,
   heroDescription,
   languages,
@@ -62,7 +62,7 @@ export default function ExplainerHero({
           <ScrollReveal>
             <div className="inline-flex items-center gap-1.5 text-xs font-medium text-text-primary bg-white border border-black/80 px-3 py-1.5 rounded-full mb-6 shadow-brutal-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-              {badge} &middot; Explained
+              UpSquad Select &middot; {badge}
             </div>
           </ScrollReveal>
 
@@ -98,6 +98,10 @@ export default function ExplainerHero({
             </div>
             <p className="mt-4 text-xs text-text-muted">
               {footnote}
+            </p>
+            <p className="mt-3 text-sm font-medium text-text-secondary leading-relaxed max-w-xl">
+              UpSquad Select subscriptions open for enrollment periodically, for a limited time.
+              Chat with us to check availability or hear about the next opening.
             </p>
 
             {hasLangChooser && (

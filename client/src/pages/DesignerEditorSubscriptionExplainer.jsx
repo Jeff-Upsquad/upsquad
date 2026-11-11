@@ -79,7 +79,7 @@ export default function DesignerEditorSubscriptionExplainer() {
     <>
       <ExplainerHero
         slug={LANDING_SLUG}
-        badge="Designer & Video Editor Subscription"
+        badge="Designers & Video Editors"
         heroTitle={content.heroTitle}
         heroDescription={content.heroDescription}
         languages={content.languages}
@@ -97,7 +97,7 @@ export default function DesignerEditorSubscriptionExplainer() {
       <PlanPricing />
       <GetStartedCta
         heading="Whether you need occasional creatives, regular video edits, or a personal creative resource, UpSquad has a plan for your business."
-        subheading="Questions about plans, pricing, or which subscription suits your business? Our team will help you choose the right plan."
+        subheading="Explore UpSquad Select for design and video editing. Chat with us about plans, pricing, and the next enrollment opening."
         steps={getStartedSteps}
         waHref={designerEditorWaLink()}
       />

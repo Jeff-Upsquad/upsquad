@@ -7,7 +7,7 @@
 const WA_NUMBER = '919995266342'
 export const designerEditorWaLink = () =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
-    "Hi UpSquad, I'm interested in the Designer & Video Editor Subscription. (Fixed Plans)"
+    "Hi UpSquad, I'm interested in UpSquad Select for Designers & Video Editors. Please share the available plans and enrollment details."
   )}`
 
 export const serviceOptions = [
