@@ -22,8 +22,8 @@ export const COPY = {
   headline: 'The content squad is open.',
   sub:
     'Eight seats across making, writing, directing, and capturing. Partner with us as a freelancer, or come on as a hire.',
-  phoneDisplay: '+91 99955 66382',
-  phoneRaw: '919995566382',
+  phoneDisplay: '+91 99952 66385',
+  phoneRaw: '919995266385',
   web: 'upsquadconnect.com',
   applyHint: 'Connect with us in WhatsApp',
   freelanceLabel: 'Freelance',

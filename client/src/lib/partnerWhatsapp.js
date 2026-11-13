@@ -1,10 +1,7 @@
 // SquadHire's WhatsApp Business number — inbound messages land in SquadHire CRM,
 // which routes brand-new contacts to a candidates pipeline by matching the first
 // message against crm_pipeline_keyword_rules.
-// TEMP (2026-10-26): all WhatsApp redirects rerouted to the sales line for now.
-// Revert to the SquadHire Business line '919995266342' when switching back.
-export const SQUADHIRE_WA_NUMBER = '919995266385'
-export const SALES_WA_NUMBER = '919995266385'
+export const SQUADHIRE_WA_NUMBER = '919995266342'
 
 // Each message carries a distinctive role phrase that a keyword rule in
 // SquadHire CRM matches on. Editing this copy without updating the matching rule
@@ -13,7 +10,7 @@ export const SALES_WA_NUMBER = '919995266385'
 //   designer-and-video-editor  -> "video editor partner program"
 //   sales                      -> "sales partner program"
 //   general                    -> "partner program"
-//   agency                     -> routes to sales WhatsApp (ending in 66385)
+//   agency                     -> "join up squad as an agency"
 export const PARTNER_WA_MESSAGES = {
   accountant: "Hi UpSquad, I'm interested in the Accountant Partner Program.",
   'designer-and-video-editor':
@@ -24,10 +21,6 @@ export const PARTNER_WA_MESSAGES = {
 }
 
 export function partnerWaLink(slug) {
-  if (slug === 'agency') {
-    const msg = PARTNER_WA_MESSAGES.agency
-    return `https://wa.me/${SALES_WA_NUMBER}?text=${encodeURIComponent(msg)}`
-  }
   const text = PARTNER_WA_MESSAGES[slug]
   if (!text) return null
   return `https://wa.me/${SQUADHIRE_WA_NUMBER}?text=${encodeURIComponent(text)}`

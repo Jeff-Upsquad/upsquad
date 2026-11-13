@@ -5,8 +5,8 @@ import LanguageGate from '../landing/LanguageGate'
 import WhatsAppIcon from '../WhatsAppIcon'
 import { useLanguageGate } from '../../lib/useLanguageGate'
 
-// SquadHire Business line — the single CTA destination for this page.
-const WA_NUMBER = '919995266342'
+// Sales line — the single CTA destination for this page.
+const WA_NUMBER = '919995266385'
 export const explainerWaLink = () =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
     "Hi UpSquad, I'm interested in UpSquad Select for Accountants. Please share the available plans and enrollment details."

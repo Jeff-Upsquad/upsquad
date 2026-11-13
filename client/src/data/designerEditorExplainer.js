@@ -3,8 +3,8 @@
 // plans from that script; they are separate from the availability plans in
 // data/pricing.js used on /customers/designers-and-video-editors/.
 
-// SquadHire Business line, the same destination as the accountant explainer.
-const WA_NUMBER = '919995266342'
+// Sales line, the same destination as the accountant explainer.
+const WA_NUMBER = '919995266385'
 export const designerEditorWaLink = () =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
     "Hi UpSquad, I'm interested in UpSquad Select for Designers & Video Editors. Please share the available plans and enrollment details."

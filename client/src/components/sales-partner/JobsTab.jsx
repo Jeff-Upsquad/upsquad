@@ -3,7 +3,7 @@ import ScrollReveal from '../ScrollReveal'
 import PartnerSignupLink from '../PartnerSignupLink'
 import { SQUADHIRE_SIGNUP } from '../../lib/signup'
 
-const WA_NUMBER = '919995266385'
+const WA_NUMBER = '919995266342'
 const waLink = (text) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`
 
 /* ── data ─────────────────────────────────────────────── */

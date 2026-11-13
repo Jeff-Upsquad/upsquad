@@ -4,7 +4,7 @@ import ScrollReveal from '../ScrollReveal'
 import VirtualOfficeHoursModal from '../partner/VirtualOfficeHoursModal'
 import PartnerSignupLink from '../PartnerSignupLink'
 import { SQUADHIRE_SIGNUP } from '../../lib/signup'
-const WA_NUMBER = '919995266385'
+const WA_NUMBER = '919995266342'
 
 /* ── data ─────────────────────────────────────────────── */
 
