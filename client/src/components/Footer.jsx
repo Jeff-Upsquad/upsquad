@@ -21,9 +21,9 @@ const links = {
     { name: 'Contact', href: '/contact' }
   ],
   Legal: [
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
-    { name: 'Cookie Policy', href: '#' }
+    { name: 'Privacy Policy', href: '/privacy-policy/' },
+    { name: 'Terms of Service', href: '/terms-of-service/' },
+    { name: 'Cookie Policy', href: '/privacy-policy/#cookies' }
   ],
 }
 
@@ -115,7 +115,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-black/[0.07] flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-text-muted">&copy; 2025, D-var Dynamics Technologies Pvt Ltd. All rights reserved.</p>
+          <p className="text-xs text-text-muted">&copy; 2025, UpSquad. All rights reserved.</p>
           <p className="text-xs text-text-muted">Subscribing is better than hiring.</p>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function Contact() {
           Contact Us
         </div>
         <h1 className="font-heading text-4xl sm:text-5xl font-extrabold leading-[1.15] tracking-tight mb-4 text-text-primary">UpSquad</h1>
-        <p className="text-base text-text-secondary mb-16">Upsquad is a brand from D-VAR DYNAMICS TECHNOLOGIES PVT LTD.</p>
+        <p className="text-base text-text-secondary mb-16">Get in touch with the UpSquad team for enquiries, services and support.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white border border-[rgba(0,0,0,0.08)] rounded-xl p-8 shadow-sm hover:shadow-card-hover transition-all duration-short">
             <h2 className="font-heading text-lg font-semibold text-text-primary mb-4">Email Us</h2>

@@ -256,7 +256,7 @@ export default class HomeLanding extends React.Component {
         { heading: 'Platform', items: [{ name: 'The idea', href: '#idea' }, { name: 'Humans + AI', href: '#together' }, { name: 'How it Works', href: '#how-it-works' }, { name: 'Subscriptions', href: '#categories' }] },
         { heading: 'Squads', items: [{ name: 'Content Squad', href: '#categories' }, { name: 'Marketing Squad', href: '#categories' }, { name: 'Tech Squad', href: '#categories' }, { name: 'Legal Squad', href: '#categories' }] },
         { heading: 'Company', items: [{ name: 'About', href: '#' }, { name: 'Careers', href: '/careers/' }, { name: 'Contact', href: '#contact' }] },
-        { heading: 'Legal', items: [{ name: 'Privacy Policy', href: '#' }, { name: 'Terms of Service', href: '#' }, { name: 'Cookie Policy', href: '#' }] },
+        { heading: 'Legal', items: [{ name: 'Privacy Policy', href: '/privacy-policy/' }, { name: 'Terms of Service', href: '/terms-of-service/' }, { name: 'Cookie Policy', href: '/privacy-policy/#cookies' }] },
       ],
     };
   }
