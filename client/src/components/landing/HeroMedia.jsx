@@ -209,7 +209,7 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
           ref={iframeRef}
           src={toEmbed(videoUrl || source)}
           title="Hero video"
-          allow="autoplay; encrypted-media; picture-in-picture"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           allowFullScreen
           onLoad={() => applyEmbedPlaybackRate(iframeRef.current, videoUrl || source, rate)}
           className="w-full h-full"
@@ -239,7 +239,8 @@ export default function HeroMedia({ videoUrl, previewUrl, onRequestGate, autoPla
           <iframe
             src={toEmbed(videoUrl || source, false)}
             title="Hero video preview"
-            allow="picture-in-picture"
+            allow="fullscreen; picture-in-picture"
+            allowFullScreen
             className={`absolute inset-0 w-full h-full border-0${liveEmbed ? '' : ' pointer-events-none'}`}
           />
         )
