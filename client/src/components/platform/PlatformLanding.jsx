@@ -1547,6 +1547,7 @@ function Footer() {
       <nav aria-label="Legal" className="mx-auto mt-6 flex max-w-6xl flex-wrap justify-center gap-x-6 gap-y-3 text-xs pl-dim">
         <a href="/privacy-policy/" className="underline underline-offset-4">Privacy Policy</a>
         <a href="/terms-of-service/" className="underline underline-offset-4">Terms of Service</a>
+        <a href="/refund-policy/" className="underline underline-offset-4">Refund Policy</a>
         <a href="/privacy-policy/#cookies" className="underline underline-offset-4">Cookie Policy</a>
       </nav>
     </footer>

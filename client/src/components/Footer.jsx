@@ -23,6 +23,7 @@ const links = {
   Legal: [
     { name: 'Privacy Policy', href: '/privacy-policy/' },
     { name: 'Terms of Service', href: '/terms-of-service/' },
+    { name: 'Refund Policy', href: '/refund-policy/' },
     { name: 'Cookie Policy', href: '/privacy-policy/#cookies' }
   ],
 }
