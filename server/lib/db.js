@@ -161,6 +161,16 @@ function seed() {
       langs: [{ code: 'en' }],
     },
     {
+      slug: 'business-collaboration-program',
+      heroTitle: 'Accountant. Software. Payroll. Inventory.',
+      heroDescription: "We're partnering with a few selected startups and businesses — giving them our complete accounting ecosystem, at no cost, for 1 to 3 months.",
+      defaultLanguageCode: 'en',
+      // Same FK note as above; extra languages are added per-page in /admin.
+      // The receipt hero is fixed; the section below it uses per-language
+      // videos configured for this slug in the admin.
+      langs: [{ code: 'en' }],
+    },
+    {
       slug: 'designer-editor-subscription-explainer',
       heroTitle: 'Your design and video work, on a simple monthly subscription.',
       heroDescription: 'Get a graphic designer, a video editor, or both through one monthly plan. Submit unlimited work requests, ask for unlimited revisions, and manage everything in SquadHub.',

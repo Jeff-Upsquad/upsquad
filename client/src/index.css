@@ -467,3 +467,19 @@ h6 { font-weight: 600; letter-spacing: -0.005em; line-height: 1.4; }
 }
 .dark .accent-bar { background: #EDEDED; }
 .dark .text-gradient { color: #EDEDED; -webkit-text-fill-color: #EDEDED; }
+
+/* ============================================================
+   Business Collaboration Program — ticker band
+   The track renders the same set of items twice, so a -50%
+   translate loops without a visible seam.
+   ============================================================ */
+@keyframes collabMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.collab-marquee-track {
+  animation: collabMarquee 38s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .collab-marquee-track { animation: none; }
+}

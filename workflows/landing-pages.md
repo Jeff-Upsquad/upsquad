@@ -30,6 +30,7 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 | `accountant-subscription` | Customers | `AccountantSubscription.jsx` | `/customers/accountant-subscription/` |
 | `accountant-subscription-explainer` | Customers (Accountant explainer) | `AccountantSubscriptionExplainer.jsx` | `/customers/accountant-subscription-explainer/` |
 | `designer-editor-subscription-explainer` | Customers (Creative explainer) | `DesignerEditorSubscriptionExplainer.jsx` | `/customers/designer-editor-subscription-explainer/` |
+| `business-collaboration-program` | Customers (Free collaboration offer) | `BusinessCollaboration.jsx` | `/customers/business-collaboration-program/` |
 | `customer-general` / `customers` | Customers (All Services) | `CustomerLandingPage.jsx` | `/customers/` |
 | `partner-program` | Talent (Creatives) | `PartnerProgram.jsx` | `/partner-program/designer-and-video-editor/` |
 | `partnerprogram-accountant` / `partner-program-accountant` | Talent (Accountants) | `AccountantPartnerProgram.jsx` | `/partner-program/accountant/` |
@@ -86,6 +87,13 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 - Canonical page: `/customers/designer-editor-subscription-explainer/`; API/admin slug: `designer-editor-subscription-explainer`. Presents the fixed-plans subscription explainer script section by section; it is separate from the availability-plans page at `/customers/designers-and-video-editors/`.
 - Hero copy and per-language videos are edited under this slug in the admin. There is deliberately no video fallback: until a video is uploaded under this slug, the hero shows the SquadHub process summary card instead of a player. Plan names and prices come from the explainer script (`client/src/data/designerEditorExplainer.js`), not from the availability plans in `data/pricing.js`.
 - The page's single CTA is WhatsApp to the business line, prefilled message tagged `(Fixed Plans)`.
+
+## Business Collaboration Program Page
+
+- Canonical page: `/customers/business-collaboration-program/`; API/admin slug: `business-collaboration-program` (aliases `business-collaboration`, `collaboration`). Offer page: the accountant subscription, SquadBooks, Squad Payroll, and SquadBooks Inventory free for 1–3 months in exchange for one Instagram Reel published as a collaboration post with UpSquad.
+- Hero title, description, and per-language videos are admin-managed under this slug. The hero's receipt graphic is fixed; a video section below the hero uses `HeroMedia` and `useLanguageGate`. Until a video is configured, it shows a coming-soon placeholder. Only languages with a video URL appear in the picker. Copy for the rest of the page lives in `client/src/data/collaboration.js`.
+- All CTAs point to WhatsApp `919995266385`. The closing form composes a prefilled WhatsApp message client-side — nothing is submitted to the server.
+- Because the offer is time-bound, update or retire the page (and this row) when the program closes.
 
 ## Social Media Creator Page
 

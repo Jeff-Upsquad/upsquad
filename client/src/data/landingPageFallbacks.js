@@ -7,6 +7,14 @@ export const LANDING_PAGE_FALLBACKS = {
     defaultLanguageCode: 'en',
     languages: [],
   },
+  'business-collaboration-program': {
+    slug: 'business-collaboration-program',
+    heroTitle: 'Accountant. Software. Payroll. Inventory.',
+    heroDescription:
+      "We're partnering with a few selected startups and businesses — giving them our complete accounting ecosystem, at no cost, for 1 to 3 months.",
+    defaultLanguageCode: 'en',
+    languages: [],
+  },
   'designer-editor-subscription-explainer': {
     slug: 'designer-editor-subscription-explainer',
     heroTitle: 'Your design and video work, on a simple monthly subscription.',
