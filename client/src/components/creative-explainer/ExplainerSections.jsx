@@ -1,285 +1,100 @@
-"use client"
 import ScrollReveal from '../ScrollReveal'
-import { serviceOptions, processSteps, plans } from '../../data/designerEditorExplainer'
 
-const formatPrice = (amount) => `₹${amount.toLocaleString('en-IN')}`
-
-function Eyebrow({ children }) {
-  return (
-    <div className="inline-flex items-center gap-2.5 mb-4">
-      <span className="h-px w-8 accent-bar" />
-      <span className="font-mono-tech text-xs uppercase tracking-[0.14em] text-text-secondary">{children}</span>
+function Section({ id, eyebrow, title, description, children, muted = false }) {
+  return <section id={id} className={`py-16 lg:py-20 px-5 sm:px-8 ${muted ? 'bg-surface-secondary' : 'bg-white'}`}>
+    <div className="max-w-[1160px] mx-auto">
+      <ScrollReveal><p className="font-mono-tech text-sm uppercase tracking-[0.14em] text-text-secondary mb-4">{eyebrow}</p>
+        <h2 className="font-heading text-3xl md:text-4xl font-extrabold tracking-[-0.025em] text-text-primary max-w-3xl">{title}</h2>
+        {description && <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-3xl">{description}</p>}
+      </ScrollReveal>
+      <div className="mt-10">{children}</div>
     </div>
-  )
+  </section>
 }
 
-function Check() {
-  return (
-    <svg className="w-4 h-4 mt-0.5 shrink-0 text-brand-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-    </svg>
-  )
+function Card({ title, children, accent = false }) {
+  return <article className={`h-full rounded-2xl border p-6 sm:p-8 ${accent ? 'bg-brand-accent/30 border-black shadow-brutal' : 'bg-white border-black/10 shadow-sm'}`}>
+    <h3 className="font-heading text-xl font-bold text-text-primary mb-4">{title}</h3>
+    <div className="text-base text-text-secondary leading-relaxed space-y-4">{children}</div>
+  </article>
 }
 
-// Script §1: the three things you can subscribe to.
-export function ServiceOptions() {
-  return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
-      <div className="max-w-[1160px] mx-auto">
-        <ScrollReveal>
-          <Eyebrow>What you can get</Eyebrow>
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em] max-w-3xl">
-            A designer, a video editor, or both.
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
-            Choose the subscription that matches what your business needs done.
-          </p>
-        </ScrollReveal>
-
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {serviceOptions.map((option, i) => (
-            <ScrollReveal key={option.title} delay={i * 0.1}>
-              <div className="bg-white rounded-2xl border border-[rgba(0,0,0,0.08)] shadow-sm p-6 sm:p-7 h-full">
-                <h3 className="font-heading text-lg font-bold text-text-primary">{option.title}</h3>
-                <p className="text-sm text-text-secondary mt-1 mb-5">{option.description}</p>
-                <ul className="space-y-3">
-                  {option.examples.map((example) => (
-                    <li key={example} className="flex items-start gap-2.5 text-sm text-text-primary">
-                      <Check />
-                      {example}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+export function CreativeExplainerSections() {
+  return <>
+    <nav aria-label="Explore creative services" className="border-y border-black/10 bg-surface-secondary px-5 py-5">
+      <div className="max-w-[1160px] mx-auto flex flex-wrap gap-x-8 gap-y-3 text-base font-semibold">
+        <a href="#subscriptions">Subscriptions</a><a href="#assignments">Assignments</a><a href="#hiring">Hiring</a><a href="#creative-enquiry">Get started</a>
+      </div>
+    </nav>
+    <Section eyebrow="Three ways to work" title="Creative support that fits your business." description="A Graphic Designer, a Video Editor, or both. Choose how you want to work together.">
+      <div className="grid md:grid-cols-3 gap-6">
+        {[
+          ['Subscribe', 'Ongoing creative work, with a monthly hourly or output-based subscription.', '#subscriptions'],
+          ['Assign', 'One-time projects with an agreed scope, price, and delivery timeline.', '#assignments'],
+          ['Hire', 'Full-time or part-time creative professionals who join your own business.', '#hiring'],
+        ].map(([title, text, href]) => <Card title={title} key={title}><p>{text}</p><a href={href} className="inline-block font-semibold text-text-primary underline underline-offset-4">Explore {title.toLowerCase()}</a></Card>)}
+      </div>
+    </Section>
+    <Section id="subscriptions" muted eyebrow="Subscriptions" title="Two models. One dedicated creative partner." description="Subscribe monthly to a Graphic Designer, a Video Editor, or both. Choose flexibility by time or predictability by output.">
+      <div className="grid lg:grid-cols-2 gap-6">
+        <Card title="Hourly subscription" accent>
+          <p>Choose the working hours you need each day.</p>
+          <div className="flex flex-wrap gap-2" aria-label="Available daily working hours">{[1,2,4,6,8].map(n => <span key={n} className="rounded-full bg-white border border-black/15 px-4 py-2 font-semibold text-text-primary">{n} {n === 1 ? 'hour' : 'hours'}/day</span>)}</div>
+          <p>A two-hour Designer subscription gives you two hours of work on your business requirements every working day.</p>
+          <p>Request social media posters, branding, presentations, or other creative work within your assigned professional’s skill set. Tasks are completed within your plan’s available hours.</p>
+          <a href="#creative-enquiry" className="inline-block font-semibold text-text-primary underline underline-offset-4">Enquire about hourly support</a>
+        </Card>
+        <Card title="Output-based subscription">
+          <p>Agree on a recurring set of deliverables and a customised monthly price.</p>
+          <ul className="list-disc pl-5 space-y-2"><li>Five posters per day</li><li>Three reels per week</li><li>A fixed monthly mix of posters and videos</li></ul>
+          <p>Share the scope and quantity you need. UpSquad will propose a subscription around those requirements.</p>
+          <p>Only the task types in your agreed scope are included. A five-posters-per-day subscription covers those posters; other design work requires a separate agreement.</p>
+          <a href="#creative-enquiry" className="inline-block font-semibold text-text-primary underline underline-offset-4">Request a customised subscription</a>
+        </Card>
+      </div>
+      <p className="mt-6 border-l-4 border-brand-purple pl-5 text-base text-text-secondary leading-relaxed"><strong className="text-text-primary">The key difference:</strong> Hourly plans allow different tasks within your professional’s skills and available hours. Output-based plans cover the specific task types and quantities agreed in your subscription.</p>
+    </Section>
+    <Section eyebrow="Subscription benefits" title="Stay flexible as your business changes.">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          ['Unlimited requests & revisions', 'On hourly plans, submit unlimited requests and revisions. Work is processed within your available plan hours.'],
+          ['Pause when eligible', 'Eligible subscriptions can be paused, with unused value retained as credit for up to six months.'],
+          ['Cancel & request a refund', 'Request a refund of the eligible unused balance when you cancel.'],
+          ['Request a replacement', 'If your assigned professional is not the right fit, ask for a replacement.'],
+          ['Adjust your hours', 'Upgrade or downgrade your hourly subscription as your workload changes.'],
+          ['Support without permanent hiring', 'Get ongoing creative help without hiring a permanent employee.'],
+        ].map(([title, text]) => <Card title={title} key={title}><p>{text}</p></Card>)}
+      </div>
+    </Section>
+    <Section id="assignments" muted eyebrow="Assignments" title="One project. A clear scope." description="For a logo, branding project, promotional video, or a collection of social media creatives.">
+      <div className="grid md:grid-cols-3 gap-6">
+        <Card title="Share your project brief"><p>Tell us the requirements. Available Designers and Video Editors provide quotations with a defined scope, price, and delivery timeline.</p></Card>
+        <Card title="Choose your professional"><p>Review proposals, select your preferred professional, and arrange payment through the assignment process.</p></Card>
+        <Card title="Receive the agreed work"><p>Once the agreed work is delivered, payment is released to the service provider.</p></Card>
+      </div>
+      <p className="mt-6 text-base text-text-secondary">Start by sharing your requirements below. No payment is collected on this page.</p>
+    </Section>
+    <Section id="hiring" eyebrow="Jobs & hiring" title="Bring the right creative into your team." description="Hire a full-time or part-time Designer or Video Editor directly into your business, with a Recruitment Manager assisting throughout.">
+      <div className="grid lg:grid-cols-2 gap-6">
+        <Card title="You make the final selection"><p>Submit your job requirements. UpSquad helps shortlist suitable candidates so you can review profiles, schedule interviews, and evaluate your options.</p></Card>
+        <Card title="Support through the hiring process" accent><p>Our hiring plans include replacement guarantees. If we cannot find a suitable candidate, your recruitment payment is refunded in full.</p></Card>
+      </div>
+    </Section>
+    <Section muted eyebrow="SquadHub + Squad Manager" title="Your work, organised. Your team, supported." description="With subscriptions and assignments, you get a platform to manage the work and a dedicated person to help coordinate it.">
+      <div className="grid lg:grid-cols-2 gap-6">
+        <Card title="Manage everything in SquadHub"><ul className="list-disc pl-5 space-y-3"><li>Submit tasks and share reference files</li><li>Communicate with your creative team</li><li>Review work and request revisions</li><li>Monitor progress in one place</li></ul></Card>
+        <Card title="A Squad Manager by your side"><p>Your Squad Manager helps coordinate work, monitor progress, and resolve issues, so you have a support person to turn to throughout the process.</p></Card>
+      </div>
+    </Section>
+    <section className="bg-[#0A0A0A] text-white px-5 sm:px-8 py-16 lg:py-20">
+      <div className="max-w-[1160px] mx-auto"><p className="text-[#FFFF99] text-sm uppercase tracking-widest mb-4">Getting started</p><h2 className="font-heading text-3xl md:text-4xl font-extrabold max-w-3xl">Your next creative partner starts with a conversation.</h2>
+        <div className="mt-10 grid md:grid-cols-3 gap-8">{[
+          ['Share your business profile', 'Tell us about your business and the creative work you need.'],
+          ['Find your fit', 'Our sales team helps you choose the right service or subscription and review available professionals.'],
+          ['Choose your partner', 'Select your preferred professional and get ready to work together.'],
+        ].map(([title, text]) => <div key={title} className="border-t border-white/25 pt-5"><h3 className="text-lg font-bold mb-3">{title}</h3><p className="text-base text-white/75 leading-relaxed">{text}</p></div>)}</div>
+        <a href="#creative-enquiry" className="mt-10 inline-flex rounded-full bg-[#FFFF99] text-black px-7 py-3.5 font-semibold">Share your requirements</a>
       </div>
     </section>
-  )
-}
-
-// Script §2: the subscription model, including the limit on "unlimited".
-export function HowItWorks() {
-  return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white">
-      <div className="max-w-[1160px] mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-        <ScrollReveal>
-          <Eyebrow>How the subscription works</Eyebrow>
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em]">
-            Subscribe instead of hiring full-time.
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed">
-            Pick a monthly plan based on your business requirements. Our team then handles your design or
-            video editing requests according to that plan, and you can submit new requests whenever you need.
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.15}>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-2xl border border-[rgba(0,0,0,0.08)] p-5 sm:p-6">
-              <p className="font-heading text-2xl sm:text-3xl font-extrabold text-text-primary tracking-[-0.02em]">Unlimited</p>
-              <p className="text-sm text-text-secondary mt-1">work requests</p>
-            </div>
-            <div className="rounded-2xl border border-[rgba(0,0,0,0.08)] p-5 sm:p-6">
-              <p className="font-heading text-2xl sm:text-3xl font-extrabold text-text-primary tracking-[-0.02em]">Unlimited</p>
-              <p className="text-sm text-text-secondary mt-1">revisions</p>
-            </div>
-          </div>
-          <div className="mt-4 rounded-2xl border-[1.5px] border-black bg-brand-accent/40 shadow-brutal p-6">
-            <h3 className="font-heading text-base font-bold text-text-primary">What your plan decides</h3>
-            <p className="text-sm text-text-secondary mt-1.5 leading-relaxed">
-              How many tasks can be worked on at the same time, and how your requests are scheduled. Our team
-              works through them based on your plan&rsquo;s workflow and available capacity.
-            </p>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  )
-}
-
-// Script §3: the five-step SquadHub process.
-export function SquadHubProcess() {
-  return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
-      <div className="max-w-[1160px] mx-auto grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14 items-start">
-        <ScrollReveal>
-          <Eyebrow>Our process</Eyebrow>
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em]">
-            All your work is managed in SquadHub.
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed">
-            Once your subscription is active, you get access to SquadHub, our dedicated platform to submit,
-            manage, and track all your creative requirements.
-          </p>
-        </ScrollReveal>
-
-        <ol>
-          {processSteps.map((step, i) => (
-            <ScrollReveal key={step.title} delay={i * 0.05}>
-              <li className="relative flex gap-4 pb-8">
-                {i < processSteps.length - 1 && (
-                  <span className="absolute left-[17px] top-9 bottom-0 w-px bg-black/15" aria-hidden="true" />
-                )}
-                <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-purple text-white text-xs font-bold shrink-0">
-                  {i + 1}
-                </span>
-                <div className="pt-1.5">
-                  <h3 className="font-heading text-base font-semibold text-text-primary">{step.title}</h3>
-                  <p className="text-sm text-text-secondary mt-1.5 leading-relaxed">{step.description}</p>
-                </div>
-              </li>
-            </ScrollReveal>
-          ))}
-        </ol>
-      </div>
-    </section>
-  )
-}
-
-const TASK_STYLES = {
-  active: 'bg-brand-accent text-black border-black',
-  scheduled: 'bg-transparent text-text-primary border-dashed border-text-primary',
-  waiting: 'bg-surface-secondary text-text-muted border-transparent',
-  managed: 'bg-brand-purple/10 text-text-secondary border-transparent',
-}
-
-const TASK_LABELS = {
-  active: 'Active',
-  scheduled: 'Scheduled',
-  waiting: 'Waiting',
-  managed: 'Managed by your creative',
-}
-
-function taskStates({ active, scheduled, rest }) {
-  return Array.from({ length: 10 }, (_, i) => {
-    if (i < active) return 'active'
-    if (i < active + scheduled) return 'scheduled'
-    return rest
-  })
-}
-
-function TaskDiagram({ plan }) {
-  const states = taskStates(plan.tasks)
-  const description = [...new Set(states)]
-    .map((state) => `${states.filter((s) => s === state).length} ${TASK_LABELS[state].toLowerCase()}`)
-    .join(', ')
-  return (
-    <div>
-      <div
-        role="img"
-        aria-label={`Ten requests on the ${plan.name} plan: ${description}`}
-        className="grid grid-cols-5 sm:grid-cols-10 gap-1.5"
-      >
-        {states.map((state, i) => (
-          <span
-            key={i}
-            className={`flex items-center justify-center h-9 rounded-md border text-xs font-semibold ${TASK_STYLES[state]}`}
-          >
-            {i + 1}
-          </span>
-        ))}
-      </div>
-      <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5" aria-hidden="true">
-        {[...new Set(states)].map((state) => (
-          <li key={state} className="flex items-center gap-1.5 text-xs text-text-secondary">
-            <span className={`w-3 h-3 rounded-sm border ${TASK_STYLES[state]}`} />
-            {TASK_LABELS[state]}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-// Script §4: how each plan moves the same 10 requests through the pipeline.
-export function PlanPipelines() {
-  return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-white">
-      <div className="max-w-[1160px] mx-auto">
-        <ScrollReveal>
-          <Eyebrow>The four plans</Eyebrow>
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em] max-w-3xl">
-            Imagine your business has 10 requests.
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
-            The main difference between plans is how your tasks move through the pipeline and how many can be
-            worked on at a time. Here is how each plan handles the same work.
-          </p>
-        </ScrollReveal>
-
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {plans.map((plan, i) => (
-            <ScrollReveal key={plan.id} delay={(i % 2) * 0.1}>
-              <article className="bg-white rounded-2xl border border-[rgba(0,0,0,0.08)] shadow-sm p-6 sm:p-7 h-full flex flex-col">
-                <h3 className="font-heading text-xl font-extrabold text-text-primary">{plan.name}</h3>
-                <p className="text-sm text-text-secondary mt-1 mb-5">{plan.tagline}</p>
-                <TaskDiagram plan={plan} />
-                <ul className="mt-5 space-y-3 flex-1">
-                  {plan.points.map((point) => (
-                    <li key={point} className="flex items-start gap-2.5 text-sm text-text-primary leading-relaxed">
-                      <Check />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 pt-4 border-t border-[rgba(0,0,0,0.08)]">
-                  <p className="font-mono-tech text-[10px] uppercase tracking-[0.14em] text-text-muted">Next task</p>
-                  <p className="text-sm font-medium text-text-primary mt-1 leading-relaxed">{plan.nextTask}</p>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function PriceRow({ label, amount }) {
-  return (
-    <div>
-      <p className="text-xs text-text-secondary">{label}</p>
-      <p className="font-heading text-2xl font-extrabold text-text-primary tracking-[-0.02em] mt-0.5">
-        {formatPrice(amount)}
-        <span className="text-xs font-medium text-text-secondary tracking-normal"> /month</span>
-      </p>
-    </div>
-  )
-}
-
-// Script §5: pricing for both subscription types, per plan.
-export function PlanPricing() {
-  return (
-    <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary">
-      <div className="max-w-[1160px] mx-auto">
-        <ScrollReveal>
-          <Eyebrow>Subscription pricing</Eyebrow>
-          <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-text-primary tracking-[-0.025em] max-w-3xl">
-            Select a plan by your requirements and budget.
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl">
-            With a Combo subscription, you can submit both design and video editing requests under a single
-            plan. The workflow and task pipeline depend on the tier you choose.
-          </p>
-        </ScrollReveal>
-
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {plans.map((plan, i) => (
-            <ScrollReveal key={plan.id} delay={i * 0.08}>
-              <div className="bg-white rounded-2xl border border-[rgba(0,0,0,0.08)] shadow-sm p-6 h-full flex flex-col">
-                <h3 className="font-heading text-lg font-extrabold text-text-primary">{plan.name}</h3>
-                <p className="text-sm text-text-secondary mt-1.5 leading-relaxed flex-1">{plan.summary}</p>
-                <div className="mt-5 pt-5 border-t border-[rgba(0,0,0,0.08)] space-y-4">
-                  <PriceRow label="Designer or Video Editor" amount={plan.price.single} />
-                  <PriceRow label="Designer + Video Editor Combo" amount={plan.price.combo} />
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
+  </>
 }

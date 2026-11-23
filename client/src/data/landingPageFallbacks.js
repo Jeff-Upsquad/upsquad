@@ -17,9 +17,9 @@ export const LANDING_PAGE_FALLBACKS = {
   },
   'designer-editor-subscription-explainer': {
     slug: 'designer-editor-subscription-explainer',
-    heroTitle: 'Your design and video work, on a simple monthly subscription.',
+    heroTitle: 'Your creative team, on your terms.',
     heroDescription:
-      'Get a graphic designer, a video editor, or both through one monthly plan. Submit unlimited work requests, ask for unlimited revisions, and manage everything in SquadHub.',
+      'Connect with vetted Graphic Designers and Video Editors. Subscribe for ongoing support, assign a one-time project, or hire directly into your business.',
     defaultLanguageCode: 'en',
     languages: [],
   },

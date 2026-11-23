@@ -1,9 +1,9 @@
 import DesignerEditorSubscriptionExplainer from '../../../../pages/DesignerEditorSubscriptionExplainer'
 
 export const metadata = {
-  title: 'UpSquad Select — Designer & Video Editor Subscription',
+  title: 'Designers & Video Editors — Subscribe, Assign, Hire | UpSquad',
   description:
-    'Explore UpSquad Select for designers and video editors, with limited enrollment windows: unlimited requests and revisions, the SquadHub process, and the Starter, Plus, Pro, and Personal plans from ₹5,000/month.',
+    'Find vetted Graphic Designers and Video Editors. Explore hourly and output-based subscriptions, one-time assignments, and direct hiring. Share your requirements with no payment required.',
 }
 
 export default function DesignerEditorSubscriptionExplainerPage() {

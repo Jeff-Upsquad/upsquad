@@ -34,6 +34,10 @@ export default function ExplainerHero({
   footnote = 'Flat monthly pricing · Pause or cancel anytime',
   // Optional: shown instead of the player when no language has a video.
   noVideoContent,
+  externalVideoPlayback = false,
+  priceLine = 'Plans from ₹5,000/month.',
+  subscriptionLabel = 'Choose your subscription plan',
+  enrollmentNote = 'UpSquad Select subscriptions open for enrollment periodically, for a limited time. Chat with us to check availability or hear about the next opening.',
 }) {
   const {
     selected,
@@ -73,8 +77,7 @@ export default function ExplainerHero({
                   #FFFF99 makes near-white dark-mode ink unreadable. */}
               <span className="hero-highlight box-decoration-clone">{titleHead}</span>
               {titleTail}
-              <br />
-              <span className="italic font-bold">Plans from &#8377;5,000/month.</span>
+              {priceLine && <><br /><span className="italic font-bold">{priceLine}</span></>}
             </h1>
           </ScrollReveal>
 
@@ -101,17 +104,14 @@ export default function ExplainerHero({
                   href={subscriptionHref}
                   className="inline-flex items-center justify-center rounded-full border-2 border-current font-semibold text-sm px-7 py-3.5 transition-transform hover:-translate-y-0.5"
                 >
-                  Choose your subscription plan
+                  {subscriptionLabel}
                 </a>
               )}
             </div>
             <p className="mt-4 text-xs text-text-muted">
               {footnote}
             </p>
-            <p className="mt-3 text-sm font-medium text-text-secondary leading-relaxed max-w-xl">
-              UpSquad Select subscriptions open for enrollment periodically, for a limited time.
-              Chat with us to check availability or hear about the next opening.
-            </p>
+            {enrollmentNote && <p className="mt-3 text-sm font-medium text-text-secondary leading-relaxed max-w-xl">{enrollmentNote}</p>}
 
             {hasLangChooser && (
               <button
@@ -132,7 +132,20 @@ export default function ExplainerHero({
         {/* Right: video */}
         <ScrollReveal delay={0.2}>
           <div className="w-full">
-            {noVideoContent && !previewUrl ? (
+            {externalVideoPlayback && previewUrl ? (
+              <a
+                href={selected?.videoUrl || previewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full aspect-video rounded-2xl bg-[#0A0A0A] text-white border border-black shadow-brutal flex flex-col items-center justify-center gap-5 p-6 text-center"
+              >
+                <span className="flex items-center justify-center w-16 h-16 rounded-full bg-[#FFFF99] text-black" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <span className="font-heading text-xl font-bold">Watch explainer video</span>
+                <span className="text-sm text-white/75">{selected?.name || 'English'} · Opens in a new tab</span>
+              </a>
+            ) : noVideoContent && !previewUrl ? (
               noVideoContent
             ) : (
               <HeroMedia

@@ -84,9 +84,10 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 
 ## Designer & Video Editor Subscription Explainer Page
 
-- Canonical page: `/customers/designer-editor-subscription-explainer/`; API/admin slug: `designer-editor-subscription-explainer`. Presents the fixed-plans subscription explainer script section by section; it is separate from the availability-plans page at `/customers/designers-and-video-editors/`.
-- Hero copy and per-language videos are edited under this slug in the admin. There is deliberately no video fallback: until a video is uploaded under this slug, the hero shows the SquadHub process summary card instead of a player. Plan names and prices come from the explainer script (`client/src/data/designerEditorExplainer.js`), not from the availability plans in `data/pricing.js`.
-- The page's single CTA is WhatsApp to the business line, prefilled message tagged `(Fixed Plans)`.
+- Canonical page: `/customers/designer-editor-subscription-explainer/`; API/admin slug: `designer-editor-subscription-explainer`. Covers Subscribe, Assign, Hire, hourly plans (1, 2, 4, 6, or 8 hours/day), output-based subscriptions, and SquadHub/Squad Manager support.
+- Hero copy and per-language videos remain admin-managed under this slug. There is no fallback to another page's videos. Until configured, the hero shows a service summary. On localhost, the selected video opens in a new tab because Squad Clips blocks localhost embeds; production uses the embedded player and existing language gate.
+- The information-only enquiry form posts to `POST /api/v1/creative-enquiries`. It validates contact details, role, service, daily hours when relevant, and requirements. No payment gateway is invoked.
+- Enquiries are saved in `subscription_requests` with a `creative-` plan prefix and are visible in the authenticated **Creative enquiries** inbox at `/admin/creative-enquiries`. The accountant inbox is separate.
 
 ## Business Collaboration Program Page
 

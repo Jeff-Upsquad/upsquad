@@ -172,8 +172,8 @@ function seed() {
     },
     {
       slug: 'designer-editor-subscription-explainer',
-      heroTitle: 'Your design and video work, on a simple monthly subscription.',
-      heroDescription: 'Get a graphic designer, a video editor, or both through one monthly plan. Submit unlimited work requests, ask for unlimited revisions, and manage everything in SquadHub.',
+      heroTitle: 'Your creative team, on your terms.',
+      heroDescription: 'Connect with vetted Graphic Designers and Video Editors. Subscribe for ongoing support, assign a one-time project, or hire directly into your business.',
       defaultLanguageCode: 'en',
       // Same FK note as above; extra languages are added per-page in /admin.
       langs: [{ code: 'en' }],
@@ -695,4 +695,13 @@ export function getAccountantSubmission(id) {
     p.amount AS payment_amount, p.paid_at, p.payment_link_url
     FROM subscription_requests s LEFT JOIN accountant_subscription_payments p ON p.subscription_request_id = s.id
     WHERE s.id = ? AND s.service_type = 'Accountants'`).get(id) || null
+}
+
+// Dedicated inbox for information-only creative landing page enquiries.
+export function listCreativeEnquiries({ limit = 50, offset = 0 } = {}) {
+  const where = "plan IN ('creative-hourly', 'creative-output', 'creative-assignment', 'creative-hiring', 'creative-guidance')"
+  return {
+    total: db.prepare(`SELECT COUNT(*) AS total FROM subscription_requests WHERE ${where}`).get().total,
+    items: db.prepare(`SELECT * FROM subscription_requests WHERE ${where} ORDER BY id DESC LIMIT ? OFFSET ?`).all(limit, offset),
+  }
 }

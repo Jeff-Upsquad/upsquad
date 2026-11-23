@@ -87,6 +87,38 @@ router.post('/v1/accountant-subscription-requests', express.json(), (req, res) =
   }
 })
 
+// Information-only creative enquiries; never starts a payment flow.
+router.post('/v1/creative-enquiries', express.json({ limit: '16kb' }), (req, res) => {
+  const values = {}
+  const errors = []
+  for (const field of ['name', 'company', 'email', 'phone', 'role', 'service', 'requirements']) {
+    values[field] = typeof req.body?.[field] === 'string' ? req.body[field].trim() : ''
+    if (!values[field]) errors.push(`${field} is required`)
+    else if (values[field].length > (field === 'requirements' ? 4000 : 254)) errors.push(`${field} is too long`)
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.push('A valid email is required')
+  const phoneDigits = values.phone.replace(/\D/g, '')
+  if (!/^[+0-9() .-]+$/.test(values.phone) || phoneDigits.length < 10 || phoneDigits.length > 15) errors.push('A valid phone number is required')
+  if (!['Designers', 'Editors', 'Designer plus Editor'].includes(values.role)) errors.push('Choose a creative role')
+  const services = { hourly: 'Hourly subscription', output: 'Output-based subscription', assignment: 'One-time assignment', hiring: 'Direct hiring', guidance: 'Help me choose' }
+  if (!Object.hasOwn(services, values.service)) errors.push('Choose a service')
+  const hours = String(req.body?.hours || '')
+  if (values.service === 'hourly' && !['1', '2', '4', '6', '8'].includes(hours)) errors.push('Choose valid daily hours')
+  if (errors.length) return res.status(400).json({ error: 'Please check your enquiry', details: errors })
+  try {
+    const id = createSubscriptionRequest({
+      serviceType: values.role, tier: '', plan: `creative-${values.service}`, proposedPrice: 0,
+      name: values.name, company: values.company, brandName: values.company,
+      email: values.email.toLowerCase(), phone: values.phone,
+      requirementNote: `${services[values.service]}${values.service === 'hourly' ? ` · ${hours} hours/day` : ''}\n${values.requirements}`,
+    })
+    return res.status(201).json({ id, message: 'Your enquiry has been saved' })
+  } catch (err) {
+    console.error('Creative enquiry error:', err)
+    return res.status(500).json({ error: 'Could not save your enquiry. Please try again.' })
+  }
+})
+
 router.post('/v1/subscriptions', express.json(), (req, res) => {
   const {
     serviceType, tier, plan, proposedPrice, workingDays,

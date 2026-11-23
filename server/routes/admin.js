@@ -9,7 +9,7 @@ import {
   listLandingPages, getLandingPageBySlug, createLandingPage, updateLandingPage,
   deleteLandingPage, replaceLandingPageLanguages, listLanguages, createLanguage, deleteLanguage,
   listPartnerLandingCtas, updatePartnerLandingCtaDestination,
-  listByosWaitlist,
+  listByosWaitlist, listCreativeEnquiries,
 } from '../lib/db.js'
 import { isValidPartnerCtaDestination } from '../lib/signupCta.js'
 import { verifyCredentials, issueSession, clearSession, requireAuth, currentAdmin } from '../lib/auth.js'
@@ -66,6 +66,15 @@ router.post('/logout', (_req, res) => {
 
 router.use(requireAuth)
 router.use('/subscription-requests', accountantSubmissionsRouter)
+router.get('/creative-enquiries', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store')
+  const result = listCreativeEnquiries({ limit: 50 })
+  const pageCount = Math.max(1, Math.ceil(result.total / 50))
+  const requestedPage = Number(req.query.page)
+  const page = Number.isSafeInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pageCount) : 1
+  const entries = page === 1 ? result : listCreativeEnquiries({ limit: 50, offset: (page - 1) * 50 })
+  res.render('creative-enquiries', { admin: req.admin, ...entries, page, pageCount })
+})
 
 router.get('/', (req, res) => {
   const pages = listLandingPages()
