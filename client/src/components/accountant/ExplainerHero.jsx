@@ -101,7 +101,7 @@ export default function ExplainerHero({
                   href={subscriptionHref}
                   className="inline-flex items-center justify-center rounded-full border-2 border-current font-semibold text-sm px-7 py-3.5 transition-transform hover:-translate-y-0.5"
                 >
-                  Buy Subscription
+                  Buy Subscription · ₹5,000
                 </a>
               )}
             </div>

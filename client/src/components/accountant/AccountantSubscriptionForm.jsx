@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const API_URL = process.env.NEXT_PUBLIC_SQUADHUB_API_URL || ''
 const fields = [
@@ -15,6 +15,37 @@ export default function AccountantSubscriptionForm() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [reservation, setReservation] = useState('')
+  const [verifying, setVerifying] = useState(false)
+  const [resumeUrl, setResumeUrl] = useState('')
+  const checkoutId = useRef('')
+
+  async function checkPayment(id, signal) {
+    setVerifying(true)
+    setError('')
+    try {
+      const response = await fetch(`${API_URL}/api/v1/accountant-subscription-payments/${id}`, { cache: 'no-store', signal })
+      const data = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(data.error || 'Could not verify payment. Please check again.')
+      if (signal?.aborted) return
+      setSubmitted(data.status === 'paid')
+      setResumeUrl(data.checkoutUrl || '')
+      if (data.status !== 'paid') setError('Your payment has not been confirmed yet. Check again or continue your payment below.')
+    } catch (err) {
+      if (!signal?.aborted) setError(err.message || 'Could not verify payment. Please check again.')
+    } finally {
+      if (!signal?.aborted) setVerifying(false)
+    }
+  }
+
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('reservation')
+    if (!id || !/^[a-f0-9]{32}$/.test(id)) return
+    const controller = new AbortController()
+    setReservation(id)
+    checkPayment(id, controller.signal)
+    return () => controller.abort()
+  }, [])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -24,20 +55,26 @@ export default function AccountantSubscriptionForm() {
       setError('Please complete all four contact fields.')
       return
     }
-    if (form.phone.replace(/\D/g, '').length < 10) {
-      setError('Please enter a valid phone number with at least 10 digits.')
+    if (!/^(?:91)?\d{10}$/.test(form.phone.replace(/\D/g, ''))) {
+      setError('Please enter a valid 10-digit Indian mobile number, optionally prefixed with +91.')
       return
     }
     setSubmitting(true)
     try {
-      const response = await fetch(`${API_URL}/api/v1/accountant-subscription-requests`, {
+      if (!checkoutId.current) checkoutId.current = crypto.randomUUID().replace(/-/g, '')
+      const response = await fetch(`${API_URL}/api/v1/accountant-subscription-checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(Object.entries(form).map(([key, value]) => [key, value.trim()]))),
+        body: JSON.stringify({
+          ...Object.fromEntries(Object.entries(form).map(([key, value]) => [key, value.trim()])),
+          checkoutId: checkoutId.current,
+        }),
       })
       const data = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(data.details?.join('. ') || data.error || 'Could not submit your request. Please try again.')
-      setSubmitted(true)
+      if (data.status === 'paid') setSubmitted(true)
+      else if (data.checkoutUrl) window.location.assign(data.checkoutUrl)
+      else throw new Error('Cashfree checkout is unavailable. Please try again.')
     } catch (err) {
       setError(err.message || 'Could not submit your request. Please try again.')
     } finally {
@@ -50,7 +87,15 @@ export default function AccountantSubscriptionForm() {
       <div id="buy-subscription" className="scroll-mt-28 max-w-[1160px] mx-auto rounded-2xl border-[1.5px] border-black bg-white p-6 sm:p-8 shadow-brutal">
         <h2 className="font-heading text-xl sm:text-2xl font-extrabold text-text-primary">Buy your accountant subscription</h2>
         {submitted ? (
-          <p role="status" className="mt-5 text-text-primary">Thank you! Our team will contact you about your accountant subscription.</p>
+          <p role="status" className="mt-5 text-text-primary">Payment of ₹5,000 confirmed. Thank you! Our team will contact you to activate your accountant subscription.</p>
+        ) : reservation ? (
+          <div className="mt-5" aria-live="polite">
+            {verifying ? <p>Verifying your payment with Cashfree…</p> : <p>{error}</p>}
+            <div className="mt-5 flex flex-wrap gap-3">
+              <button type="button" disabled={verifying} onClick={() => checkPayment(reservation)} className="btn-gradient px-7 py-3 text-sm font-semibold disabled:opacity-60">Check payment status</button>
+              {resumeUrl && <a href={resumeUrl} className="inline-flex items-center rounded-full border border-current px-7 py-3 text-sm font-semibold">Continue payment · ₹5,000</a>}
+            </div>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -73,8 +118,9 @@ export default function AccountantSubscriptionForm() {
             </div>
             {error && <p role="alert" className="mt-4 text-sm text-red-600">{error}</p>}
             <button type="submit" disabled={submitting} className="mt-6 btn-gradient w-full sm:w-auto px-8 py-3.5 text-sm font-semibold disabled:opacity-60">
-              {submitting ? 'Submitting…' : 'Submit'}
+              {submitting ? 'Opening Cashfree…' : 'Buy Subscription · ₹5,000'}
             </button>
+            <p className="mt-3 text-xs text-text-muted">Pay ₹5,000 securely on Cashfree for your first month.</p>
           </form>
         )}
       </div>

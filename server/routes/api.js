@@ -1,4 +1,5 @@
 import express from 'express'
+import accountantPaymentsRouter from './accountantPayments.js'
 import { randomBytes } from 'crypto'
 import {
   getLandingPageBySlug,
@@ -25,6 +26,7 @@ import {
 } from '../lib/razorpay.js'
 
 const router = express.Router()
+router.use(accountantPaymentsRouter)
 
 router.get('/v1/landing-pages/:slug', (req, res) => {
   const page = getLandingPageBySlug(req.params.slug)

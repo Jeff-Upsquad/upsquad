@@ -618,3 +618,40 @@ export function updatePartnerLandingCtaDestination(slug, destination) {
   `).run(destination, slug)
   return getPartnerLandingCtaBySlug(slug)
 }
+
+// Cashfree payments for the fixed-price accountant explainer checkout.
+db.exec(`
+  CREATE TABLE IF NOT EXISTS accountant_subscription_payments (
+    id TEXT PRIMARY KEY,
+    subscription_request_id INTEGER NOT NULL REFERENCES subscription_requests(id),
+    amount INTEGER NOT NULL DEFAULT 5000,
+    payment_link_url TEXT NOT NULL DEFAULT '',
+    status TEXT NOT NULL DEFAULT 'pending',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    paid_at TEXT
+  );
+`)
+
+export function getAccountantPayment(id) {
+  return db.prepare('SELECT * FROM accountant_subscription_payments WHERE id = ?').get(id) || null
+}
+
+export function createAccountantPayment({ id, name, company, email, phone }) {
+  return db.transaction(() => {
+    const contactId = createSubscriptionRequest({
+      serviceType: 'Accountants', tier: '', plan: '', proposedPrice: 5000,
+      name, company, brandName: company, email: email.toLowerCase(), phone,
+    })
+    db.prepare('INSERT INTO accountant_subscription_payments (id, subscription_request_id) VALUES (?, ?)').run(id, contactId)
+    return getAccountantPayment(id)
+  })()
+}
+
+export function attachAccountantPaymentLink(id, url) {
+  db.prepare('UPDATE accountant_subscription_payments SET payment_link_url = ? WHERE id = ?').run(url, id)
+}
+
+export function markAccountantPaymentPaid(id) {
+  db.prepare("UPDATE accountant_subscription_payments SET status = 'paid', paid_at = COALESCE(paid_at, CURRENT_TIMESTAMP) WHERE id = ?").run(id)
+  return getAccountantPayment(id)
+}

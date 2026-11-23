@@ -67,6 +67,17 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 - Canonical page: `/customers/accountant-subscription-explainer/`; API/admin slug: `accountant-subscription-explainer`. Presents the accountant-subscription explainer script section by section; the main `/customers/accountant-subscription/` page is separate and unaffected.
 - Hero copy and per-language videos are edited under this slug in the admin. Until videos are uploaded under this slug, the page reuses the `accountant-subscription` slug's per-language videos client-side, so the hero player works on day one.
 
+### Accountant explainer payment flow
+
+- Hero and closing “Buy Subscription · ₹5,000” links scroll to `#buy-subscription`.
+- The form collects only contact person name, business name, email, and phone, horizontally on desktop. Its buy button opens a fixed INR 5,000 Cashfree hosted payment link for the first month; there is no plan selector.
+- `POST /api/v1/accountant-subscription-checkout` creates the contact request and payment record, then creates/reuses a Cashfree link. Client amounts are ignored. Retries with the same checkout ID reuse the same payment.
+- Cashfree uses the UpSquad merchant credentials shared with SquadBooks (`CASHFREE_APP_ID`, `CASHFREE_SECRET_KEY`, `CASHFREE_ENV=live`, server-only). No credentials belong in the browser or repository.
+- Return URL: `/api/v1/accountant-subscription-payments/:id/return`. The browser returns to this explainer and checks `/api/v1/accountant-subscription-payments/:id`. Only a server-verified Cashfree `PAID` link for the matching ID, INR currency and full INR 5,000 marks the record paid. Browser query parameters are never payment proof.
+- Signed webhook endpoint: `/api/webhooks/cashfree-accountant`. The link includes this notify URL, and valid events trigger server-side reconciliation. A customer who closes checkout can later continue the same payment from the return page.
+- The existing `/offer/accountant/` page retains its Razorpay payment flow.
+- Payment checks: `node --test tests/accountant-payments.test.mjs` uses an isolated database and a mocked gateway. Live checks may create a temporary link with test contact details and cancel it; do not complete a real payment on the user's behalf.
+
 ## Designer & Video Editor Subscription Explainer Page
 
 - Canonical page: `/customers/designer-editor-subscription-explainer/`; API/admin slug: `designer-editor-subscription-explainer`. Presents the fixed-plans subscription explainer script section by section; it is separate from the availability-plans page at `/customers/designers-and-video-editors/`.
