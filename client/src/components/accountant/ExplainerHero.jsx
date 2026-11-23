@@ -5,7 +5,7 @@ import LanguageGate from '../landing/LanguageGate'
 import WhatsAppIcon from '../WhatsAppIcon'
 import { useLanguageGate } from '../../lib/useLanguageGate'
 
-// Sales line — the single CTA destination for this page.
+// Sales line for subscription enquiries.
 const WA_NUMBER = '919995266385'
 export const explainerWaLink = () =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
@@ -30,6 +30,7 @@ export default function ExplainerHero({
   languages,
   defaultLanguageCode,
   waHref,
+  subscriptionHref,
   footnote = 'Flat monthly pricing · Pause or cancel anytime',
   // Optional: shown instead of the player when no language has a video.
   noVideoContent,
@@ -85,7 +86,7 @@ export default function ExplainerHero({
 
           <ScrollReveal delay={0.3}>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              {/* The page's single CTA: WhatsApp to the business line. */}
+
               <a
                 href={waHref || explainerWaLink()}
                 target="_blank"
@@ -95,6 +96,14 @@ export default function ExplainerHero({
                 <WhatsAppIcon className="w-4 h-4" />
                 Chat on WhatsApp
               </a>
+              {subscriptionHref && (
+                <a
+                  href={subscriptionHref}
+                  className="inline-flex items-center justify-center rounded-full border-2 border-current font-semibold text-sm px-7 py-3.5 transition-transform hover:-translate-y-0.5"
+                >
+                  Buy Subscription
+                </a>
+              )}
             </div>
             <p className="mt-4 text-xs text-text-muted">
               {footnote}

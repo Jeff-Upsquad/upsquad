@@ -4,7 +4,7 @@ import WhatsAppIcon from '../WhatsAppIcon'
 import { explainerWaLink } from './ExplainerHero'
 
 // Explainer script §10 — getting started, as the closing band of the
-// subscription story. The page's single CTA is WhatsApp to the business line.
+// subscription story.
 const defaultSteps = [
   {
     number: '01',
@@ -31,6 +31,7 @@ export default function GetStartedCta({
   subheading = 'Explore UpSquad Select for accountants. Chat with us about plans, pricing, and the next enrollment opening.',
   steps = defaultSteps,
   waHref,
+  subscriptionHref,
 }) {
   return (
     <section className="py-16 lg:py-20 px-5 sm:px-8 bg-[#0A0A0A] text-white">
@@ -65,8 +66,8 @@ export default function GetStartedCta({
         </div>
 
         <ScrollReveal delay={0.15}>
-          <div className="mt-12">
-            {/* The page's single CTA: WhatsApp to the business line. */}
+          <div className="mt-12 flex flex-wrap items-center gap-3">
+
             <a
               href={waHref || explainerWaLink()}
               target="_blank"
@@ -76,6 +77,14 @@ export default function GetStartedCta({
               <WhatsAppIcon className="w-4 h-4" />
               Chat on WhatsApp
             </a>
+            {subscriptionHref && (
+              <a
+                href={subscriptionHref}
+                className="inline-flex items-center justify-center rounded-full border-2 border-current font-semibold text-sm px-7 py-3.5 transition-transform hover:-translate-y-0.5"
+              >
+                Buy Subscription
+              </a>
+            )}
           </div>
         </ScrollReveal>
       </div>
