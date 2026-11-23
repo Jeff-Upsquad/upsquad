@@ -1,4 +1,5 @@
 import express from 'express'
+import accountantSubmissionsRouter from './adminAccountantSubmissions.js'
 import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
@@ -64,6 +65,7 @@ router.post('/logout', (_req, res) => {
 })
 
 router.use(requireAuth)
+router.use('/subscription-requests', accountantSubmissionsRouter)
 
 router.get('/', (req, res) => {
   const pages = listLandingPages()

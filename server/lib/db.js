@@ -655,3 +655,34 @@ export function markAccountantPaymentPaid(id) {
   db.prepare("UPDATE accountant_subscription_payments SET status = 'paid', paid_at = COALESCE(paid_at, CURRENT_TIMESTAMP) WHERE id = ?").run(id)
   return getAccountantPayment(id)
 }
+
+export function listAccountantSubmissions({ search = '', paymentStatus = '', limit = 50, offset = 0 } = {}) {
+  const conditions = ["s.service_type = 'Accountants'"]
+  const params = []
+  if (search) {
+    conditions.push('(s.name LIKE ? OR s.company LIKE ? OR s.email LIKE ? OR s.phone LIKE ?)')
+    const term = `%${search}%`
+    params.push(term, term, term, term)
+  }
+  if (paymentStatus === 'not_started') conditions.push('p.id IS NULL')
+  else if (['pending', 'paid', 'cancelled'].includes(paymentStatus)) {
+    conditions.push('p.status = ?')
+    params.push(paymentStatus)
+  }
+  const from = `FROM subscription_requests s LEFT JOIN accountant_subscription_payments p ON p.subscription_request_id = s.id WHERE ${conditions.join(' AND ')}`
+  const summary = db.prepare(`SELECT COUNT(*) AS total,
+    COALESCE(SUM(CASE WHEN p.status = 'paid' THEN 1 ELSE 0 END), 0) AS paid_count,
+    COALESCE(SUM(CASE WHEN p.status = 'paid' THEN p.amount ELSE 0 END), 0) AS paid_amount
+    ${from}`).get(...params)
+  const items = db.prepare(`SELECT s.*, p.id AS payment_reference, p.status AS payment_status,
+    p.amount AS payment_amount, p.paid_at, p.payment_link_url
+    ${from} ORDER BY s.created_at DESC, s.id DESC LIMIT ? OFFSET ?`).all(...params, limit, offset)
+  return { items, ...summary }
+}
+
+export function getAccountantSubmission(id) {
+  return db.prepare(`SELECT s.*, p.id AS payment_reference, p.status AS payment_status,
+    p.amount AS payment_amount, p.paid_at, p.payment_link_url
+    FROM subscription_requests s LEFT JOIN accountant_subscription_payments p ON p.subscription_request_id = s.id
+    WHERE s.id = ? AND s.service_type = 'Accountants'`).get(id) || null
+}

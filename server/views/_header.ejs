@@ -10,14 +10,15 @@
 <body class="min-h-screen bg-gray-50 text-slate-900">
 <% if (typeof admin !== 'undefined' && admin) { %>
 <header class="bg-white border-b border-gray-200">
-  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-6">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex flex-wrap gap-3 items-center justify-between">
+    <div class="flex flex-wrap items-center gap-4">
       <a href="/admin" class="font-bold text-lg">UpSquad <span class="text-emerald-500">Admin</span></a>
-      <nav class="flex items-center gap-4 text-sm">
+      <nav class="flex flex-wrap items-center gap-4 text-sm">
         <a href="/admin" class="text-slate-600 hover:text-slate-900">Landing pages</a>
         <a href="/admin/partner-ctas" class="text-slate-600 hover:text-slate-900">Partner sign-up</a>
         <a href="/admin/languages" class="text-slate-600 hover:text-slate-900">Languages</a>
         <a href="/admin/byos-waitlist" class="text-slate-600 hover:text-slate-900">BYOS waitlist</a>
+        <a href="/admin/subscription-requests" class="text-slate-600 hover:text-slate-900">Subscriptions</a>
       </nav>
     </div>
     <div class="flex items-center gap-3 text-sm text-slate-500">

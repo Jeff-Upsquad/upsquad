@@ -2,23 +2,18 @@ import express from 'express'
 import { randomBytes } from 'crypto'
 import {
   createAccountantPayment, getAccountantPayment, attachAccountantPaymentLink,
-  markAccountantPaymentPaid, getSubscriptionRequestById,
+  getSubscriptionRequestById,
 } from '../lib/db.js'
 import {
   ACCOUNTANT_PAYMENT_AMOUNT, cashfreeConfigured, createAccountantPaymentLink,
-  fetchAccountantPaymentLink, isAccountantPaymentPaid, verifyCashfreeWebhook,
+  verifyCashfreeWebhook,
 } from '../lib/cashfree.js'
+import { syncAccountantPayment } from '../lib/accountantPaymentStatus.js'
 
 const router = express.Router()
 const pagePath = '/customers/accountant-subscription-explainer/'
 const baseUrl = () => (process.env.PUBLIC_BASE_URL || 'http://localhost:3100').replace(/\/$/, '')
 const siteUrl = () => (process.env.PUBLIC_SITE_URL || baseUrl()).replace(/\/$/, '')
-
-async function syncPayment(row) {
-  if (row.status === 'paid') return row
-  const link = await fetchAccountantPaymentLink(row.id)
-  return isAccountantPaymentPaid(link, row.id) ? markAccountantPaymentPaid(row.id) : row
-}
 
 router.post('/v1/accountant-subscription-checkout', express.json(), async (req, res) => {
   const values = {}
@@ -69,7 +64,7 @@ router.get('/v1/accountant-subscription-payments/:id', async (req, res) => {
   const row = getAccountantPayment(req.params.id)
   if (!row) return res.status(404).json({ error: 'Payment reference not found' })
   try {
-    const synced = await syncPayment(row)
+    const synced = await syncAccountantPayment(row)
     res.json({ status: synced.status, amount: synced.amount, checkoutUrl: synced.status === 'paid' ? undefined : synced.payment_link_url })
   } catch {
     res.status(502).json({ error: 'Could not verify payment yet. Please check again.' })
@@ -91,7 +86,7 @@ router.post('/webhooks/cashfree-accountant', express.raw({ type: 'application/js
   const row = typeof id === 'string' ? getAccountantPayment(id) : null
   if (!row) return res.sendStatus(200)
   try {
-    await syncPayment(row)
+    await syncAccountantPayment(row)
     return res.sendStatus(200)
   } catch {
     return res.sendStatus(502)
