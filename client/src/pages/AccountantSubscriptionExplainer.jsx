@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react'
-import AccountantOfferLanding from './AccountantOfferLanding'
+import AccountantSubscriptionForm from '../components/accountant/AccountantSubscriptionForm'
 import ExplainerHero from '../components/accountant/ExplainerHero'
 import IncludedAndAddons from '../components/accountant/IncludedAndAddons'
 import PricingGuarantee from '../components/accountant/PricingGuarantee'
@@ -71,7 +71,7 @@ export default function AccountantSubscriptionExplainer() {
       <AccountantTeamSection />
       <SoftwareAndAi />
       <GetStartedCta subscriptionHref="#buy-subscription" />
-      <AccountantOfferLanding embedded />
+      <AccountantSubscriptionForm />
     </>
   )
 }

@@ -57,6 +57,34 @@ router.get('/v1/partner-landing-ctas/:slug', (req, res) => {
   })
 })
 
+// Contact-only accountant enquiries appear in the existing subscription inbox.
+// No plan or budget has been selected at this stage.
+router.post('/v1/accountant-subscription-requests', express.json(), (req, res) => {
+  const fields = ['name', 'company', 'email', 'phone']
+  const values = {}
+  const errors = []
+  for (const field of fields) {
+    values[field] = typeof req.body?.[field] === 'string' ? req.body[field].trim() : ''
+    if (!values[field]) errors.push(`${field} is required`)
+    else if (values[field].length > 254) errors.push(`${field} is too long`)
+  }
+  if (values.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.push('Valid email is required')
+  if (values.phone && values.phone.replace(/\D/g, '').length < 10) errors.push('Valid phone number is required')
+  if (errors.length) return res.status(400).json({ error: 'Please check your contact details', details: errors })
+
+  try {
+    const id = createSubscriptionRequest({
+      serviceType: 'Accountants', tier: '', plan: '', proposedPrice: 0,
+      name: values.name, company: values.company, brandName: values.company,
+      email: values.email.toLowerCase(), phone: values.phone,
+    })
+    res.status(201).json({ id, message: 'Subscription request submitted successfully' })
+  } catch (err) {
+    console.error('Accountant subscription request error:', err)
+    res.status(500).json({ error: 'Could not submit your request. Please try again.' })
+  }
+})
+
 router.post('/v1/subscriptions', express.json(), (req, res) => {
   const {
     serviceType, tier, plan, proposedPrice, workingDays,

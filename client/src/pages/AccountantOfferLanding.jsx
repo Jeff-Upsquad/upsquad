@@ -22,7 +22,7 @@ function scrollToAnchor(id) {
   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
 }
 
-export default function AccountantOfferLanding({ embedded = false }) {
+export default function AccountantOfferLanding() {
   const [planId, setPlanId] = useState('basic')
   const [form, setForm] = useState(emptyForm)
   const [errors, setErrors] = useState({})
@@ -113,130 +113,6 @@ export default function AccountantOfferLanding({ embedded = false }) {
     }
   }
 
-  const reservationForm = (
-    <form
-      id={embedded ? "buy-subscription" : "reserve"}
-      onSubmit={handleReserve}
-      className={`scroll-mt-28 rounded-2xl border-[1.5px] border-black bg-white p-6 ${embedded ? "sm:p-8" : ""} shadow-brutal`}
-    >
-      <p className="font-mono-tech text-[11px] uppercase tracking-[0.16em] text-text-secondary">
-        Confirm your slot
-      </p>
-      <h3 className="mt-2 font-heading text-xl font-extrabold text-text-primary">
-        {embedded ? "Buy your accountant subscription" : "Pay to reserve"}
-      </h3>
-
-      <div className={embedded ? "mt-6 grid lg:grid-cols-2 gap-6 lg:gap-10" : "mt-5"}>
-        <div>
-          <p className="text-[12px] font-medium text-text-secondary mb-2">Plan</p>
-          {errors.plan ? <p className="text-sm text-red-600 mb-2">{errors.plan}</p> : null}
-          <div className="grid grid-cols-2 gap-2">
-            {ACCOUNTANT_PLANS.map((item) => {
-              const active = planId === item.id
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => {
-                    setPlanId(item.id)
-                    if (errors.plan) setErrors((prev) => ({ ...prev, plan: '' }))
-                  }}
-                  className={`text-left rounded-xl border-[1.5px] px-3 py-2.5 transition-all ${
-                    active
-                      ? 'border-black bg-white shadow-brutal-sm'
-                      : 'border-black/[0.08] bg-surface-secondary hover:border-black/30'
-                  }`}
-                >
-                  <span className="block font-heading text-sm font-extrabold text-text-primary">
-                    {item.name}
-                  </span>
-                  <span className="mt-0.5 block text-[12px] text-text-secondary">
-                    {item.hoursPerDay}h / day
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-
-        <div className="mt-5 rounded-xl bg-surface-secondary border border-black/[0.06] p-4 text-sm">
-          <div className="flex justify-between gap-3">
-            <span className="text-text-secondary">Role</span>
-            <span className="font-medium text-text-primary text-right">Accountant</span>
-          </div>
-          <div className="mt-2 flex justify-between gap-3">
-            <span className="text-text-secondary">Plan</span>
-            <span className="font-medium text-text-primary">
-              {plan?.name} · {plan?.hoursPerDay}h / day
-            </span>
-          </div>
-          <div className="mt-3 pt-3 border-t border-black/[0.06] flex justify-between gap-3">
-            <span className="text-text-secondary">Due now</span>
-            <span className="font-heading text-lg font-extrabold text-text-primary">
-              {formatInr(dueNow)}
-            </span>
-          </div>
-        </div>
-
-        </div>
-        <div className={embedded ? "grid sm:grid-cols-2 gap-4 content-start" : "mt-5 space-y-3"}>
-          <Field
-            label="Full name"
-            name="name"
-            value={form.name}
-            error={errors.name}
-            onChange={setField}
-            placeholder="Your name"
-          />
-          <Field
-            label="Email"
-            name="email"
-            type="email"
-            value={form.email}
-            error={errors.email}
-            onChange={setField}
-            placeholder="you@company.com"
-          />
-          <Field
-            label="Phone"
-            name="phone"
-            type="tel"
-            value={form.phone}
-            error={errors.phone}
-            onChange={setField}
-            placeholder="10-digit mobile"
-          />
-          <label className={embedded ? "block sm:col-span-2" : "block"}>
-            <span className="text-[12px] font-medium text-text-secondary">Preference (optional)</span>
-            <textarea
-              name="preference"
-              value={form.preference}
-              onChange={(e) => setField('preference', e.target.value)}
-              rows={3}
-              placeholder="Software (Tally, Zoho Books…), GST/TDS, payroll, industry — anything that helps us match the right person."
-              className="mt-1 w-full rounded-xl border border-black/[0.12] bg-white px-3 py-2.5 text-sm text-text-primary outline-none focus:border-black focus:ring-2 focus:ring-black/10 resize-none"
-            />
-          </label>
-        </div>
-
-      </div>
-      {payError ? (
-        <p className="mt-4 text-sm text-red-600 leading-relaxed">{payError}</p>
-      ) : null}
-
-      <button
-        type="submit"
-        disabled={paying}
-        className="mt-5 btn-gradient w-full text-sm font-semibold px-7 py-3.5 disabled:opacity-60"
-      >
-        {paying ? 'Opening Razorpay…' : `Pay ${formatInr(dueNow)} to confirm slot`}
-      </button>
-      <p className="mt-3 text-[12px] leading-relaxed text-text-muted">
-        You will pay on Razorpay&apos;s secure checkout. First month only. Limited to people who subscribe first. Full refund if the match is not right.
-      </p>
-    </form>
-  )
-
   if (confirming) {
     return (
       <section className="pt-32 pb-20 px-5 sm:px-8 min-h-[calc(100vh-80px)]">
@@ -295,16 +171,6 @@ export default function AccountantOfferLanding({ embedded = false }) {
               Message us on WhatsApp
             </a>
           </div>
-        </div>
-      </section>
-    )
-  }
-
-  if (embedded) {
-    return (
-      <section className="py-16 lg:py-20 px-5 sm:px-8 bg-surface-secondary" aria-label="Buy accountant subscription">
-        <div className="max-w-[1160px] mx-auto">
-          {reservationForm}
         </div>
       </section>
     )
@@ -490,7 +356,125 @@ export default function AccountantOfferLanding({ embedded = false }) {
           </div>
 
           <aside className="lg:sticky lg:top-28">
-            {reservationForm}
+            <form
+              id="reserve"
+              onSubmit={handleReserve}
+              className="scroll-mt-28 rounded-2xl border-[1.5px] border-black bg-white p-6 shadow-brutal"
+            >
+              <p className="font-mono-tech text-[11px] uppercase tracking-[0.16em] text-text-secondary">
+                Confirm your slot
+              </p>
+              <h3 className="mt-2 font-heading text-xl font-extrabold text-text-primary">
+                Pay to reserve
+              </h3>
+
+              <div className="mt-5">
+                <p className="text-[12px] font-medium text-text-secondary mb-2">Plan</p>
+                {errors.plan ? <p className="text-sm text-red-600 mb-2">{errors.plan}</p> : null}
+                <div className="grid grid-cols-2 gap-2">
+                  {ACCOUNTANT_PLANS.map((item) => {
+                    const active = planId === item.id
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() => {
+                          setPlanId(item.id)
+                          if (errors.plan) setErrors((prev) => ({ ...prev, plan: '' }))
+                        }}
+                        className={`text-left rounded-xl border-[1.5px] px-3 py-2.5 transition-all ${
+                          active
+                            ? 'border-black bg-white shadow-brutal-sm'
+                            : 'border-black/[0.08] bg-surface-secondary hover:border-black/30'
+                        }`}
+                      >
+                        <span className="block font-heading text-sm font-extrabold text-text-primary">
+                          {item.name}
+                        </span>
+                        <span className="mt-0.5 block text-[12px] text-text-secondary">
+                          {item.hoursPerDay}h / day
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              <div className="mt-5 rounded-xl bg-surface-secondary border border-black/[0.06] p-4 text-sm">
+                <div className="flex justify-between gap-3">
+                  <span className="text-text-secondary">Role</span>
+                  <span className="font-medium text-text-primary text-right">Accountant</span>
+                </div>
+                <div className="mt-2 flex justify-between gap-3">
+                  <span className="text-text-secondary">Plan</span>
+                  <span className="font-medium text-text-primary">
+                    {plan?.name} · {plan?.hoursPerDay}h / day
+                  </span>
+                </div>
+                <div className="mt-3 pt-3 border-t border-black/[0.06] flex justify-between gap-3">
+                  <span className="text-text-secondary">Due now</span>
+                  <span className="font-heading text-lg font-extrabold text-text-primary">
+                    {formatInr(dueNow)}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-5 space-y-3">
+                <Field
+                  label="Full name"
+                  name="name"
+                  value={form.name}
+                  error={errors.name}
+                  onChange={setField}
+                  placeholder="Your name"
+                />
+                <Field
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  error={errors.email}
+                  onChange={setField}
+                  placeholder="you@company.com"
+                />
+                <Field
+                  label="Phone"
+                  name="phone"
+                  type="tel"
+                  value={form.phone}
+                  error={errors.phone}
+                  onChange={setField}
+                  placeholder="10-digit mobile"
+                />
+                <label className="block">
+                  <span className="text-[12px] font-medium text-text-secondary">Preference (optional)</span>
+                  <textarea
+                    name="preference"
+                    value={form.preference}
+                    onChange={(e) => setField('preference', e.target.value)}
+                    rows={3}
+                    placeholder="Software (Tally, Zoho Books…), GST/TDS, payroll, industry — anything that helps us match the right person."
+                    className="mt-1 w-full rounded-xl border border-black/[0.12] bg-white px-3 py-2.5 text-sm text-text-primary outline-none focus:border-black focus:ring-2 focus:ring-black/10 resize-none"
+                  />
+                </label>
+              </div>
+
+              {payError ? (
+                <p className="mt-4 text-sm text-red-600 leading-relaxed">{payError}</p>
+              ) : null}
+
+              <button
+                type="submit"
+                disabled={paying}
+                className="mt-5 btn-gradient w-full text-sm font-semibold px-7 py-3.5 disabled:opacity-60"
+              >
+                {paying ? 'Opening Razorpay…' : `Pay ${formatInr(dueNow)} to confirm slot`}
+              </button>
+              <p className="mt-3 text-[12px] leading-relaxed text-text-muted">
+                You will pay on Razorpay&apos;s secure checkout. First month only. Limited to people who subscribe first. Full refund if the match is not right.
+              </p>
+            </form>
           </aside>
         </div>
       </section>
