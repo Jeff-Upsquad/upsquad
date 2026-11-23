@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url'
 import { createHmac } from 'node:crypto'
 import express from '../server/node_modules/express/index.js'
 
-test('fixed-price Cashfree accountant checkout', async (t) => {
+test('plan-priced Cashfree accountant checkout', async (t) => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'upsquad-cashfree-test-'))
   const originalFetch = globalThis.fetch
   const previousEnv = { ...process.env }
@@ -50,11 +50,12 @@ test('fixed-price Cashfree accountant checkout', async (t) => {
       assert.equal((await post({ ...contact, email: {} })).status, 400)
       assert.equal((await post({ ...contact, phone: '123' })).status, 400)
       assert.equal((await post({ ...contact, checkoutId: '../forged' })).status, 400)
+      assert.equal((await post({ ...contact, planId: 'plus' })).status, 400)
       assert.equal(calls.length, 0)
     })
 
     await t.test('fixes the server price to INR 5,000 and preserves the four contact fields', async () => {
-      const response = await post({ ...contact, amount: 1, planId: 'plus' })
+      const response = await post({ ...contact, amount: 1, planId: 'starter' })
       assert.equal(response.status, 201)
       const data = await response.json()
       assert.equal(data.amount, 5000)
@@ -72,6 +73,7 @@ test('fixed-price Cashfree accountant checkout', async (t) => {
       assert.equal(saved.company, 'Test Business')
       assert.equal(saved.email, 'test@example.com')
       assert.equal(saved.phone, contact.phone)
+      assert.equal(saved.plan, 'Starter')
       assert.equal(row.status, 'pending')
     })
 
@@ -81,6 +83,28 @@ test('fixed-price Cashfree accountant checkout', async (t) => {
       assert.equal(links.size, 1)
       assert.equal(db.getAccountantPayment(contact.checkoutId).subscription_request_id, row.subscription_request_id)
       assert.equal((await post({ ...contact, company: 'Other business' })).status, 409)
+    })
+
+    await t.test('Basic charges INR 10,000, preserves the plan and rejects partial or mismatched payments', async () => {
+      const id = 'd'.repeat(32)
+      const response = await post({ ...contact, checkoutId: id, planId: 'basic', amount: 1 })
+      assert.equal(response.status, 201)
+      assert.equal((await response.json()).amount, 10000)
+      assert.equal(links.get(id).link_amount, 10000)
+      const row = db.getAccountantPayment(id)
+      assert.equal(row.amount, 10000)
+      assert.equal(db.getSubscriptionRequestById(row.subscription_request_id).plan, 'Basic')
+      assert.equal((await post({ ...contact, planId: 'basic' })).status, 409)
+      assert.equal((await post({ ...contact, checkoutId: id, planId: 'basic' })).status, 201)
+      Object.assign(links.get(id), { link_status: 'PAID', link_amount_paid: 5000 })
+      assert.equal((await (await status(id)).json()).status, 'pending')
+      Object.assign(links.get(id), { link_amount: 5000, link_amount_paid: 10000 })
+      assert.equal((await (await status(id)).json()).status, 'pending')
+      Object.assign(links.get(id), { link_amount: 10000, link_amount_paid: 10000 })
+      const paid = await (await status(id)).json()
+      assert.equal(paid.status, 'paid')
+      assert.equal(paid.amount, 10000)
+      assert.equal((await (await post({ ...contact, checkoutId: id, planId: 'basic' })).json()).amount, 10000)
     })
 
     await t.test('return parameters cannot mark a payment paid', async () => {

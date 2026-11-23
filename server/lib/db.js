@@ -646,13 +646,13 @@ export function getAccountantPayment(id) {
   return db.prepare('SELECT * FROM accountant_subscription_payments WHERE id = ?').get(id) || null
 }
 
-export function createAccountantPayment({ id, name, company, email, phone }) {
+export function createAccountantPayment({ id, name, company, email, phone, amount = 5000, plan = 'Starter' }) {
   return db.transaction(() => {
     const contactId = createSubscriptionRequest({
-      serviceType: 'Accountants', tier: '', plan: '', proposedPrice: 5000,
+      serviceType: 'Accountants', tier: '', plan, proposedPrice: amount,
       name, company, brandName: company, email: email.toLowerCase(), phone,
     })
-    db.prepare('INSERT INTO accountant_subscription_payments (id, subscription_request_id) VALUES (?, ?)').run(id, contactId)
+    db.prepare('INSERT INTO accountant_subscription_payments (id, subscription_request_id, amount) VALUES (?, ?, ?)').run(id, contactId, amount)
     return getAccountantPayment(id)
   })()
 }

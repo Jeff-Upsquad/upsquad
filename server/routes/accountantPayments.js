@@ -5,7 +5,7 @@ import {
   getSubscriptionRequestById,
 } from '../lib/db.js'
 import {
-  ACCOUNTANT_PAYMENT_AMOUNT, cashfreeConfigured, createAccountantPaymentLink,
+  ACCOUNTANT_PLANS, cashfreeConfigured, createAccountantPaymentLink,
   verifyCashfreeWebhook,
 } from '../lib/cashfree.js'
 import { syncAccountantPayment } from '../lib/accountantPaymentStatus.js'
@@ -26,6 +26,9 @@ router.post('/v1/accountant-subscription-checkout', express.json(), async (req, 
   let phone = values.phone.replace(/\D/g, '')
   if (phone.length === 12 && phone.startsWith('91')) phone = phone.slice(2)
   if (!/^\d{10}$/.test(phone)) errors.push('Enter a valid 10-digit Indian mobile number')
+  const planId = req.body?.planId ?? 'starter'
+  const plan = Object.hasOwn(ACCOUNTANT_PLANS, planId) ? ACCOUNTANT_PLANS[planId] : null
+  if (!plan) errors.push('Choose Starter or Basic')
   const checkoutId = req.body?.checkoutId
   if (checkoutId !== undefined && (typeof checkoutId !== 'string' || !/^[a-f0-9]{32}$/.test(checkoutId))) errors.push('Invalid checkout reference')
   if (errors.length) return res.status(400).json({ error: 'Please check your contact details', details: errors })
@@ -39,20 +42,22 @@ router.post('/v1/accountant-subscription-checkout', express.json(), async (req, 
       if (contact.name !== values.name || contact.company !== values.company || contact.email !== values.email.toLowerCase() || contact.phone !== values.phone) {
         return res.status(409).json({ error: 'Contact details changed. Refresh the page to start a new checkout.' })
       }
-      if (row.status === 'paid') return res.json({ reservationId: id, status: 'paid', amount: ACCOUNTANT_PAYMENT_AMOUNT })
+      if (row.amount !== plan.amount) return res.status(409).json({ error: 'Plan changed. Start a new checkout for the selected plan.' })
+      if (row.status === 'paid') return res.json({ reservationId: id, status: 'paid', amount: row.amount })
     } else {
-      row = createAccountantPayment({ id, ...values })
+      row = createAccountantPayment({ id, ...values, amount: plan.amount, plan: plan.name })
     }
     const link = await createAccountantPaymentLink({
       id, name: values.name, email: values.email.toLowerCase(), phone,
+      amount: row.amount, planName: plan.name,
       returnUrl: `${baseUrl()}/api/v1/accountant-subscription-payments/${id}/return`,
       notifyUrl: `${baseUrl()}/api/webhooks/cashfree-accountant`,
     })
-    if (link.link_id !== id || Number(link.link_amount) !== ACCOUNTANT_PAYMENT_AMOUNT || link.link_currency !== 'INR') throw new Error('Unexpected Cashfree payment details')
+    if (link.link_id !== id || Number(link.link_amount) !== row.amount || link.link_currency !== 'INR') throw new Error('Unexpected Cashfree payment details')
     const url = new URL(link.link_url)
     if (url.protocol !== 'https:' || !(url.hostname === 'cashfree.com' || url.hostname.endsWith('.cashfree.com'))) throw new Error('Unexpected checkout URL')
     attachAccountantPaymentLink(id, url.href)
-    res.status(201).json({ reservationId: id, checkoutUrl: url.href, amount: ACCOUNTANT_PAYMENT_AMOUNT })
+    res.status(201).json({ reservationId: id, checkoutUrl: url.href, amount: row.amount })
   } catch (err) {
     console.error('Cashfree accountant checkout:', err.message)
     res.status(502).json({ error: 'Could not open Cashfree checkout. Please try again.' })

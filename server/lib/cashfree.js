@@ -1,6 +1,10 @@
 import { createHmac, timingSafeEqual } from 'crypto'
 
 export const ACCOUNTANT_PAYMENT_AMOUNT = 5000
+export const ACCOUNTANT_PLANS = {
+  starter: { name: 'Starter', amount: 5000 },
+  basic: { name: 'Basic', amount: 10000 },
+}
 
 export function cashfreeConfigured() {
   return Boolean(process.env.CASHFREE_APP_ID && process.env.CASHFREE_SECRET_KEY)
@@ -28,15 +32,15 @@ export function fetchAccountantPaymentLink(id) {
   return request(`/links/${encodeURIComponent(id)}`)
 }
 
-export async function createAccountantPaymentLink({ id, name, email, phone, returnUrl, notifyUrl }) {
+export async function createAccountantPaymentLink({ id, name, email, phone, returnUrl, notifyUrl, amount = ACCOUNTANT_PAYMENT_AMOUNT, planName = 'Starter' }) {
   try {
     return await request('/links', {
       method: 'POST',
       body: JSON.stringify({
         link_id: id,
-        link_amount: ACCOUNTANT_PAYMENT_AMOUNT,
+        link_amount: amount,
         link_currency: 'INR',
-        link_purpose: 'UpSquad accountant subscription — first month',
+        link_purpose: `UpSquad accountant subscription — ${planName} — first month`,
         customer_details: { customer_name: name, customer_email: email, customer_phone: phone },
         link_partial_payments: false,
         link_notify: { send_sms: false, send_email: false },
@@ -51,10 +55,10 @@ export async function createAccountantPaymentLink({ id, name, email, phone, retu
   }
 }
 
-export function isAccountantPaymentPaid(link, id) {
+export function isAccountantPaymentPaid(link, id, amount = ACCOUNTANT_PAYMENT_AMOUNT) {
   return link?.link_id === id && link.link_status === 'PAID'
-    && link.link_currency === 'INR' && Number(link.link_amount) === ACCOUNTANT_PAYMENT_AMOUNT
-    && Number(link.link_amount_paid) >= ACCOUNTANT_PAYMENT_AMOUNT
+    && link.link_currency === 'INR' && Number(link.link_amount) === amount
+    && Number(link.link_amount_paid) >= amount
 }
 
 export function verifyCashfreeWebhook(rawBody, timestamp, signature) {

@@ -70,11 +70,11 @@ Always keep this mapping in sync across `client/src/pages/`, `server/index.js` (
 
 ### Accountant explainer payment flow
 
-- Hero and closing “Buy Subscription · ₹5,000” links scroll to `#buy-subscription`.
-- The form collects only contact person name, business name, email, and phone, horizontally on desktop. Its buy button opens a fixed INR 5,000 Cashfree hosted payment link for the first month; there is no plan selector.
-- `POST /api/v1/accountant-subscription-checkout` creates the contact request and payment record, then creates/reuses a Cashfree link. Client amounts are ignored. Retries with the same checkout ID reuse the same payment.
+- Hero and closing “Choose your subscription plan” links scroll to `#buy-subscription`.
+- The form collects only contact person name, business name, email, and phone, horizontally on desktop. The plan selector offers Starter (₹5,000/month, 2 hours per day) and Basic (₹10,000/month, fixed monthly plan with no hour limit). Its buy button opens a Cashfree hosted payment link for the selected plan’s first month.
+- `POST /api/v1/accountant-subscription-checkout` creates the contact request and payment record, then creates/reuses a Cashfree link. Prices are resolved server-side from the selected plan; client amounts are ignored. Retries with the same checkout ID reuse the same payment and reject a changed plan. Existing ₹5,000 checkouts remain valid.
 - Cashfree uses the UpSquad merchant credentials shared with SquadBooks (`CASHFREE_APP_ID`, `CASHFREE_SECRET_KEY`, `CASHFREE_ENV=live`, server-only). No credentials belong in the browser or repository.
-- Return URL: `/api/v1/accountant-subscription-payments/:id/return`. The browser returns to this explainer and checks `/api/v1/accountant-subscription-payments/:id`. Only a server-verified Cashfree `PAID` link for the matching ID, INR currency and full INR 5,000 marks the record paid. Browser query parameters are never payment proof.
+- Return URL: `/api/v1/accountant-subscription-payments/:id/return`. The browser returns to this explainer and checks `/api/v1/accountant-subscription-payments/:id`. Only a server-verified Cashfree `PAID` link for the matching ID, INR currency and full saved checkout amount marks the record paid. Browser query parameters are never payment proof.
 - Signed webhook endpoint: `/api/webhooks/cashfree-accountant`. The link includes this notify URL, and valid events trigger server-side reconciliation. A customer who closes checkout can later continue the same payment from the return page.
 - The existing `/offer/accountant/` page retains its Razorpay payment flow.
 - Admin submissions: sign in at `/admin/login`, then open **Subscriptions** (`/admin/subscription-requests`). Existing and future accountant contact requests appear automatically, including checkouts that were not completed. Search covers contact person, business, email and phone; payment filters and 50-row pagination are available. The filtered summary shows submission count, paid count and payments received.

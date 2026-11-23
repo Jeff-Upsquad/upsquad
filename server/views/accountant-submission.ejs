@@ -10,6 +10,7 @@
   </section>
   <section class="bg-white border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold">Payment details</h2>
+    <% if (entry.plan) { %><p class="mt-3 text-sm font-medium">Plan: <%= entry.plan %></p><% } %>
     <dl class="mt-5 space-y-5">
       <div><dt class="text-sm text-slate-500">Payment status</dt><dd class="mt-1 font-semibold <%= entry.payment_status === 'paid' ? 'text-emerald-700' : 'text-slate-700' %>"><%= statuses[entry.payment_status || 'not_started'] || entry.payment_status %></dd></div>
       <div><dt class="text-sm text-slate-500">Amount</dt><dd class="mt-1 font-medium"><%= entry.payment_amount == null ? 'No checkout started' : money(entry.payment_amount) %></dd></div>
