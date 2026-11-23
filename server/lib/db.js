@@ -172,6 +172,14 @@ function seed() {
     },
     {
       slug: 'designer-editor-subscription-explainer',
+      heroTitle: 'Your design and video work, on a simple monthly subscription.',
+      heroDescription: 'Get a graphic designer, a video editor, or both through one monthly plan. Submit unlimited work requests, ask for unlimited revisions, and manage everything in SquadHub.',
+      defaultLanguageCode: 'en',
+      // Same FK note as above; extra languages are added per-page in /admin.
+      langs: [{ code: 'en' }],
+    },
+    {
+      slug: 'creative-services-explainer',
       heroTitle: 'Your creative team, on your terms.',
       heroDescription: 'Connect with vetted Graphic Designers and Video Editors. Subscribe for ongoing support, assign a one-time project, or hire directly into your business.',
       defaultLanguageCode: 'en',

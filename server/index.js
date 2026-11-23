@@ -120,6 +120,7 @@ const LP_REDIRECTS = {
   'business-collaboration-program': '/customers/business-collaboration-program/',
   'business-collaboration': '/customers/business-collaboration-program/',
   'collaboration': '/customers/business-collaboration-program/',
+  'creative-services-explainer': '/customers/creative-services-explainer/',
   'designer-editor-subscription-explainer': '/customers/designer-editor-subscription-explainer/',
   'partner-program': '/partner-program/designer-and-video-editor/',
   'partnerprogram-accountant': '/partner-program/accountant/',
