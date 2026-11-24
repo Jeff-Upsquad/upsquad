@@ -18,6 +18,7 @@ import {
   collabWaLink,
   interestOptions,
   programStats,
+  revenueCallout,
   youGetItems,
 } from '../data/collaboration'
 
@@ -81,6 +82,17 @@ function ReelIcon({ className = 'w-6 h-6' }) {
       <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
       <path d="M2.5 7.5h19M7.5 2.5l3 5M14 2.5l3 5" />
       <path d="m10 11.5 5 3-5 3v-6Z" />
+    </svg>
+  )
+}
+
+function AppsIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7.5" height="7.5" rx="1.8" />
+      <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8" />
+      <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8" />
+      <path d="M17.25 13.5v7.5M13.5 17.25h7.5" />
     </svg>
   )
 }
@@ -308,8 +320,30 @@ export default function BusinessCollaboration() {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.32}>
-              <p className="mt-5 text-xs text-text-muted">
+            {/* Prominent note: small businesses keep the apps after the collaboration */}
+            <ScrollReveal delay={0.3}>
+              <div className="mt-6 max-w-xl rounded-2xl border-[1.5px] border-black bg-[#FFFF99] px-5 py-4 shadow-brutal-sm">
+                <p className="font-mono-tech text-[10px] uppercase tracking-[0.16em] text-[#0A0A0A]/70">
+                  {revenueCallout.condition}
+                </p>
+                <div className="mt-2.5 flex items-start gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#0A0A0A] text-[#FFFF99]">
+                    <AppsIcon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-heading text-[15px] font-extrabold leading-snug tracking-[-0.01em] text-[#0A0A0A]">
+                      {revenueCallout.benefit}
+                    </p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-[#3f3f46]">
+                      {revenueCallout.note}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.38}>
+              <p className="mt-4 text-xs text-text-muted">
                 A few collaborations only &middot; 1–3 months &middot; No card, no invoice, no lock-in
               </p>
             </ScrollReveal>

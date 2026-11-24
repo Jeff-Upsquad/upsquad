@@ -17,6 +17,14 @@ export const DEFAULT_HERO_TITLE = 'Accountant. Software. Payroll. Inventory.'
 export const DEFAULT_HERO_DESCRIPTION =
   "We're partnering with a few selected startups and businesses — giving them our complete accounting ecosystem, at no cost, for 1 to 3 months."
 
+// Prominent hero note under the CTAs: small businesses whose revenue is below
+// ₹5 lakh a year can continue using the accounting apps after the collaboration.
+export const revenueCallout = {
+  condition: 'Revenue below ₹5 lakh a year?',
+  benefit: 'You can continue using our accounting apps — free.',
+  note: 'Even after the collaboration ends.',
+}
+
 export const programStats = [
   { value: '1–3', label: 'months of access' },
   { value: '4', label: 'products included' },
