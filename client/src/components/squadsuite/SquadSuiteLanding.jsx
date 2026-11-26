@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 const contact = (message) => `https://wa.me/919995266385?text=${encodeURIComponent(message)}`
-const APPS = [
+export const APPS = [
   {
     id: 'hub', name: 'SquadHub', short: 'Hub', category: 'Projects & communication',
     headline: 'Give your team a place to get things done.',
@@ -27,13 +27,13 @@ const APPS = [
   },
 ]
 
-function AppIcon({ id, className = '' }) {
+export function AppIcon({ id, className = '' }) {
   return <span className={`ss-icon ${className}`} aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     {id === 'hub' ? <><rect x="3" y="3" width="7" height="7" rx="2" /><rect x="14" y="3" width="7" height="7" rx="2" /><rect x="3" y="14" width="7" height="7" rx="2" /><path d="M17.5 14v7M14 17.5h7" /></> : id === 'books' ? <><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15" /><path d="M6 8h3M6 12h3M15 8h3M15 12h3" /></> : <><rect x="3" y="5" width="18" height="16" rx="3" /><path d="M7 3v4M17 3v4M3 11h18m-13 5 3 2 5-4" /></>}
   </svg></span>
 }
 
-function ProductPreview({ app }) {
+export function ProductPreview({ app }) {
   return <div className="ss-preview" aria-label={`Illustrative ${app.name} preview`}>
     <div className="ss-window-top"><span className="ss-window-dots" aria-hidden="true"><i /><i /><i /></span><span>{app.name} / a little less busywork</span><span className="ss-demo-label">Illustrative preview</span></div>
     <div className="ss-workspace">

@@ -112,6 +112,8 @@ app.get(['/partner-program/agencies', '/partner-program/agencies/'], (_req, res)
 
 // Landing-page redirects: map admin slugs to their canonical public URLs.
 const LP_REDIRECTS = {
+  'squadbooks': '/squadbooks/',
+  'squadbooks-accounting-suite': '/squadbooks/',
   'squadsuite': '/squadsuite/',
   'partner-program-social-media-creators': '/partner-program/social-media-creators/',
   'social-media-creators': '/partner-program/social-media-creators/',
