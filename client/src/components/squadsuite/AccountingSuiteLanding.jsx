@@ -4,6 +4,13 @@ import { useState } from 'react'
 import { APPS, AppIcon, ProductPreview } from './SquadSuiteLanding'
 
 const apps = APPS.filter((app) => ['books', 'payroll'].includes(app.id))
+const demoLinks = {
+  books: [{ label: 'Try SquadBooks demo', url: 'https://squadbooks.upsquadconnect.com/demo' }],
+  payroll: [
+    { label: 'Try Payroll web demo', url: 'https://squadpayroll.upsquadconnect.com/app.html?demo=1' },
+    { label: 'Try Payroll mobile demo', url: 'https://squadpayroll.upsquadconnect.com/mobile-demo.html' },
+  ],
+}
 const enquiry = 'https://wa.me/919995266385?text=' + encodeURIComponent('Hi UpSquad, I’m interested in the SquadBooks Accounting Suite. Please help me choose between SquadBooks SaaS and Squad Payroll, or set up both.')
 const questions = [
   ['What is the SquadBooks Accounting Suite?', 'It’s a family of two apps: SquadBooks SaaS for accounting and Squad Payroll for attendance and payroll. Choose one for your immediate needs, or use both for different parts of your business.'],
@@ -39,7 +46,23 @@ export default function AccountingSuiteLanding() {
 
       <section className="ss-apps ss-wrap" id="apps">
         <div className="ss-section-heading"><div><p className="ss-eyebrow">TWO APPS. CLEAR RESPONSIBILITIES.</p><h2>A place for the numbers.<br />A place for payday.</h2></div><p>Give your accounting and payroll the attention each needs, with tools built around the job.</p></div>
-        <div className="ss-app-grid">{apps.map((app) => <article key={app.id} className="ss-app-card"><div className="ss-app-card-top"><AppIcon id={app.id} /><span className="ss-eyebrow">{app.id === 'books' ? 'BROWSER-BASED ACCOUNTING' : 'ATTENDANCE & PAYROLL'}</span></div><h3>{app.id === 'books' ? 'SquadBooks SaaS' : app.name}</h3><h4>{app.headline}</h4><p>{app.description}</p><ul>{app.features.map((feature) => <li key={feature}><span aria-hidden="true">✓</span>{feature}</li>)}</ul><div className="as-card-actions"><a className="ss-button" href={app.url}>{app.id === 'books' ? 'Open SquadBooks' : 'Explore Payroll'}</a><a className="as-help-link" href={enquiry}>Help me get started</a></div></article>)}</div>
+        <div className="ss-app-grid">{apps.map((app) => (
+          <article key={app.id} className="ss-app-card">
+            <div className="ss-app-card-top"><AppIcon id={app.id} /><span className="ss-eyebrow">{app.id === 'books' ? 'BROWSER-BASED ACCOUNTING' : 'ATTENDANCE & PAYROLL'}</span></div>
+            <h3>{app.id === 'books' ? 'SquadBooks SaaS' : app.name}</h3>
+            <h4>{app.headline}</h4>
+            <p>{app.description}</p>
+            <ul>{app.features.map((feature) => <li key={feature}><span aria-hidden="true">✓</span>{feature}</li>)}</ul>
+            <div className="as-card-actions">
+              <div className="as-demo-links">
+                <p>Explore with sample data. No sign-up needed.</p>
+                {demoLinks[app.id].map((demo) => <a key={demo.url} className="ss-button ss-button-outline" href={demo.url} target="_blank" rel="noopener noreferrer">{demo.label}<span className="sr-only"> (opens in a new tab)</span></a>)}
+              </div>
+              <a className="ss-button" href={app.url}>{app.id === 'books' ? 'Open SquadBooks' : 'Explore Payroll'}</a>
+              <a className="as-help-link" href={enquiry}>Help me get started</a>
+            </div>
+          </article>
+        ))}</div>
       </section>
 
       <section className="ss-growth" id="your-workday"><div className="ss-wrap ss-growth-grid"><div><p className="ss-eyebrow">THE WORK BEHIND THE BUSINESS</p><h2>From the first invoice<br />to the last<br /><span>payslip.</span></h2><p>Some days are about keeping financial records in order. Others are about checking attendance and preparing salaries. Choose the tool for the task, and keep your team focused.</p><a className="ss-text-link" href={enquiry}>Talk through your accounting needs</a></div><div className="as-workday"><article><AppIcon id="books" /><div><span className="ss-eyebrow">YOUR BUSINESS</span><h3>Keep the books in view.</h3><p>Organize invoices and records. Review financial reports. Give the right people access to your organization.</p><a href="https://squadbooks.upsquadconnect.com">Explore SquadBooks SaaS</a></div></article><article><AppIcon id="payroll" /><div><span className="ss-eyebrow">YOUR PEOPLE</span><h3>Be ready for payday.</h3><p>Track attendance, prepare salary calculations and generate payslips in Squad Payroll.</p><a href="https://squadpayroll.upsquadconnect.com">Explore Squad Payroll</a></div></article></div></div></section>
